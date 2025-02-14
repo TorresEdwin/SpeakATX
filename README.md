@@ -1,12 +1,11 @@
 # Group 23
 
 # Team Members
-- Maya Lee
-- Steven Zheng
-- Amy Wu
-- Edwin Torres
+- Maya Lee - @MayaLee393
+- Steven Zheng - @steven.zheng1
+- Amy Wu - @amypwu
+- Edwin Torres - @EdwinIsSad
 - Shawn Tran
-
 
 # Project
 
