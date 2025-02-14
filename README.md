@@ -19,9 +19,43 @@ SpeakATX is a website that aims to provide resources to minimal english and non-
 
 # Models
 ## Local Translation Services
-## Local Non-English Communities
-## Local Non-English Friendly Job Postings
+Instances: 50
 
+Attributes: 
+- Name of service
+- Rating
+- Main language
+- Area of Austin
+- Pricing
+
+Media: Map location, Link to site
+
+Connections:
+## Local Non-English Communities
+Instances: 10
+
+Attributes: 
+- Name of community
+- Number of members
+- Main language
+- Area of Austin
+
+Media: Community image, Link to site
+
+Connections:
+## Local Non-English Friendly Job Postings
+Instances: 1000
+
+Attributes: 
+- Name of company
+- Job title
+- Hourly pay
+- Main language
+- Area of Austin
+
+Media: Company Image, Link to site
+
+Connections:
 # Three Questions We Will Answer
 - Where can I find an English translator in my area?
 - What communities in the area could I relate to?
