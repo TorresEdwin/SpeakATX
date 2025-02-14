@@ -10,7 +10,7 @@
 
 # Project
 
-Insert name here is a website that aims to provide resources to minimal english and non-english speakers in Austin, TX.
+SpeakATX is a website that aims to provide resources to minimal english and non-english speakers in Austin, TX.
 
 # Data Sources
 
