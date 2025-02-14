@@ -5,7 +5,7 @@
 - Steven Zheng - @steven.zheng1
 - Amy Wu - @amypwu
 - Edwin Torres - @EdwinIsSad
-- Shawn Tran
+- Shawn Tran - @stran7365
 
 # Project
 
