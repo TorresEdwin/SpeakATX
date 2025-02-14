@@ -28,9 +28,14 @@ Attributes:
 - Area of Austin
 - Pricing
 
-Media: Map location, Link to site
+Media: 
+- Map location
+- Link to site
 
 Connections:
+- Local Non-English Communities: communities that frequent the specific service location
+- Local Non-English Friendly Job Postings: jobs that accommodate the language needs for communities that frequent the specific service location
+
 ## Local Non-English Communities
 Instances: 10
 
@@ -40,9 +45,14 @@ Attributes:
 - Main language
 - Area of Austin
 
-Media: Community image, Link to site
+Media: 
+- Community image
+- Link to site
 
 Connections:
+- Local Translation Services: Translation services for this community
+- Local Non-English Friendly Job Postings: jobs that accommodate the language needs for this community
+
 ## Local Non-English Friendly Job Postings
 Instances: 1000
 
@@ -53,9 +63,14 @@ Attributes:
 - Main language
 - Area of Austin
 
-Media: Company Image, Link to site
+Media: 
+- Company Image
+- Link to site
 
 Connections:
+- Local Non-English Communities: Community for the language this job is in
+- Local Translation Services: Translation services for people that speak the language this job is in
+
 # Three Questions We Will Answer
 - Where can I find an English translator in my area?
 - What communities in the area could I relate to?
