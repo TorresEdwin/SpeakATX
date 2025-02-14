@@ -1,30 +1,39 @@
-Canvas / Slack group number (be very sure about this)
+# Canvas / Slack group number
 23
 
-names of the team members
+# Team members
 Maya Lee
+
 Steven Zheng
+
 Amy Wu
+
 Edwin Torres
+
 Shawn Tran
 
-name of the project (alphanumeric, no spaces, max 32 chars; this will also be your URL)
+# name of the project
 
-the proposed project
+idk
 
-URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this)
-at least three models
+# the proposed project
 
-an estimate of the number of instances of each model
+Providing resources for non-english speakers in Austin, TX
 
-each model must have many attributes
+# URLs of at least three data sources that you will programmatically scrape (at least one must be a RESTful API) (be very sure about this)
 
-describe five of those attributes for each model that will be on the cards and that you can filter or sort
+# at least three models
 
-instances of each model must connect to instances of at least two other models
+# an estimate of the number of instances of each model
 
-instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this)
+# each model must have many attributes
 
-describe two types of media for each model
+# describe five of those attributes for each model that will be on the cards and that you can filter or sort
 
-describe three questions that your site will answer
+# instances of each model must connect to instances of at least two other models
+
+# instances of each model must be rich with different media (e.g., feeds, images, maps, text, videos, etc.) (be very sure about this)
+
+# describe two types of media for each model
+
+# describe three questions that your site will answer
