@@ -13,9 +13,17 @@ SpeakATX is a website that aims to provide resources to minimal english and non-
 
 # Data Sources
 
+- Yelp API: https://www.yelp.com/search?cflt=translationservices&find_loc=Austin%2C+TX
+- Glassdoor API: https://www.glassdoor.com/developer/jobsApiActions.htm
+- Google Maps API: https://developers.google.com/maps 
+
 # Models
-## Model 1
-## Model 2
-## Model 3
+## Local Translation Services
+## Local Non-English Communities
+## Local Non-English Friendly Job Postings
 
 # Three Questions We Will Answer
+- Where can I find an English translator in my area?
+- What communities in the area could I relate to?
+- Are there any businesses that support non-english hires?
+
