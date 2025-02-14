@@ -9,7 +9,7 @@
 
 # Project
 
-SpeakATX is a website that aims to provide resources to minimal english and non-english speakers in Austin, TX. It will have information on local non-english communities, translation services, and job postings.
+**SpeakATX** is a website that aims to provide resources to minimal english and non-english speakers in Austin, TX. It will have information on local non-english communities, translation services, and job postings.
 
 # Data Sources
 
