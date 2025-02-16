@@ -2,6 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Job {
     constructor(name, title, pay, language, area, imageUrl) {
@@ -30,31 +31,33 @@ const JobsPage = () => {
     ];
 
     return (
-        <div>
-            <h1>Jobs</h1>
-            {/* Display number of buttons */}
-            <p>Number of jobs: {jobLinks.length}</p>
-            <div className="link-grid">
+        <div className="container my-4">
+            <h1 className="mb-4">Jobs</h1>
+            <p className="mb-4">Number of jobs: {jobLinks.length}</p>
+            
+            <div className="row">
                 {jobLinks.map((jobItem, index) => (
-                    <a 
-                        key={index} 
-                        href={jobItem.job ? jobItem.job.url : jobItem.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="link-item"
-                    >
-                        {jobItem.job ? (
-                            <>
-                                <img src={jobItem.job.imageUrl} alt={jobItem.job.name} style={{ height: "120px", marginRight: "10px" }} />
-                                {`${jobItem.job.name}, Title: ${jobItem.job.title}`}
-                            </>
-                        ) : (
-                            <>
-                                <img src={jobItem.imageUrl} alt={jobItem.name} style={{ height: "120px", marginRight: "10px" }} />
-                                {jobItem.name}
-                            </>
-                        )}
-                    </a>
+                    <div className="col-md-4 mb-3" key={index}>
+                        <a 
+                            href={jobItem.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="card text-decoration-none"
+                        >
+                            <img 
+                                src={jobItem.imageUrl} 
+                                alt={jobItem.name} 
+                                className="card-img-top" 
+                                style={{ height: "120px", objectFit: "cover" }} 
+                            />
+                            <div className="card-body">
+                                <h5 className="card-title">{jobItem.name}</h5>
+                                <p className="card-text">
+                                    {jobItem.title}, Pay: ${jobItem.pay}/hr, Language: {jobItem.language}, Area: {jobItem.area}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
                 ))}
             </div>
         </div>
