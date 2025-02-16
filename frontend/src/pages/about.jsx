@@ -12,6 +12,14 @@ const About = () => {
     const projectId = '67116641';  // Replace with your project ID
     const gitLabUrl = `https://gitlab.com/api/v4/projects/${projectId}`;
 
+    const namesMap = new Map();
+
+    namesMap.set("steven", "Steven Zheng")
+    namesMap.set("maya", "Maya Lee")
+    namesMap.set("edwin", "Edwin Torres")
+    namesMap.set("amy", "Amy Park Wu")
+    namesMap.set("shawn", "Shawn Tran")
+
     // Fetch commits per person
     const fetchCommits = async () => {
         try {
@@ -24,7 +32,14 @@ const About = () => {
 
             // Group commits by author
             const commitCount = commits.reduce((acc, commit) => {
-                const author = commit.author_name;
+                var author = commit.author_name;
+                
+                for (let key of namesMap.keys()) {
+                    if(author.toLowerCase().includes(key)) {
+                        author = namesMap.get(key)
+                    }
+                }
+
                 acc[author] = (acc[author] || 0) + 1;
                 return acc;
             }, {});
