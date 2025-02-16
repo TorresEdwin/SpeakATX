@@ -27,32 +27,44 @@ const CommunitiesPage = () => {
         }}
       >
         {services.map((service, index) => (
-          <div 
-            key={index} 
-            style={{ 
-              border: "1px solid #ddd", 
-              borderRadius: "12px", 
-              padding: "40px", 
-              minHeight: "180px", 
-              boxShadow: "4px 4px 12px rgba(0,0,0,0.1)", 
+          <button
+            key={index}
+            style={{
+              border: "none",
+              borderRadius: "12px",
+              padding: "40px",
+              minHeight: "180px",
+              boxShadow: "4px 4px 12px rgba(0,0,0,0.1)",
               fontSize: "22px",
               fontWeight: "bold",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              color: "white", /* Ensures text is readable */
+              color: "white",
               position: "relative",
-              backgroundImage: "url('/placeholder2.jpg')", /* Sets background image */
-              backgroundSize: "cover", /* Ensures the image covers the cell */
-              backgroundPosition: "center", /* Centers the image */
-              backgroundRepeat: "no-repeat", /* Prevents tiling */
+              backgroundImage: "url('/placeholder2.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              cursor: "pointer",
+              transition: "transform 0.2s ease-in-out",
             }}
+            onClick={() => alert(`You clicked on ${service.name}`)}
+            onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.05)"}
+            onMouseOut={(e) => e.currentTarget.style.transform = "scale(1.0)"}
           >
-            <h2 style={{ fontSize: "32px", background: "rgba(0, 0, 0, 0.5)", padding: "10px", borderRadius: "8px" }}>
+            <h2 
+              style={{ 
+                fontSize: "32px", 
+                background: "rgba(0, 0, 0, 0.5)", 
+                padding: "10px", 
+                borderRadius: "8px",
+              }}
+            >
               {service.name}
             </h2>
-          </div>
+          </button>
         ))}
       </div>
     </div>
