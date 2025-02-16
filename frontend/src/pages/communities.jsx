@@ -15,15 +15,24 @@ const services = [
 
 const CommunitiesPage = () => {
   return (
-    <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
+    <div 
+      style={{ 
+        padding: "20px", 
+        maxWidth: "1200px", 
+        margin: "0 auto", 
+        textAlign: "center", 
+      }}
+    >
       <h1 style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "80px" }}>Communities in Austin</h1>
       <div 
         style={{ 
           display: "grid", 
           gap: "30px",
-          gridTemplateColumns: "repeat(5, 1fr)", 
+          gridTemplateColumns: "repeat(5, 1fr)", /* Always 5 columns */
+          gridTemplateRows: "repeat(2, auto)", /* Adjust row height based on content */
+          gridAutoRows: "minmax(180px, auto)", /* Allows flexibility in row height */
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         {services.map((service, index) => (
@@ -49,6 +58,7 @@ const CommunitiesPage = () => {
               backgroundRepeat: "no-repeat",
               cursor: "pointer",
               transition: "transform 0.2s ease-in-out",
+              objectFit: "cover", /* Ensures the image covers the button without cutting off */
             }}
             onClick={() => alert(`You clicked on ${service.name}`)}
             onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.05)"}
