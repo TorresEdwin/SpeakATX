@@ -138,7 +138,7 @@ const About = () => {
 
             <p>
                 <b>Shawn Tran</b><br/>
-                <img src="placeholder.png" alt="Image" width="300"/> <br/>
+                <img src="ShawnTran.jpg" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
