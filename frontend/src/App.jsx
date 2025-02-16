@@ -26,7 +26,7 @@ function App() {
 
   return (
     <Router>
-            <Navbar class="nav-bar"/>
+            <Navbar/>
             <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/translations" element={<TranslationsPage />} />
