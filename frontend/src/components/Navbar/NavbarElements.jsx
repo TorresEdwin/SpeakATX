@@ -1,5 +1,3 @@
-// Filename - ./components/Navbar.js
-
 import { FaBars } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
@@ -8,12 +6,13 @@ export const Nav = styled.nav`
     background: #ffb3ff;
     height: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centers the navbar content */
+    align-items: center; /* Centers vertically */
     z-index: 12;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw; /* Ensures full width */
 `;
 
 export const NavLink = styled(Link)`
@@ -26,7 +25,7 @@ export const NavLink = styled(Link)`
     cursor: pointer;
     font-size: 1.7rem;
     font-family: 'Roboto', sans-serif;
-    margin-right: 8rem;
+    margin: 0 1rem; /* Balances spacing */
     &.active {
         color: #4d4dff;
     }
@@ -38,9 +37,9 @@ export const Bars = styled(FaBars)`
     @media screen and (max-width: 768px) {
         display: block;
         position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 75%);
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
         font-size: 1.8rem;
         cursor: pointer;
     }
@@ -49,7 +48,8 @@ export const Bars = styled(FaBars)`
 export const NavMenu = styled.div`
     display: flex;
     align-items: center;
-    margin-right: -24px;
+    justify-content: center; /* Ensures links stay centered */
+    width: 100%; /* Uses full width to prevent shifting */
     @media screen and (max-width: 768px) {
         display: none;
     }
