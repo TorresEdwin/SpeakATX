@@ -23,7 +23,7 @@ const About = () => {
     // Fetch commits per person
     const fetchCommits = async () => {
         try {
-            const response = await fetch(`${gitLabUrl}/repository/commits`, {
+            const response = await fetch(`${gitLabUrl}/repository/commits?per_page=100`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -53,7 +53,7 @@ const About = () => {
     // Fetch issues per person (assignee)
     const fetchIssues = async () => {
         try {
-            const response = await fetch(`${gitLabUrl}/issues`, {
+            const response = await fetch(`${gitLabUrl}/issues?per_page=100`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
