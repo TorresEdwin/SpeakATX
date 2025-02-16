@@ -21,6 +21,11 @@ Actual work times:
 - Edwin Torres
 - Shawn Tran
 
+Phase leader responsibilities:
+- Ensure everyone shows up to meetings
+- Track project progress
+- Mediate possible conflicts
+
 Phase leader:
 
 - Phase 1: Maya Lee
