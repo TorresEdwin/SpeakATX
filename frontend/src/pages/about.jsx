@@ -110,14 +110,14 @@ const About = () => {
 
             <p>
                 <b>Maya Lee</b><br/>
-                <img src="placeholder.png" alt="Image" width="300"/> <br/>
+                <img src="MayaLee.JPEG" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
             <p>
                 <b>Steven Zheng</b><br/>
-                <img src="placeholder.png" alt="Image" width="300"/> <br/>
+                <img src="steven_zheng.jpg" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
