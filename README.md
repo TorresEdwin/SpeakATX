@@ -7,6 +7,26 @@
 - Edwin Torres - @EdwinIsSad
 - Shawn Tran - @stran7365
 
+Estimated work times:
+- Maya Lee: 15 hours
+- Steven Zheng: 10 hours
+- Amy Wu: 10 hours
+- Edwin Torres: 26 hours
+- Shawn Tran: 15 hours
+
+Actual work times:
+- Maya Lee
+- Steven Zheng
+- Amy Wu
+- Edwin Torres
+- Shawn Tran
+
+Phase leader:
+Phase 1: Maya Lee
+Phase 2:
+Phase 3:
+Phase 4:
+
 # Project
 
 **SpeakATX** is a website that aims to provide resources to minimal english and non-english speakers in Austin, TX. It will have information on local non-english communities, translation services, and job postings.
