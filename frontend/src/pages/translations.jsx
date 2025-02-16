@@ -21,13 +21,76 @@ const services = [
       mapUrl: "#",
       website: "#",
     },
+    {
+      name: "French Bakery",
+      rating: 4.8,
+      language: "French, English",
+      area: "Downtown Austin",
+      pricing: "Premium",
+      mapUrl: "#",
+      website: "#",
+    },
+    {
+      name: "German Deli",
+      rating: 4.3,
+      language: "German, English",
+      area: "West Austin",
+      pricing: "Mid-range",
+      mapUrl: "#",
+      website: "#",
+    },
+    {
+      name: "Japanese Market",
+      rating: 4.6,
+      language: "Japanese, English",
+      area: "East Austin",
+      pricing: "Mid-range",
+      mapUrl: "#",
+      website: "#",
+    },
+    {
+      name: "Italian Eatery",
+      rating: 4.7,
+      language: "Italian, English",
+      area: "South Austin",
+      pricing: "Premium",
+      mapUrl: "#",
+      website: "#",
+    },
+    {
+      name: "Korean BBQ",
+      rating: 4.4,
+      language: "Korean, English",
+      area: "North Austin",
+      pricing: "Mid-range",
+      mapUrl: "#",
+      website: "#",
+    },
+    {
+      name: "Indian Spices",
+      rating: 4.5,
+      language: "Hindi, English",
+      area: "Central Austin",
+      pricing: "Budget-friendly",
+      mapUrl: "#",
+      website: "#",
+    },
+    {
+      name: "Middle Eastern Grill",
+      rating: 4.6,
+      language: "Arabic, English",
+      area: "North Austin",
+      pricing: "Mid-range",
+      mapUrl: "#",
+      website: "#",
+    }
   ];
   
   const TranslationPage = () => {
     return (
-      <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
+      <div style={{ padding: '20px', maxWidth: '1000px', margin: 'auto' }}>
         <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>Multilingual Services in Austin</h1>
-        <div style={{ display: 'grid', gap: '20px', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+        <div style={{ display: 'grid', gap: '20px', gridTemplateColumns: 'repeat(3, 1fr)' }}>
           {services.map((service, index) => (
             <div key={index} style={{ border: '1px solid #ddd', borderRadius: '8px', padding: '15px', boxShadow: '2px 2px 10px rgba(0,0,0,0.1)' }}>
               <h2 style={{ fontSize: '20px', fontWeight: 'bold' }}>{service.name}</h2>
