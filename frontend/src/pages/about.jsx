@@ -17,7 +17,7 @@ const About = () => {
     namesMap.set("steven", "Steven Zheng")
     namesMap.set("maya", "Maya Lee")
     namesMap.set("edwin", "Edwin Torres")
-    namesMap.set("amy", "Amy Park Wu")
+    namesMap.set("amy", "Amy Wu")
     namesMap.set("shawn", "Shawn Tran")
 
     // Fetch commits per person
@@ -99,21 +99,48 @@ const About = () => {
                 About Us
             </h1>
 
-            <p>SpeakATX is a website that aims to provide resources to <br />minimal english and non-english speakers in Austin, TX.</p>
+            <p>SpeakATX is a website that aims to provide resources to minimal english and non-english speakers in Austin, TX. We use Yelp, Google Maps, and Glassdoor APIs. This site was made with React and Node.js.</p>
+
+            <p>Insert explanation of the interesting result of integrating disparate data here.</p>
 
             <h2>
                 Team Members
             </h2>
 
-            <p>Maya Lee</p>
+            <p>
+                <b>Maya Lee</b><br/>
+                <img src="placeholder.png" alt="Image"/> <br/>
+                Bio: Insert bio here<br/>
+                Responsibilities: Frontend + Backend<br/>
+            </p>
 
-            <p>Steven Zheng</p>
+            <p>
+                <b>Steven Zheng</b><br/>
+                <img src="placeholder.png" alt="Image"/> <br/>
+                Bio: Insert bio here<br/>
+                Responsibilities: Frontend + Backend<br/>
+            </p>
 
-            <p>Amy Wu</p>
+            <p>
+                <b>Amy Wu</b><br/>
+                <img src="placeholder.png" alt="Image"/> <br/>
+                Bio: Insert bio here<br/>
+                Responsibilities: Frontend + Backend<br/>
+            </p>
 
-            <p>Edwin Torres</p>
+            <p>
+                <b>Edwin Torres</b><br/>
+                <img src="placeholder.png" alt="Image"/> <br/>
+                Bio: Insert bio here<br/>
+                Responsibilities: Frontend + Backend<br/>
+            </p>
 
-            <p>Shawn Tran</p>
+            <p>
+                <b>Shawn Tran</b><br/>
+                <img src="placeholder.png" alt="Image"/> <br/>
+                Bio: Insert bio here<br/>
+                Responsibilities: Frontend + Backend<br/>
+            </p>
 
             <h2>Commits by Team Member</h2>
             
@@ -126,6 +153,10 @@ const About = () => {
             {Object.entries(issueStats).map(([assignee, count]) => (
                 <p key={assignee}>{assignee}: {count} issues</p>
             ))}
+
+            <h2>Unit tests by Team Member</h2>
+
+            <p>Unassigned: 0 unit tests</p>
         </div>
     );
 };
