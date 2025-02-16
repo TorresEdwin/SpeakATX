@@ -11,7 +11,7 @@ Estimated work times:
 - Maya Lee: 15 hours
 - Steven Zheng: 10 hours
 - Amy Wu: 10 hours
-- Edwin Torres: 26 hours
+- Edwin Torres: 16 hours
 - Shawn Tran: 15 hours
 
 Actual work times:
