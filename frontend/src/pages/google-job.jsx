@@ -16,7 +16,7 @@ const jobs = [
         name: "GitHub", 
         title: "Backend Developer", 
         pay: 80, 
-        language: "English", 
+        language: "Vietnamese", 
         area: "East Campus", 
         imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
     },
@@ -24,11 +24,11 @@ const jobs = [
         name: "OpenAI", 
         title: "Research Scientist", 
         pay: 90, 
-        language: "English", 
+        language: "Chinese", 
         area: "South Campus", 
         imageUrl: "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png"
     }
-];
+]; 
 
 const GoogleJob = () => {
     const { jobName } = useParams(); // Get job name from URL

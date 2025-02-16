@@ -18,8 +18,8 @@ class Job {
 
 const JobsPage = () => {
     const job1 = new Job("Google", "Software Engineer", 70, "Spanish", "West Campus", "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png");
-    const job2 = new Job("GitHub", "Backend Developer", 80, "English", "East Campus", "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png");
-    const job3 = new Job("OpenAI", "Research Scientist", 90, "English", "South Campus", "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png");
+    const job2 = new Job("GitHub", "Backend Developer", 80, "Vietnamese", "East Campus", "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png");
+    const job3 = new Job("OpenAI", "Research Scientist", 90, "Chinese", "South Campus", "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png");
 
     // Array of job links
     const jobLinks = [
@@ -52,7 +52,10 @@ const JobsPage = () => {
                         <div className="card-body">
                             <h5 className="card-title">{jobItem.name}</h5>
                             <p className="card-text">
-                                {jobItem.title}, Pay: ${jobItem.pay}/hr, Language: {jobItem.language}, Area: {jobItem.area}
+                                {jobItem.title} <br />
+                                Pay: ${jobItem.pay}/hr <br />
+                                Language: {jobItem.language} <br />
+                                Area: {jobItem.area}
                             </p>
                         </div>
                     </Link>
