@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
     background: #ffb3ff;
-    height: 85px;
+    height: 60px;
     display: flex;
     justify-content: center;
     z-index: 12;
