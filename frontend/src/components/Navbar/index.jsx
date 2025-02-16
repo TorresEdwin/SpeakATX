@@ -12,13 +12,13 @@ const Navbar = () => {
                         Home
                     </NavLink>
                     <NavLink to="/translations" activeStyle>
-                        translations
+                        Translations
                     </NavLink>
                     <NavLink to="/communities" activeStyle>
-                        communities
+                        Communities
                     </NavLink>
                     <NavLink to="/jobs" activeStyle>
-                        jobs
+                        Jobs
                     </NavLink>
                     <NavLink to="/about" activeStyle>
                         About
