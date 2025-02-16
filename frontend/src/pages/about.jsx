@@ -105,23 +105,23 @@ const About = () => {
                 Team Members
             </h2>
 
-            <p>Maya Lee - @MayaLee393</p>
+            <p>Maya Lee</p>
 
-            <p>Steven Zheng - @steven.zheng1</p>
+            <p>Steven Zheng</p>
 
-            <p>Amy Wu - @amypwu</p>
+            <p>Amy Wu</p>
 
-            <p>Edwin Torres - @EdwinIsSad</p>
+            <p>Edwin Torres</p>
 
-            <p>Shawn Tran - @stran7365</p>
+            <p>Shawn Tran</p>
 
-            <h2>Commits by Person</h2>
+            <h2>Commits by Team Member</h2>
             
             {Object.entries(commitStats).map(([author, count]) => (
                 <p key={author}>{author}: {count} commits</p>
             ))}
 
-            <h2>Issues by Person</h2>
+            <h2>Issues by Team Member</h2>
 
             {Object.entries(issueStats).map(([assignee, count]) => (
                 <p key={assignee}>{assignee}: {count} issues</p>
