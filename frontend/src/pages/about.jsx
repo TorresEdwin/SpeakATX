@@ -62,7 +62,14 @@ const About = () => {
 
             // Group issues by assignee
             const issueCount = issues.reduce((acc, issue) => {
-                const assignee = issue.assignee ? issue.assignee.name : 'Unassigned';
+                var assignee = issue.assignee ? issue.assignee.name : 'Unassigned';
+
+                for (let key of namesMap.keys()) {
+                    if(assignee.toLowerCase().includes(key)) {
+                        assignee = namesMap.get(key)
+                    }
+                }
+
                 acc[assignee] = (acc[assignee] || 0) + 1;
                 return acc;
             }, {});
