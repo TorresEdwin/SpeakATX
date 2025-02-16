@@ -95,6 +95,7 @@ const About = () => {
 
     return (
         <div>
+            <br/><br/>
             <h1>
                 About Us
             </h1>
