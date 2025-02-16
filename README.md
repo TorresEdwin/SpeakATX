@@ -25,8 +25,8 @@ Phase leader:
 
 - Phase 1: Maya Lee
 - Phase 2:
-- - Phase 3:
-Phase 4:
+- Phase 3:
+- Phase 4:
 
 # Project
 
