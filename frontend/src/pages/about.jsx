@@ -99,7 +99,7 @@ const About = () => {
                 About Us
             </h1>
 
-            SpeakATX is a website that aims to provide resources to <br />minimal english and non-english speakers in Austin, TX.
+            <p>SpeakATX is a website that aims to provide resources to <br />minimal english and non-english speakers in Austin, TX.</p>
 
             <h2>
                 Team Members
