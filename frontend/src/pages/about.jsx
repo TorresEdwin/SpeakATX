@@ -24,7 +24,11 @@ const About = () => {
 
             // Group commits by author
             const commitCount = commits.reduce((acc, commit) => {
-                const author = commit.author_name;
+                var author = commit.author_name;
+                // i have two git names for some reason lol
+                if(author.toLowerCase().includes("steven")) {
+                    author = "Steven Zheng"
+                }
                 acc[author] = (acc[author] || 0) + 1;
                 return acc;
             }, {});
