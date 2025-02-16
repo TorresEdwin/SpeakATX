@@ -29,10 +29,10 @@ function App() {
             <Navbar class="nav-bar"/>
             <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
                 <Route path="/translations" element={<TranslationsPage />} />
                 <Route path="/communities" element={<CommunitiesPage />} />
                 <Route path="/jobs" element={<JobsPage />} />
+                <Route path="/about" element={<About />} />
             </Routes>
         </Router>
   );
