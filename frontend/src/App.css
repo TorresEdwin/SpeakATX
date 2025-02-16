@@ -6,7 +6,29 @@
 }
 
 /*****************  Models *********************/
+/* Container for the grid */
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+  gap: 16px; /* Space between grid items */
+  padding: 16px; /* Padding inside the grid */
+}
 
+/* Styling for each individual link */
+.link-grid a {
+  display: block;
+  text-align: center;
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 160px;
+  text-decoration: none;
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.link-grid a:hover {
+  background-color: #45a049; /* Darker green when hovered */
+}
 
 /*****************  Splash Page  *********************/
 
