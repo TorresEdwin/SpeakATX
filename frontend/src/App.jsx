@@ -13,14 +13,14 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-
 import Home from "./pages";
 import About from "./pages/about";
 import TranslationsPage from "./pages/translations";
 import CommunitiesPage from './pages/communities';
 import JobsPage from './pages/jobs';
+import GoogleJob from "./pages/google-job";  // Import the job details page
 
-
+import React from "react";
 function App() {
   const [count, setCount] = useState(0)
 
@@ -33,6 +33,9 @@ function App() {
                 <Route path="/communities" element={<CommunitiesPage />} />
                 <Route path="/jobs" element={<JobsPage />} />
                 <Route path="/about" element={<About />} />
+                {/* Dynamic Job Details Page */}
+                <Route path="/jobs/:jobName" element={<GoogleJob />} /> 
+                
             </Routes>
         </Router>
   );

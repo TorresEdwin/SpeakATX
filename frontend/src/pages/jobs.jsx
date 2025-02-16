@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 
 class Job {
     constructor(name, title, pay, language, area, imageUrl) {
@@ -22,9 +23,9 @@ const JobsPage = () => {
 
     // Array of job links
     const jobLinks = [
-        { name: job1.name, title: job1.title, pay: job1.pay, language: job1.language, area: job1.area, imageUrl: job1.imageUrl, url: "https://www.google.com"},
-        { name: job2.name, title: job2.title, pay: job2.pay, language: job2.language, area: job2.area, imageUrl: job2.imageUrl, url: "https://www.github.com"},
-        { name: job3.name, title: job3.title, pay: job3.pay, language: job3.language, area: job3.area, imageUrl: job3.imageUrl, url: "https://www.openai.com"},
+        { name: job1.name, title: job1.title, pay: job1.pay, language: job1.language, area: job1.area, imageUrl: job1.imageUrl, path: `/jobs/${job1.name}`},
+        { name: job2.name, title: job2.title, pay: job2.pay, language: job2.language, area: job2.area, imageUrl: job2.imageUrl, path: `/jobs/${job2.name}`},
+        { name: job3.name, title: job3.title, pay: job3.pay, language: job3.language, area: job3.area, imageUrl: job3.imageUrl, path: `/jobs/${job3.name}`},
         { name: "Job 4", url: "https://www.google.com", title: "Job 4" },
         { name: "Job 5", url: "https://www.github.com", title: "Job 5" },
         { name: "Job 6", url: "https://www.openai.com", title: "Job 6" }
@@ -36,29 +37,27 @@ const JobsPage = () => {
             <p className="mb-4">Number of jobs: {jobLinks.length}</p>
             
             <div className="row">
-                {jobLinks.map((jobItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
-                        <a 
-                            href={jobItem.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="card text-decoration-none"
-                        >
-                            <img 
-                                src={jobItem.imageUrl} 
-                                alt={jobItem.name} 
-                                className="card-img-top" 
-                                style={{ height: "220px", objectFit: "cover" }} 
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{jobItem.name}</h5>
-                                <p className="card-text">
-                                    {jobItem.title}, Pay: ${jobItem.pay}/hr, Language: {jobItem.language}, Area: {jobItem.area}
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                ))}
+            {jobLinks.map((jobItem, index) => (
+                <div className="col-md-4 mb-3" key={index}>
+                    <Link 
+                        to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
+                        className="card text-decoration-none"
+                    >
+                        <img 
+                            src={jobItem.imageUrl} 
+                            alt={jobItem.name} 
+                            className="card-img-top" 
+                            style={{ height: "220px", objectFit: "cover" }} 
+                        />
+                        <div className="card-body">
+                            <h5 className="card-title">{jobItem.name}</h5>
+                            <p className="card-text">
+                                {jobItem.title}, Pay: ${jobItem.pay}/hr, Language: {jobItem.language}, Area: {jobItem.area}
+                            </p>
+                        </div>
+                    </Link>
+                </div>
+            ))}
             </div>
         </div>
     );
