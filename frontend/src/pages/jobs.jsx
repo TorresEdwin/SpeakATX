@@ -48,7 +48,7 @@ const JobsPage = () => {
                                 src={jobItem.imageUrl} 
                                 alt={jobItem.name} 
                                 className="card-img-top" 
-                                style={{ height: "120px", objectFit: "cover" }} 
+                                style={{ height: "220px", objectFit: "cover" }} 
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{jobItem.name}</h5>
