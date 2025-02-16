@@ -26,7 +26,7 @@ function App() {
 
   return (
     <Router>
-            <Navbar />
+            <Navbar class="nav-bar"/>
             <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
