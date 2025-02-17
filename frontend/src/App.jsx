@@ -22,22 +22,24 @@ import JobInstance from "./pages/job_instance";  // Import the job details page
 
 import React from "react";
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <Router>
-            <Navbar/>
-            <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route path="/translations" element={<TranslationsPage />} />
-                <Route path="/communities" element={<CommunitiesPage />} />
-                <Route path="/jobs" element={<JobsPage />} />
-                <Route path="/about" element={<About />} />
-                {/* Dynamic Job Details Page */}
-                <Route path="/jobs/:jobName" element={<JobInstance />} /> 
-                
-            </Routes>
-        </Router>
+    <>
+      <Router>
+              <Navbar/>
+              <Routes>
+                  <Route exact path="/" element={<Home />} />
+                  <Route path="/translations" element={<TranslationsPage />} />
+                  <Route path="/communities" element={<CommunitiesPage />} />
+                  <Route path="/jobs" element={<JobsPage />} />
+                  <Route path="/about" element={<About />} />
+                  {/* Dynamic Job Details Page */}
+                  <Route path="/jobs/:jobName" element={<JobInstance />} /> 
+                  
+              </Routes>
+              
+      </Router>
+    </>
   );
 }
 

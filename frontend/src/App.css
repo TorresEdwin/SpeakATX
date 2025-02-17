@@ -5,6 +5,7 @@
   text-align: center;
   width: 100%; /* Ensure full width */
   /* Remove overflow-x: hidden to prevent content clipping */
+  background-color: none;
 }
 
 /*****************  Models *********************/
@@ -50,42 +51,75 @@
 .splash-main {
   margin: 0;
   display: flex;
-  width: 100vw;
   overflow: hidden;
+  height: 100vh; /* Full viewport height */
+}
+
+.splash-bkg{
+  position: fixed; /* Fix the background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/picture.webp");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* This ensures the background stays fixed while content scrolls */
+  z-index: 0; /* Keep the background behind the content */
+  background-color: 10px solid red;
 }
 
 .splash {
-  position: fixed; /* Covers the entire viewport */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw; /* Full width */
   height: 100vh; /* Full height */
   min-width: 100vw; /* Ensures it stretches */
   min-height: 100vh; /* Ensures it stretches */
-  background-image: url("./assets/picture.webp"); /* Background image */
-  background-size: cover; /* Forces full coverage (stretch if needed) */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents tiling */
-  background-attachment: fixed; /* Fix the background during scroll */
+  /* background-color: red; */
 }
 
 /* Adjust the splash content to move below the fixed navbar */
 .splash-content {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 15px;
   box-shadow: 10px 20px 20px rgb(68, 83, 71, 0.8);
   margin-top: 60px; /* Push content below the navbar */
   padding: 20px;
   /* Add some padding for better readability */
+  /* background-color: pink; */
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body, html {
   width: 100%;
   overflow-x: hidden; /* Hide horizontal overflow */
+  margin: 0;
+  padding: 0;
+}
+
+.content-container{
+  position: relative;
+  max-width: 100vw;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 50px auto;
+  border-radius: 15px;
+  box-shadow: 10px 20px 20px rgb(68, 83, 71, 0.8);
+  padding: 20px;
+  /* Allow this area to scroll with content */
+  margin-top: 100px;
+}
+
+.content{
+  margin: 60px;
+  padding: 50px;
+  /* border: 2px solid red; */
 }

@@ -1,29 +1,67 @@
 // Filename - pages/index.js
 
 import React from "react";
-import Picture from "../assets/picture.webp"
+import Splash from "../components/Splash"
+import MyButton from "../components/Button";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 
 const Home = () => {
     return (
-        <main className="splash-main">
-            <Container className="splash p-5 mb-4 bg-light">
-                <div className="splash-content">
-                    <h1 className="display-4">Welcome to SpeakATX</h1>
-                    <p className="lead">
-                        Providing resources 
-                        to minimal english and non-english speakers in Austin, TX.
-                    </p>
-                    <hr className="my-4" />
-                    <p>Local non-english 
-                    communities, translation services, and job postings.</p>
-                </div>
+        <>
+            <div className="splash-main">
+            <div className="splash-bkg"></div>
+                <Container className="splash p-5 mb-4">
+                    <Splash/>
+                    <div className="content-container">
+                    <Container >
+                        <Row className="content">
+                            <Col>picture</Col>
+                            <Col>
+                                <h1 className="display-4">Translation services</h1>
+                                <p className="lead">
+                                    Austin provides an extensive amount of 
+                                    translation services
+                                </p>
+                                <hr className="my-4" />
+                                <MyButton targetPage="/translations" buttonText="Learn More &gt;&gt;" />
+                                </Col>
+                        </Row>
+                        <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
+                        <Row className="content">
+                            <Col>
+                                <h1 className="display-4">Communities</h1>
+                                <p className="lead">
+                                    There are many different communities around Austin
+                                </p>
+                                <hr className="my-4" />
+                                <MyButton targetPage="/communities" buttonText="Learn More &gt;&gt;" />
+                            </Col>
+                            <Col>picture</Col>
+                        </Row>
+
+                        <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
+                        <Row className="content">
+                            <Col>picture</Col>
+                            <Col>
+                                <h1 className="display-4">Jobs</h1>
+                                <p className="lead">
+                                    Many employers are supportive of Non-English speakers
+                                </p>
+                                <hr className="my-4" />
+                                <MyButton targetPage="/jobs" buttonText="Learn More &gt;&gt;" />
+                            </Col>
+                        </Row>
+                        
+                    </Container>
+                    
+                    
+                    </div>
                 </Container>
-        </main>
-        
+           </div>
+        </>
     );
 };
 

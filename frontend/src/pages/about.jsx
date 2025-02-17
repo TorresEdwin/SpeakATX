@@ -90,7 +90,7 @@ const About = () => {
         fetchData();
     }, []);
 
-    if (loading) return <div>Fetching GitLab data...</div>;
+    if (loading) return <div><div class="spinner-border text-dark" role="status"></div><p>Fetching Git Data...</p></div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
