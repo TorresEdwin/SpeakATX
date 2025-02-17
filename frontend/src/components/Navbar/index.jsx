@@ -21,9 +21,6 @@ const Navbar = () => {
 
                 {/* Desktop Navigation */}
                 <NavMenu>
-                    <NavLink to="/" activeStyle>
-                        Home
-                    </NavLink>
                     <NavLink to="/translations" activeStyle>
                         Services
                     </NavLink>
