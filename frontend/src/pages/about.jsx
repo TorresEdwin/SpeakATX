@@ -100,8 +100,8 @@ const About = () => {
                 About Us
             </h1>
 
-            <p>SpeakATX is a website that aims to provide resources to minimal english and non-english speakers in Austin, TX. <br/>
-                We use Yelp, Google Maps, and Glassdoor APIs. This site was made with React and Node.js.</p>
+            <p>SpeakATX aims to provide resources to minimal english and non-english speakers in Austin, TX. <br/>
+                This site uses Yelp, Google Maps, and Glassdoor APIs. This site was made with React and Node.js.</p>
 
             <p>Insert explanation of the interesting result of integrating disparate data here.</p>
 

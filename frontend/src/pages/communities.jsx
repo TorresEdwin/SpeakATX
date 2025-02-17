@@ -11,24 +11,28 @@ const services = [
   { name: "Community 8" },
   { name: "Community 9" },
   { name: "Community 10" },
+  { name: "Community 1" },
+  { name: "Community 2" },
+  { name: "Community 3" },
+  { name: "Community 4" },
+  { name: "Community 5" },
+  { name: "Community 6" },
+  { name: "Community 7" },
+  { name: "Community 8" },
+  { name: "Community 9" },
+  { name: "Community 10" },
 ];
 
 const CommunitiesPage = () => {
   return (
-    <div 
-      style={{ 
-        padding: "20px", 
-        maxWidth: "1200px", 
-        margin: "0 auto", 
-        textAlign: "center", 
-      }}
-    >
-      <h1 style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "80px" }}>Communities in Austin</h1>
+    <div className="container mt-4">
+      <br/>
+      <h1 className="text-center mb-4">Communities in Austin</h1>
       <div 
         style={{ 
           display: "grid", 
           gap: "30px",
-          gridTemplateColumns: "repeat(5, 1fr)", /* Always 5 columns */
+          gridTemplateColumns: "repeat(3, 1fr)", /* Always 5 columns */
           gridTemplateRows: "repeat(2, auto)", /* Adjust row height based on content */
           gridAutoRows: "minmax(180px, auto)", /* Allows flexibility in row height */
           justifyContent: "center",
@@ -42,7 +46,7 @@ const CommunitiesPage = () => {
               border: "none",
               borderRadius: "12px",
               padding: "40px",
-              minHeight: "180px",
+              minHeight: "340px",
               boxShadow: "4px 4px 12px rgba(0,0,0,0.1)",
               fontSize: "22px",
               fontWeight: "bold",

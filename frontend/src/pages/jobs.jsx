@@ -33,6 +33,7 @@ const JobsPage = () => {
 
     return (
         <div className="container my-4">
+            <br/>
             <h1 className="mb-4">Jobs</h1>
             <p className="mb-4">Number of jobs: {jobLinks.length}</p>
             
