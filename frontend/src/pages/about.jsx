@@ -162,7 +162,7 @@ const About = () => {
             <p>
                 <b>Amy Wu</b><br/>
                 <img src="amyWu.jpg" alt="Image" width="300"/> <br/>
-                Bio: Insert bio here<br/>
+                Bio: Amy is a third year Computer Science major at UT Austin. She enjoys swimming, drawing and traveling.<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
