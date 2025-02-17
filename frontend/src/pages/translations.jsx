@@ -1,45 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-
-const services = [
-  {
-    name: "El Buen Servicio",
-    rating: 4.5,
-    language: "Spanish, English",
-    area: "North Austin",
-    pricing: "Mid-range",
-    mapUrl: "#",
-    website: "https://github.com/",
-  },
-  {
-    name: "Bu Hui Shuo Yingwen",
-    rating: 4.2,
-    language: "Chinese, English",
-    area: "South Austin",
-    pricing: "Budget-friendly",
-    mapUrl: "#",
-    website: "https://github.com/",
-  },
-  {
-    name: "Dịch Vụ Dịch Thuật",
-    rating: 4.8,
-    language: "Vietnamese, English",
-    area: "Downtown Austin",
-    pricing: "Premium",
-    mapUrl: "#",
-    website: "https://github.com/",
-  },
-];
+import Instances from "./instances.jsx";
 
 const TranslationPage = () => {
   return (
     <div className="container mt-4">
       <br/>
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
-      <p className="mb-4">Number of services: {services.length}</p>
+      <p className="mb-4">Number of services: {Instances.translations.length}</p>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {services.map((service, index) => (
+        {Instances.translations.map((service, index) => (
           <div key={index} className="col">
             <div className="card h-100 shadow-sm">
               <Link 

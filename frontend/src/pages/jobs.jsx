@@ -4,29 +4,10 @@ import React from "react";
 import styled from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
-
-class Job {
-    constructor(name, title, pay, language, area, imageUrl) {
-      this.name = name;
-      this.title = title;
-      this.pay = pay;
-      this.language = language;
-      this.area = area;
-      this.imageUrl = imageUrl;  // Add image URL as an attribute
-    }
-  }
+import Instances from "./instances.jsx";
 
 const JobsPage = () => {
-    const job1 = new Job("Google", "Software Engineer", 70, "Spanish", "West Campus", "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png");
-    const job2 = new Job("GitHub", "Backend Developer", 80, "Vietnamese", "East Campus", "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png");
-    const job3 = new Job("OpenAI", "Research Scientist", 90, "Chinese", "South Campus", "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png");
-
-    // Array of job links
-    const jobLinks = [
-        { name: job1.name, title: job1.title, pay: job1.pay, language: job1.language, area: job1.area, imageUrl: job1.imageUrl, path: `/jobs/${job1.name}`},
-        { name: job2.name, title: job2.title, pay: job2.pay, language: job2.language, area: job2.area, imageUrl: job2.imageUrl, path: `/jobs/${job2.name}`},
-        { name: job3.name, title: job3.title, pay: job3.pay, language: job3.language, area: job3.area, imageUrl: job3.imageUrl, path: `/jobs/${job3.name}`},
-    ];
+    const jobLinks = Instances.jobs;
 
     return (
         <div className="container my-4">
