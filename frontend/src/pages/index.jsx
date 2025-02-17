@@ -2,6 +2,7 @@
 
 import React from "react";
 import Splash from "../components/Splash"
+import MyButton from "../components/Button";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Button } from 'react-bootstrap';
@@ -25,7 +26,7 @@ const Home = () => {
                                     translation services
                                 </p>
                                 <hr className="my-4" />
-                                <Button> Learn More &gt;&gt; </Button>
+                                <MyButton targetPage="/translations" buttonText="Learn More &gt;&gt;" />
                                 </Col>
                         </Row>
                         <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
@@ -36,7 +37,7 @@ const Home = () => {
                                     There are many different communities around Austin
                                 </p>
                                 <hr className="my-4" />
-                                <Button> Learn More &gt;&gt; </Button>
+                                <MyButton targetPage="/communities" buttonText="Learn More &gt;&gt;" />
                             </Col>
                             <Col>picture</Col>
                         </Row>
@@ -50,7 +51,7 @@ const Home = () => {
                                     Many employers are supportive of Non-English speakers
                                 </p>
                                 <hr className="my-4" />
-                                <Button> Learn More &gt;&gt; </Button>
+                                <MyButton targetPage="/jobs" buttonText="Learn More &gt;&gt;" />
                             </Col>
                         </Row>
                         
