@@ -29,7 +29,9 @@ const CommunitiesPage = () => {
                         <div className="card-body">
                             <h5 className="card-title">{jobItem.name}</h5>
                             <p className="card-text">
+                                Language: {jobItem.language} <br />
                                 Area: {jobItem.area} <br />
+                                Member Count: {jobItem.member_count} <br />
                                 Type: {jobItem.type}
                             </p>
                         </div>
