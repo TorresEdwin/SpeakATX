@@ -1,6 +1,6 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 // Job data (same as in JobsPage.js)
 const jobs = [
@@ -31,6 +31,7 @@ const jobs = [
 ]; 
 
 const JobInstance = () => {
+
     const { jobName } = useParams(); // Get job name from URL
     const navigate = useNavigate(); // Hook to navigate programmatically
     const job = jobs.find(job => job.name === jobName); // Find the matching job
@@ -38,6 +39,12 @@ const JobInstance = () => {
     if (!job) {
         return <div className="container mt-4"><h1>Job Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
+
+    const communityLinks = [
+        { name: "test1", title: "test1", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test1`},
+        { name: "test2", title: "test2", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test2`},
+        { name: "test3", title: "test3", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test3`},
+    ];
 
     return (
         <div className="container mt-4">
@@ -48,6 +55,34 @@ const JobInstance = () => {
             <p><strong>Language:</strong> {job.language}</p>
             <p><strong>Area:</strong> {job.area}</p>
             <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button>
+
+            <div className="row">
+            {communityLinks.map((communityItem, index) => (
+                <div className="col-md-4 mb-3" key={index}> 
+                    <Link 
+                        to={`/communities/${communityItem.name}`}  // Links to dynamic job page
+                        className="card text-decoration-none"
+                    >
+                        <img 
+                            src={communityItem.imageUrl} 
+                            alt={communityItem.name} 
+                            className="card-img-top" 
+                            style={{ height: "220px", objectFit: "cover" }} 
+                        />
+                        <div className="card-body">
+                            <h5 className="card-title">{communityItem.name}</h5>
+                            <p className="card-text">
+                                {communityItem.title} <br />
+                                Pay: ${communityItem.pay}/hr <br />
+                                Language: {communityItem.language} <br />
+                                Area: {communityItem.area}
+                            </p>
+                        </div>
+                    </Link>
+                </div>
+            ))}
+            </div>
+
         </div>
     );
 };
