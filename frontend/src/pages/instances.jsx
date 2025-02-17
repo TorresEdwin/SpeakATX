@@ -58,8 +58,8 @@ class Instances {
     
     static communities = [
         { 
-            name: "Austin Independent School District", 
-            language: "All", 
+            name: "Austin ISD English Second Language", 
+            language: "English", 
             area: "Austin", 
             type: "Tutoring",
             about: "The AEL program operates with the foundational principle that language should never be a barrier that prevents one from reaching their life goals. Students that are enrolled in and attend our ESL classes not only increase their command and use of the English language, but they are also better equipped to engage with school staff, PTA’s and others on behalf of their children's educational pursuits. ",
