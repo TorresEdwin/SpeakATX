@@ -25,7 +25,8 @@ const CommunityInstance = () => {
             <img src={community.imageUrl} alt={community.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Language:</strong> {community.language}</p>
             <p><strong>Area:</strong> {community.area}</p>
-            <p><strong>Member Count:</strong> {community.member_count}</p>  
+            <p><strong>Member Count:</strong> {community.member_count}</p>
+            <p><strong>Type:</strong> {community.type}</p>
             <p><strong>About:</strong> {community.about}</p>
             <button className="btn btn-primary mt-3 mb-5" onClick={() => navigate(-1)}>Back</button>
 
