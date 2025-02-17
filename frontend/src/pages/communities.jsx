@@ -32,7 +32,7 @@ const CommunitiesPage = () => {
       <div 
         style={{ 
           display: "grid", 
-          gap: "30px",
+          gap: "20px",
           gridTemplateColumns: "repeat(3, 1fr)", /* Always 5 columns */
           gridTemplateRows: "repeat(2, auto)", /* Adjust row height based on content */
           gridAutoRows: "minmax(180px, auto)", /* Allows flexibility in row height */
@@ -66,7 +66,7 @@ const CommunitiesPage = () => {
               objectFit: "cover", /* Ensures the image covers the button without cutting off */
             }}
             onClick={() => alert(`You clicked on ${service.name}`)}
-            onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.05)"}
+            onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.02)"}
             onMouseOut={(e) => e.currentTarget.style.transform = "scale(1.0)"}
           >
             <h2 
