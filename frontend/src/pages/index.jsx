@@ -26,7 +26,7 @@ const Home = () => {
                                     translation services
                                 </p>
                                 <hr className="my-4" />
-                                <MyButton targetPage="/translations" buttonText="Learn More &gt;&gt;" />
+                                <MyButton targetPage="https://speakatx-images.s3.us-east-2.amazonaws.com/splash_page/translation.jpg" buttonText="Learn More &gt;&gt;" />
                                 </Col>
                         </Row>
                         <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
@@ -39,12 +39,12 @@ const Home = () => {
                                 <hr className="my-4" />
                                 <MyButton targetPage="/communities" buttonText="Learn More &gt;&gt;" />
                             </Col>
-                            <Col className="d-none d-md-block"><img src="/community.jpg" alt="Community Picture" className="img-fluid w-100" style={{ objectFit: "cover", maxHeight: "300px" }} /></Col>
+                            <Col className="d-none d-md-block"><img src="/https://speakatx-images.s3.us-east-2.amazonaws.com/splash_page/community.jpg" alt="Community Picture" className="img-fluid w-100" style={{ objectFit: "cover", maxHeight: "300px" }} /></Col>
                         </Row>
 
                         <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
                         <Row className="content text-center">
-                            <Col className="d-none d-md-block"><img src="/job.jpg" alt="Job Picture" className="img-fluid w-100" style={{ objectFit: "cover", maxHeight: "300px" }} /></Col>
+                            <Col className="d-none d-md-block"><img src="https://speakatx-images.s3.us-east-2.amazonaws.com/splash_page/job.jpg" alt="Job Picture" className="img-fluid w-100" style={{ objectFit: "cover", maxHeight: "300px" }} /></Col>
                             <Col>
                                 <h1 className="display-4">Jobs</h1>
                                 <p className="lead">
