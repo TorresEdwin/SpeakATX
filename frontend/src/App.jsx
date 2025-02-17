@@ -35,6 +35,7 @@ function App() {
                   <Route path="/about" element={<About />} />
                   {/* Dynamic Job Details Page */}
                   <Route path="/jobs/:jobName" element={<JobInstance />} /> 
+                  <Route path="/jobs/:communityName" element={<CommunityInstance />} /> 
                   
               </Routes>
               
