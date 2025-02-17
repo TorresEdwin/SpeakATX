@@ -135,7 +135,7 @@ const About = () => {
 
             <p>
                 <b>Maya Lee</b><br/>
-                <img src="MayaLee.JPEG" alt="Image" width="300"/> <br/> <br/>
+                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/MayaLee.JPEG" alt="Image" width="300"/> <br/> <br/>
                 <p>
                     Maya is a third year Computer Science Major at UT Austin. <br/>
                     She enjoys doing arts and crafts such as drawing and painting.<br/>
@@ -148,7 +148,7 @@ const About = () => {
 
             <p>
                 <b>Steven Zheng</b><br/>
-                <img src="steven_zheng.jpg" alt="Image" width="300"/> <br/> <br/>
+                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg" alt="Image" width="300"/> <br/> <br/>
                 <p>
                     Steven is a third year CS major at UT Austin. <br/>
                     In his spare time he enjoys building things and sleeping.<br/>
@@ -161,11 +161,13 @@ const About = () => {
 
             <p>
                 <b>Amy Wu</b><br/>
-                <img src="amyWu.jpg" alt="Image" width="300"/> <br/>
+                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/amyWu.jpg" alt="Image" width="300"/> <br/>
+                <br/>
                 <p>
-                    Bio: Amy is a third year Computer Science major at UT Austin. <br/>
+                    Amy is a third year Computer Science major at UT Austin. <br/>
                     She enjoys swimming, drawing and traveling.<br/>
                 </p>
+
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
@@ -173,8 +175,13 @@ const About = () => {
 
             <p>
                 <b>Edwin Torres</b><br/>
-                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/Edwin-Torres.jpg" alt="Image" width="300"/> <br/>
-                Bio: Insert bio here<br/>
+                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Edwin_Torres.jpg" alt="Image" width="300"/> <br/>
+                <br/>
+                <p>
+                    Edwin is a third year CS major at UT Austin.
+                    <br/>
+                    He enjoys talking about new tech, gaming, <br/>and watching shows on Netflix.<br/>
+                </p>
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
@@ -182,7 +189,7 @@ const About = () => {
 
             <p>
                 <b>Shawn Tran</b><br/>
-                <img src="Shawn_Tran.jpg" alt="Image" width="300"/> <br/> <br/>
+                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Shawn_Tran.jpg" alt="Image" width="300"/> <br/> <br/>
                 <p>
                     Shawn is a junior at UT Austin, majoring in Computer Science. <br/>
                     He enjoys gaming and cooking new dishes in his spare time.<br/>
