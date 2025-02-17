@@ -1,6 +1,7 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { useEffect } from 'react';
 import Instances from "./instances.jsx";
 
 const TranslationInstance = () => {
@@ -12,8 +13,13 @@ const TranslationInstance = () => {
         return <div className="container mt-4"><h1>Translation Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scroll to top
+      }, []);
+
     return (
         <div className="container mt-4">
+            <br/>
             <h1>{translation.name}</h1>
             <img src={translation.imageUrl} alt={translation.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Rating:</strong> {translation.rating}</p>
