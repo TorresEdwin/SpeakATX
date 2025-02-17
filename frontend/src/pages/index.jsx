@@ -17,8 +17,8 @@ const Home = () => {
                     <Splash/>
                     <div className="content-container">
                     <Container >
-                        <Row className="content">
-                            <Col>picture</Col>
+                        <Row className="content text-center">
+                            <Col className="d-none d-md-block">picture</Col>
                             <Col>
                                 <h1 className="display-4">Translation services</h1>
                                 <p className="lead">
@@ -30,8 +30,8 @@ const Home = () => {
                                 </Col>
                         </Row>
                         <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
-                        <Row className="content">
-                            <Col>
+                        <Row className="content text-center">
+                            <Col className="text-center">
                                 <h1 className="display-4">Communities</h1>
                                 <p className="lead">
                                     There are many different communities around Austin
@@ -39,12 +39,12 @@ const Home = () => {
                                 <hr className="my-4" />
                                 <MyButton targetPage="/communities" buttonText="Learn More &gt;&gt;" />
                             </Col>
-                            <Col>picture</Col>
+                            <Col className="d-none d-md-block">picture</Col>
                         </Row>
 
                         <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
-                        <Row className="content">
-                            <Col>picture</Col>
+                        <Row className="content text-center">
+                            <Col className="d-none d-md-block">picture</Col>
                             <Col>
                                 <h1 className="display-4">Jobs</h1>
                                 <p className="lead">
@@ -54,7 +54,7 @@ const Home = () => {
                                 <MyButton targetPage="/jobs" buttonText="Learn More &gt;&gt;" />
                             </Col>
                         </Row>
-                        
+
                     </Container>
                     
                     
