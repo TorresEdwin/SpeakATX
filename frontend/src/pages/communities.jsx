@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const CommunitiesPage = () => {
     // Array of job links
     const communityLinks = [
-        { name: "test1", title: "test1", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test1`},
-        { name: "test2", title: "test2", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test2`},
-        { name: "test3", title: "test3", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test3`},
+        { name: "Austin Independent School District", type: "Tutoring", area: "Austin", imageUrl: "https://www.hillelementary.com/wp-content/uploads/2021/07/AISD-Logo-1.png", path: `/communities/test1`},
+        { name: "Mercadito Hispano en Austin Texas", type: "Market", area: "Austin", imageUrl: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.6435-9/81883346_186107322510552_8112905764277846016_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=2285d6&_nc_ohc=6vlGgWprQ7gQ7kNvgF0G5FL&_nc_oc=AdjRYImiVrN1Vn6TwKc1kZ4vKMGFByjasXbL4_WxZ7ySbgIRts1yjEkRaGKz4Lia2AA&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=AcVrOS2ox2RXC-dBoDxJOJ9&oh=00_AYAagomj86N1XWSBiw8lgtcjpyhZZ_b5VBMWAVsXuyB53g&oe=67DB1D3A", path: `/communities/test2`},
+        { name: "Austin Chinese-American Network", type: "Culture", area: "Austin", imageUrl: "https://austinchineseamericannetwork.org/wp-content/uploads/2023/03/cropped-ACAN-logo.png", path: `/communities/test3`},
     ];
 
     return (
@@ -32,10 +32,8 @@ const CommunitiesPage = () => {
                         <div className="card-body">
                             <h5 className="card-title">{jobItem.name}</h5>
                             <p className="card-text">
-                                {jobItem.title} <br />
-                                Pay: ${jobItem.pay}/hr <br />
-                                Language: {jobItem.language} <br />
-                                Area: {jobItem.area}
+                                Area: {jobItem.area} <br />
+                                Type: {jobItem.type}
                             </p>
                         </div>
                     </Link>
