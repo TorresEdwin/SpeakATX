@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -41,7 +42,10 @@ const TranslationPage = () => {
         {services.map((service, index) => (
           <div key={index} className="col">
             <div className="card h-100 shadow-sm">
-              <a href={service.website} className="text-decoration-none d-block h-100" target="_blank" rel="noopener noreferrer">
+              <Link 
+                        to={`/translations/${service.name}`}  // Links to dynamic job page
+                        className="card text-decoration-none"
+              >
                 <div className="card-body">
                   <h5 className="card-title">{service.name}</h5>
                   <p className="card-text">⭐ {service.rating}</p>
@@ -49,7 +53,7 @@ const TranslationPage = () => {
                   <p className="card-text">📍 {service.area}</p>
                   <p className="card-text">💲 {service.pricing}</p>
                 </div>
-              </a>
+              </Link>
               <div className="card-footer d-flex justify-content-between">
                 <a href={service.mapUrl} className="btn btn-primary btn-sm w-50">🗺️ Map</a>
                 <a href={service.website} className="btn btn-secondary btn-sm w-50" target="_blank" rel="noopener noreferrer">🔗 Website</a>
