@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Nav, NavLink, NavMenu, Bars, MobileMenu, CloseIcon } from "./NavbarElements";
+import { 
+    Nav, NavBrand, NavLink, NavMenu, Bars, MobileMenu, CloseIcon 
+} from "./NavbarElements";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +13,9 @@ const Navbar = () => {
     return (
         <>
             <Nav>
+                {/* Site Name / Branding */}
+                <NavBrand to="/">SpeakATX</NavBrand>
+
                 {/* Hamburger Icon for Mobile */}
                 <Bars onClick={toggleMenu} />
 
