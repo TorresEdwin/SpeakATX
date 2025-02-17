@@ -1,72 +1,44 @@
 import React from "react";
-
-const services = [
-  { name: "Community 1" },
-  { name: "Community 2" },
-  { name: "Community 3" },
-];
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
+import Instances from "./instances.jsx";
 
 const CommunitiesPage = () => {
-  return (
-    <div className="container mt-4">
-      <br/>
-      <h1 className="text-center mb-4">Communities in Austin</h1>
-      <p className="mb-4">Number of communities: {services.length}</p>
-      <div 
-        style={{ 
-          display: "grid", 
-          gap: "20px",
-          gridTemplateColumns: "repeat(3, 1fr)", /* Always 5 columns */
-          gridTemplateRows: "repeat(2, auto)", /* Adjust row height based on content */
-          gridAutoRows: "minmax(180px, auto)", /* Allows flexibility in row height */
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {services.map((service, index) => (
-          <button
-            key={index}
-            style={{
-              border: "none",
-              borderRadius: "12px",
-              padding: "40px",
-              minHeight: "340px",
-              boxShadow: "4px 4px 12px rgba(0,0,0,0.1)",
-              fontSize: "22px",
-              fontWeight: "bold",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              color: "white",
-              position: "relative",
-              backgroundImage: "url('/placeholder2.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              cursor: "pointer",
-              transition: "transform 0.2s ease-in-out",
-              objectFit: "cover", /* Ensures the image covers the button without cutting off */
-            }}
-            onClick={() => alert(`You clicked on ${service.name}`)}
-            onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.02)"}
-            onMouseOut={(e) => e.currentTarget.style.transform = "scale(1.0)"}
-          >
-            <h2 
-              style={{ 
-                fontSize: "32px", 
-                background: "rgba(0, 0, 0, 0.5)", 
-                padding: "10px", 
-                borderRadius: "8px",
-              }}
-            >
-              {service.name}
-            </h2>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+    // Array of job links
+    const communityLinks = Instances.communities;
+
+    return (
+        <div className="container my-4">
+            <br/>
+            <h1 className="mb-4">Communities in Austin</h1>
+            <p className="mb-4">Number of communities: {communityLinks.length}</p>
+            
+            <div className="row">
+            {communityLinks.map((jobItem, index) => (
+                <div className="col-md-4 mb-3" key={index}>
+                    <Link 
+                        to={`/communities/${jobItem.name}`}  // Links to dynamic job page
+                        className="card text-decoration-none"
+                    >
+                        <img 
+                            src={jobItem.imageUrl} 
+                            alt={jobItem.name} 
+                            className="card-img-top" 
+                            style={{ height: "220px", objectFit: "cover" }} 
+                        />
+                        <div className="card-body">
+                            <h5 className="card-title">{jobItem.name}</h5>
+                            <p className="card-text">
+                                Area: {jobItem.area} <br />
+                                Type: {jobItem.type}
+                            </p>
+                        </div>
+                    </Link>
+                </div>
+            ))}
+            </div>
+        </div>
+    );
 };
 
 export default CommunitiesPage;

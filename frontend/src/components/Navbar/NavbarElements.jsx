@@ -2,49 +2,63 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
+// Navbar Container
 export const Nav = styled.nav`
     background: #bf5700;
     height: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
     z-index: 12;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
 `;
+// color: rgb(144, 219, 176); not used - temp
+// Branding / Site Name
+export const NavBrand = styled(Link)`
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+
+    &:hover {
+        color: #D3D3D3;
+    }
+`;
 
 // Desktop Menu
 export const NavMenu = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
     
     @media screen and (max-width: 768px) {
-        display: none; /* Hide desktop menu on mobile */
+        display: none;
     }
 `;
 
 export const NavLink = styled(Link)`
     color: #FFFFFF;
-    display: flex;
-    align-items: center;
     text-decoration: none;
     padding: 0 1rem;
-    height: 100%;
-    cursor: pointer;
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     font-family: 'Roboto', sans-serif;
-    margin: 0 1rem;
+    transition: 0.3s;
 
     &.active {
-        color: rgb(144, 219, 176);
+        color:#ffcc70;
+    }
+
+    &:hover {
+        color: #D3D3D3;
     }
 `;
 
-// Hamburger Icon for Mobile
+// Mobile Hamburger Icon
 export const Bars = styled(FaBars)`
     display: none;
     color: #FFFFFF;
@@ -52,8 +66,8 @@ export const Bars = styled(FaBars)`
     @media screen and (max-width: 768px) {
         display: block;
         position: absolute;
-        top: 50%;
         right: 20px;
+        top: 50%;
         transform: translateY(-50%);
         font-size: 2rem;
         cursor: pointer;
