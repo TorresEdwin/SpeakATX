@@ -170,7 +170,7 @@ const About = () => {
 
             <p>
                 <b>Edwin Torres</b><br/>
-                <img src="Edwin_Torres.jpg" alt="Image" width="300"/> <br/>
+                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/Edwin-Torres.jpg" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
