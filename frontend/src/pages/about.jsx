@@ -179,8 +179,12 @@ const About = () => {
 
             <p>
                 <b>Shawn Tran</b><br/>
-                <img src="/public/Shawn_Tran.jpg" alt="Image" width="300"/> <br/>
-                Bio: Insert bio here<br/>
+                <img src="/public/Shawn_Tran.jpg" alt="Image" width="300"/> <br/> <br/>
+                <p>
+                    Shawn is a junior at UT Austin, majoring in Computer Science. <br/>
+                    He enjoys gaming and cooking new dishes in his spare time.<br/>
+                </p>
+                
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
