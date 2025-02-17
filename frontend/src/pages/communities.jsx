@@ -1,14 +1,11 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
+import Instances from "./instances.jsx";
 
 const CommunitiesPage = () => {
     // Array of job links
-    const communityLinks = [
-        { name: "Austin Independent School District", type: "Tutoring", area: "Austin", imageUrl: "https://www.hillelementary.com/wp-content/uploads/2021/07/AISD-Logo-1.png", path: `/communities/test1`},
-        { name: "Mercadito Hispano en Austin Texas", type: "Market", area: "Austin", imageUrl: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.6435-9/81883346_186107322510552_8112905764277846016_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=2285d6&_nc_ohc=6vlGgWprQ7gQ7kNvgF0G5FL&_nc_oc=AdjRYImiVrN1Vn6TwKc1kZ4vKMGFByjasXbL4_WxZ7ySbgIRts1yjEkRaGKz4Lia2AA&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=AcVrOS2ox2RXC-dBoDxJOJ9&oh=00_AYAagomj86N1XWSBiw8lgtcjpyhZZ_b5VBMWAVsXuyB53g&oe=67DB1D3A", path: `/communities/test2`},
-        { name: "Austin Chinese-American Network", type: "Culture", area: "Austin", imageUrl: "https://austinchineseamericannetwork.org/wp-content/uploads/2023/03/cropped-ACAN-logo.png", path: `/communities/test3`},
-    ];
+    const communityLinks = Instances.communities;
 
     return (
         <div className="container my-4">
