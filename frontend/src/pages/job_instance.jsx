@@ -30,7 +30,7 @@ const jobs = [
     }
 ]; 
 
-const GoogleJob = () => {
+const JobInstance = () => {
     const { jobName } = useParams(); // Get job name from URL
     const job = jobs.find(job => job.name === jobName); // Find the matching job
 
@@ -50,4 +50,4 @@ const GoogleJob = () => {
     );
 };
 
-export default GoogleJob;
+export default JobInstance;
