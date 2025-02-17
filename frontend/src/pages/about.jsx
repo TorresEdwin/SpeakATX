@@ -103,25 +103,41 @@ const About = () => {
             <p>SpeakATX aims to provide resources to minimal english and non-english speakers in Austin, TX. <br/>
                 This site uses Yelp, Google Maps, and Glassdoor APIs. Made with React and Node.js.</p>
 
-            <p>Insert explanation of the interesting result of integrating disparate data here.</p>
+            <p>We found that when integrating disparate data...</p>
+
+            <br/>
 
             <h2>
                 Team Members
             </h2>
 
+            <br/>
+
             <p>
                 <b>Maya Lee</b><br/>
-                <img src="MayaLee.JPEG" alt="Image" width="300"/> <br/>
-                Bio: Insert bio here<br/>
+                <img src="MayaLee.JPEG" alt="Image" width="300"/> <br/> <br/>
+                <p>
+                    Maya is a third year Computer Science Major at UT Austin. <br/>
+                    She enjoys doing arts and crafts such as drawing and painting.<br/>
+                </p>
+                
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
+            <br/>
+
             <p>
                 <b>Steven Zheng</b><br/>
-                <img src="steven_zheng.jpg" alt="Image" width="300"/> <br/>
-                Bio: Insert bio here<br/>
+                <img src="steven_zheng.jpg" alt="Image" width="300"/> <br/> <br/>
+                <p>
+                    Steven is a third year CS major at UT Austin. <br/>
+                    In his spare time he enjoys building things and sleeping.<br/>
+                </p>
+                
                 Responsibilities: Frontend + Backend<br/>
             </p>
+
+            <br/>
 
             <p>
                 <b>Amy Wu</b><br/>
@@ -130,6 +146,8 @@ const About = () => {
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
+            <br/>
+
             <p>
                 <b>Edwin Torres</b><br/>
                 <img src="Edwin_Torres.jpg" alt="Image" width="300"/> <br/>
@@ -137,12 +155,16 @@ const About = () => {
                 Responsibilities: Frontend + Backend<br/>
             </p>
 
+            <br/>
+
             <p>
                 <b>Shawn Tran</b><br/>
                 <img src="Shawn_Tran.jpg" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
+
+            <br/>
 
             <h2>Commits by Team Member</h2>
             
