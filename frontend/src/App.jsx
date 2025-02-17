@@ -20,6 +20,7 @@ import CommunitiesPage from './pages/communities';
 import JobsPage from './pages/jobs';
 import JobInstance from "./pages/job_instance";  // Import the job details page
 import CommunityInstance from "./pages/community_instance";
+import TranslationInstance from "./pages/translation_instance";
 
 import React from "react";
 function App() {
@@ -37,6 +38,7 @@ function App() {
                   {/* Dynamic Job Details Page */}
                   <Route path="/jobs/:jobName" element={<JobInstance />} /> 
                   <Route path="/communities/:communityName" element={<CommunityInstance />} /> 
+                  <Route path="/translations/:translationName" element={<TranslationInstance />} /> 
                   
               </Routes>
               
