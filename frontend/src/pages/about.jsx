@@ -23,12 +23,22 @@ const About = () => {
     // Fetch commits per person
     const fetchCommits = async () => {
         try {
-            const response = await fetch(`${gitLabUrl}/repository/commits?per_page=100`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            const commits = await response.json();
+            let commits = [];
+            let page = 1;
+
+            while (true) {
+                const response = await fetch(`${gitLabUrl}/repository/commits?per_page=100&page=${page}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const data = await response.json();
+   
+                if (data.length === 0) break; // No more commits
+   
+                commits = commits.concat(data);
+                page++;
+            }
 
             // Group commits by author
             const commitCount = commits.reduce((acc, commit) => {
