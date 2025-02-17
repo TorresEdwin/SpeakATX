@@ -90,7 +90,7 @@ const About = () => {
         fetchData();
     }, []);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div>Fetching GitLab data...</div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
@@ -101,7 +101,7 @@ const About = () => {
             </h1>
 
             <p>SpeakATX aims to provide resources to minimal english and non-english speakers in Austin, TX. <br/>
-                This site uses Yelp, Google Maps, and Glassdoor APIs. This site was made with React and Node.js.</p>
+                This site uses Yelp, Google Maps, and Glassdoor APIs. Made with React and Node.js.</p>
 
             <p>Insert explanation of the interesting result of integrating disparate data here.</p>
 
