@@ -22,9 +22,9 @@ const services = [
     website: "https://github.com/",
   },
   {
-    name: "Traduction Anglaise",
+    name: "Dịch Vụ Dịch Thuật",
     rating: 4.8,
-    language: "French, English",
+    language: "Vietnamese, English",
     area: "Downtown Austin",
     pricing: "Premium",
     mapUrl: "#",

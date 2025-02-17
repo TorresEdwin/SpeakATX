@@ -4,9 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const translations = [
     { 
-        name: "Traduction Anglaise", 
+        name: "Dịch Vụ Dịch Thuật", 
         rating: "4.8", 
-        language: "French, English", 
+        language: "Vietnamese, English", 
         area: "Downtown Austin", 
         price: 40,
         imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg"
