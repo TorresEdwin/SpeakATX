@@ -1,6 +1,7 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { useEffect } from 'react';
 import Instances from "./instances.jsx";
 
 const JobInstance = () => {
@@ -13,6 +14,10 @@ const JobInstance = () => {
         return <div className="container mt-4"><h1>Job Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scroll to top
+      }, []);
+
     return (
         <div className="container mt-4">
             <button 
@@ -22,6 +27,7 @@ const JobInstance = () => {
             >
                 Back
             </button>
+            <br/>
             <h1>{job.name}</h1>
             <img src={job.imageUrl} alt={job.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Title:</strong> {job.title}</p>
