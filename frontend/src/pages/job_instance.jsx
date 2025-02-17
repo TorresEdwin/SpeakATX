@@ -54,9 +54,10 @@ const JobInstance = () => {
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language}</p>
             <p><strong>Area:</strong> {job.area}</p>
-            <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button>
+            <button className="btn btn-primary mt-3 mb-5" onClick={() => navigate(-1)}>Back</button>
 
             <div className="row">
+            <h3>{job.language} Communities</h3>
             {communityLinks.map((communityItem, index) => (
                 <div className="col-md-4 mb-3" key={index}> 
                     <Link 

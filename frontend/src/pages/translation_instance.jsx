@@ -4,28 +4,28 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const translations = [
     { 
-        name: "Asian Market", 
-        title: "Software Engineer", 
-        pay: 70, 
-        language: "Spanish", 
-        area: "West Campus", 
-        imageUrl: "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
+        name: "Traduction Anglaise", 
+        rating: "4.8", 
+        language: "French, English", 
+        area: "Downtown Austin", 
+        price: 40,
+        imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg"
     },
     { 
         name: "El Buen Servicio", 
-        title: "Backend Developer", 
-        pay: 80, 
-        language: "Vietnamese", 
-        area: "East Campus", 
-        imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        rating: "4.5", 
+        language: "Spanish, English", 
+        area: "North Austin", 
+        price: 25,
+        imageUrl: "https://cdn.prod.website-files.com/5c29380b1110ec92a203aa84/66e5ce469b48938aa34d8684_Google%20Maps%20-%20Compressed.jpg"
     },
     { 
-        name: "French Bakery", 
-        title: "Research Scientist", 
-        pay: 90, 
-        language: "Chinese", 
-        area: "South Campus", 
-        imageUrl: "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png"
+        name: "Bu Hui Shuo Yingwen", 
+        rating: "4.2", 
+        language: "Chinese, English", 
+        area: "South Austin", 
+        price: 15,
+        imageUrl: "https://media.istockphoto.com/id/518371862/vector/abstract-city-map-illustration.jpg?s=612x612&w=0&k=20&c=LmqeyKSPkDfN_Wk4W6dxlopvIm8KYq81t1eXHM0c34E="
     }
 ]; 
 
@@ -42,10 +42,10 @@ const TranslationInstance = () => {
         <div className="container mt-4">
             <h1>{translation.name}</h1>
             <img src={translation.imageUrl} alt={translation.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
-            <p><strong>Title:</strong> {translation.title}</p>
-            <p><strong>Pay:</strong> ${translation.pay}/hr</p>
+            <p><strong>Rating:</strong> {translation.rating}</p>
             <p><strong>Language:</strong> {translation.language}</p>
             <p><strong>Area:</strong> {translation.area}</p>
+            <p><strong>Price:</strong> ${translation.price}/hr</p>
             <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button>
         </div>
     );

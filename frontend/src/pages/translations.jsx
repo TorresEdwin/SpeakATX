@@ -13,7 +13,7 @@ const services = [
     website: "https://github.com/",
   },
   {
-    name: "Asian Market",
+    name: "Bu Hui Shuo Yingwen",
     rating: 4.2,
     language: "Chinese, English",
     area: "South Austin",
@@ -22,7 +22,7 @@ const services = [
     website: "https://github.com/",
   },
   {
-    name: "French Bakery",
+    name: "Traduction Anglaise",
     rating: 4.8,
     language: "French, English",
     area: "Downtown Austin",
