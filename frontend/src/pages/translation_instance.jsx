@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const translations = [
     { 
-        name: "Google", 
+        name: "Asian Market", 
         title: "Software Engineer", 
         pay: 70, 
         language: "Spanish", 
@@ -12,7 +12,7 @@ const translations = [
         imageUrl: "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
     },
     { 
-        name: "GitHub", 
+        name: "El Buen Servicio", 
         title: "Backend Developer", 
         pay: 80, 
         language: "Vietnamese", 
@@ -20,7 +20,7 @@ const translations = [
         imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
     },
     { 
-        name: "OpenAI", 
+        name: "French Bakery", 
         title: "Research Scientist", 
         pay: 90, 
         language: "Chinese", 
