@@ -1,6 +1,6 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 // Job data (same as in JobsPage.js)
 const jobs = [
@@ -32,10 +32,11 @@ const jobs = [
 
 const JobInstance = () => {
     const { jobName } = useParams(); // Get job name from URL
+    const navigate = useNavigate(); // Hook to navigate programmatically
     const job = jobs.find(job => job.name === jobName); // Find the matching job
 
     if (!job) {
-        return <div className="container mt-4"><h1>Job Not Found</h1></div>;
+        return <div className="container mt-4"><h1>Job Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
     return (
@@ -46,6 +47,7 @@ const JobInstance = () => {
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language}</p>
             <p><strong>Area:</strong> {job.area}</p>
+            <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button>
         </div>
     );
 };

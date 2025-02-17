@@ -28,6 +28,7 @@ const CommunitiesPage = () => {
     <div className="container mt-4">
       <br/>
       <h1 className="text-center mb-4">Communities in Austin</h1>
+      <p className="mb-4">Number of communities: {services.length}</p>
       <div 
         style={{ 
           display: "grid", 
