@@ -34,18 +34,18 @@ const CommunityInstance = () => {
     const navigate = useNavigate(); // Hook to navigate programmatically
     const community = communities.find(community => community.name === communityName); // Find the matching job
 
-    if (!job) {
+    if (!community) {
         return <div className="container mt-4"><h1>Community Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
     return (
         <div className="container mt-4">
-            <h1>{job.name}</h1>
-            <img src={job.imageUrl} alt={job.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
-            <p><strong>Title:</strong> {job.title}</p>
-            <p><strong>Pay:</strong> ${job.pay}/hr</p>
-            <p><strong>Language:</strong> {job.language}</p>
-            <p><strong>Area:</strong> {job.area}</p>
+            <h1>{community.name}</h1>
+            <img src={community.imageUrl} alt={community.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
+            <p><strong>Title:</strong> {community.title}</p>
+            <p><strong>Pay:</strong> ${community.pay}/hr</p>
+            <p><strong>Language:</strong> {community.language}</p>
+            <p><strong>Area:</strong> {community.area}</p>
             <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button>
         </div>
     );
