@@ -4,24 +4,62 @@ import React from "react";
 import Splash from "../components/Splash"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 
 const Home = () => {
     return (
         <>
-           <main className="splash-main">
+            <div className="splash-main">
+            <div className="splash-bkg"></div>
                 <Container className="splash p-5 mb-4">
-                    <div className="splash-content">
-                        <h1 className="display-4">Welcome to SpeakATX</h1>
-                        <p className="lead">
-                            Providing resources to minimal English and non-English speakers in Austin, TX.
-                        </p>
-                        <hr className="my-4" />
-                        <p>Local non-English communities, translation services, and job postings.</p>
+                    <Splash/>
+                    <div className="content-container">
+                    <Container >
+                        <Row className="content">
+                            <Col>picture</Col>
+                            <Col>
+                                <h1 className="display-4">Translation services</h1>
+                                <p className="lead">
+                                    Austin provides an extensive amount of 
+                                    translation services
+                                </p>
+                                <hr className="my-4" />
+                                <Button> Learn More &gt;&gt; </Button>
+                                </Col>
+                        </Row>
+                        <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
+                        <Row className="content">
+                            <Col>
+                                <h1 className="display-4">Communities</h1>
+                                <p className="lead">
+                                    There are many different communities around Austin
+                                </p>
+                                <hr className="my-4" />
+                                <Button> Learn More &gt;&gt; </Button>
+                            </Col>
+                            <Col>picture</Col>
+                        </Row>
+
+                        <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
+                        <Row className="content">
+                            <Col>picture</Col>
+                            <Col>
+                                <h1 className="display-4">Jobs</h1>
+                                <p className="lead">
+                                    Many employers are supportive of Non-English speakers
+                                </p>
+                                <hr className="my-4" />
+                                <Button> Learn More &gt;&gt; </Button>
+                            </Col>
+                        </Row>
+                        
+                    </Container>
+                    
+                    
                     </div>
                 </Container>
-            </main>
+           </div>
         </>
     );
 };
