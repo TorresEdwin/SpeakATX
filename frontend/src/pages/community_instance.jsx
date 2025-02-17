@@ -20,7 +20,7 @@ const CommunityInstance = () => {
             <p><strong>Language:</strong> {community.language}</p>
             <p><strong>Area:</strong> {community.area}</p>
             <p><strong>About:</strong> {community.about}</p>
-            <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button>
+            <button className="btn btn-primary mt-3 mb-5" onClick={() => navigate(-1)}>Back</button>
 
             <div className="row">
             <h3>{community.language} Translation Services</h3>
