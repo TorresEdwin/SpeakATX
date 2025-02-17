@@ -4,23 +4,6 @@ const services = [
   { name: "Community 1" },
   { name: "Community 2" },
   { name: "Community 3" },
-  { name: "Community 4" },
-  { name: "Community 5" },
-  { name: "Community 6" },
-  { name: "Community 7" },
-  { name: "Community 8" },
-  { name: "Community 9" },
-  { name: "Community 10" },
-  { name: "Community 1" },
-  { name: "Community 2" },
-  { name: "Community 3" },
-  { name: "Community 4" },
-  { name: "Community 5" },
-  { name: "Community 6" },
-  { name: "Community 7" },
-  { name: "Community 8" },
-  { name: "Community 9" },
-  { name: "Community 10" },
 ];
 
 const CommunitiesPage = () => {

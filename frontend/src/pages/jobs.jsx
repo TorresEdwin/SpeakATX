@@ -26,9 +26,6 @@ const JobsPage = () => {
         { name: job1.name, title: job1.title, pay: job1.pay, language: job1.language, area: job1.area, imageUrl: job1.imageUrl, path: `/jobs/${job1.name}`},
         { name: job2.name, title: job2.title, pay: job2.pay, language: job2.language, area: job2.area, imageUrl: job2.imageUrl, path: `/jobs/${job2.name}`},
         { name: job3.name, title: job3.title, pay: job3.pay, language: job3.language, area: job3.area, imageUrl: job3.imageUrl, path: `/jobs/${job3.name}`},
-        { name: "Job 4", url: "https://www.google.com", title: "Job 4" },
-        { name: "Job 5", url: "https://www.github.com", title: "Job 5" },
-        { name: "Job 6", url: "https://www.openai.com", title: "Job 6" }
     ];
 
     return (
