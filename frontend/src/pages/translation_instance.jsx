@@ -20,7 +20,7 @@ const TranslationInstance = () => {
             <p><strong>Language:</strong> {translation.language}</p>
             <p><strong>Area:</strong> {translation.area}</p>
             <p><strong>Price:</strong> ${translation.price}/hr</p>
-            <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button>
+            <button className="btn btn-primary mt-3 mb-5" onClick={() => navigate(-1)}>Back</button>
 
             <div className="row">
                 <h3>{translation.language} Communities</h3>
