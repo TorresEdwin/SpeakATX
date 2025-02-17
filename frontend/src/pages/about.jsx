@@ -135,7 +135,7 @@ const About = () => {
 
             <p>
                 <b>Maya Lee</b><br/>
-                <img src="/public/MayaLee.JPEG" alt="Image" width="300"/> <br/> <br/>
+                <img src="MayaLee.JPEG" alt="Image" width="300"/> <br/> <br/>
                 <p>
                     Maya is a third year Computer Science Major at UT Austin. <br/>
                     She enjoys doing arts and crafts such as drawing and painting.<br/>
@@ -148,7 +148,7 @@ const About = () => {
 
             <p>
                 <b>Steven Zheng</b><br/>
-                <img src="/public/steven_zheng.jpg" alt="Image" width="300"/> <br/> <br/>
+                <img src="steven_zheng.jpg" alt="Image" width="300"/> <br/> <br/>
                 <p>
                     Steven is a third year CS major at UT Austin. <br/>
                     In his spare time he enjoys building things and sleeping.<br/>
@@ -161,7 +161,7 @@ const About = () => {
 
             <p>
                 <b>Amy Wu</b><br/>
-                <img src="/public/amyWu.jpg" alt="Image" width="300"/> <br/>
+                <img src="amyWu.jpg" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
@@ -170,7 +170,7 @@ const About = () => {
 
             <p>
                 <b>Edwin Torres</b><br/>
-                <img src="/public/Edwin_Torres.jpg" alt="Image" width="300"/> <br/>
+                <img src="Edwin_Torres.jpg" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
@@ -179,7 +179,7 @@ const About = () => {
 
             <p>
                 <b>Shawn Tran</b><br/>
-                <img src="/public/Shawn_Tran.jpg" alt="Image" width="300"/> <br/>
+                <img src="Shawn_Tran.jpg" alt="Image" width="300"/> <br/>
                 Bio: Insert bio here<br/>
                 Responsibilities: Frontend + Backend<br/>
             </p>
