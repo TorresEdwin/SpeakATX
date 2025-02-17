@@ -15,13 +15,30 @@ const JobInstance = () => {
 
     return (
         <div className="container mt-4">
+            <button 
+                className="btn btn-primary position-absolute" 
+                style={{ top: '80px', left: '20px' }}
+                onClick={() => navigate(-1)}
+            >
+                Back
+            </button>
             <h1>{job.name}</h1>
             <img src={job.imageUrl} alt={job.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Title:</strong> {job.title}</p>
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language}</p>
             <p><strong>Area:</strong> {job.area}</p>
-            <button className="btn btn-primary mt-3 mb-5" onClick={() => navigate(-1)}>Back</button>
+
+            <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
+                <button 
+                    className="btn btn-success"
+                    onClick={() => window.open(job.jobUrl, "_blank")}
+                >
+                    View Job
+                </button>
+
+
+            </div>
 
             <div className="row">
                 <h3>{job.language} Communities</h3>

@@ -6,7 +6,8 @@ class Instances {
             pay: 70, 
             language: "Spanish", 
             area: "West Campus", 
-            imageUrl: "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
+            imageUrl: "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png",
+            jobUrl: "https://www.glassdoor.com.hk/Job/catalonia-spain-computer-science-intern-jobs-SRCH_IL.0,15_IS6799_KO16,39.htm"
         },
         { 
             name: "GitHub", 
@@ -14,7 +15,8 @@ class Instances {
             pay: 80, 
             language: "Vietnamese", 
             area: "East Campus", 
-            imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            jobUrl: "https://www.glassdoor.com.hk/Job/vietnam-computer-science-intern-jobs-SRCH_IL.0,7_IN251_KO8,31.htm"
         },
         { 
             name: "OpenAI", 
@@ -22,7 +24,8 @@ class Instances {
             pay: 90, 
             language: "Chinese", 
             area: "South Campus", 
-            imageUrl: "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png"
+            imageUrl: "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png",
+            jobUrl: "https://www.glassdoor.com.hk/Job/hong-kong-computer-science-intern-jobs-SRCH_IL.0,9_IN106_KO10,33.htm"
         }
     ]; 
 
