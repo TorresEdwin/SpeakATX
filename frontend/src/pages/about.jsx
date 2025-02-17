@@ -63,12 +63,22 @@ const About = () => {
     // Fetch issues per person (assignee)
     const fetchIssues = async () => {
         try {
-            const response = await fetch(`${gitLabUrl}/issues?per_page=100`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            const issues = await response.json();
+            let issues = [];
+            let page = 1;
+
+            while (true) {
+                const response = await fetch(`${gitLabUrl}/issues?per_page=100&page=${page}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const data = await response.json();
+   
+                if (data.length === 0) break; // No more commits
+   
+                issues = issues.concat(data);
+                page++;
+            }
 
             // Group issues by assignee
             const issueCount = issues.reduce((acc, issue) => {
