@@ -6,8 +6,8 @@ const CommunitiesPage = () => {
     // Array of job links
     const communityLinks = [
         { name: "test1", title: "test1", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test1`},
-        { name: "test1", title: "test1", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test1`},
-        { name: "test1", title: "test1", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test1`},
+        { name: "test2", title: "test2", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test2`},
+        { name: "test3", title: "test3", pay: "5 dollar", language: "Spanish", area: "Austin", imageUrl: "", path: `/communities/test3`},
     ];
 
     return (
