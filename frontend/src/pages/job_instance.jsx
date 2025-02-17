@@ -36,7 +36,7 @@ const JobInstance = () => {
     const job = jobs.find(job => job.name === jobName); // Find the matching job
 
     if (!job) {
-        return <div className="container mt-4"><h1>Job Not Found</h1></div>;
+        return <div className="container mt-4"><h1>Job Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
     return (
