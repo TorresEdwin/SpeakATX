@@ -16,7 +16,7 @@ export const Nav = styled.nav`
     left: 0;
     width: 100vw;
 `;
-
+// color: rgb(144, 219, 176); not used - temp
 // Branding / Site Name
 export const NavBrand = styled(Link)`
     color: #fff;
@@ -27,7 +27,7 @@ export const NavBrand = styled(Link)`
     cursor: pointer;
 
     &:hover {
-        color: rgb(144, 219, 176);
+        color: #D3D3D3;
     }
 `;
 
@@ -50,11 +50,11 @@ export const NavLink = styled(Link)`
     transition: 0.3s;
 
     &.active {
-        color: rgb(144, 219, 176);
+        color:#ffcc70;
     }
 
     &:hover {
-        color: #ffcc70;
+        color: #D3D3D3;
     }
 `;
 
