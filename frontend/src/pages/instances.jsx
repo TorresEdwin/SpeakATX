@@ -1,31 +1,31 @@
 class Instances {
     static jobs = [
         { 
-            name: "Google", 
-            title: "Software Engineer", 
-            pay: 70, 
+            name: "Chick-Fil-A", 
+            title: "Team Member", 
+            pay: 13, 
             language: "Spanish", 
-            area: "West Campus", 
-            imageUrl: "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png",
-            jobUrl: "https://www.glassdoor.com.hk/Job/catalonia-spain-computer-science-intern-jobs-SRCH_IL.0,15_IS6799_KO16,39.htm"
+            area: "Austin", 
+            imageUrl: "https://download.logo.wine/logo/Chick-fil-A/Chick-fil-A-Logo.wine.png",
+            jobUrl: "https://www.indeed.com/viewjob?jk=9e4a110fd7f3bae2&from=shareddesktop"
         },
         { 
-            name: "GitHub", 
-            title: "Backend Developer", 
-            pay: 80, 
+            name: "Family Tree Private Care", 
+            title: "Care Giver", 
+            pay: 17, 
             language: "Vietnamese", 
-            area: "East Campus", 
-            imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-            jobUrl: "https://www.glassdoor.com.hk/Job/vietnam-computer-science-intern-jobs-SRCH_IL.0,7_IN251_KO8,31.htm"
+            area: "Austin", 
+            imageUrl: "https://familytreecares.com/wp-content/uploads/2022/05/logo.png",
+            jobUrl: "https://www.indeed.com/cmp/Family-Tree-Private-Care/jobs?jk=c1b30935fa3fd2ed&start=0&clearPrefilter=1"
         },
         { 
-            name: "OpenAI", 
-            title: "Research Scientist", 
-            pay: 90, 
+            name: "Tso Chinese", 
+            title: "Store Manager", 
+            pay: 34, 
             language: "Chinese", 
-            area: "South Campus", 
-            imageUrl: "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png",
-            jobUrl: "https://www.glassdoor.com.hk/Job/hong-kong-computer-science-intern-jobs-SRCH_IL.0,9_IN106_KO10,33.htm"
+            area: "Austin", 
+            imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/jobs_page/tso_chinese.png",
+            jobUrl: "https://tsochinese.com/jobs"
         }
     ]; 
 
