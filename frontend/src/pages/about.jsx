@@ -100,6 +100,19 @@ const About = () => {
         }
     };
 
+    let people = [
+        {name: "Steven Zheng", bio: "Steven is a third year CS major at UT Austin. In his spare time he enjoys building things and sleeping.", 
+            responsibilities: "Full Stack", commits: commitStats["Steven Zheng"], issues: issueStats["Steven Zheng"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg"},
+        {name: "Maya Lee", bio: "Maya is a third year Computer Science Major at UT Austin. She enjoys doing arts and crafts such as drawing and painting.", 
+            responsibilities: "Full Stack", commits: commitStats["Maya Lee"], issues: issueStats["Maya Lee"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/MayaLee.JPEG"},
+        {name: "Amy Wu", bio: "Amy is a third year Computer Science major at UT Austin. She enjoys swimming, drawing and traveling", 
+            responsibilities: "Full Stack", commits: commitStats["Amy Wu"], issues: issueStats["Amy Wu"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/amyWu.jpg"},
+        {name: "Edwin Torres", bio: "Edwin is a third year CS major at UT Austin. He enjoys talking about new tech, gaming, and watching shows on Netflix.", 
+            responsibilities: "Full Stack", commits: commitStats["Edwin Torres"], issues: issueStats["Edwin Torres"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Edwin_Torres.jpg"},
+        {name: "Shawn Tran", bio: "Shawn is a junior at UT Austin, majoring in Computer Science. He enjoys gaming and cooking new dishes in his spare time.", 
+            responsibilities: "Full Stack", commits: commitStats["Shawn Tran"], issues: issueStats["Shawn Tran"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Shawn_Tran.jpg"},
+    ]
+
     // Fetch both commits and issues when component mounts
     useEffect(() => {
         const fetchData = async () => {
@@ -133,88 +146,32 @@ const About = () => {
 
             <br/>
 
-            <p>
-                <b>Maya Lee</b><br/>
-                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/MayaLee.JPEG" alt="Image" width="300"/> <br/> <br/>
-                <p>
-                    Maya is a third year Computer Science Major at UT Austin. <br/>
-                    She enjoys doing arts and crafts such as drawing and painting.<br/>
-                </p>
-                
-                Responsibilities: Full Stack<br/>
-            </p>
-
-            <br/>
-
-            <p>
-                <b>Steven Zheng</b><br/>
-                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg" alt="Image" width="300"/> <br/> <br/>
-                <p>
-                    Steven is a third year CS major at UT Austin. <br/>
-                    In his spare time he enjoys building things and sleeping.<br/>
-                </p>
-                
-                Responsibilities:Full Stack<br/>
-            </p>
-
-            <br/>
-
-            <p>
-                <b>Amy Wu</b><br/>
-                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/amyWu.jpg" alt="Image" width="300"/> <br/>
-                <br/>
-                <p>
-                    Amy is a third year Computer Science major at UT Austin. <br/>
-                    She enjoys swimming, drawing and traveling.<br/>
-                </p>
-
-                Responsibilities: Full Stack<br/>
-            </p>
-
-            <br/>
-
-            <p>
-                <b>Edwin Torres</b><br/>
-                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Edwin_Torres.jpg" alt="Image" width="300"/> <br/>
-                <br/>
-                <p>
-                    Edwin is a third year CS major at UT Austin.
-                    <br/>
-                    He enjoys talking about new tech, gaming, <br/>and watching shows on Netflix.<br/>
-                </p>
-                Responsibilities: Full Stack<br/>
-            </p>
-
-            <br/>
-
-            <p>
-                <b>Shawn Tran</b><br/>
-                <img src="https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Shawn_Tran.jpg" alt="Image" width="300"/> <br/> <br/>
-                <p>
-                    Shawn is a junior at UT Austin, majoring in Computer Science. <br/>
-                    He enjoys gaming and cooking new dishes in his spare time.<br/>
-                </p>
-                
-                Responsibilities: Full Stack<br/>
-            </p>
-
-            <br/>
-
-            <h2>Commits by Team Member</h2>
-            
-            {Object.entries(commitStats).map(([author, count]) => (
-                <p key={author}>{author}: {count} commits</p>
+            <div className="row d-flex justify-content-center">
+            {people.map((person, index) => (
+                <div className="col-md-2 mb-3" key={index}>
+                    <div className="card h-100 shadow-lg overflow-hidden rounded">
+                        
+                        <img 
+                            src={person.imageUrl} 
+                            alt={person.name} 
+                            className="card-img-top" 
+                            style={{ height: "300px", objectFit: "cover" }} 
+                        />
+                        <div className="card-body">
+                            <p className="">
+                            <h5 className="">{person.name}</h5>
+                                {person.bio} <br/> <br/>
+                                Role: {person.responsibilities} <br />
+                                Commits: {person.commits} <br />
+                                Issues: {person.issues} <br />
+                                Unit Tests: {person.unitTests} <br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
             ))}
+            </div>
 
-            <h2>Issues by Team Member</h2>
-
-            {Object.entries(issueStats).map(([assignee, count]) => (
-                <p key={assignee}>{assignee}: {count} issues</p>
-            ))}
-
-            <h2>Unit Tests by Team Member</h2>
-
-            <p>Unassigned: 0 unit tests</p>
         </div>
     );
 };
