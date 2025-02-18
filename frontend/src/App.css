@@ -179,63 +179,48 @@ body, html {
 }
 
 
-
-
-
-
 /*
-  Card Styling (Applies to Both Translation & Communities Pages)
-*/
 
-/* Default Card Styling */
-.card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  cursor: pointer;
-  border-radius: 10px; /* Ensures smooth corners */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle default shadow */
-  background-color: white; /* Ensures it’s not transparent */
-  overflow: hidden;
+/* Ensure Buttons Stay Separate */
+.card-footer {
+  display: flex;
+  justify-content: space-between; /* Keeps buttons apart */
+  padding: 10px; /* Adds some spacing */
+  gap: 10px; /* Ensures gap between buttons */
+  background: white; /* Matches card background */
+  border-top: none;
+  z-index: 10; /* Brings the buttons to the front */
+
 }
 
-/* Enhanced Hover Shadow Effect */
-.card:hover {
-  transform: translateY(-8px); /* Lifts the card slightly */
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3); /* More noticeable shadow */
+/* Adjust button width to avoid overlap */
+.card-footer .btn {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: auto; /* Ensures buttons can be clicked */
+  z-index: 5; /* Keeps it below buttons */
+
 }
 
-/* Change Text Color on Hover */
-.card:hover .card-title {
-  color: #d9534f; /* Changes title to a red shade */
-}
 
-.card:hover .card-text {
-  color: #5bc0de; /* Changes text to a blue shade */
-}
 
-/* Image Styling */
-.card img {
+
+
+
+/* Make sure the image is clickable but does not overlap buttons */
+.clickable-image {
   width: 100%;
-  height: 220px; /* Consistent image height */
-  object-fit: contain; /* Ensures full visibility */
+  height: 180px;
+  object-fit: contain;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: white; /* Fixes transparency issues */
+  cursor: pointer; /* Show clickable cursor */
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  z-index: 5; /* Keeps it below buttons */
 }
 
-/* Card Footer (Ensures Shadow Isn't Cut Off) */
-.card-footer {
-  background: white; /* Matches the card */
-  border-top: none; /* Prevents unwanted lines */
+.clickable-image:hover {
+  transform: scale(1.05); /* Slight zoom effect */
 }
-
-/* Ensure links inside the card do not change color */
-.text-decoration-none {
-  text-decoration: none !important;
-  color: inherit;
-}
-
-/* Button Hover Effect */
-.btn:hover {
-  opacity: 0.85;
-}
-
