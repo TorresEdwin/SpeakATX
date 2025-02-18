@@ -35,6 +35,13 @@ const CommunityInstance = () => {
 
     return (
         <div className="container mt-4">
+            <button 
+                className="btn btn-primary position-absolute" 
+                style={{ top: '80px', left: '20px' }}
+                onClick={() => navigate(-1)}
+            >
+                Back
+            </button>
             <br/>
             <h1>{community.name}</h1>
             <img src={community.imageUrl} alt={community.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
@@ -43,7 +50,17 @@ const CommunityInstance = () => {
             <p><strong>Member Count:</strong> {community.member_count}</p>
             <p><strong>Type:</strong> {community.type}</p>
             <p><strong>About:</strong> {community.about}</p>
-            <button className="btn btn-primary mt-3 mb-5" onClick={() => navigate(-1)}>Back</button>
+
+            <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
+                <button 
+                    className="btn btn-success"
+                    onClick={() => window.open(job.jobUrl, "_blank")}
+                >
+                    View Community
+                </button>
+
+
+            </div>
 
             <div className="row">
             <h3>{community.language} Translation Services</h3>

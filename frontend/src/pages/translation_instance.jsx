@@ -33,6 +33,14 @@ const TranslationInstance = () => {
 
     return (
         <div className="container mt-4">
+            <button 
+                className="btn btn-primary position-absolute" 
+                style={{ top: '80px', left: '20px' }}
+                onClick={() => navigate(-1)}
+            >
+                Back
+            </button>
+            
             <br />
             <h1>{translation.name}</h1>
             <img src={translation.imageUrl} alt={translation.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
@@ -40,7 +48,17 @@ const TranslationInstance = () => {
             <p><strong>Language:</strong> {translation.language}</p>
             <p><strong>Area:</strong> {translation.area}</p>
             <p><strong>Price:</strong> ${translation.price}/hr</p>
-            <button className="btn btn-primary mt-3 mb-5" onClick={() => navigate(-1)}>Back</button>
+            
+            <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
+                <button 
+                    className="btn btn-success"
+                    onClick={() => window.open(job.jobUrl, "_blank")}
+                >
+                    View Service
+                </button>
+
+
+            </div>
 
             <div className="row">
                 <h3>{translation.language} Communities</h3>

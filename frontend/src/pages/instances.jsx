@@ -1,31 +1,31 @@
 class Instances {
     static jobs = [
         { 
-            name: "Google", 
-            title: "Software Engineer", 
-            pay: 70, 
+            name: "Chick-Fil-A", 
+            title: "Team Member", 
+            pay: 13, 
             language: "Spanish", 
-            area: "West Campus", 
-            imageUrl: "https://www.deliverlogic.com/wp-content/uploads/2021/04/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png",
-            jobUrl: "https://www.glassdoor.com.hk/Job/catalonia-spain-computer-science-intern-jobs-SRCH_IL.0,15_IS6799_KO16,39.htm"
+            area: "Austin", 
+            imageUrl: "https://download.logo.wine/logo/Chick-fil-A/Chick-fil-A-Logo.wine.png",
+            jobUrl: "https://www.indeed.com/viewjob?jk=9e4a110fd7f3bae2&from=shareddesktop"
         },
         { 
-            name: "GitHub", 
-            title: "Backend Developer", 
-            pay: 80, 
+            name: "Family Tree Private Care", 
+            title: "Care Giver", 
+            pay: 17, 
             language: "Vietnamese", 
-            area: "East Campus", 
-            imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-            jobUrl: "https://www.glassdoor.com.hk/Job/vietnam-computer-science-intern-jobs-SRCH_IL.0,7_IN251_KO8,31.htm"
+            area: "Austin", 
+            imageUrl: "https://familytreecares.com/wp-content/uploads/2022/05/logo.png",
+            jobUrl: "https://www.indeed.com/cmp/Family-Tree-Private-Care/jobs?jk=c1b30935fa3fd2ed&start=0&clearPrefilter=1"
         },
         { 
-            name: "OpenAI", 
-            title: "Research Scientist", 
-            pay: 90, 
+            name: "Tso Chinese", 
+            title: "Store Manager", 
+            pay: 34, 
             language: "Chinese", 
-            area: "South Campus", 
-            imageUrl: "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png",
-            jobUrl: "https://www.glassdoor.com.hk/Job/hong-kong-computer-science-intern-jobs-SRCH_IL.0,9_IN106_KO10,33.htm"
+            area: "Austin", 
+            imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/jobs_page/tso_chinese.png",
+            jobUrl: "https://tsochinese.com/jobs"
         }
     ]; 
 
@@ -40,7 +40,7 @@ class Instances {
             imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg"
         },
         { 
-            name: "El Buen Servicio", 
+            name: "Spanish For All Austin", 
             rating: "4.5", 
             language: "Spanish, English", 
             area: "North Austin", 
@@ -49,13 +49,15 @@ class Instances {
             imageUrl: "https://cdn.prod.website-files.com/5c29380b1110ec92a203aa84/66e5ce469b48938aa34d8684_Google%20Maps%20-%20Compressed.jpg"
         },
         { 
-            name: "Bu Hui Shuo Yingwen", 
-            rating: "4.2", 
-            language: "Chinese, English", 
-            area: "South Austin", 
-            price: 15,
+            name: "Marvelous Mandarin", 
+            rating: "4.3", 
+            language: "Mandarin, English", 
+            area: "North Austin", 
+            price: 40,
             pricing: "Budget",
-            imageUrl: "https://media.istockphoto.com/id/518371862/vector/abstract-city-map-illustration.jpg?s=612x612&w=0&k=20&c=LmqeyKSPkDfN_Wk4W6dxlopvIm8KYq81t1eXHM0c34E="
+            imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg",
+            website: "https://www.marvelous-mandarin.com/",
+            mapUrl: "//www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
         }
     ];
     
