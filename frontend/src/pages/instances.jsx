@@ -86,7 +86,16 @@ class Instances {
             member_count: "1,000+",
             about: "奧斯汀华裔联盟(Austin Chinese-American Network, 简称ACAN)于2017年3月9日正式成立为一个独立的非盈利组织, 致力于服务本地华人社区, 弘扬中华文化, 维护华人权益, 增强华人群体的凝聚力。奧斯汀华裔联盟已经正式获得美国税务局(IRS)作为 501(c)(3)公益组织的认证。联盟将以丰富多彩的活动形式促进华人社区的交流和相互理解，鼓励本地华裔同胞关心政务，参与公共事务和社区服务，希望有更多的华人成为主流社会的领袖。",
             imageUrl: "https://austinchineseamericannetwork.org/wp-content/uploads/2023/03/cropped-ACAN-logo.png"
-        }
+        },
+        { 
+            name: "Vietnamese American Community of Austin", 
+            language: "Vietnamese", 
+            area: "Austin",
+            type: "Culture",
+            member_count: "1,000+",
+            about: "VACAT is a 501(c)(3) nonprofit serving the Vietnamese American community in the Austin, Texas area. ",
+            imageUrl: "https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-6/326387993_1237149163561794_746506842489137586_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=aZrrpexCgjAQ7kNvgG7x91F&_nc_oc=AdihZ-f92mGwDxKBfXum_tMyMet8ENxcTN-0m0FjC7EI3TaEg0BoWercXqw4TNsB860&_nc_zt=23&_nc_ht=scontent-dfw5-2.xx&_nc_gid=Ad6PJPEp9B8gGUK-L4kDUkZ&oh=00_AYDJdp69sojaVxeVF6MBh068DTJ-2v9FhDfI5-gfaCQ_zw&oe=67B9AC27"
+        },
     ]; 
 
     static matchingValues(str1, str2) {
