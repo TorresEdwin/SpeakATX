@@ -1,6 +1,6 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 import Instances from "./instances.jsx";
 
@@ -15,43 +15,48 @@ const JobInstance = () => {
     }
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Scroll to top
-      }, []);
+        const timeout = setTimeout(() => {
+            window.scrollTo(0, 0); // Scroll to the top after a slight delay
+        }, 10);
+
+        return () => clearTimeout(timeout);
+    }, [useLocation()]);
 
     let filteredTranslations = []
-    for(let i = 0; i < Instances.translations.length; i++) {
-        if(Instances.matchingValues(Instances.translations[i].language, job.language)) {
+    for (let i = 0; i < Instances.translations.length; i++) {
+        if (Instances.matchingValues(Instances.translations[i].language, job.language)) {
             filteredTranslations.push(Instances.translations[i]);
         }
     }
 
     let filteredCommunities = []
-    for(let i = 0; i < Instances.communities.length; i++) {
-        if(Instances.matchingValues(Instances.communities[i].language, job.language)) {
+    for (let i = 0; i < Instances.communities.length; i++) {
+        if (Instances.matchingValues(Instances.communities[i].language, job.language)) {
             filteredCommunities.push(Instances.communities[i]);
         }
     }
 
     return (
         <div className="container mt-4">
-            <button 
-                className="btn btn-primary position-absolute" 
-                style={{ top: '80px', left: '20px' }}
+            <button
+                className="btn btn-primary button-fixed button-grow"
+                style={{ top: '80px', left: '20px', transition: '0.2s ease' }}
                 onClick={() => navigate(-1)}
             >
                 Back
             </button>
-            <br/>
+            <br />
             <h1>{job.name}</h1>
-            <img src={job.imageUrl} alt={job.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
+            <img src={job.imageUrl} alt={job.name} className="img-fluid mb-3" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Title:</strong> {job.title}</p>
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language}</p>
             <p><strong>Area:</strong> {job.area}</p>
 
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
-                <button 
-                    className="btn btn-success"
+                <button
+                    className="btn btn-success button-grow"
+                    style={{ transition: '0.2s ease' }}
                     onClick={() => window.open(job.jobUrl, "_blank")}
                 >
                     View Job

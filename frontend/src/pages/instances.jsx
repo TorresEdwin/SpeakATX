@@ -31,23 +31,28 @@ class Instances {
 
     static translations = [
         { 
-            name: "Dịch Vụ Dịch Thuật", 
+            name: "Vietnamese Translations Consulting", 
             rating: "4.8", 
             language: "Vietnamese, English", 
             area: "Downtown Austin", 
             price: 40,
             pricing: "Budget",
-            imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg",
-            
+            website: "https://www.yelp.com/biz/vietnamese-translations-consulting-mimi-tran-austin?osq=vietnamese+translator&override_cta=Get+pricing+%26+availability",
+            mapImageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg",
+            imageUrl: "https://img.p.mapq.st/?url=https://s3-media0.fl.yelpcdn.com/bphoto/tfAnBVTl7oT-N5OsK_XW1g/l.jpg?w=3840&q=75",
+            mapUrl: "https://www.google.com/maps/place/1512+W+Howard+Ln,+Austin,+TX+78728/data=!4m2!3m1!1s0x8644ceed235c218b:0xb947ff4a74563760?sa=X&ved=1t:242&ictx=111"
         },
         { 
-            name: "Spanish For All Austin", 
+            name: "Texas Tower Passport and Visa Services", 
             rating: "4.5", 
             language: "Spanish, English", 
             area: "North Austin", 
             price: 25,
             pricing: "Budget",
-            imageUrl: "https://cdn.prod.website-files.com/5c29380b1110ec92a203aa84/66e5ce469b48938aa34d8684_Google%20Maps%20-%20Compressed.jpg"
+            website: "https://www.yelp.com/biz/texas-tower-passport-and-visa-services-houston?override_cta=Get+pricing+%26+availability",
+            mapImageUrl: "https://cdn.prod.website-files.com/5c29380b1110ec92a203aa84/66e5ce469b48938aa34d8684_Google%20Maps%20-%20Compressed.jpg",
+            imageUrl: "https://s3-media0.fl.yelpcdn.com/bphoto/yqcQ1Ot99T2XNqxBtBGAXg/o.jpg",
+            mapUrl: "https://www.google.com/maps?client=firefox-b-1-d&sca_esv=0c36c686c589dc21&biw=1728&bih=825&output=search&q=Texas+Tower+Passport+%26+Visa+Services&source=lnms&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBjnSuuKZNj-6zieDk_gkn6CyymgG_tEVFNWvBwycIom9HlR-mPw3LjRRj22WCaNNYiY26Pyg_mYsiBrfH3XTveKfVF9AnXBeF4A8To7FVGsxz41nDkXayYDZMloNfG-q_Nsiio46-BtjDeMRYZJnAoBGIjBwJQTuRV_Bdja0R19eL9CMDw&entry=mc&ved=1t:200715&ictx=111",
         },
         { 
             name: "Marvelous Mandarin", 
@@ -56,10 +61,10 @@ class Instances {
             area: "North Austin", 
             price: 40,
             pricing: "Budget",
-            imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_MAP.png",
+            mapImageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_MAP.png",
             website: "https://www.marvelous-mandarin.com/",
-            mapUrl: "//www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
-            image: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_LOGO.png"
+            mapUrl: "https://www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+            imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_LOGO.png"
         }
     ];
     

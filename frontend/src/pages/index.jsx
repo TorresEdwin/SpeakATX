@@ -20,10 +20,9 @@ const Home = () => {
                         <Row className="content text-center">
                             <Col className="d-none d-md-block"><img src="https://speakatx-images.s3.us-east-2.amazonaws.com/splash_page/translation.jpg" alt="Translation Picture" className="img-fluid w-100" style={{ objectFit: "cover", maxHeight: "300px" }}/></Col>
                             <Col>
-                                <h1 className="display-4">Translation services</h1>
+                                <h1 className="display-4">Multilingual Services</h1>
                                 <p className="lead">
-                                    Austin provides an extensive amount of 
-                                    translation services
+                                    Find translators and other services
                                 </p>
                                 <hr className="my-4" />
                                 <MyButton targetPage="/translations" buttonText="Learn More &gt;&gt;" />
@@ -34,7 +33,7 @@ const Home = () => {
                             <Col className="text-center">
                                 <h1 className="display-4">Communities</h1>
                                 <p className="lead">
-                                    There are many different communities around Austin
+                                    Explore local communities relevant to you
                                 </p>
                                 <hr className="my-4" />
                                 <MyButton targetPage="/communities" buttonText="Learn More &gt;&gt;" />
@@ -48,7 +47,7 @@ const Home = () => {
                             <Col>
                                 <h1 className="display-4">Jobs</h1>
                                 <p className="lead">
-                                    Many employers are supportive of Non-English speakers
+                                    See jobs that hire non-English speakers
                                 </p>
                                 <hr className="my-4" />
                                 <MyButton targetPage="/jobs" buttonText="Learn More &gt;&gt;" />

@@ -13,12 +13,9 @@ const TranslationPage = () => {
         {Instances.translations.map((service, index) => (
           <div key={index} className="col">
             <div className="card h-100 shadow-lg overflow-hidden rounded">
-              
-              {/* Image at the top */}
-              <img src={service.image} alt={service.name} className="service-image" />
-
-              {/* Only the text area (card body) is clickable */}
               <Link to={`/translations/${service.name}`} className="text-decoration-none">
+                <img src={service.imageUrl} alt={service.name} className="service-image" />
+
                 <div className="card-body text-center clickable-area">
                   <h5 className="card-title">{service.name}</h5>
                   <p className="card-text">⭐ {service.rating}</p>
@@ -27,11 +24,10 @@ const TranslationPage = () => {
                   <p className="card-text">💲 {service.pricing}</p>
                 </div>
               </Link>
-
-              {/* Footer buttons (Not Clickable on the Whole Card) */}
+              
               <div className="card-footer d-flex justify-content-between">
-                <a href={service.mapUrl} className="btn btn-primary btn-sm">🗺️ Map</a>
-                <a href={service.website} className="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">🔗 Website</a>
+                <a href={service.mapUrl} className="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Map</a>
+                <a href={service.website} className="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer">Website</a>
               </div>
             </div>
           </div>

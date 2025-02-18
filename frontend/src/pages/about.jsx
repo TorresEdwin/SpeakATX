@@ -141,7 +141,7 @@ const About = () => {
                     She enjoys doing arts and crafts such as drawing and painting.<br/>
                 </p>
                 
-                Responsibilities: Frontend + Backend<br/>
+                Responsibilities: Full Stack<br/>
             </p>
 
             <br/>
@@ -154,7 +154,7 @@ const About = () => {
                     In his spare time he enjoys building things and sleeping.<br/>
                 </p>
                 
-                Responsibilities: Frontend + Backend<br/>
+                Responsibilities:Full Stack<br/>
             </p>
 
             <br/>
@@ -168,7 +168,7 @@ const About = () => {
                     She enjoys swimming, drawing and traveling.<br/>
                 </p>
 
-                Responsibilities: Frontend + Backend<br/>
+                Responsibilities: Full Stack<br/>
             </p>
 
             <br/>
@@ -182,7 +182,7 @@ const About = () => {
                     <br/>
                     He enjoys talking about new tech, gaming, <br/>and watching shows on Netflix.<br/>
                 </p>
-                Responsibilities: Frontend + Backend<br/>
+                Responsibilities: Full Stack<br/>
             </p>
 
             <br/>
@@ -195,7 +195,7 @@ const About = () => {
                     He enjoys gaming and cooking new dishes in his spare time.<br/>
                 </p>
                 
-                Responsibilities: Frontend + Backend<br/>
+                Responsibilities: Full Stack<br/>
             </p>
 
             <br/>
