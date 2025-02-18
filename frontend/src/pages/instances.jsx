@@ -37,7 +37,8 @@ class Instances {
             area: "Downtown Austin", 
             price: 40,
             pricing: "Budget",
-            imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg"
+            imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg",
+            
         },
         { 
             name: "Spanish For All Austin", 
@@ -57,7 +58,8 @@ class Instances {
             pricing: "Budget",
             imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_MAP.png",
             website: "https://www.marvelous-mandarin.com/",
-            mapUrl: "//www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+            mapUrl: "//www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+            image: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_LOGO.png"
         }
     ];
     
