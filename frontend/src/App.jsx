@@ -23,6 +23,7 @@ import CommunityInstance from "./pages/community_instance";
 import TranslationInstance from "./pages/translation_instance";
 
 import React from "react";
+
 function App() {
 
   return (
