@@ -186,6 +186,10 @@ const About = () => {
                     </div>
                 ))}
             </div>
+            <br/>
+            <a href = "https://documenter.getpostman.com/view/42364456/2sAYXFiHS8#intro">
+            API Documentation
+            </a>
 
         </div>
     );
