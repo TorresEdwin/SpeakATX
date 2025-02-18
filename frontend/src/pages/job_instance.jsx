@@ -18,6 +18,20 @@ const JobInstance = () => {
         window.scrollTo(0, 0); // Scroll to top
       }, []);
 
+    let filteredTranslations = []
+    for(let i = 0; i < Instances.translations.length; i++) {
+        if(Instances.matchingValues(Instances.translations[i].language, job.language)) {
+            filteredTranslations.push(Instances.translations[i]);
+        }
+    }
+
+    let filteredCommunities = []
+    for(let i = 0; i < Instances.communities.length; i++) {
+        if(Instances.matchingValues(Instances.communities[i].language, job.language)) {
+            filteredCommunities.push(Instances.communities[i]);
+        }
+    }
+
     return (
         <div className="container mt-4">
             <br/>
@@ -31,7 +45,7 @@ const JobInstance = () => {
 
             <div className="row">
                 <h3>{job.language} Communities</h3>
-                {Instances.communities.map((communityItem, index) => (
+                {filteredCommunities.map((communityItem, index) => (
                     <div className="col-md-4 mb-3" key={index}>
                         <Link
                             to={`/communities/${communityItem.name}`}  // Links to dynamic job page
@@ -57,7 +71,7 @@ const JobInstance = () => {
                 ))}
 
                 <h3>{job.language} Translation Services</h3>
-                {Instances.translations.map((translationItem, index) => (
+                {filteredTranslations.map((translationItem, index) => (
                     <div className="col-md-4 mb-3" key={index}>
                         <Link
                             to={`/translations/${translationItem.name}`}  // Links to dynamic job page

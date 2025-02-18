@@ -15,11 +15,25 @@ const TranslationInstance = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to top
-      }, []);
+    }, []);
+
+    let filteredCommunities = []
+    for (let i = 0; i < Instances.communities.length; i++) {
+        if (Instances.matchingValues(Instances.communities[i].language, translation.language)) {
+            filteredCommunities.push(Instances.communities[i]);
+        }
+    }
+
+    let filteredJobs = []
+    for(let i = 0; i < Instances.jobs.length; i++) {
+        if(Instances.matchingValues(Instances.jobs[i].language, translation.language)) {
+            filteredJobs.push(Instances.jobs[i]);
+        }
+    }
 
     return (
         <div className="container mt-4">
-            <br/>
+            <br />
             <h1>{translation.name}</h1>
             <img src={translation.imageUrl} alt={translation.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Rating:</strong> {translation.rating}</p>
@@ -30,7 +44,7 @@ const TranslationInstance = () => {
 
             <div className="row">
                 <h3>{translation.language} Communities</h3>
-                {Instances.communities.map((communityItem, index) => (
+                {filteredCommunities.map((communityItem, index) => (
                     <div className="col-md-4 mb-3" key={index}>
                         <Link
                             to={`/communities/${communityItem.name}`}  // Links to dynamic job page
@@ -56,7 +70,7 @@ const TranslationInstance = () => {
                 ))}
 
                 <h3>{translation.language} Job Postings</h3>
-                {Instances.jobs.map((jobItem, index) => (
+                {filteredJobs.map((jobItem, index) => (
                     <div className="col-md-4 mb-3" key={index}>
                         <Link
                             to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
