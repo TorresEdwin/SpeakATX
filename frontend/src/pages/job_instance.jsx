@@ -65,10 +65,10 @@ const JobInstance = () => {
 
             </div>
 
-            <div className="row">
+            <div className="row justify-content-center">
                 <h3>{job.language} Communities</h3>
                 {filteredCommunities.map((communityItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/communities/${communityItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"
@@ -95,7 +95,7 @@ const JobInstance = () => {
 
                 <h3>{job.language} Translation Services</h3>
                 {filteredTranslations.map((translationItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/translations/${translationItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"

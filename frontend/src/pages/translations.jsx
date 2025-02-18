@@ -9,7 +9,7 @@ const TranslationPage = () => {
       <br />
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
       <p className="mb-4">Number of services: {Instances.translations.length}</p>
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
         {Instances.translations.map((service, index) => (
           <div key={index} className="col">
             <div className="card h-100 shadow-lg overflow-hidden rounded">
@@ -25,7 +25,7 @@ const TranslationPage = () => {
                 </div>
               </Link>
               
-              <div className="card-footer d-flex justify-content-between">
+              <div className="card-footer d-flex justify-content-between" style={{ marginTop: 'auto' }}>
                 <a href={service.mapUrl} className="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Map</a>
                 <a href={service.website} className="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer">Website</a>
               </div>

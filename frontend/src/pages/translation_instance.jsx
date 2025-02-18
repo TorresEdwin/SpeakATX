@@ -75,10 +75,10 @@ const TranslationInstance = () => {
 
             
 
-            <div className="row">
+            <div className="row justify-content-center">
                 <h3>{translation.language} Communities</h3>
                 {filteredCommunities.map((communityItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/communities/${communityItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"
@@ -104,7 +104,7 @@ const TranslationInstance = () => {
 
                 <h3>{translation.language} Job Postings</h3>
                 {filteredJobs.map((jobItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"

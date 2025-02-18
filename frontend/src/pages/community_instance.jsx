@@ -67,10 +67,10 @@ const CommunityInstance = () => {
 
             </div>
 
-            <div className="row">
+            <div className="row d-flex justify-content-center">
                 <h3>{community.language} Translation Services</h3>
                 {filteredTranslations.map((translationItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/translations/${translationItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"
@@ -96,7 +96,7 @@ const CommunityInstance = () => {
 
                 <h3>{community.language} Jobs</h3>
                 {filteredJobs.map((jobItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"

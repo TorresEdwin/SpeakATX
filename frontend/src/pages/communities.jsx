@@ -13,9 +13,9 @@ const CommunitiesPage = () => {
             <h1 className="mb-4">Communities in Austin</h1>
             <p className="mb-4">Number of communities: {communityLinks.length}</p>
             
-            <div className="row">
+            <div className="row justify-content-center">
             {communityLinks.map((jobItem, index) => (
-                <div className="col-md-4 mb-3" key={index}>
+                <div className="col-md-3 mb-3" key={index}>
                     <Link 
                         to={`/communities/${jobItem.name}`}  // Links to dynamic job page
                         className="card text-decoration-none"
