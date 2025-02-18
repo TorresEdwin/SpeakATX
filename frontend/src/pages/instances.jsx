@@ -51,7 +51,7 @@ class Instances {
         { 
             name: "Marvelous Mandarin", 
             rating: "4.3", 
-            language: "Mandarin, English", 
+            language: "Chinese, English", 
             area: "North Austin", 
             price: 40,
             pricing: "Budget",
