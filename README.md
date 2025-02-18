@@ -76,7 +76,7 @@ Attributes:
 - Number of members
 - Main language
 - Area of Austin
-- Social Media Presence
+- Type of community
 
 Media: 
 - Community image
