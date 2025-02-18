@@ -23,7 +23,11 @@ export const NavBrand = styled(Link)`
     font-size: 1.8rem;
     font-weight: bold;
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+
+    font-family: "Quicksand", serif !important;
+    font-optical-sizing: auto;
+    font-style: normal;
+
     cursor: pointer;
 
     &:hover {
@@ -46,7 +50,6 @@ export const NavLink = styled(Link)`
     text-decoration: none;
     padding: 0 1rem;
     font-size: 1.4rem;
-    font-family: 'Roboto', sans-serif;
     transition: 0.3s;
 
     &.active {
