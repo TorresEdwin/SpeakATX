@@ -64,9 +64,10 @@ const JobInstance = () => {
                                 <h5 className="card-title">{communityItem.name}</h5>
                                 <p className="card-text">
                                     {communityItem.title} <br />
-                                    Pay: ${communityItem.pay}/hr <br />
-                                    Language: {communityItem.language} <br />
-                                    Area: {communityItem.area}
+                                    Language: ${communityItem.language}/hr <br />
+                                    Area: {communityItem.area} <br />
+                                    Type: {communityItem.type} <br />
+                                    Member count: {communityItem.member_count} <br />
                                 </p>
                             </div>
                         </Link>
