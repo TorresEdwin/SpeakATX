@@ -105,7 +105,7 @@ body, html {
   margin: 0;
   padding: 0;
 
-  font-family: "Quicksand", serif !important;
+  font-family: "DM Sans", serif !important;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -130,7 +130,20 @@ body, html {
   }
 }
 
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #bf5700 !important;
+  border-color: #bf5700 !important;
+}
 
+
+.btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
+  background-color: #5f9ea0 !important;
+  border-color: #5f9ea0 !important;
+}
+
+.button-fixed {
+  position: fixed;
+}
 
 /*
   translations_page
@@ -151,11 +164,11 @@ body, html {
 
 /* Change Text Color on Hover */
 .card:hover .card-title {
-  color: #d9534f; /* Changes title to a red shade */
+  color: #e9713a; /* Changes title to a red shade */
 }
 
 .card:hover .card-text {
-  color: #5bc0de; /* Changes text to a blue shade */
+  color: #117b9b; /* Changes text to a blue shade */
 }
 
 /* Image Styling */
@@ -223,4 +236,20 @@ body, html {
 
 .clickable-image:hover {
   transform: scale(1.05); /* Slight zoom effect */
+}
+
+.button-lift {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.button-lift:hover {
+  transform: translateY(-5px); /* Move the button upwards by 10px */
+}
+
+.button-grow {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.button-grow:hover {
+  transform: scale(1.1); /* Enlarge to 120% of the original size */
 }

@@ -1,6 +1,6 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 import Instances from "./instances.jsx";
 
@@ -15,19 +15,23 @@ const CommunityInstance = () => {
     }
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Scroll to top
-        }, []);
+        const timeout = setTimeout(() => {
+            window.scrollTo(0, 0); // Scroll to the top after a slight delay
+        }, 10);
+
+        return () => clearTimeout(timeout);
+    }, [useLocation()]);
 
     let filteredTranslations = []
-    for(let i = 0; i < Instances.translations.length; i++) {
-        if(Instances.matchingValues(Instances.translations[i].language, community.language)) {
+    for (let i = 0; i < Instances.translations.length; i++) {
+        if (Instances.matchingValues(Instances.translations[i].language, community.language)) {
             filteredTranslations.push(Instances.translations[i]);
         }
     }
 
     let filteredJobs = []
-    for(let i = 0; i < Instances.jobs.length; i++) {
-        if(Instances.matchingValues(Instances.jobs[i].language, community.language)) {
+    for (let i = 0; i < Instances.jobs.length; i++) {
+        if (Instances.matchingValues(Instances.jobs[i].language, community.language)) {
             filteredJobs.push(Instances.jobs[i]);
         }
     }
@@ -35,16 +39,16 @@ const CommunityInstance = () => {
 
     return (
         <div className="container mt-4">
-            <button 
-                className="btn btn-primary position-absolute" 
-                style={{ top: '80px', left: '20px' }}
+            <button
+                className="btn btn-primary button-fixed button-grow"
+                style={{ top: '80px', left: '20px', transition: '0.2s ease' }}
                 onClick={() => navigate(-1)}
             >
                 Back
             </button>
-            <br/>
+            <br />
             <h1>{community.name}</h1>
-            <img src={community.imageUrl} alt={community.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
+            <img src={community.imageUrl} alt={community.name} className="img-fluid mb-3" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Language:</strong> {community.language}</p>
             <p><strong>Area:</strong> {community.area}</p>
             <p><strong>Member Count:</strong> {community.member_count}</p>
@@ -52,8 +56,9 @@ const CommunityInstance = () => {
             <p><strong>About:</strong> {community.about}</p>
 
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
-                <button 
-                    className="btn btn-success"
+                <button
+                    className="btn btn-success button-grow"
+                    style={{ transition: '0.2s ease' }}
                     onClick={() => window.open(community.url, "_blank")}
                 >
                     View Community
@@ -63,18 +68,18 @@ const CommunityInstance = () => {
             </div>
 
             <div className="row">
-            <h3>{community.language} Translation Services</h3>
+                <h3>{community.language} Translation Services</h3>
                 {filteredTranslations.map((translationItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}> 
-                        <Link 
+                    <div className="col-md-4 mb-3" key={index}>
+                        <Link
                             to={`/translations/${translationItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"
                         >
-                            <img 
-                                src={translationItem.imageUrl} 
-                                alt={translationItem.name} 
-                                className="card-img-top" 
-                                style={{ height: "220px", objectFit: "cover" }} 
+                            <img
+                                src={translationItem.imageUrl}
+                                alt={translationItem.name}
+                                className="card-img-top"
+                                style={{ height: "220px", objectFit: "cover" }}
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{translationItem.name}</h5>
@@ -91,16 +96,16 @@ const CommunityInstance = () => {
 
                 <h3>{community.language} Jobs</h3>
                 {filteredJobs.map((jobItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}> 
-                        <Link 
+                    <div className="col-md-4 mb-3" key={index}>
+                        <Link
                             to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"
                         >
-                            <img 
-                                src={jobItem.imageUrl} 
-                                alt={jobItem.name} 
-                                className="card-img-top" 
-                                style={{ height: "220px", objectFit: "cover" }} 
+                            <img
+                                src={jobItem.imageUrl}
+                                alt={jobItem.name}
+                                className="card-img-top"
+                                style={{ height: "220px", objectFit: "cover" }}
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{jobItem.name}</h5>

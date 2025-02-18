@@ -24,14 +24,17 @@ export const NavBrand = styled(Link)`
     font-weight: bold;
     text-decoration: none;
 
-    font-family: "Quicksand", serif !important;
+    font-family: "DM Sans", serif !important;
     font-optical-sizing: auto;
     font-style: normal;
 
     cursor: pointer;
 
+    transition: 0.3s;
+
     &:hover {
         color: #D3D3D3;
+        transform: translateY(-5px);
     }
 `;
 
@@ -57,7 +60,8 @@ export const NavLink = styled(Link)`
     }
 
     &:hover {
-        color: #D3D3D3;
+        color:rgb(170, 170, 170);
+        transform: translateY(-5px);
     }
 `;
 

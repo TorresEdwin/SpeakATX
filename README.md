@@ -21,11 +21,11 @@ Estimated work times:
 - Shawn Tran: 15 hours
 
 Actual work times:
-- Maya Lee
-- Steven Zheng
-- Amy Wu
-- Edwin Torres
-- Shawn Tran
+- Maya Lee: 15 hours
+- Steven Zheng: 15 hours
+- Amy Wu: 15 hours
+- Edwin Torres: 15 hours
+- Shawn Tran: 15 hours
 
 Phase leader responsibilities:
 - Ensure everyone shows up to meetings
