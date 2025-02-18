@@ -33,9 +33,9 @@ const About = () => {
                     },
                 });
                 const data = await response.json();
-   
+
                 if (data.length === 0) break; // No more commits
-   
+
                 commits = commits.concat(data);
                 page++;
             }
@@ -43,9 +43,9 @@ const About = () => {
             // Group commits by author
             const commitCount = commits.reduce((acc, commit) => {
                 var author = commit.author_name;
-                
+
                 for (let key of namesMap.keys()) {
-                    if(author.toLowerCase().includes(key)) {
+                    if (author.toLowerCase().includes(key)) {
                         author = namesMap.get(key)
                     }
                 }
@@ -73,9 +73,9 @@ const About = () => {
                     },
                 });
                 const data = await response.json();
-   
+
                 if (data.length === 0) break; // No more commits
-   
+
                 issues = issues.concat(data);
                 page++;
             }
@@ -85,7 +85,7 @@ const About = () => {
                 var assignee = issue.assignee ? issue.assignee.name : 'Unassigned';
 
                 for (let key of namesMap.keys()) {
-                    if(assignee.toLowerCase().includes(key)) {
+                    if (assignee.toLowerCase().includes(key)) {
                         assignee = namesMap.get(key)
                     }
                 }
@@ -101,16 +101,26 @@ const About = () => {
     };
 
     let people = [
-        {name: "Steven Zheng", bio: "Steven is a third year CS major at UT Austin. In his spare time he enjoys building things and sleeping.", 
-            responsibilities: "Full Stack", commits: commitStats["Steven Zheng"], issues: issueStats["Steven Zheng"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg"},
-        {name: "Maya Lee", bio: "Maya is a third year Computer Science Major at UT Austin. She enjoys doing arts and crafts such as drawing and painting.", 
-            responsibilities: "Full Stack", commits: commitStats["Maya Lee"], issues: issueStats["Maya Lee"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/MayaLee.JPEG"},
-        {name: "Amy Wu", bio: "Amy is a third year Computer Science major at UT Austin. She enjoys swimming, drawing and traveling", 
-            responsibilities: "Full Stack", commits: commitStats["Amy Wu"], issues: issueStats["Amy Wu"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/amyWu.jpg"},
-        {name: "Edwin Torres", bio: "Edwin is a third year CS major at UT Austin. He enjoys talking about new tech, gaming, and watching shows on Netflix.", 
-            responsibilities: "Full Stack", commits: commitStats["Edwin Torres"], issues: issueStats["Edwin Torres"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Edwin_Torres.jpg"},
-        {name: "Shawn Tran", bio: "Shawn is a junior at UT Austin, majoring in Computer Science. He enjoys gaming and cooking new dishes in his spare time.", 
-            responsibilities: "Full Stack", commits: commitStats["Shawn Tran"], issues: issueStats["Shawn Tran"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Shawn_Tran.jpg"},
+        {
+            name: "Steven Zheng", bio: "Steven is a third year CS major at UT Austin. In his spare time he enjoys building things and sleeping.",
+            responsibilities: "Full Stack", commits: commitStats["Steven Zheng"], issues: issueStats["Steven Zheng"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg"
+        },
+        {
+            name: "Maya Lee", bio: "Maya is a third year Computer Science Major at UT Austin. She enjoys doing arts and crafts such as drawing and painting.",
+            responsibilities: "Full Stack", commits: commitStats["Maya Lee"], issues: issueStats["Maya Lee"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/MayaLee.JPEG"
+        },
+        {
+            name: "Amy Wu", bio: "Amy is a third year Computer Science major at UT Austin. She enjoys swimming, drawing and traveling",
+            responsibilities: "Full Stack", commits: commitStats["Amy Wu"], issues: issueStats["Amy Wu"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/amyWu.jpg"
+        },
+        {
+            name: "Edwin Torres", bio: "Edwin is a third year CS major at UT Austin. He enjoys talking about new tech, gaming, and watching shows on Netflix.",
+            responsibilities: "Full Stack", commits: commitStats["Edwin Torres"], issues: issueStats["Edwin Torres"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Edwin_Torres.jpg"
+        },
+        {
+            name: "Shawn Tran", bio: "Shawn is a junior at UT Austin, majoring in Computer Science. He enjoys gaming and cooking new dishes in his spare time.",
+            responsibilities: "Full Stack", commits: commitStats["Shawn Tran"], issues: issueStats["Shawn Tran"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Shawn_Tran.jpg"
+        },
     ]
 
     // Fetch both commits and issues when component mounts
@@ -128,48 +138,53 @@ const About = () => {
 
     return (
         <div>
-            <br/><br/>
+            <br /><br />
             <h1>
                 About Us
             </h1>
 
-            <p>SpeakATX aims to provide resources to minimal english and non-english speakers in Austin, TX. <br/>
+            <p>SpeakATX aims to provide resources to minimal english and non-english speakers in Austin, TX. <br />
                 This site uses Yelp, Google Maps, and Glassdoor APIs. Made with React and Node.js.</p>
 
             <p>We found that when integrating disparate data...</p>
 
-            <br/>
+            <br />
 
             <h2>
                 Team Members
             </h2>
 
-            <br/>
+            <br />
 
             <div className="row d-flex justify-content-center">
-            {people.map((person, index) => (
-                <div className="col-md-2 mb-3" key={index}>
-                    <div className="card h-100 shadow-lg overflow-hidden rounded">
-                        
-                        <img 
-                            src={person.imageUrl} 
-                            alt={person.name} 
-                            className="card-img-top" 
-                            style={{ height: "300px", objectFit: "cover" }} 
-                        />
-                        <div className="card-body">
-                            <p className="">
-                            <h5 className="">{person.name}</h5>
-                                {person.bio} <br/> <br/>
-                                Role: {person.responsibilities} <br />
-                                Commits: {person.commits} <br />
-                                Issues: {person.issues} <br />
-                                Unit Tests: {person.unitTests} <br />
-                            </p>
+                {people.map((person, index) => (
+                    <div className="col-md-2 mb-3" key={index}>
+                        <div className="card h-100 shadow-lg overflow-hidden rounded">
+
+                            <img
+                                src={person.imageUrl}
+                                alt={person.name}
+                                className="card-img-top"
+                                style={{ height: "300px", objectFit: "cover" }}
+                            />
+                            <div className="card-body">
+                                
+                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', height: '300px' }}>
+                                    <p className="">
+                                        <h5 className="">{person.name}</h5>
+                                        {person.bio}
+                                    </p>
+                                    <p style={{ marginTop: 'auto' }}>
+                                        Role: {person.responsibilities} <br />
+                                        Commits: {person.commits} <br />
+                                        Issues: {person.issues} <br />
+                                        Unit Tests: {person.unitTests} <br />
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
             </div>
 
         </div>
