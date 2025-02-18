@@ -40,7 +40,7 @@ class Instances {
             imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg"
         },
         { 
-            name: "El Buen Servicio", 
+            name: "Spanish For All Austin", 
             rating: "4.5", 
             language: "Spanish, English", 
             area: "North Austin", 
@@ -49,13 +49,15 @@ class Instances {
             imageUrl: "https://cdn.prod.website-files.com/5c29380b1110ec92a203aa84/66e5ce469b48938aa34d8684_Google%20Maps%20-%20Compressed.jpg"
         },
         { 
-            name: "Bu Hui Shuo Yingwen", 
-            rating: "4.2", 
-            language: "Chinese, English", 
-            area: "South Austin", 
-            price: 15,
+            name: "Marvelous Mandarin", 
+            rating: "4.3", 
+            language: "Mandarin, English", 
+            area: "North Austin", 
+            price: 40,
             pricing: "Budget",
-            imageUrl: "https://media.istockphoto.com/id/518371862/vector/abstract-city-map-illustration.jpg?s=612x612&w=0&k=20&c=LmqeyKSPkDfN_Wk4W6dxlopvIm8KYq81t1eXHM0c34E="
+            imageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg",
+            website: "https://www.marvelous-mandarin.com/",
+            mapUrl: "//www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
         }
     ];
     
