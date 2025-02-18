@@ -54,7 +54,7 @@ const CommunityInstance = () => {
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
                 <button 
                     className="btn btn-success"
-                    onClick={() => window.open(job.jobUrl, "_blank")}
+                    onClick={() => window.open(community.url, "_blank")}
                 >
                     View Community
                 </button>
