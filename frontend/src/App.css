@@ -118,7 +118,7 @@ body, html {
   box-shadow: 10px 20px 20px rgb(68, 83, 71, 0.8);
   padding: 20px;
   /* Allow this area to scroll with content */
-  margin-top: 200px;
+  margin-top: 60px;
 }
 
 .content{
