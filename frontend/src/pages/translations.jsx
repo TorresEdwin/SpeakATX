@@ -21,7 +21,7 @@ const TranslationPage = () => {
                   <p className="card-text">⭐ {service.rating}</p>
                   <p className="card-text">🗣️ {service.language}</p>
                   <p className="card-text">📍 {service.area}</p>
-                  <p className="card-text">💲 {service.pricing}</p>
+                  <p className="card-text">💲 {service.price}/hr</p>
                 </div>
               </Link>
               
