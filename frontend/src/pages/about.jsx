@@ -165,11 +165,11 @@ const About = () => {
                                 src={person.imageUrl}
                                 alt={person.name}
                                 className="card-img-top"
-                                style={{ height: "320px", objectFit: "cover" }}
+                                style={{ height: "290px", objectFit: "cover" }}
                             />
                             <div className="card-body">
                                 
-                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', height: '300px' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', height: '320px' }}>
                                     <p className="">
                                         <h5 className="">{person.name}</h5>
                                         {person.bio}
