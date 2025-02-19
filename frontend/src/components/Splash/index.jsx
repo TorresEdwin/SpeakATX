@@ -8,15 +8,15 @@ const Splash = () => {
         <>
             
             <div className="splash-content">
-                <h1 className="display-4">Welcome to SpeakATX</h1>
+                <h1 className="display-4">SpeakATX</h1>
                 <p className="lead">
-                    Providing resources to minimal english 
-                    and non-english speakers in Austin, TX.
+                    Resources for minimal english 
+                    and non-english speakers in Austin, TX
                 </p>
                 <hr className="my-4" />
                 <p>
-                    Local non-english communities, translation 
-                    services, and job postings.
+                    Local communities, translation 
+                    services, and job postings
                 </p>
             </div>
 

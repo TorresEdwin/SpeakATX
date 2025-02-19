@@ -3,6 +3,9 @@
 # Website Link
 https://speakatx.me/
 
+# Git SHA
+440cf2b486f3b66357e6ac226442d2b4105f46ab
+
 # API Documentation
 https://documenter.getpostman.com/view/42364456/2sAYXFiHS8
 
@@ -21,11 +24,11 @@ Estimated work times:
 - Shawn Tran: 15 hours
 
 Actual work times:
-- Maya Lee
-- Steven Zheng
-- Amy Wu
-- Edwin Torres
-- Shawn Tran
+- Maya Lee: 15 hours
+- Steven Zheng: 15 hours
+- Amy Wu: 15 hours
+- Edwin Torres: 15 hours
+- Shawn Tran: 15 hours
 
 Phase leader responsibilities:
 - Ensure everyone shows up to meetings

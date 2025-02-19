@@ -105,7 +105,7 @@ body, html {
   margin: 0;
   padding: 0;
 
-  font-family: "Quicksand", serif !important;
+  font-family: "DM Sans", serif !important;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -128,4 +128,128 @@ body, html {
   @media screen and (max-width: 768px) {
     padding: 10px;
   }
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #bf5700 !important;
+  border-color: #bf5700 !important;
+}
+
+
+.btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
+  background-color: #5f9ea0 !important;
+  border-color: #5f9ea0 !important;
+}
+
+.button-fixed {
+  position: fixed;
+}
+
+/*
+  translations_page
+*/
+
+/* Card Hover Effect */
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle default shadow */
+}
+
+/* Enhanced hover effect */
+.card:hover {
+  transform: translateY(-8px); /* Lifts the card slightly more */
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.5)!important; /* Adds a more noticeable shadow */
+}
+
+/* Change Text Color on Hover */
+.card:hover .card-title {
+  color: #e9713a; /* Changes title to a red shade */
+}
+
+.card:hover .card-text {
+  color: #117b9b; /* Changes text to a blue shade */
+}
+
+/* Image Styling */
+.service-image {
+  width: 100%;
+  height: 180px; /* Adjust height as needed */
+  object-fit: contain; /* Ensures the whole image is visible */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Ensure links inside the card do not change color */
+.text-decoration-none {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Button Hover Effect */
+.btn:hover {
+  opacity: 0.85;
+}
+
+
+/*
+
+/* Ensure Buttons Stay Separate */
+.card-footer {
+  display: flex;
+  justify-content: space-between; /* Keeps buttons apart */
+  padding: 10px; /* Adds some spacing */
+  gap: 10px; /* Ensures gap between buttons */
+  background: white; /* Matches card background */
+  border-top: none;
+  z-index: 10; /* Brings the buttons to the front */
+
+}
+
+/* Adjust button width to avoid overlap */
+.card-footer .btn {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: auto; /* Ensures buttons can be clicked */
+  z-index: 5; /* Keeps it below buttons */
+
+}
+
+
+
+
+
+
+/* Make sure the image is clickable but does not overlap buttons */
+.clickable-image {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer; /* Show clickable cursor */
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  z-index: 5; /* Keeps it below buttons */
+}
+
+.clickable-image:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.button-lift {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.button-lift:hover {
+  transform: translateY(-5px); /* Move the button upwards by 10px */
+}
+
+.button-grow {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.button-grow:hover {
+  transform: scale(1.1); /* Enlarge to 120% of the original size */
 }

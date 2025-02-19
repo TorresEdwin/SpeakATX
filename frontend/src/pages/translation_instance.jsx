@@ -1,6 +1,6 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 import Instances from "./instances.jsx";
 
@@ -14,8 +14,12 @@ const TranslationInstance = () => {
     }
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Scroll to top
-    }, []);
+        const timeout = setTimeout(() => {
+            window.scrollTo(0, 0); // Scroll to the top after a slight delay
+        }, 10);
+
+        return () => clearTimeout(timeout);
+    }, [useLocation()]);
 
     let filteredCommunities = []
     for (let i = 0; i < Instances.communities.length; i++) {
@@ -25,45 +29,56 @@ const TranslationInstance = () => {
     }
 
     let filteredJobs = []
-    for(let i = 0; i < Instances.jobs.length; i++) {
-        if(Instances.matchingValues(Instances.jobs[i].language, translation.language)) {
+    for (let i = 0; i < Instances.jobs.length; i++) {
+        if (Instances.matchingValues(Instances.jobs[i].language, translation.language)) {
             filteredJobs.push(Instances.jobs[i]);
         }
     }
 
     return (
         <div className="container mt-4">
-            <button 
-                className="btn btn-primary position-absolute" 
-                style={{ top: '80px', left: '20px' }}
+            <button
+                className="btn btn-primary button-fixed button-grow"
+                style={{ top: '80px', left: '20px', transition: '0.2s ease' }}
                 onClick={() => navigate(-1)}
             >
                 Back
             </button>
-            
+
             <br />
             <h1>{translation.name}</h1>
-            <img src={translation.imageUrl} alt={translation.name} className="img-fluid" style={{ maxHeight: "300px", objectFit: "cover" }} />
+            <img src={translation.mapImageUrl} alt={translation.name} className="img-fluid mb-3" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Rating:</strong> {translation.rating}</p>
             <p><strong>Language:</strong> {translation.language}</p>
             <p><strong>Area:</strong> {translation.area}</p>
             <p><strong>Price:</strong> ${translation.price}/hr</p>
-            
-            <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
-                <button 
-                    className="btn btn-success"
+
+            <div className="d-flex justify-content-center gap-3 mt-3 mb-3">
+            <button
+                    className="btn btn-success button-grow"
+                    style={{ transition: '0.2s ease' }}
                     onClick={() => window.open(translation.website, "_blank")}
                 >
                     View Service
                 </button>
-
-
             </div>
 
-            <div className="row">
+            <div className="d-flex justify-content-center mb-5">
+                <button
+                    className="btn btn-success button-grow"
+                    style={{ transition: '0.2s ease' }}
+                    onClick={() => window.open(translation.mapUrl, "_blank")}
+                >
+                    View Map
+                </button>
+            </div>
+
+            
+
+            <div className="row justify-content-center">
                 <h3>{translation.language} Communities</h3>
                 {filteredCommunities.map((communityItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/communities/${communityItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"
@@ -89,7 +104,7 @@ const TranslationInstance = () => {
 
                 <h3>{translation.language} Job Postings</h3>
                 {filteredJobs.map((jobItem, index) => (
-                    <div className="col-md-4 mb-3" key={index}>
+                    <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
                             className="card text-decoration-none"
