@@ -165,7 +165,7 @@ const About = () => {
                                 src={person.imageUrl}
                                 alt={person.name}
                                 className="card-img-top"
-                                style={{ height: "300px", objectFit: "cover" }}
+                                style={{ height: "320px", objectFit: "cover" }}
                             />
                             <div className="card-body">
                                 
