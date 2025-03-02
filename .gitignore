@@ -1,6 +1,9 @@
 # Dependencies
 /frontend/node_modules/
 
+# python venv
+/backend/path/to/venv/
+
 
 # System files
 .DS_Store
