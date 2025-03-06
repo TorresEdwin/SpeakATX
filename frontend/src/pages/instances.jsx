@@ -113,8 +113,8 @@ class Instances {
 
     static matchingValues(str1, str2) {
         // Split the strings into arrays and remove extra spaces (if any)
-        const arr1 = str1.split(',').map(item => item.trim());
-        const arr2 = str2.split(',').map(item => item.trim());
+        const arr1 = str1.toLowerCase().split(',').map(item => item.trim());
+        const arr2 = str2.toLowerCase().split(',').map(item => item.trim());
     
         // Convert arrays to Sets for easy comparison
         const set1 = new Set(arr1);
