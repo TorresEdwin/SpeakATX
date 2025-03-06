@@ -16,6 +16,16 @@
   padding: 16px; /* Padding inside the grid */
 }
 
+.goog-te-gadget img{
+  display:none !important;
+}
+body > .skiptranslate {
+  display: none;
+}
+body {
+  top: 0px !important; 
+}
+
 /* Styling for each individual link */
 .link-grid a {
   display: block;
