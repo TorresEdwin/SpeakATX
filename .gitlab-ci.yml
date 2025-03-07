@@ -1,7 +1,7 @@
 stages:
   - build
 
-build-frontend:
+build-and-test-frontend:
   stage: build
   image: node:latest
   cache:
@@ -16,6 +16,9 @@ build-frontend:
     - echo "Building..."
     - npm run build    
     - echo "Build successful"
+    - echo "Running unit tests..."
+    - npm run test
+    - echo "Tests completed"
   rules:
     - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
