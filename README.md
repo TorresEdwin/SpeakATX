@@ -53,7 +53,7 @@ Phase leader:
 - Google Maps API: https://developers.google.com/maps 
 
 # Models
-## Local Translation Services
+## Local Services
 Instances: 50
 
 Attributes: 
