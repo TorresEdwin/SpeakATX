@@ -95,13 +95,13 @@ translations = [
 ]
 
 # Get all communities
-@app.route('/communities', methods=['GET'])
+@app.route('/get/communities', methods=['GET'])
 def get_communities():
     print("Communities endpoint hit")  # Debugging
     return jsonify(communities)
 
 # Get a single community by name
-@app.route('/communities/<string:name>', methods=['GET'])
+@app.route('/get/communities/<string:name>', methods=['GET'])
 def get_community(name):
     community = next((c for c in communities if c["name"].lower() == name.lower()), None)
     if community:
@@ -109,7 +109,7 @@ def get_community(name):
     return jsonify({"error": "Community not found"}), 404
 
 # Create a new community
-@app.route('/communities', methods=['POST'])
+@app.route('/post/communities', methods=['POST'])
 def create_community():
     data = request.get_json()
     if not data or "name" not in data:
@@ -131,7 +131,7 @@ def create_community():
 
 
 # Delete a community by name
-@app.route('/communities/<string:name>', methods=['DELETE'])
+@app.route('/delete/communities/<string:name>', methods=['DELETE'])
 def delete_community(name):
     global communities
     community = next((c for c in communities if c["name"].lower() == name.lower()), None)
@@ -141,12 +141,12 @@ def delete_community(name):
     return jsonify({"error": "Community not found"}), 404
 
 # Get all jobs
-@app.route('/jobs', methods=['GET'])
+@app.route('/get/jobs', methods=['GET'])
 def get_jobs():
     return jsonify(jobs)
 
 # Get a single job by name
-@app.route('/jobs/<string:name>', methods=['GET'])
+@app.route('/get/<string:name>', methods=['GET'])
 def get_job(name):
     job = next((j for j in jobs if j["name"].lower() == name.lower()), None)
     if job:
@@ -154,7 +154,7 @@ def get_job(name):
     return jsonify({"error": "Job not found"}), 404
 
 # Create a new job
-@app.route('/jobs', methods=['POST'])
+@app.route('/post/jobs', methods=['POST'])
 def create_job():
     data = request.get_json()
     if not data or "name" not in data:
@@ -174,7 +174,7 @@ def create_job():
     return jsonify(new_job), 201
 
 # Delete a job by name
-@app.route('/jobs/<string:name>', methods=['DELETE'])
+@app.route('/delete/jobs/<string:name>', methods=['DELETE'])
 def delete_job(name):
     global jobs
     job = next((j for j in jobs if j["name"].lower() == name.lower()), None)
@@ -184,12 +184,12 @@ def delete_job(name):
     return jsonify({"error": "Job not found"}), 404
 
 # Get all translation services
-@app.route('/translations', methods=['GET'])
+@app.route('/get/translations', methods=['GET'])
 def get_translations():
     return jsonify(translations)
 
 # Get a single translation service by name
-@app.route('/translations/<string:name>', methods=['GET'])
+@app.route('/get/translations/<string:name>', methods=['GET'])
 def get_translation(name):
     translation = next((t for t in translations if t["name"].lower() == name.lower()), None)
     if translation:
@@ -197,7 +197,7 @@ def get_translation(name):
     return jsonify({"error": "Service not found"}), 404
 
 # Create a new translation service
-@app.route('/translations', methods=['POST'])
+@app.route('/post/translations', methods=['POST'])
 def create_translation():
     data = request.get_json()
     if not data or "name" not in data:
@@ -220,7 +220,7 @@ def create_translation():
     return jsonify(new_translation), 201
 
 # Delete a translation service by name
-@app.route('/translations/<string:name>', methods=['DELETE'])
+@app.route('/delete/translations/<string:name>', methods=['DELETE'])
 def delete_translation(name):
     global translations
     translation = next((t for t in translations if t["name"].lower() == name.lower()), None)
