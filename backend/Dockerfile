@@ -1,7 +1,13 @@
-FROM python:latest
+FROM python:3.10
 
-COPY ./requirements.txt .
+WORKDIR /usr/python
 
+COPY requirements.txt .
+COPY . .
+
+# Install dependencies during the image build process
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["/bin/bash"]
+# Use CMD to run gunicorn when the container starts
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8080", "app:app"]
