@@ -57,7 +57,7 @@ jobs = [
         "area": "Austin", 
         "imageUrl": "https://speakatx-images.s3.us-east-2.amazonaws.com/jobs_page/tso_chinese.png",
         "jobUrl": "https://tsochinese.com/jobs",
-        "id:" 3
+        "id": 3
     }
 ]
 translations = [
