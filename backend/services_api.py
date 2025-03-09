@@ -3,6 +3,7 @@ import json
 import time
 from sqlalchemy import create_engine, MetaData, Table, select
 from sqlalchemy.sql import text
+import os
 
 def search_businesses(api_key, location, term=None, total_results=20):
     endpoint = "https://api.yelp.com/v3/businesses/search"
@@ -113,7 +114,8 @@ def save_to_json(businesses, filename="yelp_results.json"):
     print(f"Results saved to {filename}")
 
 def populate_database(results):
-    engine = create_engine('mysql+pymysql://admin:Happy_Mango1@database-1.cnkg4y8uupw7.us-east-2.rds.amazonaws.com:3306/SpeakATX')
+    password = os.environ.get("SQL_PASS", "uh oh")
+    engine = create_engine(f'mysql+pymysql://admin:{password}@database-1.cnkg4y8uupw7.us-east-2.rds.amazonaws.com:3306/SpeakATX')
     connection = engine.connect()
     metadata = MetaData()
 
