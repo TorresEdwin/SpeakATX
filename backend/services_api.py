@@ -1,6 +1,8 @@
 import requests
 import json
 import time
+from sqlalchemy import create_engine, MetaData, Table, select
+from sqlalchemy.sql import text
 
 def search_businesses(api_key, location, term=None, total_results=20):
     endpoint = "https://api.yelp.com/v3/businesses/search"
@@ -106,31 +108,68 @@ def search_translations(api_key, location, total_results=20):
     return all_businesses
 
 def save_to_json(businesses, filename="yelp_results.json"):
-    """Save the results to a JSON file"""
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(businesses, f, ensure_ascii=False, indent=2)
     print(f"Results saved to {filename}")
 
-# Example usage
+def populate_database(results):
+    engine = create_engine('mysql+pymysql://admin:Happy_Mango1@database-1.cnkg4y8uupw7.us-east-2.rds.amazonaws.com:3306/SpeakATX')
+    connection = engine.connect()
+    metadata = MetaData()
+
+    services_table = Table('Services', metadata, autoload_with=engine)
+
+    print("Connected to database")
+
+    print(f"Found columns: {[c.name for c in services_table.columns]}")
+
+    connection.execute(services_table.delete())
+    connection.commit()
+
+    for category, items in results.items():
+        for item in items:
+            insert_stmt = services_table.insert().values(
+                service_name=item["name"],
+                language=category if category != "translations" else "english",
+                rating=item["rating"],
+                area_of_austin="unknown" if item["location"]["address1"] == None else item["location"]["address1"],
+                pricing=1 if "price" not in item else len(item["price"]), # either $, $$, or $$$
+                map_location=item["location"]["address1"],
+                website_link=item["url"],
+            )
+            connection.execute(insert_stmt)
+
+    connection.commit()
+
+    print("\nPopulated with the following rows:")
+
+    select_stmt = select(services_table).limit(140)
+
+    with engine.connect() as connection:
+        result = connection.execute(select_stmt)
+        for row in result:
+            print(row)
+
+    connection.close()
+
+
 if __name__ == "__main__":
-    # Replace with your actual API key
+
     API_KEY = "vCZrFDPdXdCjEyYp7NtgcSqZ6IxlHWihpK_TKBXLdzMjOEdRrWIwhC6Kn2D4vsQ7fUVplhQinBkiIzL_sr4wXsiNJBjTgS3hTTdr-cbrTPLs7oFMIJwF6ExZbzXKZ3Yx"
     
-    # Example search parameters
     location = "Austin, TX"
 
     languages = ["spanish", "french", "chinese", "vietnamese", "korean", "german"]
     
-    # Get results with pagination
     results = {}
     results["translations"] = search_translations(API_KEY, location)
-    
-    print(f"Retrieved a total of {len(results)} businesses")
+    count = len(results["translations"])
 
     for lang in languages:
         results[lang] = search_businesses(API_KEY, location, lang)
+        count += len(results[lang])
+
+    print(f"Retrieved a total of {count} businesses")
     
-    # Save results to a file
-    save_to_json(results)
-    
-    print(len(results))
+    populate_database(results)
+    #save_to_json(results)
