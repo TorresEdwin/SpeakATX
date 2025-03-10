@@ -12,10 +12,14 @@ export const Nav = styled.nav`
     padding: 0 20px;
     z-index: 12;
     position: fixed;
-    top: 0;
+    top: ${({ isVisible }) => (isVisible ? '0' : '-80px')}; /* Controls navbar visibility */
     left: 0;
     width: 100vw;
+    transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing navbar */
 `;
+
+
+
 // color: rgb(144, 219, 176); not used - temp
 // Branding / Site Name
 export const NavBrand = styled(Link)`

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation
+import { useLocation } from "react-router-dom";
 import { 
     Nav, NavBrand, NavLink, NavMenu, Bars, MobileMenu, CloseIcon 
 } from "./NavbarElements";
@@ -7,13 +7,13 @@ import Instances from "../../pages/instances";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation(); // Get the current route
+    const [showNavbar, setShowNavbar] = useState(true); // Show navbar initially
+    const location = useLocation(); 
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    // Function to change the favicon dynamically
     const changeFavicon = (iconURL) => {
         let link = document.querySelector("link[rel~='icon']");
         if (link) {
@@ -26,7 +26,6 @@ const Navbar = () => {
         }
     };
 
-    // Map routes to page titles & favicon updates
     useEffect(() => {
         const pageTitles = {
             "/": "SpeakATX - Home",
@@ -38,38 +37,36 @@ const Navbar = () => {
 
         Instances.getInstances();
 
-        // Update document title
         document.title = pageTitles[location.pathname] || "SpeakATX";
-
-        // Update favicon dynamically
-        changeFavicon("https://speakatx-images.s3.us-east-2.amazonaws.com/misc/favicon.png"); // Ensure favicon.png is in "public/" folder
+        changeFavicon("https://speakatx-images.s3.us-east-2.amazonaws.com/misc/favicon.png");
     }, [location.pathname]);
 
-    return (
-        <Nav>
-            {/* Site Name / Branding */}
-            <NavBrand to="/">SpeakATX</NavBrand>
+    useEffect(() => {
+        const handleScroll = () => {
+            // Check if the page is at the top or scrolled down
+            if (window.scrollY === 0) {
+                setShowNavbar(true);  // Show Navbar if at the top of the page
+            } else {
+                setShowNavbar(false); // Hide Navbar if scrolled down
+            }
+        };
 
-            {/* Hamburger Icon for Mobile */}
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []); // Empty dependency array to run once on mount
+
+    return (
+        <Nav isVisible={showNavbar}> {/* Use isVisible here */}
+            <NavBrand to="/">SpeakATX</NavBrand>
             <Bars onClick={toggleMenu} />
 
-            {/* Desktop Navigation */}
             <NavMenu>
-                <NavLink to="/translations" activeStyle>
-                    Services
-                </NavLink>
-                <NavLink to="/communities" activeStyle>
-                    Communities
-                </NavLink>
-                <NavLink to="/jobs" activeStyle>
-                    Jobs
-                </NavLink>
-                <NavLink to="/about" activeStyle>
-                    About
-                </NavLink>
+                <NavLink to="/translations" activeStyle>Services</NavLink>
+                <NavLink to="/communities" activeStyle>Communities</NavLink>
+                <NavLink to="/jobs" activeStyle>Jobs</NavLink>
+                <NavLink to="/about" activeStyle>About</NavLink>
             </NavMenu>
 
-            {/* Mobile Menu (Dropdown) */}
             {isOpen && (
                 <MobileMenu>
                     <CloseIcon onClick={toggleMenu} />
