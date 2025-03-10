@@ -36,8 +36,6 @@ const Navbar = () => {
             "/about": "SpeakATX - About Us"
         };
 
-        Instances.getInstances();
-
         // Update document title
         document.title = pageTitles[location.pathname] || "SpeakATX";
 
