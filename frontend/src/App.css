@@ -109,14 +109,11 @@ body {
   
 }
 
-html, body {
+body, html {
+  width: 100%;
+  overflow-x: hidden; /* Hide horizontal overflow */
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  overscroll-behavior: contain; /* Prevents scrolling past the edge of the page */
 
   font-family: "DM Sans", serif !important;
   font-optical-sizing: auto;
