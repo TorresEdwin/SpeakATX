@@ -2,108 +2,10 @@ from flask import Flask, jsonify, request
 from sqlalchemy import create_engine, MetaData, Table, select
 from sqlalchemy.sql import text
 import os
+from flask_cors import CORS  # Import Flask-CORS
 
 app = Flask(__name__)
-
-# Sample data (acts as a mock database)
-# communities = [
-#     {
-#         "name": "Tech Enthusiasts",
-#         "language": "English",
-#         "area": "Online",
-#         "member_count": 1200,
-#         "type": "Public",
-#         "about": "A place for tech lovers.",
-#         "imageUrl": "https://example.com/tech_image.jpg",
-#         "url": "https://speakatx.me/communities/tech-enthusiasts",
-#         "id": 1
-#     },
-#     {
-#         "name": "Spanish Learners",
-#         "language": "Spanish",
-#         "area": "Austin, TX",
-#         "member_count": 500,
-#         "type": "Private",
-#         "about": "A group for Spanish learners.",
-#         "imageUrl": "https://example.com/spanish_image.jpg",
-#         "url": "https://speakatx.me/communities/spanish-learners",
-#         "id": 2
-#     }
-# ]
-
-# jobs = [
-#     { 
-#         "name": "Chick-Fil-A", 
-#         "title": "Team Member", 
-#         "pay": 13, 
-#         "language": "Spanish", 
-#         "area": "Austin", 
-#         "imageUrl": "https://download.logo.wine/logo/Chick-fil-A/Chick-fil-A-Logo.wine.png",
-#         "jobUrl": "https://www.indeed.com/viewjob?jk=9e4a110fd7f3bae2&from=shareddesktop",
-#         "id": 1
-#     },
-#     { 
-#         "name": "Family Tree Private Care", 
-#         "title": "Care Giver", 
-#         "pay": 17, 
-#         "language": "Vietnamese", 
-#         "area": "Austin", 
-#         "imageUrl": "https://familytreecares.com/wp-content/uploads/2022/05/logo.png",
-#         "jobUrl": "https://www.indeed.com/cmp/Family-Tree-Private-Care/jobs?jk=c1b30935fa3fd2ed&start=0&clearPrefilter=1",
-#         "id": 2
-#     },
-#     { 
-#         "name": "Tso Chinese", 
-#         "title": "Store Manager", 
-#         "pay": 34, 
-#         "language": "Chinese", 
-#         "area": "Austin", 
-#         "imageUrl": "https://speakatx-images.s3.us-east-2.amazonaws.com/jobs_page/tso_chinese.png",
-#         "jobUrl": "https://tsochinese.com/jobs",
-#         "id": 3
-#     }
-# ]
-# translations = [
-#     { 
-#         "name": "Vietnamese Translations Consulting", 
-#         "rating": "4.8", 
-#         "language": "Vietnamese, English", 
-#         "area": "Downtown Austin", 
-#         "price": 40,
-#         "pricing": "Budget",
-#         "website": "https://www.yelp.com/biz/vietnamese-translations-consulting-mimi-tran-austin?osq=vietnamese+translator&override_cta=Get+pricing+%26+availability",
-#         "mapImageUrl": "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg",
-#         "imageUrl": "https://img.p.mapq.st/?url=https://s3-media0.fl.yelpcdn.com/bphoto/tfAnBVTl7oT-N5OsK_XW1g/l.jpg?w=3840&q=75",
-#         "mapUrl": "https://www.google.com/maps/place/1512+W+Howard+Ln,+Austin,+TX+78728/data=!4m2!3m1!1s0x8644ceed235c218b:0xb947ff4a74563760?sa=X&ved=1t:242&ictx=111",
-#         "id": 1
-#     },
-#     { 
-#         "name": "Texas Tower Passport and Visa Services", 
-#         "rating": "4.5", 
-#         "language": "Spanish, English", 
-#         "area": "North Austin", 
-#         "price": 25,
-#         "pricing": "Budget",
-#         "website": "https://www.yelp.com/biz/texas-tower-passport-and-visa-services-houston?override_cta=Get+pricing+%26+availability",
-#         "mapImageUrl": "https://cdn.prod.website-files.com/5c29380b1110ec92a203aa84/66e5ce469b48938aa34d8684_Google%20Maps%20-%20Compressed.jpg",
-#         "imageUrl": "https://s3-media0.fl.yelpcdn.com/bphoto/yqcQ1Ot99T2XNqxBtBGAXg/o.jpg",
-#         "mapUrl": "https://www.google.com/maps?client=firefox-b-1-d&sca_esv=0c36c686c589dc21&biw=1728&bih=825&output=search&q=Texas+Tower+Passport+%26+Visa+Services&source=lnms&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBjnSuuKZNj-6zieDk_gkn6CyymgG_tEVFNWvBwycIom9HlR-mPw3LjRRj22WCaNNYiY26Pyg_mYsiBrfH3XTveKfVF9AnXBeF4A8To7FVGsxz41nDkXayYDZMloNfG-q_Nsiio46-BtjDeMRYZJnAoBGIjBwJQTuRV_Bdja0R19eL9CMDw&entry=mc&ved=1t:200715&ictx=111",
-#         "id": 2
-#     },
-#     { 
-#         "name": "Marvelous Mandarin", 
-#         "rating": "4.3", 
-#         "language": "Chinese, English", 
-#         "area": "North Austin", 
-#         "price": 40,
-#         "pricing": "Budget",
-#         "mapImageUrl": "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_MAP.png",
-#         "website": "https://www.marvelous-mandarin.com/",
-#         "mapUrl": "https://www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
-#         "imageUrl": "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_LOGO.png",
-#         "id": 3
-#     }
-# ]
+CORS(app)  # Enable CORS for all routes
 
 def get_table(table_name):
     password = os.environ.get("SQL_PASS", "uh oh")
@@ -162,7 +64,7 @@ def create_community():
         "about": data.get("about", ""),
         "imageUrl": data.get("imageUrl", ""),
         "url": f"https://speakatx.me/communities/{data['name'].replace(' ', '-').lower()}",
-        "id": data.get("id", "-1"),
+        "id": data.get("id", -1),
     }
     
     #communities.append(new_community)
@@ -206,7 +108,7 @@ def create_job():
         "area": data.get("area", "Unknown"),
         "imageUrl": data.get("imageUrl", ""),
         "jobUrl": data.get("jobUrl", ""),
-        "id": data.get("id", "-1"),
+        "id": data.get("id", -1),
     }
 
     # jobs.append(new_job)
@@ -252,7 +154,7 @@ def create_translation():
         "mapImageUrl": data.get("mapImageUrl", ""),
         "imageUrl": data.get("imageUrl", ""),
         "mapUrl": data.get("mapUrl", ""),
-        "id": data.get("id", "-1"),
+        "id": data.get("id", -1),
     }
 
     # translations.append(new_translation)
