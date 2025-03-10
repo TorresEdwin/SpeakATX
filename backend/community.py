@@ -5,7 +5,37 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 from bs4 import BeautifulSoup
 import json
+from sqlalchemy import create_engine, MetaData, Table, select
+from sqlalchemy.sql import text
+import os
 
+def populate_database(results, lang, engine, connection, table):
+
+    for item in results:
+
+        insert_stmt = table.insert().values(
+            company_name=item["name"],
+            member_count=item["member_count"],
+            language=lang,
+            area_of_austin=item["location"],
+            community_type="this prob shouldn't exist",
+            company_image=item["picture"],
+            website_link=item["url"],
+        )
+        connection.execute(insert_stmt)
+
+    connection.commit()
+
+    print("\nPopulated with the following rows:")
+
+    select_stmt = select(table).limit(10)
+
+    with engine.connect() as connection:
+        result = connection.execute(select_stmt)
+        for row in result:
+            print(row)
+
+    connection.close()
 
 def get_groups(url, language, driver):
     driver.get(url)
@@ -113,6 +143,22 @@ def main():
         url = base_url.format(language)
         print("_____________" + language + "_____________")
         groups = get_groups(url, language, driver)
+
+        # password = os.environ.get("SQL_PASS", "uh oh")
+        # engine = create_engine(f'mysql+pymysql://admin:{password}@database-1.cnkg4y8uupw7.us-east-2.rds.amazonaws.com:3306/SpeakATX')
+        # connection = engine.connect()
+        # metadata = MetaData()
+
+        # table = Table('Jobs', metadata, autoload_with=engine)
+
+        # print("Connected to database")
+
+        # print(f"Found columns: {[c.name for c in table.columns]}")
+
+        # connection.execute(table.delete())
+        # connection.commit()
+
+        # populate_database(groups, language, engine, connection, table)
         save_to_json(groups)
 
     print(f"Scraped data saved to meetup_groups.json")
