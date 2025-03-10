@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"; // Import useLocation
 import { 
     Nav, NavBrand, NavLink, NavMenu, Bars, MobileMenu, CloseIcon 
 } from "./NavbarElements";
+import Instances from "../../pages/instances";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,8 @@ const Navbar = () => {
             "/jobs": "SpeakATX - Jobs",
             "/about": "SpeakATX - About Us"
         };
+
+        Instances.getInstances();
 
         // Update document title
         document.title = pageTitles[location.pathname] || "SpeakATX";

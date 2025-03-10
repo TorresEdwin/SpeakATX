@@ -1,4 +1,8 @@
 class Instances {
+    static getInstances() 
+    {
+        alert("test");
+    }
     static jobs = [
         { 
             name: "Chick-Fil-A", 
