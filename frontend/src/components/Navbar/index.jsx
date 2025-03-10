@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { 
     Nav, NavBrand, NavLink, NavMenu, Bars, MobileMenu, CloseIcon 
 } from "./NavbarElements";
-import Instances from "../../pages/instances";
+import InstanceLoader from "../../pages/instance_loader";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -35,8 +35,7 @@ const Navbar = () => {
             "/about": "SpeakATX - About Us"
         };
 
-        Instances.getInstances();
-
+        // Update document title
         document.title = pageTitles[location.pathname] || "SpeakATX";
         changeFavicon("https://speakatx-images.s3.us-east-2.amazonaws.com/misc/favicon.png");
     }, [location.pathname]);

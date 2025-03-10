@@ -1,118 +1,15 @@
 class Instances {
-    static getInstances() 
-    {
-        alert("test");
-    }
+    
     static jobs = [
-        { 
-            name: "Chick-Fil-A", 
-            title: "Team Member", 
-            pay: 13, 
-            language: "Spanish", 
-            area: "Austin", 
-            imageUrl: "https://download.logo.wine/logo/Chick-fil-A/Chick-fil-A-Logo.wine.png",
-            jobUrl: "https://www.indeed.com/viewjob?jk=9e4a110fd7f3bae2&from=shareddesktop"
-        },
-        { 
-            name: "Family Tree Private Care", 
-            title: "Care Giver", 
-            pay: 17, 
-            language: "Vietnamese", 
-            area: "Austin", 
-            imageUrl: "https://familytreecares.com/wp-content/uploads/2022/05/logo.png",
-            jobUrl: "https://www.indeed.com/cmp/Family-Tree-Private-Care/jobs?jk=c1b30935fa3fd2ed&start=0&clearPrefilter=1"
-        },
-        { 
-            name: "Tso Chinese", 
-            title: "Store Manager", 
-            pay: 34, 
-            language: "Chinese", 
-            area: "Austin", 
-            imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/jobs_page/tso_chinese.png",
-            jobUrl: "https://tsochinese.com/jobs"
-        }
+        
     ]; 
 
     static translations = [
-        { 
-            name: "Vietnamese Translations Consulting", 
-            rating: "4.8", 
-            language: "Vietnamese, English", 
-            area: "Downtown Austin", 
-            price: 40,
-            pricing: "Budget",
-            website: "https://www.yelp.com/biz/vietnamese-translations-consulting-mimi-tran-austin?osq=vietnamese+translator&override_cta=Get+pricing+%26+availability",
-            mapImageUrl: "https://img.freepik.com/premium-vector/map-city-vector-illustration_276184-55.jpg",
-            imageUrl: "https://img.p.mapq.st/?url=https://s3-media0.fl.yelpcdn.com/bphoto/tfAnBVTl7oT-N5OsK_XW1g/l.jpg?w=3840&q=75",
-            mapUrl: "https://www.google.com/maps/place/1512+W+Howard+Ln,+Austin,+TX+78728/data=!4m2!3m1!1s0x8644ceed235c218b:0xb947ff4a74563760?sa=X&ved=1t:242&ictx=111"
-        },
-        { 
-            name: "Texas Tower Passport and Visa Services", 
-            rating: "4.5", 
-            language: "Spanish, English", 
-            area: "North Austin", 
-            price: 25,
-            pricing: "Budget",
-            website: "https://www.yelp.com/biz/texas-tower-passport-and-visa-services-houston?override_cta=Get+pricing+%26+availability",
-            mapImageUrl: "https://cdn.prod.website-files.com/5c29380b1110ec92a203aa84/66e5ce469b48938aa34d8684_Google%20Maps%20-%20Compressed.jpg",
-            imageUrl: "https://s3-media0.fl.yelpcdn.com/bphoto/yqcQ1Ot99T2XNqxBtBGAXg/o.jpg",
-            mapUrl: "https://www.google.com/maps?client=firefox-b-1-d&sca_esv=0c36c686c589dc21&biw=1728&bih=825&output=search&q=Texas+Tower+Passport+%26+Visa+Services&source=lnms&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBjnSuuKZNj-6zieDk_gkn6CyymgG_tEVFNWvBwycIom9HlR-mPw3LjRRj22WCaNNYiY26Pyg_mYsiBrfH3XTveKfVF9AnXBeF4A8To7FVGsxz41nDkXayYDZMloNfG-q_Nsiio46-BtjDeMRYZJnAoBGIjBwJQTuRV_Bdja0R19eL9CMDw&entry=mc&ved=1t:200715&ictx=111",
-        },
-        { 
-            name: "Marvelous Mandarin", 
-            rating: "4.3", 
-            language: "Chinese, English", 
-            area: "North Austin", 
-            price: 40,
-            pricing: "Budget",
-            mapImageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_MAP.png",
-            website: "https://www.marvelous-mandarin.com/",
-            mapUrl: "https://www.google.com/maps/place/Marvelous+Mandarin/@30.365534,-97.7539841,16z/data=!3m2!4b1!5s0x8644cb0ce6c052e5:0x3cb47319db6bb03!4m6!3m5!1s0x8644cb0ce896b5e5:0x947d36c6a29c3ade!8m2!3d30.3655341!4d-97.7491132!16s%2Fg%2F1th1vfxy?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
-            imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/services_page/marvelous_mandarin_LOGO.png"
-        }
+        
     ];
     
     static communities = [
-        { 
-            name: "Austin ISD English Second Language", 
-            language: "English", 
-            area: "Austin", 
-            type: "Tutoring",
-            member_count: "2,400+",
-            about: "The AEL program operates with the foundational principle that language should never be a barrier that prevents one from reaching their life goals. Students that are enrolled in and attend our ESL classes not only increase their command and use of the English language, but they are also better equipped to engage with school staff, PTA’s and others on behalf of their children's educational pursuits. ",
-            imageUrl: "https://www.hillelementary.com/wp-content/uploads/2021/07/AISD-Logo-1.png",
-            url: "https://www.austinisd.org/ed-support/adult-ed"
-        },
-        { 
-            name: "Mercadito Hispano en Austin Texas", 
-            language: "Spanish", 
-            area: "Austin",
-            type: "Marketing",
-            member_count: "1,300+",
-            about: "Grupo de compra venta en Austin Texas, libre de spam. Ofrece tus productos con seguridad.",
-            imageUrl: "https://scontent-dfw5-1.xx.fbcdn.net/v/t1.6435-9/81883346_186107322510552_8112905764277846016_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=2285d6&_nc_ohc=6vlGgWprQ7gQ7kNvgF0G5FL&_nc_oc=AdjRYImiVrN1Vn6TwKc1kZ4vKMGFByjasXbL4_WxZ7ySbgIRts1yjEkRaGKz4Lia2AA&_nc_zt=23&_nc_ht=scontent-dfw5-1.xx&_nc_gid=AcVrOS2ox2RXC-dBoDxJOJ9&oh=00_AYAagomj86N1XWSBiw8lgtcjpyhZZ_b5VBMWAVsXuyB53g&oe=67DB1D3A",
-            url: "https://www.facebook.com/groups/2593881070784122/"
-        },
-        { 
-            name: "Austin Chinese-American Network", 
-            language: "Chinese", 
-            area: "Austin",
-            type: "Culture",
-            member_count: "1,000+",
-            about: "奧斯汀华裔联盟(Austin Chinese-American Network, 简称ACAN)于2017年3月9日正式成立为一个独立的非盈利组织, 致力于服务本地华人社区, 弘扬中华文化, 维护华人权益, 增强华人群体的凝聚力。奧斯汀华裔联盟已经正式获得美国税务局(IRS)作为 501(c)(3)公益组织的认证。联盟将以丰富多彩的活动形式促进华人社区的交流和相互理解，鼓励本地华裔同胞关心政务，参与公共事务和社区服务，希望有更多的华人成为主流社会的领袖。",
-            imageUrl: "https://austinchineseamericannetwork.org/wp-content/uploads/2023/03/cropped-ACAN-logo.png",
-            url: "https://austinchineseamericannetwork.org/"
-        },
-        { 
-            name: "Vietnamese American Community of Austin", 
-            language: "Vietnamese", 
-            area: "Austin",
-            type: "Culture",
-            member_count: "1,000+",
-            about: "VACAT is a 501(c)(3) nonprofit serving the Vietnamese American community in the Austin, Texas area. ",
-            imageUrl: "https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-6/326387993_1237149163561794_746506842489137586_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=aZrrpexCgjAQ7kNvgG7x91F&_nc_oc=AdihZ-f92mGwDxKBfXum_tMyMet8ENxcTN-0m0FjC7EI3TaEg0BoWercXqw4TNsB860&_nc_zt=23&_nc_ht=scontent-dfw5-2.xx&_nc_gid=Ad6PJPEp9B8gGUK-L4kDUkZ&oh=00_AYDJdp69sojaVxeVF6MBh068DTJ-2v9FhDfI5-gfaCQ_zw&oe=67B9AC27",
-            url: "https://www.vacat.org/"
-        },
+        
     ]; 
 
     static matchingValues(str1, str2) {
