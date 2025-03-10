@@ -136,8 +136,10 @@ def populate_database(results):
                 rating=item["rating"],
                 area="unknown" if item["location"]["address1"] == None else item["location"]["address1"],
                 price=1 if "price" not in item else len(item["price"]), # either $, $$, or $$$
+                imageUrl=item["image_url"],
                 map_location=item["location"]["address1"],
                 website=item["url"],
+                descr="idk"
             )
             connection.execute(insert_stmt)
 

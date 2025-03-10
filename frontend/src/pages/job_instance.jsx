@@ -52,6 +52,7 @@ const JobInstance = () => {
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language}</p>
             <p><strong>Area:</strong> {job.area}</p>
+            <p><strong>About:</strong> {job.descr}</p>
 
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
                 <button
