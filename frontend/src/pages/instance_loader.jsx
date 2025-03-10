@@ -1,47 +1,29 @@
-import React, { useState, useEffect } from 'react';
+// In a file like dataService.js or apiContext.js
 import axios from 'axios';
+import Instances from "./instances.jsx";
 
-function InstanceLoader() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // This function will run when the component mounts
-    const fetchData = async () => {
+// Create a simple data store
+const InstanceLoader = {
+  list: [],
+  isLoaded: false,
+  
+  // Method to initialize the data
+  initialize: async function() {
+    if (!this.isLoaded) {
       try {
-        setLoading(true);
-        // Make the API request
-        const response = await axios.get('https://your-api-endpoint.com/data');
-        
-        // Update state with the response data
-        setData(response.data);
-      } catch (err) {
-        setError(err.message || 'An error occurred while fetching data');
-        console.error('Error fetching data:', err);
-      } finally {
-        setLoading(false);
+        const job_response = await axios.get('https://api.speakatx.me/get/jobs');
+        this.list = job_response.data;
+        this.isLoaded = true;
+        console.log('Data loaded in background');
+        alert(this.list);
+      } catch (error) {
+        console.error('Error loading data:', error);
       }
-    };
+    }
+  },
+};
 
-    // Call the function
-    fetchData();
-    
-    // The empty array below means this effect runs once on mount
-  }, []);
-
-  // Render based on state
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!data) return <div>No data available</div>;
-
-  return (
-    <div>
-      <h1>Data from API</h1>
-      {/* Render your data here */}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
-}
+// Initialize immediately when this module is imported
+InstanceLoader.initialize();
 
 export default InstanceLoader;

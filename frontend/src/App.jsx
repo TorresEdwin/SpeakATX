@@ -22,6 +22,7 @@ import JobsPage from './pages/jobs';
 import JobInstance from "./pages/job_instance";  // Import the job details page
 import CommunityInstance from "./pages/community_instance";
 import TranslationInstance from "./pages/translation_instance";
+import "./pages/instance_loader";
 
 import React from "react";
 

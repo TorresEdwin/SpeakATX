@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom"; // Import useLocation
 import { 
     Nav, NavBrand, NavLink, NavMenu, Bars, MobileMenu, CloseIcon 
 } from "./NavbarElements";
-import Instances from "../../pages/instances";
+import InstanceLoader from "../../pages/instance_loader";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);

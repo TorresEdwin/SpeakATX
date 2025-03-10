@@ -25,8 +25,8 @@ def get_table(table_name):
 
     with engine.connect() as connection:
         result = connection.execute(select_stmt)
-        for row in result:
-            table_res.append(row)
+        for row in result.mappings():
+            table_res.append(dict(row))
 
     connection.close()
 
