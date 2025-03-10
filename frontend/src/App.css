@@ -17,7 +17,7 @@
 }
 
 .goog-te-gadget img{
-  display:none !important;
+  display: none !important;
 }
 body > .skiptranslate {
   display: none;
@@ -109,11 +109,14 @@ body {
   
 }
 
-body, html {
-  width: 100%;
-  overflow-x: hidden; /* Hide horizontal overflow */
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain; /* Prevents scrolling past the edge of the page */
 
   font-family: "DM Sans", serif !important;
   font-optical-sizing: auto;
