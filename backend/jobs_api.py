@@ -38,10 +38,11 @@ def populate_database(results):
     for item in results:
         lang = ""
         for l in languages:
-            if l in item["title"].lower() or l in item["description"].lower():
-                if len(lang) > 0:
-                    lang += ", "
-                lang += l
+            if "title" in item and "description" in item:
+                if l in item["title"].lower() or l in item["description"].lower():
+                    if len(lang) > 0:
+                        lang += ", "
+                    lang += l
         
         pay = 0
 
@@ -49,7 +50,7 @@ def populate_database(results):
             pay = extract_first_number(item["detected_extensions"]["salary"])
 
         insert_stmt = table.insert().values(
-            company_name=item["company_name"],
+            company_name="none" if "company_name" not in item else item["company_name"],
             job_title=item["title"],
             hourly_pay=pay, # wip
             language=lang,
@@ -72,35 +73,38 @@ def populate_database(results):
 
     connection.close()
 
-def fetch_jobs(search_terms):
-    params = {
-    "api_key": "98105f355440203dbe19be8ee68e13264a6f8370c8353fd3aabc3224f7eb2183",
-    "engine": "google_jobs",
-    "google_domain": "google.com",
-    "q": f"{search_terms}",
-    "location": "Austin, Texas, United States"
-    }
-    
-    # Create the search query for Google Jobs
-    search = GoogleSearch(params)
-    results = search.get_dict()
-    
+def fetch_jobs(search_terms, pages):
     job_listings = []
-    
-    # Check if results contain job listings
-    if "jobs_results" in results:
-        for job in results.get("jobs_results", []):
-            job_location = job.get("location", "").lower()
 
-            #if "austin, tx" in job_location:
-            job_dict = {key: value for key, value in job.items()}
-            job_listings.append(job_dict)
+    for p in range(pages):
+        params = {
+        "api_key": "98105f355440203dbe19be8ee68e13264a6f8370c8353fd3aabc3224f7eb2183",
+        "engine": "google_jobs",
+        "google_domain": "google.com",
+        "q": f"{search_terms}",
+        "location": "Austin, Texas, United States",
+        "ijn": p + 1
+        }
+        
+        # Create the search query for Google Jobs
+        search = GoogleSearch(params)
+        results = search.get_dict()
+        
+        # Check if results contain job listings
+        if "jobs_results" in results:
+            for job in results.get("jobs_results", []):
+                job_location = job.get("location", "").lower()
+
+                #if "austin, tx" in job_location:
+                job_dict = {key: value for key, value in job.items()}
+                job_listings.append(job_dict)
 
     if not job_listings:
+        print("oops")
         return {"message": "No jobs found."}
     
     return job_listings
 
 if __name__ == "__main__":
     #save_to_json(fetch_jobs("bilingual"))
-    populate_database(fetch_jobs("bilingual jobs"))
+    populate_database(fetch_jobs("bilingual jobs", 10))
