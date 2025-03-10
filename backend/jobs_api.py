@@ -54,7 +54,7 @@ def populate_database(results):
             hourly_pay=pay, # wip
             language=lang,
             area_of_austin=item["location"],
-            company_image=item["thumbnail"],
+            company_image="none" if "thumbnail" not in item else item["thumbnail"],
             website_link=item["share_link"],
         )
         connection.execute(insert_stmt)
@@ -74,10 +74,11 @@ def populate_database(results):
 
 def fetch_jobs(search_terms):
     params = {
-        "q": search_terms,
-        "location": "Austin, Texas, United States",
-        "engine": "google_jobs",
-        "api_key": "98105f355440203dbe19be8ee68e13264a6f8370c8353fd3aabc3224f7eb2183",  # Use your API key here
+    "api_key": "98105f355440203dbe19be8ee68e13264a6f8370c8353fd3aabc3224f7eb2183",
+    "engine": "google_jobs",
+    "google_domain": "google.com",
+    "q": f"{search_terms}",
+    "location": "Austin, Texas, United States"
     }
     
     # Create the search query for Google Jobs
@@ -91,9 +92,9 @@ def fetch_jobs(search_terms):
         for job in results.get("jobs_results", []):
             job_location = job.get("location", "").lower()
 
-            if "austin, tx" in job_location:
-                job_dict = {key: value for key, value in job.items()}
-                job_listings.append(job_dict)
+            #if "austin, tx" in job_location:
+            job_dict = {key: value for key, value in job.items()}
+            job_listings.append(job_dict)
 
     if not job_listings:
         return {"message": "No jobs found."}
@@ -102,4 +103,4 @@ def fetch_jobs(search_terms):
 
 if __name__ == "__main__":
     #save_to_json(fetch_jobs("bilingual"))
-    populate_database(fetch_jobs("bilingual"))
+    populate_database(fetch_jobs("bilingual jobs"))

@@ -7,11 +7,12 @@ from flask_cors import CORS  # Import Flask-CORS
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+password = os.environ.get("SQL_PASS", "uh oh")
+engine = create_engine(f'mysql+pymysql://admin:{password}@database-1.cnkg4y8uupw7.us-east-2.rds.amazonaws.com:3306/SpeakATX')
+connection = engine.connect()
+metadata = MetaData()
+
 def get_table(table_name):
-    password = os.environ.get("SQL_PASS", "uh oh")
-    engine = create_engine(f'mysql+pymysql://admin:{password}@database-1.cnkg4y8uupw7.us-east-2.rds.amazonaws.com:3306/SpeakATX')
-    connection = engine.connect()
-    metadata = MetaData()
 
     table = Table(table_name, metadata, autoload_with=engine)
 
@@ -27,8 +28,6 @@ def get_table(table_name):
         result = connection.execute(select_stmt)
         for row in result.mappings():
             table_res.append(dict(row))
-
-    connection.close()
 
     return table_res
 
