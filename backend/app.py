@@ -26,7 +26,7 @@ def get_table(table_name):
     with engine.connect() as connection:
         result = connection.execute(select_stmt)
         for row in result:
-            result.append(row)
+            table_res.append(row)
 
     connection.close()
 
@@ -64,7 +64,6 @@ def create_community():
         "about": data.get("about", ""),
         "imageUrl": data.get("imageUrl", ""),
         "url": f"https://speakatx.me/communities/{data['name'].replace(' ', '-').lower()}",
-        "id": data.get("id", -1),
     }
     
     #communities.append(new_community)
@@ -108,7 +107,6 @@ def create_job():
         "area": data.get("area", "Unknown"),
         "imageUrl": data.get("imageUrl", ""),
         "jobUrl": data.get("jobUrl", ""),
-        "id": data.get("id", -1),
     }
 
     # jobs.append(new_job)
@@ -154,7 +152,6 @@ def create_translation():
         "mapImageUrl": data.get("mapImageUrl", ""),
         "imageUrl": data.get("imageUrl", ""),
         "mapUrl": data.get("mapUrl", ""),
-        "id": data.get("id", -1),
     }
 
     # translations.append(new_translation)
