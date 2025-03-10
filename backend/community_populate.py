@@ -28,6 +28,7 @@ def populate_database(results):
             type="idk",
             imageUrl=item["picture"],
             website=item["url"],
+            descr=item["description"]
         )
         connection.execute(insert_stmt)
 
