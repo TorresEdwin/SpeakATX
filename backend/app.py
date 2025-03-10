@@ -124,7 +124,7 @@ def get_table(table_name):
     with engine.connect() as connection:
         result = connection.execute(select_stmt)
         for row in result:
-            result.append(row)
+            table_res.append(row)
 
     connection.close()
 
