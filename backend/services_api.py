@@ -131,13 +131,13 @@ def populate_database(results):
     for category, items in results.items():
         for item in items:
             insert_stmt = services_table.insert().values(
-                service_name=item["name"],
+                name=item["name"],
                 language=category if category != "translations" else "english",
                 rating=item["rating"],
-                area_of_austin="unknown" if item["location"]["address1"] == None else item["location"]["address1"],
-                pricing=1 if "price" not in item else len(item["price"]), # either $, $$, or $$$
+                area="unknown" if item["location"]["address1"] == None else item["location"]["address1"],
+                price=1 if "price" not in item else len(item["price"]), # either $, $$, or $$$
                 map_location=item["location"]["address1"],
-                website_link=item["url"],
+                website=item["url"],
             )
             connection.execute(insert_stmt)
 

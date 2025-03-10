@@ -59,7 +59,7 @@ const CommunityInstance = () => {
                 <button
                     className="btn btn-success button-grow"
                     style={{ transition: '0.2s ease' }}
-                    onClick={() => window.open(community.url, "_blank")}
+                    onClick={() => window.open(community.website, "_blank")}
                 >
                     View Community
                 </button>

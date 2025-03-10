@@ -21,13 +21,13 @@ def populate_database(results):
     for item in results:
 
         insert_stmt = table.insert().values(
-            community_name=item["name"],
+            name=item["name"],
             member_count=item["member_count"],
             language=item["language"],
-            area_of_austin=item["location"],
-            community_type="this prob shouldn't exist",
-            community_image=item["picture"],
-            website_link=item["url"],
+            area=item["location"],
+            type="idk",
+            imageUrl=item["picture"],
+            website=item["url"],
         )
         connection.execute(insert_stmt)
 

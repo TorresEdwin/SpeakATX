@@ -44,19 +44,19 @@ def populate_database(results):
                         lang += ", "
                     lang += l
         
-        pay = 0
+        paya = 0
 
         if "detected_extensions" in item and "salary" in item["detected_extensions"]:
-            pay = extract_first_number(item["detected_extensions"]["salary"])
+            paya = extract_first_number(item["detected_extensions"]["salary"])
 
         insert_stmt = table.insert().values(
-            company_name="none" if "company_name" not in item else item["company_name"],
-            job_title=item["title"],
-            hourly_pay=pay, # wip
+            name="none" if "company_name" not in item else item["company_name"],
+            title=item["title"],
+            pay=paya, # wip
             language=lang,
-            area_of_austin=item["location"],
-            company_image="none" if "thumbnail" not in item else item["thumbnail"],
-            website_link=item["share_link"],
+            area=item["location"],
+            imageUrl="none" if "thumbnail" not in item else item["thumbnail"],
+            website=item["share_link"],
         )
         connection.execute(insert_stmt)
 

@@ -57,7 +57,7 @@ const JobInstance = () => {
                 <button
                     className="btn btn-success button-grow"
                     style={{ transition: '0.2s ease' }}
-                    onClick={() => window.open(job.jobUrl, "_blank")}
+                    onClick={() => window.open(job.website, "_blank")}
                 >
                     View Job
                 </button>
