@@ -49,7 +49,7 @@ const TranslationInstance = () => {
 
     setLoading(true);
 
-    // ✅ Use stored coordinates if available
+    // Use stored coordinates if available
     if (translation.coordinates?.latitude && translation.coordinates?.longitude) {
       console.log(`Using stored coordinates for ${translation.name}:`, translation.coordinates);
       setCoordinates({
@@ -60,7 +60,7 @@ const TranslationInstance = () => {
       return;
     }
 
-    // ✅ If no lat/lng, fetch from Google Maps API using address
+    // If no lat/lng, fetch from Google Maps API using address
     if (translation.location?.display_address) {
       const fullAddress = translation.location.display_address.join(", ");
       fetchCorrectCoordinates(fullAddress);
@@ -68,7 +68,7 @@ const TranslationInstance = () => {
       setCoordinates(DEFAULT_LOCATION);
       setLoading(false);
     }
-  }, [translationName]); // ✅ Run when the instance name changes
+  }, [translationName]); // Run when the instance name changes
 
   // Fetch correct lat/lng from Google Maps API
   const fetchCorrectCoordinates = async (address) => {
@@ -127,7 +127,7 @@ const TranslationInstance = () => {
           <p>Loading map...</p>
         ) : (
           <GoogleMap
-            key={coordinates.lat + coordinates.lng} // 🔥 Forces re-render on coordinate change
+            key={coordinates.lat + coordinates.lng} // Forces re-render on coordinate change
             mapContainerStyle={containerStyle}
             center={coordinates}
             zoom={15}
