@@ -20,12 +20,27 @@ def populate_database(results):
 
     for item in results:
 
+        com_type = "culture"
+
+       
+
+        learn_flags = ["learn"]
+
+        if any(substring in item["description"].lower() for substring in learn_flags):
+            com_type = "learning"
+
+        business_flags = ["business", "engineer", "software", "career"]
+
+        if any(substring in item["description"].lower() for substring in business_flags):
+            com_type = "business"
+
+
         insert_stmt = table.insert().values(
             name=item["name"],
             member_count=item["member_count"],
             language=item["language"],
             area=item["location"],
-            type="idk",
+            type=com_type,
             imageUrl=item["picture"],
             website=item["url"],
             descr=item["description"]
@@ -45,10 +60,21 @@ def populate_database(results):
 
     connection.close()
 
+def join_duplicates(results):
+    combined = {}
+
+    for item in results:
+        if item["name"] in combined:
+            combined[item["name"]]["language"] += ", " + item["language"]
+        else:
+            combined[item["name"]] = item
+    
+    return combined.values()
+
 if __name__ == "__main__":
     res = []
     with open('meetup_groups.json', 'r', encoding='utf-8', errors='ignore') as file:
         data = json.load(file)
         for section in data:
             res.extend(section)
-        populate_database(res)
+        populate_database(join_duplicates(res))
