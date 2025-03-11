@@ -31,9 +31,9 @@ const TranslationPage = () => {
                 <div className="card-body text-center clickable-area">
                   <h5 className="card-title">{service.name}</h5>
                   <p className="card-text">⭐ {service.rating}</p>
-                  <p className="card-text">🗣️ {service.language}</p>
+                  <p className="card-text">🗣️ {service.language.charAt(0).toUpperCase() + service.language.slice(1)}</p>
                   <p className="card-text">📍 {service.area}</p>
-                  <p className="card-text">💲 {service.price}/hr</p>
+                  <p className="card-text">{"💲".repeat(service.price)}</p>
                 </div>
               </Link>
               
