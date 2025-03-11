@@ -165,7 +165,7 @@ def main():
         # connection = engine.connect()
         # metadata = MetaData()
 
-        # table = Table('Jobs', metadata, autoload_with=engine)
+        # table = Table('Communities', metadata, autoload_with=engine)
 
         # print("Connected to database")
 
