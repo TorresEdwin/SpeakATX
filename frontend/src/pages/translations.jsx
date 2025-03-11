@@ -33,7 +33,7 @@ const TranslationPage = () => {
                   <p className="card-text">⭐ {service.rating}</p>
                   <p className="card-text">🗣️ {service.language}</p>
                   <p className="card-text">📍 {service.area}</p>
-                  <p className="card-text">💲 {service.price}/hr</p>
+                  <p className="card-text">{"💲".repeat(service.price)}</p>
                 </div>
               </Link>
               
