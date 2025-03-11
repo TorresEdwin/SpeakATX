@@ -24,9 +24,9 @@ const InstanceLoader = {
         );
         this.isLoaded = true;
 
-        Instances.jobs = job_response.data;
-        Instances.translations = service_response.data;
-        Instances.communities = comm_response.data;
+        Instances.jobs = job_response.data.items;
+        Instances.translations = service_response.data.items;
+        Instances.communities = comm_response.data.items;
 
         console.log('Data loaded in background');
       } catch (error) {
