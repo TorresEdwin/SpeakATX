@@ -1,14 +1,27 @@
-// Filename - pages/index.js
-
 import React from "react";
 import Splash from "../components/Splash"
 import MyButton from "../components/Button";
-
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import Instances from "./instances.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
-
 const Home = () => {
+    const languageCounts = {};
+    Instances.communities.forEach(service => {
+      service.language.split(', ').forEach(lang => {
+        const language = lang.trim();
+        languageCounts[language] = (languageCounts[language] || 0) + 1;
+      });
+    });
+
+    const pieChartData = Object.keys(languageCounts).map(language => ({
+      name: language.charAt(0).toUpperCase() + language.slice(1),
+      value: languageCounts[language],
+    }));
+
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28DFF', '#FF6F91', '#FFA07A', '#87CEEB', '#32CD32', '#FF4500'];
+
     return (
         <>
             <div className="splash-main">
@@ -25,7 +38,37 @@ const Home = () => {
                                 </p>
                                 <hr className="my-4" />
                             </Col>
-                            <Col className="d-none d-md-block"><img src="https://cdn.discordapp.com/attachments/1339072367799959592/1341915455526404096/jpeg.jpg?ex=67b7bba8&is=67b66a28&hm=b44244f327ed09492bb3d49b86b102c9a791db577f420d45f285e1a3a090a66b&" alt="Community Picture" className="img-fluid w-100" style={{ objectFit: "cover", maxHeight: "300px" }} /></Col>
+                            <Col className="d-none d-md-block">
+                              <div className="card shadow-lg p-3 mb-5 bg-white rounded">
+                                <h5 className="text-center">Language Distribution</h5>
+                                <ResponsiveContainer width="100%" height={300}>
+                                  <PieChart>
+                                    <Pie
+                                      data={pieChartData}
+                                      dataKey="value"
+                                      nameKey="name"
+                                      cx="50%"
+                                      cy="50%"
+                                      outerRadius={100}
+                                      fill="#8884d8"
+                                    >
+                                      {pieChartData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                      ))}
+                                    </Pie>
+                                    <Tooltip />
+                                    <Legend 
+                                      layout="horizontal"
+                                      align="center"
+                                      verticalAlign="bottom"
+                                      iconSize={20}
+                                      iconType="circle"
+                                      wrapperStyle={{ paddingTop: 20 }}
+                                    />
+                                  </PieChart>
+                                </ResponsiveContainer>
+                              </div>
+                            </Col>
                         </Row>
                         <hr style={{ borderTop: "4px solid rgb(68, 83, 71, 1)" }}></hr>
                         <Row className="content text-center">
