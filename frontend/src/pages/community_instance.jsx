@@ -53,13 +53,13 @@ const CommunityInstance = () => {
             <p><strong>Area:</strong> {community.area}</p>
             <p><strong>Member Count:</strong> {community.member_count}</p>
             <p><strong>Type:</strong> {community.type}</p>
-            <p><strong>About:</strong> {community.about}</p>
+            <p><strong>About:</strong> {community.descr}</p>
 
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
                 <button
                     className="btn btn-success button-grow"
                     style={{ transition: '0.2s ease' }}
-                    onClick={() => window.open(community.url, "_blank")}
+                    onClick={() => window.open(community.website, "_blank")}
                 >
                     View Community
                 </button>

@@ -52,12 +52,13 @@ const JobInstance = () => {
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language}</p>
             <p><strong>Area:</strong> {job.area}</p>
+            <p><strong>About:</strong> {job.descr}</p>
 
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
                 <button
                     className="btn btn-success button-grow"
                     style={{ transition: '0.2s ease' }}
-                    onClick={() => window.open(job.jobUrl, "_blank")}
+                    onClick={() => window.open(job.website, "_blank")}
                 >
                     View Job
                 </button>

@@ -31,7 +31,6 @@ const InstanceLoader = {
         console.log('Data loaded in background');
       } catch (error) {
         console.error('Error loading data:', error);
-        alert("failure")
       }
     }
   },
