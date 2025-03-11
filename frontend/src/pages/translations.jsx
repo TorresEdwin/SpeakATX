@@ -38,7 +38,7 @@ const TranslationPage = () => {
               </Link>
               
               <div className="card-footer d-flex justify-content-between" style={{ marginTop: 'auto' }}>
-                <a href={"https://maps.google.com/maps?q="+service.area} className="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Map</a>
+                <a href={(service.area !== "unknown" && service.area !== "") ? "https://maps.google.com/maps?q="+service.area : "https://maps.google.com/maps?q="+service.map_location} className="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Map</a>
                 <a href={service.website} className="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer">Website</a>
               </div>
             </div>

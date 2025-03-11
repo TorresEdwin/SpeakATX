@@ -166,7 +166,7 @@ const TranslationInstance = () => {
         <button
           className="btn btn-success button-grow"
           onClick={() =>
-            window.open(`https://www.google.com/maps?q=${translation.area}`, "_blank")
+            window.open((translation.area !== "unknown" && translation.area !== "") ? "https://maps.google.com/maps?q="+translation.area : "https://maps.google.com/maps?q="+translation.map_location, "_blank")
           }
         >
           View Map
