@@ -34,7 +34,7 @@ const Splash = () => {
                 </p>
                 <hr className="my-4" />
                 <p>
-                    Local communities, translation
+                    Local communities, multilingual
                     services, and job postings
                 </p>
             </div>
