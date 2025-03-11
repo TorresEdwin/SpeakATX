@@ -67,7 +67,7 @@ const TranslationInstance = () => {
                 <button
                     className="btn btn-success button-grow"
                     style={{ transition: '0.2s ease' }}
-                    onClick={() => window.open(translation.mapUrl, "_blank")}
+                    onClick={() => window.open("https://maps.google.com/maps?q="+translation.area, "_blank")}
                 >
                     View Map
                 </button>
