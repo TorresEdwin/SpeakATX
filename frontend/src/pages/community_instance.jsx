@@ -1,18 +1,13 @@
 // Filename - pages/JobDetail.jsx
 import React from "react";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Instances from "./instances.jsx";
 
 
 const CommunityInstance = () => {
     const { communityName } = useParams(); // Get job name from URL
     const navigate = useNavigate(); // Hook to navigate programmatically
-    const community = Instances.communities.find(community => community.name === communityName); // Find the matching job
-
-    if (!community) {
-        return <div className="container mt-4"><h1>Community Not Found</h1><button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
-    }
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -21,6 +16,24 @@ const CommunityInstance = () => {
 
         return () => clearTimeout(timeout);
     }, [useLocation()]);
+
+    const [loaded, setLoaded] = useState(Instances.loaded);
+    useEffect(() => {
+      const checkLoadedStatus = () => {
+        setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
+      };
+  
+      const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+  
+      return () => clearInterval(intervalId);
+    }, [])
+    if (!loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
+    
+    const community = Instances.communities.find(community => community.name === communityName); // Find the matching job
+
+    if (!community) {
+        return <div className="container mt-4"><h1>Community Not Found</h1><button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
+    }
 
     let filteredTranslations = []
     for (let i = 0; i < Instances.translations.length; i++) {

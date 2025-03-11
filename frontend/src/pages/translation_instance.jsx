@@ -25,11 +25,6 @@ const TranslationInstance = () => {
     googleMapsApiKey,
   });
 
-  // Find the correct translation instance
-  const translation = Instances.translations.find(
-    (t) => t.name.toLowerCase() === translationName.toLowerCase()
-  );
-
   // State management
   const [coordinates, setCoordinates] = useState(DEFAULT_LOCATION);
   const [loading, setLoading] = useState(true);
@@ -38,6 +33,11 @@ const TranslationInstance = () => {
   useEffect(() => {
     setTimeout(() => window.scrollTo(0, 0), 10);
   }, [location]);
+
+  var translation = Instances.translations.find(
+    (t) => t.name.toLowerCase() === translationName.toLowerCase()
+  );
+  
 
   // Load correct coordinates when `translation` changes
   useEffect(() => {
@@ -97,6 +97,22 @@ const TranslationInstance = () => {
       setLoading(false);
     }
   };
+
+  const [loaded, setLoaded] = useState(Instances.loaded);
+  useEffect(() => {
+    const checkLoadedStatus = () => {
+      setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
+    };
+
+    const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+
+    return () => clearInterval(intervalId);
+  }, [])
+  if (!loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
+
+  translation = Instances.translations.find(
+    (t) => t.name.toLowerCase() === translationName.toLowerCase()
+  );
 
   // If no matching translation, show error
   if (!translation) {
