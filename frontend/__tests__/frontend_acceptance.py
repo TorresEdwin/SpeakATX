@@ -35,7 +35,7 @@ class FrontendTests(unittest.TestCase):
         self.driver.get("https://speakatx.me/translations")
         
         # Find elements by a specific class or identifier
-        instances = self.driver.find_elements(By.CLASS_NAME, "TranslationInstance")
+        instances = self.driver.find_elements(By.CLASS_NAME, "card-body")
         
         # Assert that at least one instance exists
         self.assertGreater(len(instances), 0, "No translations instances found")
@@ -45,7 +45,7 @@ class FrontendTests(unittest.TestCase):
         self.driver.get("https://speakatx.me/communities")
         
         # Find elements by a specific class or identifier
-        instances = self.driver.find_elements(By.CLASS_NAME, "CommunityInstance")
+        instances = self.driver.find_elements(By.CLASS_NAME, "card-body")
         
         # Assert that at least one instance exists
         self.assertGreater(len(instances), 0, "No community instances found")
@@ -55,7 +55,7 @@ class FrontendTests(unittest.TestCase):
         self.driver.get("https://speakatx.me/jobs")
         
         # Find elements by a specific class or identifier
-        instances = self.driver.find_elements(By.CLASS_NAME, "JobInstance")
+        instances = self.driver.find_elements(By.CLASS_NAME, "card-body")
         
         # Assert that at least one instance exists
         self.assertGreater(len(instances), 0, "No job instances found")
