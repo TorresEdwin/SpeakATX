@@ -103,7 +103,7 @@ const TranslationInstance = () => {
     return (
       <div className="container mt-4">
         <h1>Translation Not Found</h1>
-        <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>
+        <button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>
           Back
         </button>
       </div>
@@ -113,7 +113,7 @@ const TranslationInstance = () => {
   return (
     <div className="container mt-4">
       <button
-        className="btn btn-primary button-fixed button-grow"
+        className="back-button btn btn-primary button-fixed button-grow"
         style={{ top: "80px", left: "20px" }}
         onClick={() => navigate(-1)}
       >
