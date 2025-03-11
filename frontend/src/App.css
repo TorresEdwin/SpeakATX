@@ -61,6 +61,7 @@ body {
 .splash-main {
   margin: 0;
   display: flex;
+  position: auto;
   overflow: hidden;
   height: 100vh; /* Full viewport height */
 }
@@ -78,16 +79,18 @@ body {
   background-attachment: fixed; /* This ensures the background stays fixed while content scrolls */
   z-index: 0; /* Keep the background behind the content */
   background-color: 10px solid red;
+  overflow: hidden;
 }
 
 .splash {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw; /* Full width */
-  height: 100vh; /* Full height */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
   min-width: 100vw; /* Ensures it stretches */
   min-height: 100vh; /* Ensures it stretches */
+  background-color: rgba(255, 255, 255, 0.8);
   /* background-color: red; */
 }
 
@@ -105,8 +108,7 @@ body {
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  
+  box-sizing: border-box; 
 }
 
 body, html {
