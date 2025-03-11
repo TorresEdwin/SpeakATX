@@ -29,5 +29,17 @@ describe('Instances class', () => {
         test('should return true when values are equal', () => {
             expect(Instances.matchingValues("english", "English")).toBe(true);
         });
+
+        test('should return true when values are equal', () => {
+            expect(Instances.matchingValues("chinese, english", "chinese")).toBe(true);
+        });
+
+        test('should return true when values are equal', () => {
+            expect(Instances.matchingValues("Abkhaz", "ABKHAZ")).toBe(true);
+        });
+
+        test('should return true when values are equal', () => {
+            expect(Instances.matchingValues("korean", "chinese", "vietnamese")).toBe(false);
+        });
     });
 });
