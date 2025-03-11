@@ -46,6 +46,6 @@ def populate_database(results):
     connection.close()
 
 if __name__ == "__main__":
-    with open('meetup_groups.json', 'r') as file:
+    with open('meetup_groups.json', 'r', encoding='utf-8', errors='ignore') as file:
         data = json.load(file)
         populate_database(data[0])
