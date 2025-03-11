@@ -50,7 +50,7 @@ const JobInstance = () => {
             <img src={job.imageUrl} alt={job.name} className="img-fluid mb-3" style={{ maxHeight: "300px", objectFit: "cover" }} />
             <p><strong>Title:</strong> {job.title}</p>
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
-            <p><strong>Language:</strong> {job.language}</p>
+            <p><strong>Language:</strong> {job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")}</p>
             <p><strong>Area:</strong> {job.area}</p>
             <p><strong>About:</strong> {job.descr}</p>
 
@@ -67,7 +67,7 @@ const JobInstance = () => {
             </div>
 
             <div className="row justify-content-center">
-                <h3>{job.language} Communities</h3>
+                <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Communities</h3>
                 {filteredCommunities.map((communityItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
@@ -84,9 +84,9 @@ const JobInstance = () => {
                                 <h5 className="card-title">{communityItem.name}</h5>
                                 <p className="card-text">
                                     {communityItem.title} <br />
-                                    Language: {communityItem.language} <br />
+                                    Language: {communityItem.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
                                     Area: {communityItem.area} <br />
-                                    Type: {communityItem.type} <br />
+                                    Type: {communityItem.type.charAt(0).toUpperCase() + communityItem.type.slice(1)} <br />
                                     Member count: {communityItem.member_count} <br />
                                 </p>
                             </div>
@@ -94,7 +94,7 @@ const JobInstance = () => {
                     </div>
                 ))}
 
-                <h3>{job.language} Translation Services</h3>
+                <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Translation Services</h3>
                 {filteredTranslations.map((translationItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
@@ -111,7 +111,7 @@ const JobInstance = () => {
                                 <h5 className="card-title">{translationItem.name}</h5>
                                 <p className="card-text">
                                     Rating: {translationItem.rating} <br />
-                                    Language: {translationItem.language} <br />
+                                    Language: {translationItem.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
                                     Area: {translationItem.area} <br />
                                     Price: {translationItem.price}
                                 </p>
