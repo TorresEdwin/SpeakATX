@@ -11,7 +11,7 @@ const JobInstance = () => {
     const job = Instances.jobs.find(job => job.name === jobName); // Find the matching job
 
     if (!job) {
-        return <div className="container mt-4"><h1>Job Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
+        return <div className="container mt-4"><h1>Job Not Found</h1><button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const JobInstance = () => {
     return (
         <div className="container mt-4">
             <button
-                className="btn btn-primary button-fixed button-grow"
+                className="back-button btn btn-primary button-fixed button-grow"
                 style={{ top: '80px', left: '20px', transition: '0.2s ease' }}
                 onClick={() => navigate(-1)}
             >

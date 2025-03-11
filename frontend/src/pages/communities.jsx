@@ -42,10 +42,10 @@ const CommunitiesPage = () => {
                         <div className="card-body">
                             <h5 className="card-title">{jobItem.name}</h5>
                             <p className="card-text">
-                                Language: {jobItem.language} <br />
+                                Language: {jobItem.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
                                 Area: {jobItem.area} <br />
                                 Member Count: {jobItem.member_count} <br />
-                                Type: {jobItem.type}
+                                Type: {jobItem.type.charAt(0).toUpperCase() + jobItem.type.slice(1)}
                             </p>
                         </div>
                     </Link>
