@@ -50,19 +50,20 @@ const TranslationInstance = () => {
     setLoading(true);
 
     // Use stored coordinates if available
-    if (translation.coordinates?.latitude && translation.coordinates?.longitude) {
-      console.log(`Using stored coordinates for ${translation.name}:`, translation.coordinates);
+    const [lat, long] = translation.map_location.split(',').map(str => parseFloat(str.trim()));
+    if (lat && long) {
+      console.log(`Using stored coordinates for ${translation.name}:`, translation.map_location);
       setCoordinates({
-        lat: translation.coordinates.latitude,
-        lng: translation.coordinates.longitude,
+        lat: lat,
+        lng: long,
       });
       setLoading(false);
       return;
     }
 
     // If no lat/lng, fetch from Google Maps API using address
-    if (translation.location?.display_address) {
-      const fullAddress = translation.location.display_address.join(", ");
+    if (translation.area !== "unknown") {
+      const fullAddress = translation.area;
       fetchCorrectCoordinates(fullAddress);
     } else {
       setCoordinates(DEFAULT_LOCATION);
