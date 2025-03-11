@@ -51,7 +51,7 @@ def get_groups(url, language, driver):
 
     # Find all group cards with the specified data-testid
     group_cards = soup.find_all('div', {'data-testid': 'group-card'})
-
+    
     groups = []
     for group_card in group_cards:
         # Find the title
@@ -64,6 +64,7 @@ def get_groups(url, language, driver):
         pic_link = "N/A"
         member_count = "N/A"
         location = "N/A"
+        paragraphs = []
 
         if link_tag and link_tag.get('href'):
             href = link_tag['href']
@@ -85,6 +86,20 @@ def get_groups(url, language, driver):
             if member_count_tag:
                 member_count_text = member_count_tag.get_text(strip=True)
                 member_count = member_count_text.split(" ")[0]  # Extract just the number
+                
+            # Find the div with the class "break-words utils_description__BlOCA"
+            description_div = group_soup.find('div', class_='break-words utils_description__BlOCA')
+            # If the div is found, extract all <p> tags inside it
+            if description_div:
+                p_tags = description_div.find_all('p')  # Find all <p> tags inside
+                for p in p_tags:
+                    # Remove any links and images from the paragraph
+                    for a in p.find_all('a'):
+                        a.decompose()  # Remove <a> tag completely
+                    for img in p.find_all('img'):
+                        img.decompose()  # Remove <img> tag completely
+                    paragraphs.append(p.get_text(strip=True))  # Add the cleaned paragraph
+
             
             # Extract the second <span> for location
             event_card = group_soup.find("a", id="event-card-e-1")
@@ -103,7 +118,8 @@ def get_groups(url, language, driver):
             "url": group_link,
             "picture": pic_link,
             "member_count": member_count,
-            "location": location
+            "location": location,
+            "description": "\n".join(paragraphs)
         })
     return groups
 
