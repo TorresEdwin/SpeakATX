@@ -74,17 +74,16 @@ def populate_database(results):
 
     connection.close()
 
-def fetch_jobs(search_terms, pages):
+def fetch_jobs(search_terms_list, pages):
     job_listings = []
 
-    for p in range(pages):
+    for search_terms in search_terms_list:
         params = {
         "api_key": "98105f355440203dbe19be8ee68e13264a6f8370c8353fd3aabc3224f7eb2183",
         "engine": "google_jobs",
         "google_domain": "google.com",
         "q": f"{search_terms}",
         "location": "Austin, Texas, United States",
-        "ijn": p + 1
         }
         
         # Create the search query for Google Jobs
@@ -96,9 +95,9 @@ def fetch_jobs(search_terms, pages):
             for job in results.get("jobs_results", []):
                 job_location = job.get("location", "").lower()
 
-                #if "austin, tx" in job_location:
-                job_dict = {key: value for key, value in job.items()}
-                job_listings.append(job_dict)
+                if "tx" in job_location:
+                    job_dict = {key: value for key, value in job.items()}
+                    job_listings.append(job_dict)
 
     if not job_listings:
         print("oops")
@@ -108,4 +107,4 @@ def fetch_jobs(search_terms, pages):
 
 if __name__ == "__main__":
     #save_to_json(fetch_jobs("bilingual"))
-    populate_database(fetch_jobs("bilingual jobs", 10))
+    populate_database(fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs"], 1))

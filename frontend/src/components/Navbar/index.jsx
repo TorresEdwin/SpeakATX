@@ -43,7 +43,7 @@ const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             // Check if the page is at the top or scrolled down
-            if (window.scrollY === 0) {
+            if (window.scrollY == 0) {
                 setShowNavbar(true);  // Show Navbar if at the top of the page
             } else {
                 setShowNavbar(false); // Hide Navbar if scrolled down
