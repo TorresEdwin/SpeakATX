@@ -142,7 +142,7 @@ const TranslationInstance = () => {
         <strong>Rating:</strong> {translation.rating}
       </p>
       <p>
-        <strong>Language:</strong> {translation.language}
+        <strong>Language:</strong> {translation.language.charAt(0).toUpperCase() + translation.language.slice(1)}
       </p>
       <p>
         <strong>Address:</strong>{" "}

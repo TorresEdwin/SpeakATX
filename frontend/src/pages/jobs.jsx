@@ -47,7 +47,7 @@ const JobsPage = () => {
                             <p className="card-text">
                                 {jobItem.title} <br />
                                 Pay: ${jobItem.pay}/hr <br />
-                                Language: {jobItem.language} <br />
+                                Language: {jobItem.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
                                 Area: {jobItem.area}
                             </p>
                         </div>
