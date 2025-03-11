@@ -262,3 +262,8 @@ body, html {
 .button-grow:hover {
   transform: scale(1.1); /* Enlarge to 120% of the original size */
 }
+
+.back-button {
+    position: fixed !important;
+    z-index: 9999 !important;
+}

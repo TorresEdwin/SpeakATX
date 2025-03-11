@@ -11,7 +11,7 @@ const CommunityInstance = () => {
     const community = Instances.communities.find(community => community.name === communityName); // Find the matching job
 
     if (!community) {
-        return <div className="container mt-4"><h1>Community Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
+        return <div className="container mt-4"><h1>Community Not Found</h1><button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const CommunityInstance = () => {
     return (
         <div className="container mt-4">
             <button
-                className="btn btn-primary button-fixed button-grow"
+                className="back-button btn btn-primary button-fixed button-grow"
                 style={{ top: '80px', left: '20px', transition: '0.2s ease' }}
                 onClick={() => navigate(-1)}
             >
