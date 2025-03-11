@@ -6,37 +6,41 @@ USE SpeakATX;
 -- Local Services Table
 CREATE TABLE Services (
     service_id INT AUTO_INCREMENT PRIMARY KEY,
-    service_name VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     rating DECIMAL(3,1),
     language VARCHAR(50) NOT NULL,
-    area_of_austin VARCHAR(100) NOT NULL,
-    pricing INT,
+    area VARCHAR(100) NOT NULL,
+    price INT,
+    imageUrl VARCHAR(255),
     map_location VARCHAR(255),
-    website_link VARCHAR(255)
+    website VARCHAR(255),
+    descr VARCHAR(65535)
 );
 
 -- Local Non-English Communities Table
 CREATE TABLE Communities (
     community_id INT AUTO_INCREMENT PRIMARY KEY,
-    community_name VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     member_count INT,
     language VARCHAR(50) NOT NULL,
-    area_of_austin VARCHAR(100) NOT NULL,
-    community_type VARCHAR(100) NOT NULL,
-    community_image VARCHAR(255),
-    website_link VARCHAR(255)
+    area VARCHAR(100) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    imageUrl VARCHAR(255),
+    website VARCHAR(255),
+    descr VARCHAR(65535)
 );
 
 -- Local Non-English Friendly Job Postings Table
 CREATE TABLE Jobs (
     job_id INT AUTO_INCREMENT PRIMARY KEY,
-    company_name VARCHAR(100) NOT NULL,
-    job_title VARCHAR(100) NOT NULL,
-    hourly_pay DECIMAL(8,2),
+    name VARCHAR(100) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    pay DECIMAL(8,2),
     language VARCHAR(50) NOT NULL,
-    area_of_austin VARCHAR(100) NOT NULL,
-    company_image VARCHAR(255),
-    website_link VARCHAR(255)
+    area VARCHAR(100) NOT NULL,
+    imageUrl VARCHAR(255),
+    website VARCHAR(255),
+    descr VARCHAR(65535)
 );
 
 -- Association table linking Services and Communities
@@ -124,3 +128,7 @@ BEGIN
     WHERE Communities.language = NEW.language;
 END //
 DELIMITER ;
+
+SELECT * FROM Communities;
+SELECT * FROM Jobs;
+SELECT * FROM Services;
