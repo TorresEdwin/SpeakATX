@@ -1,0 +1,32 @@
+@startuml
+
+entity "Communities" as C {
+  *id : INT <<PK>>
+  --
+  name : string
+  language : string
+}
+
+entity "Services" as S {
+  *id : INT <<PK>>
+  --
+  name : string
+  language : string
+}
+
+entity "Jobs" as J {
+  *id : INT <<PK>>
+  --
+  title : string
+  language : string
+}
+
+' Define relationships indicating that each entity can have many instances of the same language
+C ||--o| S : "services with same language"
+C ||--o| J : "jobs with same language"
+S ||--o| J : "jobs with same language"
+S ||--o| C : "communities with same language"
+J ||--o| C : "communities with same language"
+J ||--o| S : "services with same language"
+
+@enduml
