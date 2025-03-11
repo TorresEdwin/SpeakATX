@@ -56,7 +56,7 @@ def populate_database(results):
             language=lang,
             area=item["location"],
             imageUrl="none" if "thumbnail" not in item else item["thumbnail"],
-            website=item["share_link"],
+            website=item["apply_options"][0]["link"],
             descr=item["description"]
         )
         connection.execute(insert_stmt)

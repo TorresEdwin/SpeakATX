@@ -164,4 +164,4 @@ def delete_translation_by_id(id):
     return jsonify({"message": f"Translation service with ID {id} deleted successfully"})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
