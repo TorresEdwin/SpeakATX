@@ -1,136 +1,178 @@
-// Filename - pages/JobDetail.jsx
-import React from "react";
-import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
-import { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Instances from "./instances.jsx";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import axios from "axios";
+
+const containerStyle = {
+  width: "100%",
+  height: "400px",
+};
+
+// Default fallback location: Austin, TX
+const DEFAULT_LOCATION = { lat: 30.2672, lng: -97.7431 };
 
 const TranslationInstance = () => {
-    const { translationName } = useParams(); // Get job name from URL
-    const navigate = useNavigate(); // Hook to navigate programmatically
-    const translation = Instances.translations.find(translation => translation.name === translationName); // Find the matching job
+  const { translationName } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  // Google Maps API Key
+  const googleMapsApiKey = "AIzaSyB7u06JfzlscQJXjFW2NVvfD6U3PaUEZsY"; // Replace with actual key
+
+  // Load Google Maps script
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey,
+  });
+
+  // Find the correct translation instance
+  const translation = Instances.translations.find(
+    (t) => t.name.toLowerCase() === translationName.toLowerCase()
+  );
+
+  // State management
+  const [coordinates, setCoordinates] = useState(DEFAULT_LOCATION);
+  const [loading, setLoading] = useState(true);
+
+  // Scroll to top whenever route changes
+  useEffect(() => {
+    setTimeout(() => window.scrollTo(0, 0), 10);
+  }, [location]);
+
+  // Load correct coordinates when `translation` changes
+  useEffect(() => {
     if (!translation) {
-        return <div className="container mt-4"><h1>Translation Not Found</h1><button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
+      setCoordinates(DEFAULT_LOCATION);
+      setLoading(false);
+      return;
     }
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            window.scrollTo(0, 0); // Scroll to the top after a slight delay
-        }, 10);
+    setLoading(true);
 
-        return () => clearTimeout(timeout);
-    }, [useLocation()]);
+    // ✅ Use stored coordinates if available
+    if (translation.coordinates?.latitude && translation.coordinates?.longitude) {
+      console.log(`Using stored coordinates for ${translation.name}:`, translation.coordinates);
+      setCoordinates({
+        lat: translation.coordinates.latitude,
+        lng: translation.coordinates.longitude,
+      });
+      setLoading(false);
+      return;
+    }
 
-    let filteredCommunities = []
-    for (let i = 0; i < Instances.communities.length; i++) {
-        if (Instances.matchingValues(Instances.communities[i].language, translation.language)) {
-            filteredCommunities.push(Instances.communities[i]);
+    // ✅ If no lat/lng, fetch from Google Maps API using address
+    if (translation.location?.display_address) {
+      const fullAddress = translation.location.display_address.join(", ");
+      fetchCorrectCoordinates(fullAddress);
+    } else {
+      setCoordinates(DEFAULT_LOCATION);
+      setLoading(false);
+    }
+  }, [translationName]); // ✅ Run when the instance name changes
+
+  // Fetch correct lat/lng from Google Maps API
+  const fetchCorrectCoordinates = async (address) => {
+    console.log("Fetching coordinates for:", address);
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json`,
+        {
+          params: { address, key: googleMapsApiKey },
         }
-    }
+      );
 
-    let filteredJobs = []
-    for (let i = 0; i < Instances.jobs.length; i++) {
-        if (Instances.matchingValues(Instances.jobs[i].language, translation.language)) {
-            filteredJobs.push(Instances.jobs[i]);
-        }
+      if (response.data.results.length > 0) {
+        const loc = response.data.results[0].geometry.location;
+        console.log(`Fetched coordinates for ${translation.name}:`, loc);
+        setCoordinates({ lat: loc.lat, lng: loc.lng });
+      } else {
+        console.error("Google API returned no results for:", address);
+        setCoordinates(DEFAULT_LOCATION);
+      }
+    } catch (error) {
+      console.error("Error fetching coordinates:", error);
+      setCoordinates(DEFAULT_LOCATION);
+    } finally {
+      setLoading(false);
     }
+  };
 
+  // If no matching translation, show error
+  if (!translation) {
     return (
-        <div className="container mt-4">
-            <button
-                className="btn btn-primary button-fixed button-grow"
-                style={{ top: '80px', left: '20px', transition: '0.2s ease' }}
-                onClick={() => navigate(-1)}
-            >
-                Back
-            </button>
-
-            <br />
-            <h1>{translation.name}</h1>
-            <img src={translation.mapImageUrl} alt={translation.name} className="img-fluid mb-3" style={{ maxHeight: "300px", objectFit: "cover" }} />
-            <p><strong>Rating:</strong> {translation.rating}</p>
-            <p><strong>Language:</strong> {translation.language}</p>
-            <p><strong>Area:</strong> {translation.area}</p>
-            <p><strong>Price:</strong> ${translation.price}/hr</p>
-
-            <div className="d-flex justify-content-center gap-3 mt-3 mb-3">
-            <button
-                    className="btn btn-success button-grow"
-                    style={{ transition: '0.2s ease' }}
-                    onClick={() => window.open(translation.website, "_blank")}
-                >
-                    View Service
-                </button>
-            </div>
-
-            <div className="d-flex justify-content-center mb-5">
-                <button
-                    className="btn btn-success button-grow"
-                    style={{ transition: '0.2s ease' }}
-                    onClick={() => window.open("https://maps.google.com/maps?q="+translation.area, "_blank")}
-                >
-                    View Map
-                </button>
-            </div>
-
-            
-
-            <div className="row justify-content-center">
-                <h3>{translation.language} Communities</h3>
-                {filteredCommunities.map((communityItem, index) => (
-                    <div className="col-md-3 mb-3" key={index}>
-                        <Link
-                            to={`/communities/${communityItem.name}`}  // Links to dynamic job page
-                            className="card text-decoration-none"
-                        >
-                            <img
-                                src={communityItem.imageUrl}
-                                alt={communityItem.name}
-                                className="card-img-top"
-                                style={{ height: "220px", objectFit: "cover" }}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{communityItem.name}</h5>
-                                <p className="card-text">
-                                    Language: {communityItem.language} <br />
-                                    Area: {communityItem.area} <br />
-                                    Member Count: {communityItem.member_count} <br />
-                                    Type: {communityItem.type}
-                                </p>
-                            </div>
-                        </Link>
-                    </div>
-                ))}
-
-                <h3>{translation.language} Job Postings</h3>
-                {filteredJobs.map((jobItem, index) => (
-                    <div className="col-md-3 mb-3" key={index}>
-                        <Link
-                            to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
-                            className="card text-decoration-none"
-                        >
-                            <img
-                                src={jobItem.imageUrl}
-                                alt={jobItem.name}
-                                className="card-img-top"
-                                style={{ height: "220px", objectFit: "cover" }}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{jobItem.name}</h5>
-                                <p className="card-text">
-                                    {jobItem.title} <br />
-                                    Pay: ${jobItem.pay}/hr <br />
-                                    Language: {jobItem.language} <br />
-                                    Area: {jobItem.area}
-                                </p>
-                            </div>
-                        </Link>
-                    </div>
-                ))}
-
-            </div>
-        </div >
+      <div className="container mt-4">
+        <h1>Translation Not Found</h1>
+        <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>
+          Back
+        </button>
+      </div>
     );
+  }
+
+  return (
+    <div className="container mt-4">
+      <button
+        className="btn btn-primary button-fixed button-grow"
+        style={{ top: "80px", left: "20px" }}
+        onClick={() => navigate(-1)}
+      >
+        Back
+      </button>
+
+      <h1>{translation.name}</h1>
+
+      {/* Embedded Google Map */}
+      <div className="mb-4">
+        {loading || !isLoaded ? (
+          <p>Loading map...</p>
+        ) : (
+          <GoogleMap
+            key={coordinates.lat + coordinates.lng} // 🔥 Forces re-render on coordinate change
+            mapContainerStyle={containerStyle}
+            center={coordinates}
+            zoom={15}
+          >
+            <Marker position={coordinates} />
+          </GoogleMap>
+        )}
+      </div>
+
+      <p>
+        <strong>Rating:</strong> {translation.rating}
+      </p>
+      <p>
+        <strong>Language:</strong> {translation.language}
+      </p>
+      <p>
+        <strong>Address:</strong>{" "}
+        {translation.location?.display_address?.join(", ")}
+      </p>
+      <p>
+        <strong>Price:</strong> ${translation.price ? translation.price : "N/A"}
+        /hr
+      </p>
+
+      <div className="d-flex justify-content-center gap-3 mt-3 mb-3">
+        <button
+          className="btn btn-success button-grow"
+          onClick={() => window.open(translation.website, "_blank")}
+        >
+          View Service
+        </button>
+      </div>
+
+      <div className="d-flex justify-content-center mb-5">
+        <button
+          className="btn btn-success button-grow"
+          onClick={() =>
+            window.open(`https://www.google.com/maps?q=${translation.area}`, "_blank")
+          }
+        >
+          View Map
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default TranslationInstance;
