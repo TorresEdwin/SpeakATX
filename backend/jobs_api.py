@@ -13,6 +13,16 @@ def extract_first_number(text):
         return float(match.group(0))
     return None
 
+def extract_first_dollar(text):
+    pattern = r'\$\d+\.\d{2}'
+
+    match = re.search(pattern, text)
+
+    if match:
+        dollar_amount = float(match.group(0)[1:])              
+        return dollar_amount
+    return 0             
+
 def save_to_json(jobs, filename="job_results.json"):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(jobs, f, ensure_ascii=False, indent=2)
@@ -48,6 +58,13 @@ def populate_database(results):
 
         if "detected_extensions" in item and "salary" in item["detected_extensions"]:
             paya = extract_first_number(item["detected_extensions"]["salary"])
+
+        if paya == 0:
+            if "job_highlights" in item:
+                for section in item["job_highlights"]:
+                    lines = section["items"]
+                    for line in lines:
+                        paya = max(paya, extract_first_dollar(line))
 
         insert_stmt = table.insert().values(
             name="none" if "company_name" not in item else item["company_name"],
@@ -106,5 +123,6 @@ def fetch_jobs(search_terms_list, pages):
     return job_listings
 
 if __name__ == "__main__":
-    #save_to_json(fetch_jobs("bilingual"))
-    populate_database(fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs"], 1))
+    jobs = fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs"], 1)
+    populate_database(jobs)
+    #save_to_json(jobs)
