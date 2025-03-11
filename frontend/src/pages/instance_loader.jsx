@@ -27,6 +27,7 @@ const InstanceLoader = {
         Instances.jobs = job_response.data.items;
         Instances.translations = service_response.data.items;
         Instances.communities = comm_response.data.items;
+        Instances.loaded = true;
 
         console.log('Data loaded in background');
       } catch (error) {

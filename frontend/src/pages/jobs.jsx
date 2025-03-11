@@ -1,12 +1,26 @@
 // Filename - pages/about.js
 
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
 
 const JobsPage = () => {
+    const [loaded, setLoaded] = useState(Instances.loaded);
+    useEffect(() => {
+      const checkLoadedStatus = () => {
+        setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
+      };
+  
+      const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+  
+      return () => clearInterval(intervalId);
+    }, [])
+    if (!loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
+
+    if (!Instances.loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
+
     const jobLinks = Instances.jobs;
 
     return (
