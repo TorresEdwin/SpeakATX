@@ -1,9 +1,21 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
+import React, { useState, useEffect } from 'react';
 
 const TranslationPage = () => {
+  const [loaded, setLoaded] = useState(Instances.loaded);
+  useEffect(() => {
+    const checkLoadedStatus = () => {
+      setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
+    };
+
+    const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+
+    return () => clearInterval(intervalId);
+  }, [])
+  if (!loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
+
   return (
     <div className="container mt-4">
       <br />
@@ -26,7 +38,7 @@ const TranslationPage = () => {
               </Link>
               
               <div className="card-footer d-flex justify-content-between" style={{ marginTop: 'auto' }}>
-                <a href={service.mapUrl} className="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Map</a>
+                <a href={"https://maps.google.com/maps?q="+service.area} className="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Map</a>
                 <a href={service.website} className="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer">Website</a>
               </div>
             </div>

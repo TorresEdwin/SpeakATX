@@ -1,5 +1,7 @@
 class Instances {
     
+    static loaded = false;
+
     static jobs = [
         
     ]; 

@@ -146,7 +146,11 @@ const About = () => {
             <p>SpeakATX aims to provide resources to minimal english and non-english speakers in Austin, TX. <br />
                 This site uses Yelp, Google Maps, and Glassdoor APIs. Made with React and Node.js.</p>
 
-            <p>Integrating diverse sources of data has been an intersting challenge for us. We discovered how crucial it is to match individuals with the right language resources, as not all services cater to every linguistic need. Additionally, different communication challenges often require tailored solutions to ensure effective support. We also realized the importance of finding nearby organizations that offer a wide range of services, making sure that language support is accessible to all members of the Austin community. This process highlighted the significance of connecting individuals with the right resources that truly align with their unique needs.</p>
+            <p>Integrating diverse sources of data has been an interesting challenge. In order to find businesses <br/>
+                and communities that serve all of the diverse language groups present in Austin, we had to utilize <br />
+                various sources of data. In doing so, we discovered how crucial it is to match individuals with <br/>
+                the right language resources, as not all services cater to every linguistic need. Additionally,  <br/>
+                different communication challenges often require tailored solutions to ensure effective support. </p>
 
             <br />
 
