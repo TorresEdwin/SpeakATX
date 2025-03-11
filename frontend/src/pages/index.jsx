@@ -9,10 +9,24 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 const Home = () => {
     const languageCounts = {};
     Instances.communities.forEach(service => {
-      service.language.split(', ').forEach(lang => {
-        const language = lang.trim();
-        languageCounts[language] = (languageCounts[language] || 0) + 1;
+        service.language.split(', ').forEach(lang => {
+            const language = lang.trim();
+            languageCounts[language] = (languageCounts[language] || 0) + 1;
+        });
+    });
+
+    Instances.jobs.forEach(service => {
+        service.language.split(', ').forEach(lang => {
+            const language = lang.trim();
+            languageCounts[language] = (languageCounts[language] || 0) + 1;
+        });
       });
+
+    Instances.translations.forEach(service => {
+        service.language.split(', ').forEach(lang => {
+            const language = lang.trim();
+            languageCounts[language] = (languageCounts[language] || 0) + 1;
+        });
     });
 
     const pieChartData = Object.keys(languageCounts).map(language => ({
