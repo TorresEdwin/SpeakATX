@@ -24,7 +24,7 @@ def get_table(table_name, filters=None):
 
     with engine.connect() as connection:
         result = connection.execute(select_stmt)
-        return [dict(row) for row in result]
+        return [dict(row) for row in result.mappings()]
 
 def get_table_paginated(table_name, page=1, per_page=10, filters=None):
     table = Table(table_name, metadata, autoload_with=engine)
@@ -42,7 +42,7 @@ def get_table_paginated(table_name, page=1, per_page=10, filters=None):
         result = connection.execute(query)
         total = connection.execute(count_query).scalar()
 
-        items = [dict(row) for row in result]
+        items = [dict(row) for row in result.mappings()]
 
         total_pages = (total + per_page - 1) // per_page # ceil
     
