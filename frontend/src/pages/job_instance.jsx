@@ -73,7 +73,14 @@ const JobInstance = () => {
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")}</p>
             <p><strong>Area:</strong> {job.area}</p>
-            <p><strong>About:</strong> {job.descr}</p>
+            <p style={{ textAlign: "left", maxWidth: "900px", margin: "0 auto", whiteSpace: "pre-line" }}>
+            <strong>About:</strong> <br /><br />
+            {job.descr.split("•").map((item, index) => (
+                <span key={index}>
+                    {index > 0 && "• "} {item.trim()} <br />
+                </span>
+            ))}
+            </p>
 
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
                 <button

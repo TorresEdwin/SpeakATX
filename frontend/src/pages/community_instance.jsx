@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import Instances from "./instances.jsx";
 
-const placeholderImage = "https://via.placeholder.com/300x200?text=No+Image+Available";
+const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
 const CommunityInstance = () => {
     const { communityName } = useParams();
@@ -72,7 +72,9 @@ const CommunityInstance = () => {
             <p><strong>Area:</strong> {community.area}</p>
             <p><strong>Member Count:</strong> {community.member_count}</p>
             <p><strong>Type:</strong> {community.type.charAt(0).toUpperCase() + community.type.slice(1)}</p>
-            <p><strong>About:</strong> {community.descr}</p>
+            <p style={{ textAlign: "left", maxWidth: "900px", margin: "0 auto" }}>
+            <strong>About:</strong> {community.descr}
+            </p>
 
             {/* View Community Button */}
             <div className="d-flex justify-content-center gap-3 mt-3 mb-5">
