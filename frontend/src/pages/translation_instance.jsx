@@ -181,6 +181,9 @@ const TranslationInstance = () => {
       <p>
         <strong>Price:</strong> {translation.price ? "💲".repeat(translation.price) : "N/A"}
       </p>
+      <p style={{ textAlign: "left", maxWidth: "900px", margin: "0 auto" }}>
+        <strong>About:</strong> {translation.descr}
+      </p>
 
       <div className="d-flex justify-content-center gap-3 mt-3 mb-3">
         <button
