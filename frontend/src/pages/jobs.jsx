@@ -48,15 +48,16 @@ const JobsPage = () => {
                     <div className="col-md-3 mb-3" key={index}>
                         <Link 
                             to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
-                            className="card text-decoration-none"
+                            className="card text-decoration-none d-flex flex-column justify-content-between"
+                            style={{ height: '500px' }} // Increased card height
                         >
                             <img 
                                 src={jobItem.imageUrl} 
                                 alt={jobItem.name} 
                                 className="card-img-top" 
-                                style={{ height: "220px", objectFit: "cover" }} 
+                                style={{ height: "250px", objectFit: "cover" }} // Increased image height
                             />
-                            <div className="card-body">
+                            <div className="card-body d-flex flex-column justify-content-between" style={{ flex: 1 }}>
                                 <h5 className="card-title">{jobItem.name}</h5>
                                 <p className="card-text">
                                     {jobItem.title} <br />
