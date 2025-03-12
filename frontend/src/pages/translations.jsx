@@ -31,6 +31,9 @@ const TranslationPage = () => {
   // Change the page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  // Define a placeholder image for missing thumbnails
+  const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
+
   return (
     <div className="container mt-4">
       <br />
@@ -41,7 +44,12 @@ const TranslationPage = () => {
           <div key={index} className="col">
             <div className="card h-100 shadow-lg overflow-hidden rounded">
               <Link to={`/translations/${service.name}`} className="text-decoration-none">
-                <img src={service.imageUrl} alt={service.name} className="service-image" />
+                <img 
+                  src={service.imageUrl ? service.imageUrl : placeholderImage} 
+                  alt={service.name} 
+                  className="service-image"
+                  onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
+                />
                 <div className="card-body text-center clickable-area">
                   <h5 className="card-title">{service.name}</h5>
                   <p className="card-text">⭐ {service.rating}</p>

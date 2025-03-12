@@ -4,6 +4,8 @@ import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import Instances from "./instances.jsx";
 
+const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
+
 const JobInstance = () => {
     const { jobName } = useParams(); // Get job name from URL
     const navigate = useNavigate(); // Hook to navigate programmatically
@@ -25,9 +27,9 @@ const JobInstance = () => {
       const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
   
       return () => clearInterval(intervalId);
-    }, [])
-    if (!loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
-
+    }, []);
+    
+    if (!loaded) return <div><div className="spinner-border text-dark" role="status"></div></div>;
 
     const job = Instances.jobs.find(job => job.name === jobName); // Find the matching job
 
@@ -35,14 +37,14 @@ const JobInstance = () => {
         return <div className="container mt-4"><h1>Job Not Found</h1><button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
-    let filteredTranslations = []
+    let filteredTranslations = [];
     for (let i = 0; i < Instances.translations.length; i++) {
         if (Instances.matchingValues(Instances.translations[i].language, job.language)) {
             filteredTranslations.push(Instances.translations[i]);
         }
     }
 
-    let filteredCommunities = []
+    let filteredCommunities = [];
     for (let i = 0; i < Instances.communities.length; i++) {
         if (Instances.matchingValues(Instances.communities[i].language, job.language)) {
             filteredCommunities.push(Instances.communities[i]);
@@ -60,7 +62,13 @@ const JobInstance = () => {
             </button>
             <br />
             <h1>{job.name}</h1>
-            <img src={job.imageUrl} alt={job.name} className="img-fluid mb-3" style={{ maxHeight: "300px", objectFit: "cover" }} />
+            <img 
+                src={job.imageUrl ? job.imageUrl : placeholderImage} 
+                alt={job.name} 
+                className="img-fluid mb-3" 
+                style={{ maxHeight: "300px", objectFit: "cover" }} 
+                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
+            />
             <p><strong>Title:</strong> {job.title}</p>
             <p><strong>Pay:</strong> ${job.pay}/hr</p>
             <p><strong>Language:</strong> {job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")}</p>
@@ -75,8 +83,6 @@ const JobInstance = () => {
                 >
                     View Job
                 </button>
-
-
             </div>
 
             <div className="row justify-content-center">
@@ -84,14 +90,15 @@ const JobInstance = () => {
                 {filteredCommunities.map((communityItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
-                            to={`/communities/${communityItem.name}`}  // Links to dynamic job page
+                            to={`/communities/${communityItem.name}`}  
                             className="card text-decoration-none"
                         >
                             <img
-                                src={communityItem.imageUrl}
+                                src={communityItem.imageUrl ? communityItem.imageUrl : placeholderImage}
                                 alt={communityItem.name}
                                 className="card-img-top"
                                 style={{ height: "220px", objectFit: "cover" }}
+                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{communityItem.name}</h5>
@@ -111,14 +118,15 @@ const JobInstance = () => {
                 {filteredTranslations.map((translationItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
-                            to={`/translations/${translationItem.name}`}  // Links to dynamic job page
+                            to={`/translations/${translationItem.name}`}  
                             className="card text-decoration-none"
                         >
                             <img
-                                src={translationItem.imageUrl}
+                                src={translationItem.imageUrl ? translationItem.imageUrl : placeholderImage}
                                 alt={translationItem.name}
                                 className="card-img-top"
                                 style={{ height: "220px", objectFit: "cover" }}
+                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{translationItem.name}</h5>
@@ -132,9 +140,7 @@ const JobInstance = () => {
                         </Link>
                     </div>
                 ))}
-
             </div>
-
         </div>
     );
 };

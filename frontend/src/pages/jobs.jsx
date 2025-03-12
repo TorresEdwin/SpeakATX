@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
 
+const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
+
 const JobsPage = () => {
     const [loaded, setLoaded] = useState(Instances.loaded);
     const [currentPage, setCurrentPage] = useState(1); // State for current page
@@ -52,10 +54,11 @@ const JobsPage = () => {
                             style={{ height: '500px' }} // Increased card height
                         >
                             <img 
-                                src={jobItem.imageUrl} 
+                                src={jobItem.imageUrl ? jobItem.imageUrl : placeholderImage} 
                                 alt={jobItem.name} 
                                 className="card-img-top" 
                                 style={{ height: "250px", objectFit: "cover" }} // Increased image height
+                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
                             />
                             <div className="card-body d-flex flex-column justify-content-between" style={{ flex: 1 }}>
                                 <h5 className="card-title">{jobItem.name}</h5>

@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import Instances from "./instances.jsx";
 
+const placeholderImage = "https://via.placeholder.com/300x200?text=No+Image+Available";
 
 const CommunityInstance = () => {
     const { communityName } = useParams(); // Get job name from URL
@@ -26,8 +27,9 @@ const CommunityInstance = () => {
       const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
   
       return () => clearInterval(intervalId);
-    }, [])
-    if (!loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
+    }, []);
+    
+    if (!loaded) return <div><div className="spinner-border text-dark" role="status"></div></div>;
     
     const community = Instances.communities.find(community => community.name === communityName); // Find the matching job
 
@@ -35,20 +37,19 @@ const CommunityInstance = () => {
         return <div className="container mt-4"><h1>Community Not Found</h1><button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>Back</button></div>;
     }
 
-    let filteredTranslations = []
+    let filteredTranslations = [];
     for (let i = 0; i < Instances.translations.length; i++) {
         if (Instances.matchingValues(Instances.translations[i].language, community.language)) {
             filteredTranslations.push(Instances.translations[i]);
         }
     }
 
-    let filteredJobs = []
+    let filteredJobs = [];
     for (let i = 0; i < Instances.jobs.length; i++) {
         if (Instances.matchingValues(Instances.jobs[i].language, community.language)) {
             filteredJobs.push(Instances.jobs[i]);
         }
     }
-
 
     return (
         <div className="container mt-4">
@@ -61,7 +62,13 @@ const CommunityInstance = () => {
             </button>
             <br />
             <h1>{community.name}</h1>
-            <img src={community.imageUrl} alt={community.name} className="img-fluid mb-3" style={{ maxHeight: "300px", objectFit: "cover" }} />
+            <img 
+                src={community.imageUrl ? community.imageUrl : placeholderImage} 
+                alt={community.name} 
+                className="img-fluid mb-3" 
+                style={{ maxHeight: "300px", objectFit: "cover" }} 
+                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
+            />
             <p><strong>Language:</strong> {community.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")}</p>
             <p><strong>Area:</strong> {community.area}</p>
             <p><strong>Member Count:</strong> {community.member_count}</p>
@@ -76,8 +83,6 @@ const CommunityInstance = () => {
                 >
                     View Community
                 </button>
-
-
             </div>
 
             <div className="row d-flex justify-content-center">
@@ -85,14 +90,15 @@ const CommunityInstance = () => {
                 {filteredTranslations.map((translationItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
-                            to={`/translations/${translationItem.name}`}  // Links to dynamic job page
+                            to={`/translations/${translationItem.name}`}  
                             className="card text-decoration-none"
                         >
                             <img
-                                src={translationItem.imageUrl}
+                                src={translationItem.imageUrl ? translationItem.imageUrl : placeholderImage}
                                 alt={translationItem.name}
                                 className="card-img-top"
                                 style={{ height: "220px", objectFit: "cover" }}
+                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{translationItem.name}</h5>
@@ -111,14 +117,15 @@ const CommunityInstance = () => {
                 {filteredJobs.map((jobItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
-                            to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
+                            to={`/jobs/${jobItem.name}`}  
                             className="card text-decoration-none"
                         >
                             <img
-                                src={jobItem.imageUrl}
+                                src={jobItem.imageUrl ? jobItem.imageUrl : placeholderImage}
                                 alt={jobItem.name}
                                 className="card-img-top"
                                 style={{ height: "220px", objectFit: "cover" }}
+                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
                             />
                             <div className="card-body">
                                 <h5 className="card-title">{jobItem.name}</h5>
@@ -135,7 +142,6 @@ const CommunityInstance = () => {
             </div>
         </div>
     );
-
 };
 
 export default CommunityInstance;
