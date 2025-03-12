@@ -118,7 +118,7 @@ const TranslationInstance = () => {
   if (!translation) {
     return (
       <div className="container mt-4">
-        <h1>Translation Not Found</h1>
+        <h1>Service Not Found</h1>
         <button className="back-button btn btn-primary mt-3" onClick={() => navigate(-1)}>
           Back
         </button>
@@ -179,8 +179,7 @@ const TranslationInstance = () => {
         {translation.location?.display_address?.join(", ")}
       </p>
       <p>
-        <strong>Price:</strong> ${translation.price ? translation.price : "N/A"}
-        /hr
+        <strong>Price:</strong> {translation.price ? "💲".repeat(translation.price) : "N/A"}
       </p>
 
       <div className="d-flex justify-content-center gap-3 mt-3 mb-3">
