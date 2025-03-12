@@ -121,7 +121,7 @@ const JobInstance = () => {
                     </div>
                 ))}
 
-                <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Translation Services</h3>
+                <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Services</h3>
                 {filteredTranslations.map((translationItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
