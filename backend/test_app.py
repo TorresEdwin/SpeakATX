@@ -57,8 +57,8 @@ def test_get_translations():
 # Test for getting translation by ID
 def test_get_translation_by_id():
     # Assume that there is a translation service with ID 1 in the database
-    response = requests.get(f"{BASE_URL}/get/translations/id/281")
+    response = requests.get(f"{BASE_URL}/get/translations/id/840")
     assert response.status_code == 200  # Expecting a valid service record
     data = response.json()
     assert "service_id" in data
-    assert data["service_id"] == 281
+    assert data["service_id"] == 840
