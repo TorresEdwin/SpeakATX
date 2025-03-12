@@ -66,7 +66,7 @@ const Home = () => {
                                 <hr className="my-4" />
                             </Col>
                             <Col className="d-none d-md-block">
-                              <div className="card shadow-lg p-3 mb-5 bg-white rounded">
+                              <div className="p-3 mb-5 bg-white rounded">
                                 <h5 className="text-center">Language Distribution</h5>
                                 <ResponsiveContainer width="100%" height={300}>
                                   <PieChart>
