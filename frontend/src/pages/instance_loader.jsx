@@ -10,15 +10,15 @@ const InstanceLoader = {
   initialize: async function() {
     if (!this.isLoaded) {
       try {
-        const job_response = await axios.get('https://api.speakatx.me/get/jobs', {
+        const job_response = await axios.get('https://api.speakatx.me/get/jobs?page=1&per_page=150', {
                 timeout: 1000, // 10 seconds timeout
             }
         );
-        const service_response = await axios.get('https://api.speakatx.me/get/translations', {
+        const service_response = await axios.get('https://api.speakatx.me/get/translations?page=1&per_page=150', {
                 timeout: 1000, // 10 seconds timeout
             }
         );
-        const comm_response = await axios.get('https://api.speakatx.me/get/communities', {
+        const comm_response = await axios.get('https://api.speakatx.me/get/communities?page=1&per_page=150', {
                 timeout: 1000, // 10 seconds timeout
             }
         );
