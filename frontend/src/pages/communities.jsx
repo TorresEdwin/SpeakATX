@@ -1,5 +1,3 @@
-// Filename - pages/communities.js
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
@@ -46,15 +44,16 @@ const CommunitiesPage = () => {
                     <div className="col-md-3 mb-3" key={index}>
                         <Link 
                             to={`/communities/${communityItem.name}`}  // Links to dynamic community page
-                            className="card text-decoration-none"
+                            className="card text-decoration-none d-flex flex-column justify-content-between"
+                            style={{ height: '500px' }} // Increased card height for a larger card
                         >
                             <img 
                                 src={communityItem.imageUrl} 
                                 alt={communityItem.name} 
                                 className="card-img-top" 
-                                style={{ height: "220px", objectFit: "cover" }} 
+                                style={{ height: "250px", objectFit: "cover" }} // Increased image height
                             />
-                            <div className="card-body">
+                            <div className="card-body d-flex flex-column justify-content-between" style={{ flex: 1 }}>
                                 <h5 className="card-title">{communityItem.name}</h5>
                                 <p className="card-text">
                                     Language: {communityItem.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
