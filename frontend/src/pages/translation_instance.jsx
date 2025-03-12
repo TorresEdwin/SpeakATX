@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import Instances from "./instances.jsx";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
@@ -37,7 +37,7 @@ const TranslationInstance = () => {
   var translation = Instances.translations.find(
     (t) => t.name.toLowerCase() === translationName.toLowerCase()
   );
-  
+
 
   // Load correct coordinates when `translation` changes
   useEffect(() => {
@@ -126,6 +126,20 @@ const TranslationInstance = () => {
     );
   }
 
+  let filteredJobs = []
+  for (let i = 0; i < Instances.jobs.length; i++) {
+    if (Instances.matchingValues(Instances.jobs[i].language, translation.language)) {
+      filteredJobs.push(Instances.jobs[i]);
+    }
+  }
+  let filteredCommunities = []
+  for (let i = 0; i < Instances.communities.length; i++) {
+    if (Instances.matchingValues(Instances.communities[i].language, translation.language)) {
+      filteredCommunities.push(Instances.communities[i]);
+    }
+  }
+
+
   return (
     <div className="container mt-4">
       <button
@@ -182,11 +196,68 @@ const TranslationInstance = () => {
         <button
           className="btn btn-success button-grow"
           onClick={() =>
-            window.open((translation.area !== "unknown" && translation.area !== "") ? "https://maps.google.com/maps?q="+translation.area : "https://maps.google.com/maps?q="+translation.map_location, "_blank")
+            window.open((translation.area !== "unknown" && translation.area !== "") ? "https://maps.google.com/maps?q=" + translation.area : "https://maps.google.com/maps?q=" + translation.map_location, "_blank")
           }
         >
           View Map
         </button>
+      </div>
+
+
+
+      <div className="row justify-content-center">
+        <h3>{translation.language} Communities</h3>
+        {filteredCommunities.map((communityItem, index) => (
+          <div className="col-md-3 mb-3" key={index}>
+            <Link
+              to={`/communities/${communityItem.name}`}  // Links to dynamic job page
+              className="card text-decoration-none"
+            >
+              <img
+                src={communityItem.imageUrl}
+                alt={communityItem.name}
+                className="card-img-top"
+                style={{ height: "220px", objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{communityItem.name}</h5>
+                <p className="card-text">
+                  Language: {communityItem.language} <br />
+                  Area: {communityItem.area} <br />
+                  Member Count: {communityItem.member_count} <br />
+                  Type: {communityItem.type}
+                </p>
+              </div>
+            </Link>
+          </div>
+        ))}
+
+        <h3>{translation.language} Job Postings</h3>
+        {filteredJobs.map((jobItem, index) => (
+          <div className="col-md-3 mb-3" key={index}>
+            <Link
+              to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
+              className="card text-decoration-none"
+            >
+              <img
+                src={jobItem.imageUrl}
+                alt={jobItem.name}
+                className="card-img-top"
+                style={{ height: "220px", objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{jobItem.name}</h5>
+                <p className="card-text">
+                  {jobItem.title} <br />
+                  Pay: ${jobItem.pay}/hr <br />
+                  Language: {jobItem.language} <br />
+                  Area: {jobItem.area}
+                </p>
+              </div>
+            </Link>
+          </div>
+        ))}
+
       </div>
     </div>
   );
