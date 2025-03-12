@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - test_backend
   - test_acceptance
 
@@ -52,3 +53,12 @@ test-acceptance:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
+
+postman_tests:
+  stage: test
+  image: 
+    name: postman/newman:alpine
+    entrypoint: [""]
+  script:
+    - newman --version
+    - newman run SpeakATX.postman_collection.json
