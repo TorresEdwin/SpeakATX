@@ -1,6 +1,8 @@
 stages:
   - build
   - test
+  - test_backend
+  - test_acceptance
 
 build-and-test-frontend:
   stage: build
@@ -20,6 +22,34 @@ build-and-test-frontend:
     - echo "Running unit tests..."
     - npm run test
     - echo "Tests completed"
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+
+test-flask-backend:
+  stage: test_backend
+  image: python:3.12
+  before_script:
+    - cd backend
+    - pip install --upgrade pip
+    - pip install pytest requests
+  script:
+    - echo "Running Flask app tests..."
+    - pytest test_app.py
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+
+test-acceptance:
+  stage: test_acceptance
+  image: python:3.12
+  before_script:
+    - cd frontend/__tests__
+    - pip install --upgrade pip
+    - pip install chromedriver-autoinstaller selenium
+  script:
+    - echo "Running frontend acceptance tests..."
+    - python frontend_acceptance.py
   rules:
     - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
