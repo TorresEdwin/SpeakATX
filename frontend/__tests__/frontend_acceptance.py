@@ -1,6 +1,7 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,15 +9,24 @@ from selenium.webdriver.support import expected_conditions as EC
 import chromedriver_autoinstaller
 
 class FrontendTests(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         # Automatically install and set up the chromedriver
         chromedriver_autoinstaller.install()
+        
+        # Configure Chrome to run in headless mode
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--window-size=1920,1080")
+        
+        # Set up the driver with the options
         service = Service()
-        cls.driver = webdriver.Chrome(service=service)
+        cls.driver = webdriver.Chrome(service=service, options=chrome_options)
         cls.driver.implicitly_wait(10)  # Wait for elements to load
-
+    
     def test_title(self):
         """Check if the page title in h1 is correct"""
         self.driver.get("https://speakatx.me/")
