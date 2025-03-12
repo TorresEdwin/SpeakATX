@@ -43,6 +43,17 @@ def search_businesses(api_key, location, term=None, total_results=20):
         if response.status_code == 200:
             data = response.json()
             businesses = data["businesses"]
+
+            for business in businesses:
+                id = business["id"]
+                detail_endpoint = f"https://api.yelp.com/v3/businesses/{id}/reviews"
+
+                detail_response = requests.get(detail_endpoint, headers=headers)
+
+                if detail_response.status_code == 200:
+                    business["description"] = detail_response.json()
+                
+
             all_businesses.extend(businesses)
             
             # If we received fewer results than requested, we've hit the end
@@ -94,7 +105,7 @@ def populate_database(results):
                 name=item["name"],
                 language=category if category != "translations" else lang,
                 rating=item["rating"],
-                area="unknown" if item["location"]["address1"] == None else item["location"]["address1"],
+                area="" if item["location"]["address1"] == None else item["location"]["address1"],
                 price=1 if "price" not in item else len(item["price"]), # either $, $$, or $$$
                 imageUrl=item["image_url"],
                 map_location=f"{item["coordinates"]["latitude"]},{item["coordinates"]["longitude"]}",
@@ -135,5 +146,5 @@ if __name__ == "__main__":
 
     print(f"Retrieved a total of {count} businesses")
     
-    populate_database(results)
-    #save_to_json(results)
+    #populate_database(results)
+    save_to_json(results)

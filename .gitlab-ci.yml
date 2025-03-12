@@ -1,5 +1,8 @@
 stages:
   - build
+  - test_backend
+  - test_acceptance
+  - test_postman
 
 build-and-test-frontend:
   stage: build
@@ -22,3 +25,48 @@ build-and-test-frontend:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
+
+test-flask-backend:
+  stage: test_backend
+  image: python:3.12
+  before_script:
+    - cd backend
+    - pip install --upgrade pip
+    - pip install pytest requests
+  script:
+    - echo "Running Flask app tests..."
+    - pytest test_app.py
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+
+test-acceptance:
+  stage: test_acceptance
+  image: python:3.12-slim
+  before_script:
+    - apt-get update
+    - apt-get install -y wget gnupg2 unzip
+    # Install Chrome
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+    - apt-get update
+    - apt-get install -y google-chrome-stable
+    # Install required dependencies
+    - cd frontend/__tests__
+    - pip install --upgrade pip
+    - pip install selenium pytest chromedriver-autoinstaller
+  script:
+    - echo "Running frontend acceptance tests..."
+    - python frontend_acceptance.py
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+
+postman-tests:
+  stage: test_postman
+  image: 
+    name: postman/newman:alpine
+    entrypoint: [""]
+  script:
+    - newman --version
+    - newman run SpeakATX.postman_collection.json

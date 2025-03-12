@@ -1,0 +1,765 @@
+{
+	"info": {
+		"_postman_id": "20c96875-bd33-458c-aa59-c40222739eaf",
+		"name": "SpeakATX",
+		"description": "SpeakATX API has 3 collections: Communities, Translation Services, and Job Opportunities. Endpoints can get all instances or one instance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42364456",
+		"_collection_link": "https://speakatx.postman.co/workspace/61f348dc-c3a2-4a54-8986-7c5aab268ce0/collection/42364456-20c96875-bd33-458c-aa59-c40222739eaf?action=share&source=collection_link&creator=42364456"
+	},
+	"item": [
+		{
+			"name": "Communities",
+			"item": [
+				{
+					"name": "getAllCommunities",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.speakatx.me/get/communities",
+							"protocol": "https",
+							"host": [
+								"api",
+								"speakatx",
+								"me"
+							],
+							"path": [
+								"get",
+								"communities"
+							]
+						},
+						"description": "get all communities for SpeakATX"
+					},
+					"response": [
+						{
+							"name": "getAllCommunities",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.speakatx.me/get/communities",
+									"protocol": "https",
+									"host": [
+										"api",
+										"speakatx",
+										"me"
+									],
+									"path": [
+										"get",
+										"communities"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Mar 2025 06:51:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15068"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"area\": \"Link visible for attendees\",\n            \"community_id\": 121,\n            \"descr\": \"This group is for people wishing to learn Spanish to a high level of competency, especially if they have had trouble progressing in the past and are looking for a new way to improve.\\nThe group workshops are hosted by Francis Collier and are free and open to anyone interested.\\nMore information on paid courses is available at the end of the workshop for anyone looking to improve further.\\nThe 3 Step Process:\\nStep 1: The 12 Sounds.\\nIn Spanish there are 12 new sounds that do not exist in English.\\nThe first step in the process to fluency is to learn ALL of these sounds CORRECTLY.\\nIf you don't know what all of these sounds are please be advised Francis Collier will take everyone through them in the workshop.\\nStep 2: Native Phrases.\\nVery often Spanish learners when presented with a native level conversation find it sounds \\\"too fast\\\" and they can't keep up.\\nCommonly there are two things that are going wrong in this step.\\nReason 1. The 12 new sounds in Spanish have not been learnt and therefore the fundamental building blocks required are not there.\\nReason 2. The student cannot recognise the Native Phrases used as they do not know them and have not practised recognising them. This can often happen because the student is still translating in their head from English.\\nWhat are Native Phrases?\\nThey are combinations of words that are used so commonly in a language that they are squeezed together and said very quickly.\\nThink of the way someone might say “What do you want?” to their friend if they are in a drive through. It’s more like “wadayawan?”\\nIt’s exactly the same in Spanish, there are many native phrases that native speakers say every day and practising to recognise these at speed is crucial in order to understand real conversation.\\nStep 3: Real Conversations at Native Speed.\\nThe third step is to practise in a conversation at REAL Native Speed.\\nImagine learning to play baseball and spending hours reading books on base ball, watching and analysing old games but never playing a real game at real speed.\\nHow long do you think it would take to get good?\\nThis being a bad idea seems very obvious in the example above but this is what so many students do with apps and books and movies when learning a language and many of them never reach fluency with this approach.\\nSo if you are interested in coming along and learning more about the process to Spanish fluency and how to improve your Spanish then please sign up for one of our workshops.\\nTo sign up for the workshop go to the event page and click the on \\\"Attend\\\" button for the workshop link.\\nGood luck and we hope to see you soon.\\nAs perpolicy: Attendees under the age of 18 must have a guardian with them.\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/526379326/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 25,\n            \"name\": \"3 Steps to Spanish Fluency: Online Workshops Austin\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/meetup-group-bghbaaia?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Chandler Creek HOA Meeting Room, Round Rock, TX\",\n            \"community_id\": 122,\n            \"descr\": \"This Conversational Spanish class is designed for adults looking to build practical communication skills in Spanish through engaging, interactive activities. Whether you're a beginner or looking to refresh your knowledge, this class focuses on real-life conversational scenarios, helping you gain confidence in speaking, listening, and understanding Spanish. With small group sizes and a supportive atmosphere, you’ll practice useful vocabulary, common phrases, and cultural nuances while enjoying dynamic discussions and role-playing exercises. Perfect for travel, work, or personal growth, this class emphasizes speaking Spanish from day one in a relaxed and enjoyable environment.\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/526121436/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 46,\n            \"name\": \"Round Rock Conversational Spanish\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/round-rock-conversational-spanish?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Link visible for attendees\",\n            \"community_id\": 123,\n            \"descr\": \"Ready to speak Spanish with confidence?At Beepboop, we offer a fun, fast, and free way to learn Spanish through quick 25-minute online sessions. Start speaking Spanish from day one with native speakers, using our effective, engaging, and exciting teaching method!\\nWhy You’ll Love Us⭐️Learnfrom Native Spanish Speakers – Gain authentic skills and cultural insights.⭐️Freeto use – Join unlimited classes and experience the magic for yourself⭐️ConvenientSchedule – Classes every 30 minutes, 7 AM to 11 PM EST.⭐️Upgradeto Pro anytime - Supercharge your learning and see even faster progress\\nWhat Makes Us Different?✅Tailored to Your Level – Beginner, Intermediate, or Advanced, we’ve got you covered.✅FlexibleLearning– Join anytime, from anywhere, even on a tight schedule.✅Teaching method– A Dartmouth College technique that makes language come alive and learning unforgettable✅Social & Supportive– Connect with classmates from around the globe and your local community.\\nGetting Started Is Easy1️⃣Visit[]()2️⃣Set up yourfree accountin seconds3️⃣Dive into 35+ Spanish Drills daily!\\nWhether you're a complete beginner or looking to refine your fluency, Beepboop will help you speak Spanish quickly and confidently. Try a class today—it’s completely free!\\n¡Nos vemos pronto!\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/525136959/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 941,\n            \"name\": \"Learn Spanish Free - Speak Spanish Confidently - Austin\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/free-spanish-speaking-drills-online-everyday-austin?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Central Market North, Austin, TX\",\n            \"community_id\": 124,\n            \"descr\": \"Welcome to Austin Beginner Spanish Conversation Meetup! This group is perfect for Spanish learners who are looking to practice their speaking skills in a relaxed and friendly environment. Our meetings will center around the theme of Disfrutando en Espanol or Enjoying in Spanish, where we will engage in conversations about culture, food, travel, and other enjoyable topics. Whether you're a complete beginner or just looking to brush up on your skills, this group is the perfect place to immerse yourself in the Spanish language and meet new friends. Join us for fun and lively language practice sessions! ¡Nos vemos pronto!\",\n            \"imageUrl\": \"N/A\",\n            \"language\": \"spanish\",\n            \"member_count\": 397,\n            \"name\": \"Austin Beginner Spanish Conversation\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/austin-beginner-spanish-conversation?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Whole Foods at The Domain, Austin, TX\",\n            \"community_id\": 125,\n            \"descr\": \"This will be a Spanish/Hindi language exchange group. If you want to have conversation in Spanish or Hindi for language development then this is the group for you!!!\\nFor the first hour we will have open conversations in Hindi. The second hour and beyond we will have conversations in Spanish.\\nOccasionally we will have hikes, visit museums, and experience restaurants around Austin just for added fun!\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/515136671/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 91,\n            \"name\": \"Spanish and Hindi Language Exchange in Austin\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/hindi-conversational?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Esquina Tango, Austin, TX\",\n            \"community_id\": 126,\n            \"descr\": \"Esquina Tango is the most colorful corner in Austin where people go mingle, meet friends learn about cultures, languages and dance. It's a wonderful community full of live music, movie and social dancing. It's a great place for people of all ages, nationalities, new to town, singles, married..with our without children. Check our website www.esquinatangoaustin.com for a full list of events and activities for adults and children!\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/489677628/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 2,\n            \"name\": \"Esquina Tango Cultural Center of Austin\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/Esquina-Tango-Austin?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Link visible for attendees\",\n            \"community_id\": 127,\n            \"descr\": \"Bienvenidos! Welcome!Join us also on Facebook:\\nEnglish Español Conversation Club members meet regularly to practice speaking Español and/or English.All levels of speakers of English and Spanish are welcome to attend. Just take a seat, introduce yourself, and start talking.VOLUNTEERSare sought to host meetups for our group of any format on any day of the week. We'd enjoy restaurant outings, mixers, pot lucks, or brief instructional presentations followed by fun guided conversational practice with multiple people on a basic to advanced level. Your ideas are welcome.\\nSi a Ud. le interesa practicar ingles, favor de invitar otros conocidos y atender nuestro grupo. Ahora buscamos voluntarios para seranfitrión. Ud puede añadir citas al calendario en cualquier lugar y día. Normalmente unimos por 1.5 horas - pasamos la primera parte hablando en español y el segundo en inglés.\\nIf you want to practice Spanish and should be so lucky as to chat with someone who is a native speaker of the language, do give them time to practice in English with you as well.\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/447917918/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 5,\n            \"name\": \"English Español Conversation Club\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/English-Espanol?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"N/A\",\n            \"community_id\": 128,\n            \"descr\": \"Welcome to the Austin Spanish and English Meetup Group! Our diverse group focuses on promoting language exchange, as well as fostering a fun and engaging environment for learning Spanish and English. Whether you're a native Spanish speaker hoping to practice your English skills, or an English speaker eager to learn Spanish, we've got you covered. We offer various activities and events to cater to everyone's specific language learning goals. Join us to enjoy great conversations, build friendships, and improve your language skills in a supportive community. ¡Ven y disfruta con nosotros en español e inglés!\\n¡Bienvenidos a nuestro grupo de Meetup de Español e Inglés en Austin! Aquí nos enfocamos en disfrutar del idioma español, fomentar el intercambio de idiomas, y crear amistades a través de eventos divertidos y enriquecedores. Además, ofrecemos apoyo en Inglés para propósitos específicos y promovemos la práctica constante de español e inglés. Si estás interesado en mejorar tu comunicación en ambos idiomas y conocer a personas con intereses similares, ¡únete a nuestro grupo! No importa tu nivel de habilidad, ¡todos son bienvenidos!\\nThis group is brought to you by bammbuu language learning. A safe place to learn and practice languages. Start for free today:\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/518813870/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 135,\n            \"name\": \"Austin Spanish and English Meetup Group\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/austin-spanish-meetup-group?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Location visible to members\",\n            \"community_id\": 129,\n            \"descr\": \"This group is for people who are interested in practicing conversational Spanish or English. All levels of Spanish and English are welcome, you don't have to be fluent to participate in any of our events. If you have the desire to practice your target language or if you are trying to learn either language this is the group for you.You can also join our WhatsApp group\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/500695012/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 3,\n            \"name\": \"Spanish Adventures Conversational Club\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/spanishadventures?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        },\n        {\n            \"area\": \"Capital Factory, Austin, TX\",\n            \"community_id\": 130,\n            \"descr\": \"Hispanic Hackers is a community of software developers, hardware engineers, and ambitious innovators of Hispanic ethnicity. Our goal is to showcase Hispanic developer talent in the world of tech and share the growth of our expanding network of engineering excellence. If you're not Hispanic, this is a great place to get to know Austin's Hispanic Hacker community! Our meetings feature tech socials and topics in software and hardware technology presented by Austin's engineering industry leaders. Come meet with us, showcase your accomplishments, learn from each other, and get to know your fellow Hispanic Hackers! All skill levels and career stages are welcome.\\nJoin the conversation on ouror meet us at one of our Austin events!\\nThank you to Capital Factory for sponsoring the Austin Hispanic Hackers. Capital Factory is the center of gravity for entrepreneurs in Texas. They meet the best entrepreneurs in Texas and introduce them to their first investors, employees, mentors, and customers. To sign up for a Capital Factory coworking membership,.\",\n            \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/525804955/178x100.jpg?w=178?w=384\",\n            \"language\": \"spanish\",\n            \"member_count\": 2,\n            \"name\": \"Austin Hispanic Hackers Meetup\",\n            \"type\": \"idk\",\n            \"website\": \"https://www.meetup.com/austin-hispanic-hackers-meetup?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n        }\n    ],\n    \"pagination\": {\n        \"has_next\": true,\n        \"has_prev\": false,\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total_items\": 100,\n        \"total_pages\": 10\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getCommunityByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.speakatx.me/get/communities/id/611",
+							"protocol": "https",
+							"host": [
+								"api",
+								"speakatx",
+								"me"
+							],
+							"path": [
+								"get",
+								"communities",
+								"id",
+								"611"
+							]
+						},
+						"description": "get one community based on its id"
+					},
+					"response": [
+						{
+							"name": "getCommunityByID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.speakatx.me/get/communities/id/611",
+									"protocol": "https",
+									"host": [
+										"api",
+										"speakatx",
+										"me"
+									],
+									"path": [
+										"get",
+										"communities",
+										"id",
+										"611"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Mar 2025 06:52:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1186"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"area\": \"Chandler Creek HOA Meeting Room, Round Rock, TX\",\n    \"community_id\": 122,\n    \"descr\": \"This Conversational Spanish class is designed for adults looking to build practical communication skills in Spanish through engaging, interactive activities. Whether you're a beginner or looking to refresh your knowledge, this class focuses on real-life conversational scenarios, helping you gain confidence in speaking, listening, and understanding Spanish. With small group sizes and a supportive atmosphere, you’ll practice useful vocabulary, common phrases, and cultural nuances while enjoying dynamic discussions and role-playing exercises. Perfect for travel, work, or personal growth, this class emphasizes speaking Spanish from day one in a relaxed and enjoyable environment.\",\n    \"imageUrl\": \"https://secure-content.meetupstatic.com/images/classic-events/526121436/178x100.jpg?w=178?w=384\",\n    \"language\": \"spanish\",\n    \"member_count\": 46,\n    \"name\": \"Round Rock Conversational Spanish\",\n    \"type\": \"idk\",\n    \"website\": \"https://www.meetup.com/round-rock-conversational-spanish?eventOrigin=find_page&recSource=chapter-search&recId=f97da291-9a62-4275-bed6-593eb0fce8d9&searchId=aeefe70e-c236-4020-8e0f-26b4306330d7\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Collection related to the Communities in SpeakATX",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    console.log('Status Code:', pm.response.status); \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is in JSON format\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"if (pm.info.requestName === 'getAllCommunities') {\r",
+							"    // Test for getAllCommunities\r",
+							"    pm.test(\"Response structure is valid for getAllCommunities\", function () {\r",
+							"        var jsonResponse = pm.response.json();\r",
+							"\r",
+							"        // Check that 'items' is an array\r",
+							"        pm.expect(jsonResponse.items).to.be.an('array');\r",
+							"\r",
+							"        // Verify the structure of each item in the 'items' array\r",
+							"        jsonResponse.items.forEach(function(item) {\r",
+							"            validateItemStructure(item);\r",
+							"\r",
+							"        });\r",
+							"    });\r",
+							"\r",
+							"} else if (pm.info.requestName === 'getCommunityByID') {\r",
+							"    // Test for getCommunityByID\r",
+							"    pm.test(\"Response structure is valid for getCommunityByID\", function () {\r",
+							"        var jsonResponse = pm.response.json();\r",
+							"\r",
+							"        // Check that the response is an object, not an array\r",
+							"        pm.expect(jsonResponse).to.be.an('object');\r",
+							"\r",
+							"        // Check for the presence of expected fields\r",
+							"        validateItemStructure(jsonResponse);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"function validateItemStructure(item) {\r",
+							"    pm.expect(item).to.have.property('community_id').that.is.a('number');\r",
+							"    pm.expect(item).to.have.property('area').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('descr').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('imageUrl').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('language').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('member_count').that.is.a('number');\r",
+							"    pm.expect(item).to.have.property('name').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('type').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('website').that.is.a('string');\r",
+							"}\r",
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "getAllJobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.speakatx.me/get/jobs",
+							"protocol": "https",
+							"host": [
+								"api",
+								"speakatx",
+								"me"
+							],
+							"path": [
+								"get",
+								"jobs"
+							]
+						},
+						"description": "get all jobs for SpeakATX"
+					},
+					"response": [
+						{
+							"name": "getAllJobs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.speakatx.me/get/jobs",
+									"protocol": "https",
+									"host": [
+										"api",
+										"speakatx",
+										"me"
+									],
+									"path": [
+										"get",
+										"jobs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Mar 2025 06:52:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42774"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Elevate Your Career with Us!\\n\\nAbout Us:Emergency Dentist of Austin is a fast-growing dental startup specializing in emergency dentistry. Join us for instant growth potential in a dynamic environment!\\n\\nOur Philosophy:We focus on comprehensive care, starting with emergencies. Our mission is to provide immediate care and convert emergency patients into regular clients, ensuring they leave confident and healthy.\\n\\nYour Role:As our receptionist, you'll be the first point of contact, ensuring a positive patient experience. Responsibilities include:\\n• Welcoming and checking in patients\\n• Answering patient calls\\n• Coordinating patient care\\n\\nSuccess Looks Like:\\n• Providing top-notch emergency care\\n• Fostering a positive work environment\\n• Ensuring a seamless patient experience\\n\\nWhy Join Us:\\n• Vertical Growth Opportunities\\n• 7 Days a week availability\\n• Operating hours from 8 AM to 8 PM\\n• 12 Hour Shifts\\n• Production-based bonuses\\n• No dental experience required, we have a detailed training program\\n\\nJoin us and grow with Emergency Dentist of Austin!\\n\\nJob Type: Full-time\\n\\nPay: From $18.00 per hour\\n\\nBenefits:\\n• Flexible schedule\\n\\nSchedule:\\n• 12 hour shift\\n• Weekends as needed\\n\\nWork Location: In person\",\n            \"imageUrl\": \"none\",\n            \"job_id\": 1,\n            \"language\": \"\",\n            \"name\": \"Emergency Dentist of Austin\",\n            \"pay\": \"0.00\",\n            \"title\": \"Bilingual Receptionist\",\n            \"website\": \"https://www.indeed.com/viewjob?jk=fe63297120dc23e2&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Why Wells Fargo:\\n\\nAre you looking for more? Find it here. At Wells Fargo, we believe that a meaningful career is much more than just a job. It’s about finding all of the elements that help you thrive, in one place. #LivingTheWellLife means you’re supported in life, not just work. It means having a competitive salary, a robust benefits package, and programs to support your work-life balance and well-being. It means being rewarded for investing in your community, celebrated for being your authentic self, and empowered to grow. And we’re recognized for it! Wells Fargo ranked in the top three on the 2024 LinkedIn Top Companies List of best workplaces “to grow your career” in the U.S.\\n\\nAbout this role:\\n\\nWells Fargo is seeking a Teller in our Consumer, Small & Business Banking division, as a part of our National Branch Network. You are part of the fabric of the local community, helping provide the financial service backbone for its residents, employees and local businesses. If you enjoy working with people, then this is a great role for you with tremendous opportunity to establish your career here at Wells Fargo for years to come. Find out why we’re the #1 financial services company to grow YOUR career. Apply today.\\n\\nIn this role you will:\\n• Support customer engagement by processing teller transactions, sharing digital solutions, and making appropriate introductions to bankers\\n• Complete operational activities while minimizing risks under established policies\\n• Perform routine transactional, operational, and customer support tasks efficiently through knowledge of bank procedures and products, as well as partners across the organization\\n• Receive direction from managers and exercises judgment within defined policies and procedures\\n• Escalate questions and issues to more experienced roles\\n• Interact with customers and individuals to demonstrate care, build relationships, and complete requested transactions\\n• Identify information and services to meet customers financial needs\\n\\nRequired Qualifications:\\n• 6+ months of interacting with customers experience, or equivalent demonstrated through one or a combination of the following: work experience, training, military experience, education\\n• Bilingual speaking and listening proficiency in Spanish/English\\n\\nDesired Qualifications:\\n• 6+ months of experience interacting with people, demonstrated through work, military, or education\\n• Military experience (transitioning military service member, reserve military service member or a veteran) and currently enrolled in a college or university program\\n• Customer service focus with experience handling complex transactions across multiple systems\\n• Ability to educate and connect customers to technology and share the value of mobile banking options\\n• Ability to interact with integrity and professionalism with customers and team members\\n• Experience working with others on a team to meet customer needs\\n• Cash handling experience\\n• Ability to follow policies, procedures, and regulations\\n• Ability to identify potential fraud/risky accounts and take appropriate action to prevent loss\\n• Well-organized, independent and able to prioritize in a fast-paced environment\\n• Ability to exercise judgment, raise questions to management, and adhere to policy guidelines\\n• Relevant military experience including working in personnel benefits management, processing military personnel orders or transitions, wartime readiness operations, human resources or military recruiting\\n• Proficient with proactively sourcing, acquiring, building, and maintaining relationships with customers and colleagues\\n\\nJob Expectations:\\n• Ability to work a schedule that may include most Saturdays\\n• This position is not eligible for Visa sponsorship\\n• Must take and pass required language assessment\\n\\nPosting Location(s):\\n• 2028 E Ben White Blvd STE 516, Austin, TX 78741\\n\\nPosting End Date:\\n19 Mar 2025\\n• Job posting may come down early due to volume of applicants.\\n\\nWe Value Diversity\\n\\nAt Wells Fargo, we believe in diversity, equity and inclusion in the workplace; accordingly, we welcome applications for employment from all qualified candidates, regardless of race, color, gender, national origin, religion, age, sexual orientation, gender identity, gender expression, genetic information, individuals with disabilities, pregnancy, marital status, status as a protected veteran or any other status protected by applicable law.\\n\\nEmployees support our focus on building strong customer relationships balanced with a strong risk mitigating and compliance-driven culture which firmly establishes those disciplines as critical to the success of our customers and company. They are accountable for execution of all applicable risk programs (Credit, Market, Financial Crimes, Operational, Regulatory Compliance), which includes effectively following and adhering to applicable Wells Fargo policies and procedures, appropriately fulfilling risk and compliance obligations, timely and effective escalation and remediation of issues, and making sound risk decisions. There is emphasis on proactive monitoring, governance, risk identification and escalation, as well as making sound risk decisions commensurate with the business unit’s risk appetite and all risk and compliance program requirements.\\n\\nCandidates applying to job openings posted in US: All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, status as a protected veteran, or any other legally protected characteristic.\\n\\nCandidates applying to job openings posted in Canada: Applications for employment are encouraged from all qualified candidates, including women, persons with disabilities, aboriginal peoples and visible minorities. Accommodation for applicants with disabilities is available upon request in connection with the recruitment process.\\n\\nApplicants with Disabilities\\n\\nTo request a medical accommodation during the application or interview process, visit Disability Inclusion at Wells Fargo.\\n\\nDrug and Alcohol Policy\\n\\nWells Fargo maintains a drug free workplace. Please see our Drug and Alcohol Policy to learn more.\\n\\nWells Fargo Recruitment and Hiring Requirements:\\n\\na. Third-Party recordings are prohibited unless authorized by Wells Fargo.\\n\\nb. Wells Fargo requires you to directly represent your own experiences during the recruiting and hiring process.\",\n            \"imageUrl\": \"none\",\n            \"job_id\": 2,\n            \"language\": \"spanish\",\n            \"name\": \"Wells Fargo\",\n            \"pay\": \"0.00\",\n            \"title\": \"Teller 20 Hours Bilingual/Spanish, Ben White\",\n            \"website\": \"https://www.wellsfargojobs.com/fr/jobs/r-442710/teller-20-hours-bilingual-spanish-ben-white/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Position Title: Bilingual In Spanish Leasing Assistant\\n\\nLocation: Austin, TX\\n\\nPay Rate: $15.00 - $17.00 HR\\n\\nHours: Monday – Saturday (8:00 am – 5:30 pm) with Overtime at the beginning of the month for rent collections.\\n• Travel: Travelling for work is expected therefore candidates must have reliable transportation as you may need to travel to San Antonio when needed. *\\n\\nOne of our clients out of North Austin is looking to add an Entry Level Bilingual in Spanish Leasing Assistant to their team. This is a temp-to-hire role.\\n\\nLeasing Assistants are responsible for assisting in all aspects of the leasing office. Responsibilities include assisting with marketing to prospects, securing interviews/leases, qualifying prospects, drafting lease agreements (inclusive of all required addendums), assisting current residents, lease renewals/resident retention, and rent collection. Cash handling is not needed for this role as it is all check-based. Candidates must also be ok with working heavily on paperwork as opposed to heavily on the computer since it varies.\\n\\nThe ideal candidates will have:\\n\\nReliable Transportation as there is travel expected if you become a permanent employee\\nExcellent communication skills, in person and on the telephone both in English and Spanish.\\nStrong customer service skills\\nGood organizational skills\\n\\nExperience:\\n\\nMust be Bilingual in Spanish. (Required)\\nComputer literacy as well as experience using Microsoft Office Suite (Required)\\nMust be able to tolerate extensive walking, standing, sitting, talking, hearing, seeing, and repetitive motions. (Required)\\n\\nHOW TO APPLY:\\n\\nComplete an application through our website or send in your resume to: Jobs.AustinTXNorth@ExpressPros.com\\n\\n#austx\",\n            \"imageUrl\": \"https://serpapi.com/searches/67cfb3643392885ecd38b9be/images/4620732284295c5c28a8d534782cafec922fcaf937e542f5b70709ed55bbe5f3.jpeg\",\n            \"job_id\": 3,\n            \"language\": \"spanish\",\n            \"name\": \"Express Employment Professionals\",\n            \"pay\": \"15.00\",\n            \"title\": \"Bilingual In Spanish Apartment Leasing Assistant - Immediately Hiring\",\n            \"website\": \"https://www.indeed.com/viewjob?jk=0d4408128e4dab12&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Elevate Your Career with Us!\\n\\nAbout Us: Emergency Dentist of Austin is a dynamic dental startup specializing in emergency dentistry. Since launching our first location in May 2022, we have added 3 additional locations, with more in the pipeline. If you're looking for a fast-paced environment with instant growth potential, this is the place for you!\\n\\nOur Philosophy: We believe in comprehensive care that begins with addressing dental emergencies. Our mission is to provide immediate, necessary care and convert emergency patients into regular clients for routine, comprehensive care. Our goal is to ensure our patients leave confident and healthy, no matter their initial reason for visiting us.\\n\\nYour Role: As our receptionist, you will be the first point of contact for our patients, playing a crucial role in their experience with us.\\n\\nYour responsibilities will include:\\n• Welcoming and checking in patients\\n• Answering patient phone calls\\n• Coordinating patient care\\n\\nWhat Success Looks Like:\\n• Providing top-notch care at the patient's highest point of need\\n• Fostering a positive work environment for staff\\n• Ensuring a seamless and pleasant patient experience\\n\\nLocation: We are conveniently located 10 minutes north of Downtown Austin.\\n\\nOur Future: We are expanding our footprint throughout Austin, offering numerous opportunities for vertical advancement to those dedicated to establishing a career with us.\\n\\nWhy Join Us:\\n• 7 Days a week availability\\n• Operating hours from 8 AM to 8 PM\\n• 12 Hour Shifts\\n• Production-based bonuses\\n• No dental experience required, we have a detailed training program\\n\\nGet in Touch: For more information, visit our website:\\n\\nLocation: 1030 Norwood Park Blvd #324, Austin, TX 78753\\n\\nJob Type: Part-time\\n\\nPay: From $18.00 per hour\\n\\nBenefits:\\n• Flexible schedule\\n\\nShift:\\n• 12 hour shift\\n\\nWork Location: In person\",\n            \"imageUrl\": \"none\",\n            \"job_id\": 4,\n            \"language\": \"\",\n            \"name\": \"Emergency Dentist of Austin\",\n            \"pay\": \"0.00\",\n            \"title\": \"Bilingual Customer Support (Part-Time)\",\n            \"website\": \"https://www.indeed.com/viewjob?jk=00eff3c5a2099cb0&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Elevate Your Career with Us!\\n\\nAbout Us:Emergency Dentist of Austin is a fast-growing dental startup specializing in emergency dentistry. Join us for instant growth potential in a dynamic environment!\\n\\nOur Philosophy:We focus on comprehensive care, starting with emergencies. Our mission is to provide immediate care and convert emergency patients into regular clients, ensuring they leave confident and healthy.\\n\\nYour Role:As our receptionist, you'll be the first point of contact, ensuring a positive patient experience. Responsibilities include:\\n• Welcoming and checking in patients\\n• Answering patient calls\\n• Coordinating patient care\\n\\nSuccess Looks Like:\\n• Providing top-notch emergency care\\n• Fostering a positive work environment\\n• Ensuring a seamless patient experience\\n\\nWhy Join Us:\\n• Vertical Growth Opportunities\\n• 7 Days a week availability\\n• Operating hours from 8 AM to 8 PM\\n• 12 Hour Shifts\\n• Production-based bonuses\\n• No dental experience required, we have a detailed training program\\n\\nJoin us and grow with Emergency Dentist of Austin!\\n\\nJob Type: Full-time\\n\\nPay: From $18.00 per hour\\n\\nBenefits:\\n• Flexible schedule\\n\\nSchedule:\\n• 12 hour shift\\n• Weekends as needed\\n\\nWork Location: In person\",\n            \"imageUrl\": \"none\",\n            \"job_id\": 5,\n            \"language\": \"\",\n            \"name\": \"Emergency Dentist of Austin\",\n            \"pay\": \"0.00\",\n            \"title\": \"Bilingual Customer Care Representative (Part-Time)\",\n            \"website\": \"https://www.indeed.com/viewjob?jk=83e69b448bc7208c&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"TMD Staffing is looking to hire a Bilingual Administrative Assistant to join our team in Austin, Texas! (78752)\\n\\nThis is an internal opportunity with the TMD Staffing team!\\n\\nSUMMARY: The Admin Assistant's general responsibility is answering incoming calls, directing calls to appropriate staff, assisting with temporary associates, and providing general office support.\\n\\nPOSITION: Bilingual Administrative Assistant\\n\\nLOCATION: Austin, TX 78752\\n\\nWORK ENVIRONMENT: In-Person; This is not a remote opportunity.\\n\\nSHIFT: Full-Time; Monday-Friday, 8AM-5PM\\n\\nADMINISTRATIVE ASSISTANT ESSENTIAL DUTIES AND RESPONSIBILITIES\\n• Answer the telephone and direct the calls to the appropriate staff member or voicemail, taking messages as needed.\\n• Greet visitors in a professional, friendly, hospitable manner.\\n• Assist applicants with new hire paperwork.\\n• Assists with projects and other clerical needs\\n• Data entry - Enter information accurately into the computer system.\\n• Assist with other related clerical duties such as photocopying, faxing, filing, and collating.\\n• Performs other duties as assigned by supervisor.\\n• General Housekeeping of Office\\n\\nADMINISTRATIVE SUPPORT MINIMUM QUALIFICATIONS\\n• Bilingual is required. (English/Spanish)\\n\\nHigh school diploma or GED equivalent.\\n\\nAt least 6 months to 1 year of relevant experience and/or training.\\n\\nMust be Customer Service driven.\\n\\nAbility to work independently on assigned tasks.\\n\\nMust have a valid driver's license, vehicle, and car insurance.\\n\\nADMINISTRATIVE ASSISTANT DESIRED SKILLS\\n• Communication Skills (Written and Verbal)\\n• Organizational Skills\\n• Data Entry\\n• Customer Service\\n• Phone Etiquette\\n• Punctual\\n\\nBENEFITS\\n• Comprehensive Medical, Dental, Vision, and supporting benefits package.\\n• Company paid Life and LTD\\n• 401K/Roth Match\\n• PTO and Holiday Time\\n• We provide learning, training, and development opportunities to foster personal and professional advancement.\\n\\nTHE TMD DIFFERENCE\\n\\nTMD Staffing is a trusted provider of staffing and recruiting services in Texas and Maryland for over 30 years. As a family-run business, we understand the importance of building and maintaining relationships. We offer a wide range of learning and development opportunities to help you reach your full potential. Come grow with #TeamTMD!\\n\\nApply Online (www.tmdstaffing.com) or email your resume to corporateresumes@texasmgmt.com for immediate consideration.\\n\\n#TMDHMG\",\n            \"imageUrl\": \"https://serpapi.com/searches/67cfb3643392885ecd38b9be/images/4620732284295c5c51e7730caa9fa72b133ea6495326cab065274bff9d63e1b2.png\",\n            \"job_id\": 6,\n            \"language\": \"spanish\",\n            \"name\": \"TMD Staffing\",\n            \"pay\": \"0.00\",\n            \"title\": \"Bilingual Administrative Assistant\",\n            \"website\": \"https://jobs.tmdstaffing.com/Bilingual-Administrative-Assistant-Jobs-in-AUSTIN-TX/12314251?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"When you join Verizon\\n\\nYou want more out of a career. A place to share your ideas freely — even if they’re daring or different. Where the true you can learn, grow, and thrive. At Verizon, we power and empower how people live, work and play by connecting them to what brings them joy. We do what we love — driving innovation, creativity, and impact in the world. Our V Team is a community of people who anticipate, lead, and believe that listening is where learning begins. In crisis and in celebration, we come together — lifting our communities and building trust in how we show up, everywhere & always. Want in? Join the V Team Life.\\n\\nWhat you’ll be doing...\\n\\nAs a full-time Verizon Retail Sales Associate, you’ll have the opportunity to grow your career with a team focused on unlocking your full potential and sales success within one of our retail stores. Here's what you can expect:\\n• Generate retail sales by using your passion for cutting-edge technology, and exceptional customer service to expand the Verizon network.\\n• Learn and uncover customers' needs by creating connections and asking the right questions.\\n• Position product insights and solution recommendations to provide customers with a complete top-down sales solution.\\n• Close sales by using phenomenal communication skills to fulfill customer needs with simple and intuitive tech solutions.\\n• Continuously develop yourself through ongoing training and up-skill in operational functions across merchandising and inventory.\\n• Potential to grow your customer base by placing outbound calls and sending text messages to current Verizon customers who are interested in our products and services.\\n• Opportunities to engage with the community outside of the store to expand your loyal customer base, including at off-site Verizon sponsored events.\\n\\nJoin Verizon today and be eligible for a $2,500 sign-on bonus! (subject to the terms and conditions of the award)\\n\\nWe’re hiring immediately and this isn't your average entry-level position! Whether you're early in your career or an experienced sales professional, join today and earn from $49,000 to $59,000 a year, which includes base pay and target individual-based commission. Planning to go above and beyond? Our commission program allows unlimited opportunity which could allow top earners to make an extra $10,000 or more per year in addition to the compensation range quoted earlier. Compensation varies by geography and performance.\\n\\nOur comprehensive benefits (starting day one) and perks are designed to help you move forward in your career and in your life outside of Verizon. From health and well-being benefits to investment in your education and career, we've got you covered!\\n• Best in class medical, dental, and vision\\n• Verizon 401(k) plan with matching contributions up to 6% of eligible participant contributions to the plan, qualified student loan repayments, or a combination of both (effective January 1, 2024)\\n• $2,500 stock grant per year, part of Verizon's Stock Together award program\\n• Sales recognition programs that have, in the past, awarded top performers with all inclusive travel to domestic and international destinations, gifts, and other incentives\\n• Five weeks of paid time off (vacation, holidays, personal days)\\n• 8 weeks of paid parental leave for eligible new parents (for new moms, when paired with short-term disability, this benefit provides up to 16 weeks of paid time-off)\\n• Up to $8K per year in tuition assistance\\n• Discounts up to 50% off on Verizon products and services\\n• Additional employee discounts on attractions, automotive, travel and more.\\n\\nToo good to be true? Hear from our Verizon Retail Team Members on what it's like to be part of a team that invests in you. From our in-person new hire experience and award-winning training programs to our inclusive culture of learning and amazing benefits, you'll be able to apply your skills while elevating your career.\\n\\nWhat we’re looking for...\\n\\nYou’ll need to have:\\n• High school diploma or GED.\\n• One or more years of work experience.\\n• Willingness to work evenings, weekends, and holidays (you'll know your schedule four weeks in advance).\\n• Openness to pick up additional shifts and earn more income, typically during the summer months, November through December, and/or during peak vacation periods.\\n\\nEven better if you have one or more of the following:\\n• Experience working in a commission-based environment.\\n• Demonstrated sales experience communicating with customers to find solutions.\\n• Customer service experience.\\n\\nIf Verizon and this role sound like a fit for you, we encourage you to apply even if you don’t meet every “even better” qualification listed above.\\n\\nAfter you apply…\\n\\nYou may be required to take an assessment. It takes about 20 minutes to complete. If you’re selected to move forward, one of our recruiters will reach out to tell you more about the role and answer your questions.\\n\\nBilingual fluency in English and the following language(s) are required: Spanish\\n\\nWhere you’ll be working\\n\\nIn this worksite-based role, you'll work onsite at a defined location(s).\\n\\nScheduled Weekly Hours\\n40\\n\\nEqual Employment Opportunity\\n\\nWe’re proud to be an equal opportunity employer - and celebrate our employees’ differences, including race, color, religion, sex, sexual orientation, gender identity, national origin, age, disability, and Veteran status. At Verizon, we know that diversity makes us stronger. We are committed to a collaborative, inclusive environment that encourages authenticity and fosters a sense of belonging. We strive for everyone to feel valued, connected, and empowered to reach their potential and contribute their best. Check out our diversity and inclusion page to learn more.\",\n            \"imageUrl\": \"none\",\n            \"job_id\": 7,\n            \"language\": \"spanish\",\n            \"name\": \"Verizon\",\n            \"pay\": \"0.00\",\n            \"title\": \"Retail Sales Associate Spanish Bilingual\",\n            \"website\": \"https://mycareer.verizon.com/jobs/r-1067804/retail-sales-associate-spanish-bilingual/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Company Overview\\n\\nSiteOne Landscape Supply is the largest national distributor of landscaping products across the United States and Canada. As a leading supplier of wholesale goods for green industry professionals, we have a long history of serving those who design, build, and maintain outdoor spaces – from lawns and gardens to golf courses, sport fields and more. We pride ourselves on knowing our customers and their business better than anyone else and providing them with a one-stop shop of extensive inventory covering irrigation, lighting, turf and landscape maintenance, hardscapes, nursery, and pest control supplies.\\n\\nAt SiteOne, we are passionate about delivering an outstanding customer experience and will stop at nothing to help our customers win. We know that our associates are the key to this success, and our commitment to the SiteOne DNA and support for our associates through development programs, benefits, and perks align with our vision to \\\"Be a Great Place to Work for Our Associates\\\". We foster a culture of safety, teamwork, and continuous improvement. With over 800 locations and exciting expansion ahead, now is the perfect time to join SiteOne and grow Stronger Together™!\\n\\nPosition Overview\\n\\nAs part of our dedicated team, Bilingual Equipment Operators are responsible for safely and effectively operating heavy equipment to load, offload or transport landscape supplies such as mulch, topsoil, soil amendments, and raw materials. The Equipment Operator performs assigned tasks while maintaining situational awareness and a level of proficiency that minimizes the risk of personal injury or property damage.\\n\\nWhat you’ll do:\\n• Operate all assigned equipment such as (but not limited to): front-end loaders, skid steers, track loaders, articulating loaders, rubber tire wheel loaders, and excavators, in a safe and proficient manner in accordance with company’s policies, procedures, and directives.\\n• Clean and maintain equipment as scheduled and/or required.\\n• Advise branch leadership of any requirements for equipment maintenance and/or repairs.\\n• Assist with other duties assigned by management. Such duties may include (but are not limited to): receiving materials, inventory, order processing/fulfillment, and other general labor tasks.\\n\\nSkills We Are Seeking\\n• Experience operating equipment such as front-end loaders, skid steers, track loaders, articulating loaders, rubber tire wheel loaders, and/or excavators, strongly preferred\\n• Knowledge of proper safety and maintenance protocols of the equipment aforementioned\\n• Bilingual Proficiency - candidates who are conversational in English/Spanish are preferred.\\n• Must be able to frequently lift 50 pounds or more\\n• Must be capable of working in extreme weather conditions such as heat, cold, snow, rain, etc.\\n• Experience in the landscape, hardscape, forestry, nursery, or irrigation industry is a plus\\n• Ability to read and write to record daily logs and maintain daily equipment checklists\\n• High school diploma or equivalent\\n\\nPerks:\\n• Weekly Paychecks with DailyPay available!\\n• Competitive Compensation\\n• Medical, Dental and Vision plans\\n• Paid Time Off, Paid Holidays\\n• 401k with company match\\n• Tuition Reimbursement\\n• Lucrative Associate Referral Program\\n• Company Apparel and Work Boot Vouchers\\n• Opportunity for Advancement\\n• Paid Training and Business Certifications Available\\n• Free Counseling Services/Employee Assistance Program\\n• Life Insurance and Short- and Long-Term Disability Insurance\\n• Product Discounts\\n• Most Branches never work Sundays!\\n\\nTHE INFORMATION CONTAINED HEREIN IS NOT INTENDED TO BE AN EXHAUSTIVE LIST OF ALL RESPONSIBILITIES, DUTIES AND QUALIFICATIONS REQUIRED OF INDIVIDUALS PERFORMING THE JOB. THE QUALIFICATIONS DETAILED IN THIS JOB DESCRIPTION ARE NOT CONSIDERED THE MINIMUM REQUIREMENTS NECESSARY TO PERFORM THE JOB, BUT RATHER AS GUIDELINES. THEY MAY VARY FROM POSITION TO POSITION.\\n\\nSiteOne Landscape Supply is strongly committed to providing equal employment opportunities for all associates and all applicants for employment. All employment decisions at SiteOne-including those relating to hiring, promotion, transfers, benefits, compensation, placement, and termination-will be made without regard to race, color, national origin, genetic information, creed, sex, sexual orientation, gender, gender identity, religion, age, veteran status, uniform service, pregnancy, disability, or any other factor protected by applicable law.\",\n            \"imageUrl\": \"none\",\n            \"job_id\": 8,\n            \"language\": \"spanish\",\n            \"name\": \"SiteOne Landscape Supply\",\n            \"pay\": \"0.00\",\n            \"title\": \"Equipment Operator - Bilingual Preferred (English/Spanish)\",\n            \"website\": \"https://careers.siteone.com/jobs/22042?lang=en-us&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Location: This position will be working remotely on Mondays, Wednesdays, and Fridays. This position will be working in person at our Headquarters location in North Austin on Tuesdays and Thursdays.\\n\\nSchedule: Flexible availability to work an 8-hour shift during the business hours between 9:00am-6:00pm Monday through Friday and rotating Saturdays 9:00am-2:00pm to meet contact center scheduling needs.\\n\\nOn the Contact Center team, you can expect competitive pay including a comprehensive and generous benefits and PTO package. In addition, you'll be provided with ongoing training and career growth opportunities. Our team is located at our new HQ building in North Austin by the 183/Oak Knoll exit (Riata Trace) and offers amenities such as a fitness center, yoga room, free breakfast or lunch on Thursdays (e.g. FOOD TRUCKS!!), outdoor dining area and caf with a micro market.\\n\\nThis is a great opportunity for someone in early career, looking for a new opportunity in customer service, or an experienced customer service professional. Candidates should have 1-3 years of recent customer service, call center, or account resolution experience with a fluency in English and Spanish.\\n\\nWe are looking for candidates who are committed to providing that exceptional customer service experience to our members at UHCU! In this position, you will be answering an average of 60-100 incoming calls daily, averaging a 3-5-minute talk time. You will answer questions and provide superior customer service to our members regarding UHCU products and services. This position requires a high level of professionalism, organization, and attention to detail. You will be responsible for delivering the right solutions, including additional Credit Union products and services, to meet members' financial needs and exceed their expectations.\\n\\nIn this role with UHCU you will get to:\\n• Problem solve by helping members with account questions and concerns in both English and Spanish queues.\\n• Perform account maintenance or updates.\\n• Use multiple systems to process a member's request.\\n• Become a financial coach to our members by giving them guidance on the best products and services for them.\\n• Help our members grow financially.\\n• Become a team player and collaborate with peers and leaders to make member services better.\\n• Complete research and resolve discrepancies as needed. Forward more complex issues or requests to Senior Contact Center Specialists as appropriate.\\n• Maintain a high level of accuracy with minimal errors or outages.\\n• Adhere to Contact Center Identification (ID) Verification Guidelines in order to protect our members and the Credit Union.\\n• Receive coaching and feedback to help you grow and develop in your career.\\n\\nWhat you will need to succeed:\\n• Excellent listening ability and verbal communication skills.\\n• Ability to multitask in a fast-paced and changing team environment.\\n• Passion for providing outstanding service to our members.\\n• Strong attention to detail, with a focus on accuracy and quality of work.\\n• The ability to collaborate with team members.\\n\\nMinimum Qualifications\\n• High school diploma or GED equivalent required.\\n• Minimum 1-3 years of recent customer service, call center, account resolution or related experience required.\\n• Fluency in English and Spanish is highly preferred.\\n• Demonstrated experience processing detailed information in an accurate and thorough manner.\\n• Demonstrated experience and ability to work with a wide variety of internal and external clients providing effective interpersonal communication and team skills.\\n• Understanding of MS Office Suite with intermediate technical and computer skills; ability to navigate quickly within various computer programs.\\n\\nAbout United Heritage Credit Union:\\n\\nThe Credit Union was established in 1957 as an Austin-based credit union, and over 65 years later we continue to serve communities in Central Texas, Austin and Tyler communities, as well as those that live in the rest of Texas through TXCC membership. Through innovative technology, exemplary service standards and competitive products, United Heritage continues to be a strong force in the credit union industry. UHCU has over $1.5 billion in assets, more than 77,000 members, 10 branch locations, and approximately 260 employees. We are a full-service financial institution whose vision is \\\"To be your primary financial institution.\\\" Being part of our credit union means being part of our community.\\n\\nUHCU Offers:\\n• Competitive Benefits Package\\n• 401(k) options (Pre-Tax and/or Roth)\\n• Generous paid time off (PTO)\\n• Education Reimbursement Program\\n• Opportunity to Advance!\\n\\nImportant Note: We take hiring very seriously. Interviewing at UHCU may include phone interviews, as well as 1st & 2nd round interviews. We are unable to follow-up with each and every applicant, but we do our best to run a thorough process for candidates whom we identify as a potential fit. We will be sure to contact you if that is the case!\",\n            \"imageUrl\": \"https://serpapi.com/searches/67cfb3643392885ecd38b9be/images/4620732284295c5cd470b8b21b588e9942510e808ebd1e19da12d8221c9446c6.jpeg\",\n            \"job_id\": 9,\n            \"language\": \"spanish\",\n            \"name\": \"United Heritage Credit Union\",\n            \"pay\": \"0.00\",\n            \"title\": \"Bilingual Call Center Specialist (Spanish/English)\",\n            \"website\": \"https://www.indeed.com/viewjob?jk=82423649bff13038&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        },\n        {\n            \"area\": \"Austin, TX\",\n            \"descr\": \"Benefits Information\\n\\nBenefits\\n\\nAs a Case Manager, you will be part of a stable, established, and yet still growing organization with a great deal of diversification, which will present you with a range of different challenges. Since we do prefer to promote from within, you will have opportunities to move to other facilities as well as to different divisions within the company. We value your hard work and professional dedication and will reward you with a competitive compensation package that includes full benefits.\\n\\nYour benefits will include:\\n• Two (2) weeks of Vacation\\n• Fifty-six (56) hours of sick time\\n• Fifteen (15) paid Holidays\\n• Medical, Dental, and Vision coverage\\n• Term and Whole life insurance (includes spouse and dependent)\\n• Accidental death and dismemberment insurance\\n• Short- and long-term disability\\n• Flexible spending account\\n• 401(k) retirement program with company match\\n• Stock purchase program\\n• Tuition reimbursement - $3500 per year\\n• Employee Assistance Program (EAP)\\n• Legal and Identity Theft Programs\\n• Theme park and attraction discounts\\n\\nEqual Opportunity Employer\\n\\nOverview\\n\\nSince inception in 2004, BI Incorporated has operated ISAP for the Department of Homeland Security (DHS) and U.S. Immigration and Customs Enforcement (ICE) and Enforcement and Removal Operations (ERO). ISAP is an essential part of ERO, providing intensive supervision of individuals in immigration proceedings. The program achieves positive results by combining comprehensive case management with proven supervision technology. In addition, BI maintains an extensive list of community-based partners to provide critical assistance for participants' basic life needs. With consistent positive outcomes, ISAP continues to grow and evolve, serving an ever-increasing number of participants.\\n\\nQualifications\\n\\nMinimum Requirements\\n• Bachelor’s Degree required. Degree in Sociology, Psychology, Social Work, Criminal Justice or related field preferred.\\n• At least two (2) years of customer service or case management experience required; experience in fields related to law, social work, detention, corrections or working with multi-cultural clients preferred.\\n• Bilingual English/Spanish required.\\n• Valid driver’s license required and the ability to safely operate a motor vehicle in order to perform home visits.\\n• Ability to pass a federal background check and obtain a suitability determination.\\n• United States citizenship required.\\n• Must live in the US 3 of the last 5 years (military and study abroad included).\\n• Effective verbal and written communication skills with employees, community contacts, government officials and participants. Ability to interpret and articulate rules, orders, instructions and materials. Ability to compose reports.\\n• Demonstrated sound judgment and even temperament. Ability to maintain self-control in stressful situations, such as interpersonal confrontations or emergencies. Ability to defuse hostile or unstable situations.\\n• Ability to deal tactfully with the public.\\n• Attention to detail.\\n• Problem solving ability.\\n• Ability to deal with multicultural contacts with sensitivity.\\n• Basic knowledge of immigration laws, regulations and procedures.\\n• Basic computer skills.\\n• Ability to interpret electronic monitoring messages and daily summary reports.\\n• Good typing skills to develop and maintain case records by performing data entry.\\n• Ability to work with computers and the necessary software typically used by the department.\\n\\nWorking Conditions: Encountered on a regular basis as part of the work this job performs.\\n• Typical office environment.\\n• Some local travel is required.\\n• Use of standard office equipment such as copier, computer, keyboard, telephone and fax machine.\\n• Bending, stooping and use of hands and fingers to place electronic monitoring equipment on participants.\\n• Ability to use hands and fingers to install electronic monitoring equipment and to perform data entry.\\n• Ability to stand, walk, sit, climb or balance, enter and exit a car, and climb stairs multiple times in one day in order to make home visits.\\n\\nResponsibilities\\n\\nSummary\\n\\nProvides case management of Intensive Supervision Appearance Program (ISAP) participants from entry to release by administering the program’s policies and procedures as defined by the Department of Homeland Security (DHS) contract.\\n\\nPrimary Duties and Responsibilities\\n• Develops, implements, coordinates, reviews and updates case management and individual service plans for ISAP participants in conformance with state and federal regulations and program requirements. Meets with participants face-to-face regularly as required by contractual obligations.\\n• Develops and maintains accurate and complete case records for all ISAP participants from entry to release from ISAP. Proactively manages cases using all appropriate tools and techniques. Maintains confidentiality of all records.\\n• Conducts intake interview and orientation session with each ISAP participant within contractual timeframes and requirements.\\n• Installs electronic monitoring equipment on ISAP participants as necessary and monitors compliance with electronic monitoring program.\\n• Assists ISAP participants with acquiring travel documents from the countries of citizenship. Maintains a log of travel document information for each participant.\\n• Evaluates English proficiency of ISAP participants to determine resources necessary to promote clear communication between ISAP staff and participants.\\n• Coordinates and facilitates translation services for ISAP participants, including emergency translation services.\\n• Connects participants with community resources including, but not limited to, transportation, medical, food, shelter, clothing, educational, financial, legal, religious and other social adjustment or facilitative resources. Identifies and coordinates services as required.\\n• Supervises ISAP participants while in Company offices.\\n• Establishes schedules for ISAP participants that include, but are not limited to, counseling sessions, immigration Court appearances, and access to legal services.\\n• Coordinates with participants to ensure attendance at legal orientation and cultural orientation sessions, as well as supplemental services evaluations.\\n• Reviews individual service plans, conducts risk/needs assessments and writes progress reports on a regular basis in compliance with contractual obligations.\\n• Reports on program violations in a timely manner using established reporting parameters.\\n• Conducts home visits to verify participants’ places of residence in compliance with contractual obligations.\\n• Performs emergency counseling for ISAP participants as needed.\\n• Identifies and maintains relationships with translation resources in the community, including private services, volunteers, universities, English as a Second Language (ESL) schools, NGOs, churches, and other organizations that might have resources to offer.\\n• Performs other duties as assigned.\",\n            \"imageUrl\": \"https://serpapi.com/searches/67cfb3643392885ecd38b9be/images/4620732284295c5cb1044476abadfbf4ffa57d24924b80b6937e46bcaa673a19.jpeg\",\n            \"job_id\": 10,\n            \"language\": \"spanish\",\n            \"name\": \"The GEO Group\",\n            \"pay\": \"0.00\",\n            \"title\": \"Case Manager, Immigration Bilingual Spanish\",\n            \"website\": \"https://jobs.geogroup.com/working-at-geo/jobs/14183?lang=en-us&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n        }\n    ],\n    \"pagination\": {\n        \"has_next\": true,\n        \"has_prev\": false,\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total_items\": 60,\n        \"total_pages\": 6\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getJobByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.speakatx.me/get/jobs/id/61",
+							"protocol": "https",
+							"host": [
+								"api",
+								"speakatx",
+								"me"
+							],
+							"path": [
+								"get",
+								"jobs",
+								"id",
+								"61"
+							]
+						},
+						"description": "get one job based on its id"
+					},
+					"response": [
+						{
+							"name": "getJobByID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.speakatx.me/get/jobs/id/61",
+									"protocol": "https",
+									"host": [
+										"api",
+										"speakatx",
+										"me"
+									],
+									"path": [
+										"get",
+										"jobs",
+										"id",
+										"61"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Mar 2025 06:52:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "6339"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"area\": \"Austin, TX\",\n    \"descr\": \"When you join Verizon\\n\\nYou want more out of a career. A place to share your ideas freely — even if they’re daring or different. Where the true you can learn, grow, and thrive. At Verizon, we power and empower how people live, work and play by connecting them to what brings them joy. We do what we love — driving innovation, creativity, and impact in the world. Our V Team is a community of people who anticipate, lead, and believe that listening is where learning begins. In crisis and in celebration, we come together — lifting our communities and building trust in how we show up, everywhere & always. Want in? Join the V Team Life.\\n\\nWhat you’ll be doing...\\n\\nAs a full-time Verizon Retail Sales Associate, you’ll have the opportunity to grow your career with a team focused on unlocking your full potential and sales success within one of our retail stores. Here's what you can expect:\\n• Generate retail sales by using your passion for cutting-edge technology, and exceptional customer service to expand the Verizon network.\\n• Learn and uncover customers' needs by creating connections and asking the right questions.\\n• Position product insights and solution recommendations to provide customers with a complete top-down sales solution.\\n• Close sales by using phenomenal communication skills to fulfill customer needs with simple and intuitive tech solutions.\\n• Continuously develop yourself through ongoing training and up-skill in operational functions across merchandising and inventory.\\n• Potential to grow your customer base by placing outbound calls and sending text messages to current Verizon customers who are interested in our products and services.\\n• Opportunities to engage with the community outside of the store to expand your loyal customer base, including at off-site Verizon sponsored events.\\n\\nJoin Verizon today and be eligible for a $2,500 sign-on bonus! (subject to the terms and conditions of the award)\\n\\nWe’re hiring immediately and this isn't your average entry-level position! Whether you're early in your career or an experienced sales professional, join today and earn from $49,000 to $59,000 a year, which includes base pay and target individual-based commission. Planning to go above and beyond? Our commission program allows unlimited opportunity which could allow top earners to make an extra $10,000 or more per year in addition to the compensation range quoted earlier. Compensation varies by geography and performance.\\n\\nOur comprehensive benefits (starting day one) and perks are designed to help you move forward in your career and in your life outside of Verizon. From health and well-being benefits to investment in your education and career, we've got you covered!\\n• Best in class medical, dental, and vision\\n• Verizon 401(k) plan with matching contributions up to 6% of eligible participant contributions to the plan, qualified student loan repayments, or a combination of both (effective January 1, 2024)\\n• $2,500 stock grant per year, part of Verizon's Stock Together award program\\n• Sales recognition programs that have, in the past, awarded top performers with all inclusive travel to domestic and international destinations, gifts, and other incentives\\n• Five weeks of paid time off (vacation, holidays, personal days)\\n• 8 weeks of paid parental leave for eligible new parents (for new moms, when paired with short-term disability, this benefit provides up to 16 weeks of paid time-off)\\n• Up to $8K per year in tuition assistance\\n• Discounts up to 50% off on Verizon products and services\\n• Additional employee discounts on attractions, automotive, travel and more.\\n\\nToo good to be true? Hear from our Verizon Retail Team Members on what it's like to be part of a team that invests in you. From our in-person new hire experience and award-winning training programs to our inclusive culture of learning and amazing benefits, you'll be able to apply your skills while elevating your career.\\n\\nWhat we’re looking for...\\n\\nYou’ll need to have:\\n• High school diploma or GED.\\n• One or more years of work experience.\\n• Willingness to work evenings, weekends, and holidays (you'll know your schedule four weeks in advance).\\n• Openness to pick up additional shifts and earn more income, typically during the summer months, November through December, and/or during peak vacation periods.\\n\\nEven better if you have one or more of the following:\\n• Experience working in a commission-based environment.\\n• Demonstrated sales experience communicating with customers to find solutions.\\n• Customer service experience.\\n\\nIf Verizon and this role sound like a fit for you, we encourage you to apply even if you don’t meet every “even better” qualification listed above.\\n\\nAfter you apply…\\n\\nYou may be required to take an assessment. It takes about 20 minutes to complete. If you’re selected to move forward, one of our recruiters will reach out to tell you more about the role and answer your questions.\\n\\nBilingual fluency in English and the following language(s) are required: Spanish\\n\\nWhere you’ll be working\\n\\nIn this worksite-based role, you'll work onsite at a defined location(s).\\n\\nScheduled Weekly Hours\\n40\\n\\nEqual Employment Opportunity\\n\\nWe’re proud to be an equal opportunity employer - and celebrate our employees’ differences, including race, color, religion, sex, sexual orientation, gender identity, national origin, age, disability, and Veteran status. At Verizon, we know that diversity makes us stronger. We are committed to a collaborative, inclusive environment that encourages authenticity and fosters a sense of belonging. We strive for everyone to feel valued, connected, and empowered to reach their potential and contribute their best. Check out our diversity and inclusion page to learn more.\",\n    \"imageUrl\": \"none\",\n    \"job_id\": 7,\n    \"language\": \"spanish\",\n    \"name\": \"Verizon\",\n    \"pay\": \"0.00\",\n    \"title\": \"Retail Sales Associate Spanish Bilingual\",\n    \"website\": \"https://mycareer.verizon.com/jobs/r-1067804/retail-sales-associate-spanish-bilingual/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Collection related to the Jobs in SpeakATX",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    console.log('Status Code:', pm.response.status); \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is in JSON format\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"if (pm.info.requestName === 'getAllJobs') {\r",
+							"    // Test for getAllCommunities\r",
+							"    pm.test(\"Response structure is valid for getAllJob\", function () {\r",
+							"        var jsonResponse = pm.response.json();\r",
+							"\r",
+							"        // Check that 'items' is an array\r",
+							"        pm.expect(jsonResponse.items).to.be.an('array');\r",
+							"\r",
+							"        // Verify the structure of each item in the 'items' array\r",
+							"        jsonResponse.items.forEach(function(item) {\r",
+							"            validateItemStructure(item);\r",
+							"        });\r",
+							"    });\r",
+							"\r",
+							"} else if (pm.info.requestName === 'getJobByID') {\r",
+							"    // Test for getCommunityByID\r",
+							"    pm.test(\"Response structure is valid for getJobByID\", function () {\r",
+							"        var jsonResponse = pm.response.json();\r",
+							"\r",
+							"        // Check that the response is an object, not an array\r",
+							"        pm.expect(jsonResponse).to.be.an('object');\r",
+							"\r",
+							"        // Check for the presence of expected fields\r",
+							"        validateItemStructure(jsonResponse);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"function validateItemStructure(item) {\r",
+							"    pm.expect(item).to.have.property('area').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('descr').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('imageUrl').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('job_id').that.is.a('number');\r",
+							"    pm.expect(item).to.have.property('language').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('name').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('pay').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('title').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('website').that.is.a('string');\r",
+							"}\r",
+							"\r",
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "getAllServices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.speakatx.me/get/translations",
+							"protocol": "https",
+							"host": [
+								"api",
+								"speakatx",
+								"me"
+							],
+							"path": [
+								"get",
+								"translations"
+							]
+						},
+						"description": "Get all translation services for SpeakATX\n\nExample usage: GET https://api.speakatx.me/get/translations"
+					},
+					"response": [
+						{
+							"name": "getAllServices",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.speakatx.me/get/translations",
+									"protocol": "https",
+									"host": [
+										"api",
+										"speakatx",
+										"me"
+									],
+									"path": [
+										"get",
+										"translations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Mar 2025 06:52:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4589"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"area\": \"2400 Pearl St\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media1.fl.yelpcdn.com/bphoto/fYfAJBrKYFq6HeFaJw5pXQ/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.2885,-97.74703\",\n            \"name\": \"HOFT Institute\",\n            \"price\": 1,\n            \"rating\": \"4.3\",\n            \"service_id\": 141,\n            \"website\": \"https://www.yelp.com/biz/hoft-institute-austin-4?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"unknown\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media2.fl.yelpcdn.com/bphoto/df1bcTvBTIu3YAWpSxnGVQ/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.355667,-97.644784\",\n            \"name\": \"Texan Translation\",\n            \"price\": 1,\n            \"rating\": \"5.0\",\n            \"service_id\": 142,\n            \"website\": \"https://www.yelp.com/biz/texan-translation-austin?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"3818 Spicewood Springs Rd\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media1.fl.yelpcdn.com/bphoto/FeR-xD5Rh6exxbFzEWq0YQ/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.3655159,-97.7490812\",\n            \"name\": \"Marvelous Mandarin\",\n            \"price\": 1,\n            \"rating\": \"4.3\",\n            \"service_id\": 143,\n            \"website\": \"https://www.yelp.com/biz/marvelous-mandarin-austin-2?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"PO Box 152468\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"\",\n            \"language\": \"english\",\n            \"map_location\": \"30.19915,-97.80857\",\n            \"name\": \"Spanish Tech\",\n            \"price\": 1,\n            \"rating\": \"5.0\",\n            \"service_id\": 144,\n            \"website\": \"https://www.yelp.com/biz/spanish-tech-austin-2?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"unknown\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media1.fl.yelpcdn.com/bphoto/OTPoMDf1aVQ-zJhH_st52g/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.347381913900023,-97.76848043628378\",\n            \"name\": \"Lone Star Interpreting\",\n            \"price\": 1,\n            \"rating\": \"5.0\",\n            \"service_id\": 145,\n            \"website\": \"https://www.yelp.com/biz/lone-star-interpreting-austin-5?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"1800 NE Loop 410\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media3.fl.yelpcdn.com/bphoto/jTbopNp6sQeIhirxWH5DoQ/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"29.515208542264144,-98.43611617431796\",\n            \"name\": \"Schertz Mobile Notary & Translation Services\",\n            \"price\": 1,\n            \"rating\": \"4.8\",\n            \"service_id\": 146,\n            \"website\": \"https://www.yelp.com/biz/schertz-mobile-notary-and-translation-services-san-antonio-3?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media3.fl.yelpcdn.com/bphoto/i_GN1wR6Mpsj-tY6a7iNxg/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.25869,-97.76625\",\n            \"name\": \"3 Bridges Interpreting\",\n            \"price\": 1,\n            \"rating\": \"5.0\",\n            \"service_id\": 147,\n            \"website\": \"https://www.yelp.com/biz/3-bridges-interpreting-austin?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"unknown\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media4.fl.yelpcdn.com/bphoto/TCsp5AxgSfjjosL9xty8Eg/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.347381913900023,-97.76848043628378\",\n            \"name\": \"Your Mobile Notary\",\n            \"price\": 1,\n            \"rating\": \"0.0\",\n            \"service_id\": 148,\n            \"website\": \"https://www.yelp.com/biz/your-mobile-notary-austin?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media1.fl.yelpcdn.com/bphoto/R0x9xtz3fQvSzMcJ6HV2iA/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.347381913900023,-97.76848043628378\",\n            \"name\": \"Babel Translators\",\n            \"price\": 1,\n            \"rating\": \"0.0\",\n            \"service_id\": 149,\n            \"website\": \"https://www.yelp.com/biz/babel-translators-austin?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        },\n        {\n            \"area\": \"unknown\",\n            \"descr\": \"idk\",\n            \"imageUrl\": \"https://s3-media4.fl.yelpcdn.com/bphoto/MGqgir0BkgWuCBMpubdfzA/o.jpg\",\n            \"language\": \"english\",\n            \"map_location\": \"30.42464,-97.75731\",\n            \"name\": \"Spanish-Just-4-You\",\n            \"price\": 1,\n            \"rating\": \"5.0\",\n            \"service_id\": 150,\n            \"website\": \"https://www.yelp.com/biz/spanish-just-4-you-austin-2?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n        }\n    ],\n    \"pagination\": {\n        \"has_next\": true,\n        \"has_prev\": false,\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total_items\": 140,\n        \"total_pages\": 14\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getServiceByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.speakatx.me/get/translations/id/282",
+							"protocol": "https",
+							"host": [
+								"api",
+								"speakatx",
+								"me"
+							],
+							"path": [
+								"get",
+								"translations",
+								"id",
+								"282"
+							]
+						},
+						"description": "get one translation service based on its id"
+					},
+					"response": [
+						{
+							"name": "getServiceByID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.speakatx.me/get/translations/id/282",
+									"protocol": "https",
+									"host": [
+										"api",
+										"speakatx",
+										"me"
+									],
+									"path": [
+										"get",
+										"translations",
+										"id",
+										"282"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Mar 2025 06:52:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "526"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"area\": \"1800 NE Loop 410\",\n    \"descr\": \"idk\",\n    \"imageUrl\": \"https://s3-media3.fl.yelpcdn.com/bphoto/jTbopNp6sQeIhirxWH5DoQ/o.jpg\",\n    \"language\": \"english\",\n    \"map_location\": \"29.515208542264144,-98.43611617431796\",\n    \"name\": \"Schertz Mobile Notary & Translation Services\",\n    \"price\": 1,\n    \"rating\": \"4.8\",\n    \"service_id\": 146,\n    \"website\": \"https://www.yelp.com/biz/schertz-mobile-notary-and-translation-services-san-antonio-3?adjust_creative=3xi1ysezvLKBVPAXtgEXCg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=3xi1ysezvLKBVPAXtgEXCg\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Collection related to the Translation Services in SpeakATX",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    console.log('Status Code:', pm.response.status); \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is in JSON format\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"if (pm.info.requestName === 'getAllServices') {\r",
+							"    // Test for getAllCommunities\r",
+							"    pm.test(\"Response structure is valid for getAllJob\", function () {\r",
+							"        var jsonResponse = pm.response.json();\r",
+							"\r",
+							"        // Check that 'items' is an array\r",
+							"        pm.expect(jsonResponse.items).to.be.an('array');\r",
+							"\r",
+							"        // Verify the structure of each item in the 'items' array\r",
+							"        jsonResponse.items.forEach(function(item) {\r",
+							"            validateItemStructure(item);\r",
+							"        });\r",
+							"    });\r",
+							"\r",
+							"} else if (pm.info.requestName === 'getServiceByID') {\r",
+							"    // Test for getCommunityByID\r",
+							"    pm.test(\"Response structure is valid for getJobByID\", function () {\r",
+							"        var jsonResponse = pm.response.json();\r",
+							"\r",
+							"        // Check that the response is an object, not an array\r",
+							"        pm.expect(jsonResponse).to.be.an('object');\r",
+							"\r",
+							"        // Check for the presence of expected fields\r",
+							"        validateItemStructure(jsonResponse);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"function validateItemStructure(item) {\r",
+							"    pm.expect(item).to.have.property('area').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('descr').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('imageUrl').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('language').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('map_location').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('name').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('price').that.is.a('number');\r",
+							"    pm.expect(item).to.have.property('rating').that.is.a('string');\r",
+							"    pm.expect(item).to.have.property('service_id').that.is.a('number');\r",
+							"    pm.expect(item).to.have.property('website').that.is.a('string');\r",
+							"}\r",
+							"\r",
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}
