@@ -94,7 +94,7 @@ const JobInstance = () => {
 
             <div className="row justify-content-center">
                 <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Communities</h3>
-                {filteredCommunities.map((communityItem, index) => (
+                {filteredCommunities.slice(0, 4).map((communityItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/communities/${communityItem.name}`}  
@@ -122,7 +122,7 @@ const JobInstance = () => {
                 ))}
 
                 <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Services</h3>
-                {filteredTranslations.map((translationItem, index) => (
+                {filteredTranslations.slice(0, 4).map((translationItem, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link
                             to={`/translations/${translationItem.name}`}  
