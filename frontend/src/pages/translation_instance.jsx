@@ -3,9 +3,6 @@ import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import Instances from "./instances.jsx";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
-import JobCard from "./job_card.jsx";
-import ServiceCard from "./service_card.jsx";
-import CommunityCard from "./community_card.jsx";
 
 const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
@@ -44,7 +41,6 @@ const TranslationInstance = () => {
     (t) => t.name.toLowerCase() === translationName.toLowerCase()
   );
 
-
   // Load correct coordinates when `translation` changes
   useEffect(() => {
     if (!translation) {
@@ -58,42 +54,32 @@ const TranslationInstance = () => {
     // Use stored coordinates if available
     const [lat, long] = translation.map_location.split(',').map(str => parseFloat(str.trim()));
     if (lat && long) {
-      console.log(`Using stored coordinates for ${translation.name}:`, translation.map_location);
-      setCoordinates({
-        lat: lat,
-        lng: long,
-      });
+      setCoordinates({ lat, lng: long });
       setLoading(false);
       return;
     }
 
     // If no lat/lng, fetch from Google Maps API using address
     if (translation.area !== "unknown") {
-      const fullAddress = translation.area;
-      fetchCorrectCoordinates(fullAddress);
+      fetchCorrectCoordinates(translation.area);
     } else {
       setCoordinates(DEFAULT_LOCATION);
       setLoading(false);
     }
-  }, [translationName]); // Run when the instance name changes
+  }, [translationName]);
 
   // Fetch correct lat/lng from Google Maps API
   const fetchCorrectCoordinates = async (address) => {
-    console.log("Fetching coordinates for:", address);
     try {
       const response = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json`,
-        {
-          params: { address, key: googleMapsApiKey },
-        }
+        { params: { address, key: googleMapsApiKey } }
       );
 
       if (response.data.results.length > 0) {
         const loc = response.data.results[0].geometry.location;
-        console.log(`Fetched coordinates for ${translation.name}:`, loc);
         setCoordinates({ lat: loc.lat, lng: loc.lng });
       } else {
-        console.error("Google API returned no results for:", address);
         setCoordinates(DEFAULT_LOCATION);
       }
     } catch (error) {
@@ -106,21 +92,17 @@ const TranslationInstance = () => {
 
   const [loaded, setLoaded] = useState(Instances.loaded);
   useEffect(() => {
-    const checkLoadedStatus = () => {
-      setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
-    };
-
-    const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
-
+    const checkLoadedStatus = () => setLoaded(Instances.loaded);
+    const intervalId = setInterval(checkLoadedStatus, 500);
     return () => clearInterval(intervalId);
-  }, [])
-  if (!loaded) return <div><div class="spinner-border text-dark" role="status"></div></div>;
+  }, []);
+
+  if (!loaded) return <div><div className="spinner-border text-dark" role="status"></div></div>;
 
   translation = Instances.translations.find(
     (t) => t.name.toLowerCase() === translationName.toLowerCase()
   );
 
-  // If no matching translation, show error
   if (!translation) {
     return (
       <div className="container mt-4">
@@ -132,19 +114,13 @@ const TranslationInstance = () => {
     );
   }
 
-  let filteredJobs = []
-  for (let i = 0; i < Instances.jobs.length; i++) {
-    if (Instances.matchingValues(Instances.jobs[i].language, translation.language)) {
-      filteredJobs.push(Instances.jobs[i]);
-    }
-  }
-  let filteredCommunities = []
-  for (let i = 0; i < Instances.communities.length; i++) {
-    if (Instances.matchingValues(Instances.communities[i].language, translation.language)) {
-      filteredCommunities.push(Instances.communities[i]);
-    }
-  }
+  let filteredJobs = Instances.jobs.filter(job => 
+    Instances.matchingValues(job.language, translation.language)
+  );
 
+  let filteredCommunities = Instances.communities.filter(community => 
+    Instances.matchingValues(community.language, translation.language)
+  );
 
   return (
     <div className="container mt-4">
@@ -168,20 +144,25 @@ const TranslationInstance = () => {
       />
 
       {/* Embedded Google Map */}
+      <div className="mb-4">
+        {loading || !isLoaded ? (
+          <p>Loading map...</p>
+        ) : (
+          <GoogleMap
+            key={coordinates.lat + coordinates.lng}
+            mapContainerStyle={containerStyle}
+            center={coordinates}
+            zoom={15}
+          >
+            <Marker position={coordinates} />
+          </GoogleMap>
+        )}
+      </div>
 
-      <p>
-        <strong>Rating:</strong> {translation.rating}
-      </p>
-      <p>
-        <strong>Language:</strong> {translation.language.charAt(0).toUpperCase() + translation.language.slice(1)}
-      </p>
-      <p>
-        <strong>Address:</strong>{" "}
-        {translation.location?.display_address?.join(", ")}
-      </p>
-      <p>
-        <strong>Price:</strong> {translation.price ? "💲".repeat(translation.price) : "N/A"}
-      </p>
+      <p><strong>Rating:</strong> {translation.rating}</p>
+      <p><strong>Language:</strong> {translation.language.charAt(0).toUpperCase() + translation.language.slice(1)}</p>
+      <p><strong>Address:</strong> {translation.location?.display_address?.join(", ")}</p>
+      <p><strong>Price:</strong> {translation.price ? "💲".repeat(translation.price) : "N/A"}</p>
       <p style={{ textAlign: "left", maxWidth: "900px", margin: "0 auto" }}>
         <strong>About:</strong> {translation.descr}
       </p>
@@ -204,36 +185,50 @@ const TranslationInstance = () => {
       </div>
 
       <div className="d-flex justify-content-center gap-3 mt-3 mb-3">
-        <button
-          className="btn btn-success button-grow"
-          onClick={() => window.open(translation.website, "_blank")}
-        >
+        <button className="btn btn-success button-grow" onClick={() => window.open(translation.website, "_blank")}>
           View Service
         </button>
       </div>
 
       <div className="d-flex justify-content-center mb-5">
-        <button
-          className="btn btn-success button-grow"
-          onClick={() =>
-            window.open((translation.area !== "unknown" && translation.area !== "") ? "https://maps.google.com/maps?q=" + translation.area : "https://maps.google.com/maps?q=" + translation.map_location, "_blank")
-          }
-        >
+        <button className="btn btn-success button-grow" onClick={() =>
+          window.open((translation.area !== "unknown" && translation.area !== "") 
+            ? "https://maps.google.com/maps?q=" + translation.area 
+            : "https://maps.google.com/maps?q=" + translation.map_location, "_blank")
+        }>
           View Map
         </button>
       </div>
 
-
-
+      {/* Communities Section */}
       <div className="row justify-content-center">
         <h3>{translation.language.charAt(0).toUpperCase() + translation.language.slice(1)} Communities</h3>
         {filteredCommunities.slice(0, 4).map((communityItem, index) => (
-          <CommunityCard
-            communityItem={communityItem}
-          ></CommunityCard>
+          <div className="col-md-3 mb-3" key={index}>
+            <Link
+              to={`/communities/${communityItem.name}`}  // Links to dynamic job page
+              className="card text-decoration-none"
+            >
+              <img
+                src={communityItem.imageUrl}
+                alt={communityItem.name}
+                className="card-img-top"
+                style={{ height: "220px", objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{communityItem.name}</h5>
+                <p className="card-text">
+                  Language: {communityItem.language} <br />
+                  Area: {communityItem.area} <br />
+                  Member Count: {communityItem.member_count} <br />
+                  Type: {communityItem.type}
+                </p>
+              </div>
+            </Link>
+          </div>
         ))}
 
-        <h3>{translation.language.charAt(0).toUpperCase() + translation.language.slice(1)} Job Postings</h3>
+        <h3>{translation.language} Job Postings</h3>
         {filteredJobs.slice(0, 4).map((jobItem, index) => (
           <JobCard
             jobItem={jobItem}

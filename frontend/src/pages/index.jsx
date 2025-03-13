@@ -61,7 +61,7 @@ const Home = () => {
                             <Col className="text-center">
                                 <h1 className="display-4">Coverage</h1>
                                 <p className="lead">
-                                There are many non-english speakers located in texas. Our website gathers info for these languages so far:
+                                There are many non-English speakers located in Texas. Our website gathers info for these languages so far:
                                 </p>
                                 <hr className="my-4" />
                             </Col>
