@@ -40,11 +40,11 @@ Estimated work times:
 - Shawn Tran: 25 hours
 
 Actual work times:
-- Maya Lee: 
-- Steven Zheng:
-- Amy Wu: 
-- Edwin Torres:
-- Shawn Tran:
+- Maya Lee: 18 hours
+- Steven Zheng: 18 hours
+- Amy Wu: 18 hours
+- Edwin Torres: 18 hours
+- Shawn Tran: 18 hours
 
 Phase leader responsibilities:
 - Ensure everyone shows up to meetings
@@ -102,7 +102,7 @@ Media:
 - Link to site
 
 Connections:
-- Local Translation Services: Translation services for this community
+- Local Services: Services for this community
 - Local Non-English Friendly Job Postings: jobs that accommodate the language needs for this community
 
 ## Local Non-English Friendly Job Postings
@@ -121,10 +121,10 @@ Media:
 
 Connections:
 - Local Non-English Communities: Community for the language this job is in
-- Local Translation Services: Translation services for people that speak the language this job is in
+- Local Services: Services for people that speak the language this job is in
 
 # Three Questions We Will Answer
-- Where can I find an English translator in my area?
+- Where can I find a Spanish to English translator in my area?
 - What communities in the area could I relate to?
 - Are there any businesses that support non-english hires?
 
