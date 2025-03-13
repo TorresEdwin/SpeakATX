@@ -361,7 +361,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api.speakatx.me/get/jobs/id/61",
+							"raw": "https://api.speakatx.me/get/jobs/id/120",
 							"protocol": "https",
 							"host": [
 								"api",
@@ -372,7 +372,7 @@
 								"get",
 								"jobs",
 								"id",
-								"61"
+								"120"
 							]
 						},
 						"description": "get one job based on its id"
@@ -384,7 +384,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://api.speakatx.me/get/jobs/id/61",
+									"raw": "https://api.speakatx.me/get/jobs/id/120",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -395,7 +395,7 @@
 										"get",
 										"jobs",
 										"id",
-										"61"
+										"120"
 									]
 								}
 							},
@@ -409,7 +409,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 11 Mar 2025 06:52:36 GMT"
+									"value": "Thu, 13 Mar 2025 00:42:29 GMT"
 								},
 								{
 									"key": "Connection",
@@ -421,7 +421,7 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "6339"
+									"value": "3369"
 								},
 								{
 									"key": "Access-Control-Allow-Origin",
@@ -429,7 +429,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"area\": \"Austin, TX\",\n    \"descr\": \"When you join Verizon\\n\\nYou want more out of a career. A place to share your ideas freely — even if they’re daring or different. Where the true you can learn, grow, and thrive. At Verizon, we power and empower how people live, work and play by connecting them to what brings them joy. We do what we love — driving innovation, creativity, and impact in the world. Our V Team is a community of people who anticipate, lead, and believe that listening is where learning begins. In crisis and in celebration, we come together — lifting our communities and building trust in how we show up, everywhere & always. Want in? Join the V Team Life.\\n\\nWhat you’ll be doing...\\n\\nAs a full-time Verizon Retail Sales Associate, you’ll have the opportunity to grow your career with a team focused on unlocking your full potential and sales success within one of our retail stores. Here's what you can expect:\\n• Generate retail sales by using your passion for cutting-edge technology, and exceptional customer service to expand the Verizon network.\\n• Learn and uncover customers' needs by creating connections and asking the right questions.\\n• Position product insights and solution recommendations to provide customers with a complete top-down sales solution.\\n• Close sales by using phenomenal communication skills to fulfill customer needs with simple and intuitive tech solutions.\\n• Continuously develop yourself through ongoing training and up-skill in operational functions across merchandising and inventory.\\n• Potential to grow your customer base by placing outbound calls and sending text messages to current Verizon customers who are interested in our products and services.\\n• Opportunities to engage with the community outside of the store to expand your loyal customer base, including at off-site Verizon sponsored events.\\n\\nJoin Verizon today and be eligible for a $2,500 sign-on bonus! (subject to the terms and conditions of the award)\\n\\nWe’re hiring immediately and this isn't your average entry-level position! Whether you're early in your career or an experienced sales professional, join today and earn from $49,000 to $59,000 a year, which includes base pay and target individual-based commission. Planning to go above and beyond? Our commission program allows unlimited opportunity which could allow top earners to make an extra $10,000 or more per year in addition to the compensation range quoted earlier. Compensation varies by geography and performance.\\n\\nOur comprehensive benefits (starting day one) and perks are designed to help you move forward in your career and in your life outside of Verizon. From health and well-being benefits to investment in your education and career, we've got you covered!\\n• Best in class medical, dental, and vision\\n• Verizon 401(k) plan with matching contributions up to 6% of eligible participant contributions to the plan, qualified student loan repayments, or a combination of both (effective January 1, 2024)\\n• $2,500 stock grant per year, part of Verizon's Stock Together award program\\n• Sales recognition programs that have, in the past, awarded top performers with all inclusive travel to domestic and international destinations, gifts, and other incentives\\n• Five weeks of paid time off (vacation, holidays, personal days)\\n• 8 weeks of paid parental leave for eligible new parents (for new moms, when paired with short-term disability, this benefit provides up to 16 weeks of paid time-off)\\n• Up to $8K per year in tuition assistance\\n• Discounts up to 50% off on Verizon products and services\\n• Additional employee discounts on attractions, automotive, travel and more.\\n\\nToo good to be true? Hear from our Verizon Retail Team Members on what it's like to be part of a team that invests in you. From our in-person new hire experience and award-winning training programs to our inclusive culture of learning and amazing benefits, you'll be able to apply your skills while elevating your career.\\n\\nWhat we’re looking for...\\n\\nYou’ll need to have:\\n• High school diploma or GED.\\n• One or more years of work experience.\\n• Willingness to work evenings, weekends, and holidays (you'll know your schedule four weeks in advance).\\n• Openness to pick up additional shifts and earn more income, typically during the summer months, November through December, and/or during peak vacation periods.\\n\\nEven better if you have one or more of the following:\\n• Experience working in a commission-based environment.\\n• Demonstrated sales experience communicating with customers to find solutions.\\n• Customer service experience.\\n\\nIf Verizon and this role sound like a fit for you, we encourage you to apply even if you don’t meet every “even better” qualification listed above.\\n\\nAfter you apply…\\n\\nYou may be required to take an assessment. It takes about 20 minutes to complete. If you’re selected to move forward, one of our recruiters will reach out to tell you more about the role and answer your questions.\\n\\nBilingual fluency in English and the following language(s) are required: Spanish\\n\\nWhere you’ll be working\\n\\nIn this worksite-based role, you'll work onsite at a defined location(s).\\n\\nScheduled Weekly Hours\\n40\\n\\nEqual Employment Opportunity\\n\\nWe’re proud to be an equal opportunity employer - and celebrate our employees’ differences, including race, color, religion, sex, sexual orientation, gender identity, national origin, age, disability, and Veteran status. At Verizon, we know that diversity makes us stronger. We are committed to a collaborative, inclusive environment that encourages authenticity and fosters a sense of belonging. We strive for everyone to feel valued, connected, and empowered to reach their potential and contribute their best. Check out our diversity and inclusion page to learn more.\",\n    \"imageUrl\": \"none\",\n    \"job_id\": 7,\n    \"language\": \"spanish\",\n    \"name\": \"Verizon\",\n    \"pay\": \"0.00\",\n    \"title\": \"Retail Sales Associate Spanish Bilingual\",\n    \"website\": \"https://mycareer.verizon.com/jobs/r-1067804/retail-sales-associate-spanish-bilingual/?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n}"
+							"body": "{\n    \"area\": \"Austin, TX\",\n    \"descr\": \"Front Desk/ Program Advisor provides financial screening program registration services for new and returning Lone Star Circle of Care (LSCC) patients/clients. Program advisor educates clients on the program registration process and eligibility for any programs the client is found qualified such as LSCC Sliding Fee Discount Schedule, Medicaid, CHIP, MAP, WILCO and other state or federal programs.\\n\\nDaily Job Duties:\\n• Provides accurate and timely program registration for new and returning LSCC patients.\\n• Receives scheduled and unscheduled calls through Patient Navigation Center for Program Registration\\n• Performs program registration thoroughly to ensure highly accurate program findings for Sliding Fee\\n• Scale assignment\\n• Allocates appropriate time to each call to ensure high degree of patient completion and kept appointments, while maintaining work flow.\\n• Makes outbound calls as appropriate to perform program registration, case follow-up or to schedule additional program registrations.\\n• Accurately identifies programs for which patient may be eligible\\n• Collaborates with front office staff member to ensure program registration policy and procedures are followed and to ensure clear and effective communication to maintain patient flow through the program registration process.\\n\\nDocumentation:\\n• Completes all program registration documentation in a timely, accurate and professional manner.\\n• Using Medicaider, NextGen, available insurance verification programs and other automated tools, maintains all patient documentation necessary to complete assignments and certify clients/patients in the appropriate programs\\n• Completes case documentation electronically and maintains no paper files on cases\\n• Maintains appropriate electronic flags for timely follow-up with patients\\n• Ensures documentation is sufficient to ensure coordination of care and program follow-up\\n\\nREQUIRED EXPERIENCE, EDUCATION, AND LICENSE:\\n• High school diploma or GED\\n\\nPREFERRED EXPERIENCE, EDUCATION, AND LICENSE:\\n• Associates degree preferred\\n• Minimum of 1 year experience in program eligibility or related health and human-services work preferred\\n• Proficiency with MS Office Suite (Word, Excel, and Outlook)\\n• Bilingual English/Spanish language skills\\n\\nJob Type: Full-time\\n\\nPay: $16.25 per hour\\n\\nBenefits:\\n• Dental insurance\\n• Employee assistance program\\n• Health insurance\\n• Health savings account\\n• Life insurance\\n• Paid time off\\n• Retirement plan\\n• Vision insurance\\n\\nSchedule:\\n• Monday to Friday\\n\\nApplication Question(s):\\n• What are your salary requirements?\\n\\nEducation:\\n• High school or equivalent (Required)\\n\\nExperience:\\n• Customer service or Administrative: 2 years (Preferred)\\n\\nLanguage:\\n• Spanish (Required)\\n\\nAbility to Relocate:\\n• Round Rock, TX 78665: Relocate before starting work (Required)\\n\\nWork Location: In person\",\n    \"imageUrl\": \"none\",\n    \"job_id\": 120,\n    \"language\": \"spanish\",\n    \"name\": \"Lone Star Circle of Care\",\n    \"pay\": \"16.25\",\n    \"title\": \"Bilingual Front Desk/Program Advisor\",\n    \"website\": \"https://www.indeed.com/viewjob?jk=37e74dbc7977e430&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic\"\n}"
 						}
 					]
 				}
@@ -589,7 +589,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://api.speakatx.me/get/translations/id/282",
+							"raw": "https://api.speakatx.me/get/translations/id/702",
 							"protocol": "https",
 							"host": [
 								"api",
@@ -600,7 +600,7 @@
 								"get",
 								"translations",
 								"id",
-								"282"
+								"702"
 							]
 						},
 						"description": "get one translation service based on its id"
@@ -612,7 +612,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://api.speakatx.me/get/translations/id/282",
+									"raw": "https://api.speakatx.me/get/translations/id/702",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -623,7 +623,7 @@
 										"get",
 										"translations",
 										"id",
-										"282"
+										"702"
 									]
 								}
 							},
