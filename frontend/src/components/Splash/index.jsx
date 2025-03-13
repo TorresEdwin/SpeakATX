@@ -29,8 +29,8 @@ const Splash = () => {
             <div className="splash-content">
                 <h1 className="display-4">SpeakATX</h1>
                 <p className="lead">
-                    Resources for minimal english
-                    and non-english speakers in Austin, TX
+                    Resources for minimal English
+                    and non-English speakers in Austin, TX
                 </p>
                 <hr className="my-4" />
                 <p>
