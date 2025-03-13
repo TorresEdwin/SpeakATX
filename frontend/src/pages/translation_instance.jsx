@@ -211,14 +211,14 @@ const TranslationInstance = () => {
 
 
       <div className="row justify-content-center">
-        <h3>{translation.language} Communities</h3>
+        <h3>{translation.language.charAt(0).toUpperCase() + translation.language.slice(1)} Communities</h3>
         {filteredCommunities.slice(0, 4).map((communityItem, index) => (
           <CommunityCard
             communityItem={communityItem}
           ></CommunityCard>
         ))}
 
-        <h3>{translation.language} Job Postings</h3>
+        <h3>{translation.language.charAt(0).toUpperCase() + translation.language.slice(1)} Job Postings</h3>
         {filteredJobs.slice(0, 4).map((jobItem, index) => (
           <JobCard
             jobItem={jobItem}
