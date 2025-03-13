@@ -176,7 +176,7 @@ const TranslationInstance = () => {
       {/* Communities Section */}
       <div className="row justify-content-center">
         <h3>{translation.language} Communities</h3>
-        {filteredCommunities.map((communityItem, index) => (
+        {filteredCommunities.slice(0, 4).map((communityItem, index) => (
           <div className="col-md-3 mb-3" key={index}>
             <Link to={`/communities/${communityItem.name}`} className="card text-decoration-none">
               <img
@@ -198,6 +198,33 @@ const TranslationInstance = () => {
             </Link>
           </div>
         ))}
+
+        <h3>{translation.language} Job Postings</h3>
+        {filteredJobs.slice(0, 4).map((jobItem, index) => (
+          <div className="col-md-3 mb-3" key={index}>
+            <Link
+              to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
+              className="card text-decoration-none"
+            >
+              <img
+                src={jobItem.imageUrl}
+                alt={jobItem.name}
+                className="card-img-top"
+                style={{ height: "220px", objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{jobItem.name}</h5>
+                <p className="card-text">
+                  {jobItem.title} <br />
+                  Pay: ${jobItem.pay}/hr <br />
+                  Language: {jobItem.language} <br />
+                  Area: {jobItem.area}
+                </p>
+              </div>
+            </Link>
+          </div>
+        ))}
+
       </div>
     </div>
   );

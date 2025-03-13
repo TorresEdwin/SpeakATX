@@ -89,7 +89,7 @@ const CommunityInstance = () => {
             {/* Translation Services Section */}
             <div className="row d-flex justify-content-center">
                 <h3>{community.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Services</h3>
-                {filteredTranslations.map((translation, index) => (
+                {filteredTranslations.slice(0, 4).map((translation, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link to={`/translations/${translation.name}`} className="card text-decoration-none">
                             <img
@@ -114,7 +114,7 @@ const CommunityInstance = () => {
 
                 {/* Jobs Section */}
                 <h3>{community.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Jobs</h3>
-                {filteredJobs.map((job, index) => (
+                {filteredJobs.slice(0, 4).map((job, index) => (
                     <div className="col-md-3 mb-3" key={index}>
                         <Link to={`/jobs/${job.name}`} className="card text-decoration-none">
                             <img
