@@ -103,15 +103,15 @@ const About = () => {
     let people = [
         {
             name: "Steven Zheng", bio: "Steven is a third year CS major at UT Austin. In his spare time he enjoys building things and sleeping.",
-            responsibilities: "Full Stack", commits: commitStats["Steven Zheng"], issues: issueStats["Steven Zheng"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg"
+            responsibilities: "Full Stack", commits: commitStats["Steven Zheng"], issues: issueStats["Steven Zheng"], unitTests: 14, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg"
         },
         {
             name: "Maya Lee", bio: "Maya is a third year Computer Science Major at UT Austin. She enjoys doing arts and crafts such as drawing and painting.",
-            responsibilities: "Full Stack", commits: commitStats["Maya Lee"], issues: issueStats["Maya Lee"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/MayaLee.JPEG"
+            responsibilities: "Full Stack", commits: commitStats["Maya Lee"], issues: issueStats["Maya Lee"], unitTests: 12, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/MayaLee.JPEG"
         },
         {
             name: "Amy Wu", bio: "Amy is a third year Computer Science major at UT Austin. She enjoys swimming, drawing and traveling",
-            responsibilities: "Full Stack", commits: commitStats["Amy Wu"], issues: issueStats["Amy Wu"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/amyWu.jpg"
+            responsibilities: "Full Stack", commits: commitStats["Amy Wu"], issues: issueStats["Amy Wu"], unitTests: 13, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/amyWu.jpg"
         },
         {
             name: "Edwin Torres", bio: "Edwin is a third year CS major at UT Austin. He enjoys talking about new tech, gaming, and watching shows on Netflix.",

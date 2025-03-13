@@ -2,6 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
 import React, { useState, useEffect } from "react";
+import JobCard from "./job_card.jsx";
+import ServiceCard from "./service_card.jsx";
+import CommunityCard from "./community_card.jsx";
+
 
 const placeholderImage =
   "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
@@ -50,43 +54,9 @@ const JobsPage = () => {
 
       <div className="row justify-content-center">
         {currentItems.map((jobItem, index) => (
-          <div className="col-md-3 mb-3" key={index}>
-            <Link
-              to={`/jobs/${jobItem.name}`} // Links to dynamic job page
-              className="card text-decoration-none d-flex flex-column justify-content-between"
-              style={{ height: "500px" }} // Increased card height
-            >
-              <img
-                src={jobItem.imageUrl ? jobItem.imageUrl : placeholderImage}
-                alt={jobItem.name}
-                className="card-img-top"
-                style={{ height: "250px", objectFit: "cover" }} // Increased image height
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = placeholderImage;
-                }} // Handle broken images
-              />
-              <div
-                className="card-body d-flex flex-column justify-content-between"
-                style={{ flex: 1 }}
-              >
-                <h5 className="card-title">{jobItem.name}</h5>
-                <p className="card-text">
-                  {jobItem.title} <br />
-                  Pay: ${jobItem.pay}/hr <br />
-                  Language:{" "}
-                  {jobItem.language
-                    .split(", ")
-                    .map(
-                      (lang) => lang.charAt(0).toUpperCase() + lang.slice(1)
-                    )
-                    .join(", ")}{" "}
-                  <br />
-                  Area: {jobItem.area}
-                </p>
-              </div>
-            </Link>
-          </div>
+          <JobCard
+            jobItem={jobItem}
+          ></JobCard>
         ))}
       </div>
 

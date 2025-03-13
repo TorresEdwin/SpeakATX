@@ -3,6 +3,9 @@ import React from "react";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import Instances from "./instances.jsx";
+import JobCard from "./job_card.jsx";
+import ServiceCard from "./service_card.jsx";
+import CommunityCard from "./community_card.jsx";
 
 const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
@@ -95,57 +98,16 @@ const JobInstance = () => {
             <div className="row justify-content-center">
                 <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Communities</h3>
                 {filteredCommunities.slice(0, 4).map((communityItem, index) => (
-                    <div className="col-md-3 mb-3" key={index}>
-                        <Link
-                            to={`/communities/${communityItem.name}`}  
-                            className="card text-decoration-none"
-                        >
-                            <img
-                                src={communityItem.imageUrl ? communityItem.imageUrl : placeholderImage}
-                                alt={communityItem.name}
-                                className="card-img-top"
-                                style={{ height: "220px", objectFit: "cover" }}
-                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{communityItem.name}</h5>
-                                <p className="card-text">
-                                    {communityItem.title} <br />
-                                    Language: {communityItem.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
-                                    Area: {communityItem.area} <br />
-                                    Type: {communityItem.type.charAt(0).toUpperCase() + communityItem.type.slice(1)} <br />
-                                    Member count: {communityItem.member_count} <br />
-                                </p>
-                            </div>
-                        </Link>
-                    </div>
+                    <CommunityCard
+                    communityItem={communityItem}
+                  ></CommunityCard>
                 ))}
 
                 <h3>{job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Services</h3>
                 {filteredTranslations.slice(0, 4).map((translationItem, index) => (
-                    <div className="col-md-3 mb-3" key={index}>
-                        <Link
-                            to={`/translations/${translationItem.name}`}  
-                            className="card text-decoration-none"
-                        >
-                            <img
-                                src={translationItem.imageUrl ? translationItem.imageUrl : placeholderImage}
-                                alt={translationItem.name}
-                                className="card-img-top"
-                                style={{ height: "220px", objectFit: "cover" }}
-                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{translationItem.name}</h5>
-                                <p className="card-text">
-                                    Rating: {translationItem.rating} <br />
-                                    Language: {translationItem.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
-                                    Area: {translationItem.area} <br />
-                                    Price: {translationItem.price}
-                                </p>
-                            </div>
-                        </Link>
-                    </div>
+                    <ServiceCard
+                    service={translationItem}
+                  ></ServiceCard>
                 ))}
             </div>
         </div>

@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import Instances from "./instances.jsx";
+import JobCard from "./job_card.jsx";
+import ServiceCard from "./service_card.jsx";
+import CommunityCard from "./community_card.jsx";
 
 const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
@@ -59,11 +62,11 @@ const CommunityInstance = () => {
             <h1>{community.name}</h1>
 
             {/* Community Image */}
-            <img 
-                src={community.imageUrl || placeholderImage} 
-                alt={community.name} 
-                className="img-fluid mb-3" 
-                style={{ maxHeight: "300px", objectFit: "cover" }} 
+            <img
+                src={community.imageUrl || placeholderImage}
+                alt={community.name}
+                className="img-fluid mb-3"
+                style={{ maxHeight: "300px", objectFit: "cover" }}
                 onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
             />
 
@@ -73,7 +76,7 @@ const CommunityInstance = () => {
             <p><strong>Member Count:</strong> {community.member_count}</p>
             <p><strong>Type:</strong> {community.type.charAt(0).toUpperCase() + community.type.slice(1)}</p>
             <p style={{ textAlign: "left", maxWidth: "900px", margin: "0 auto" }}>
-            <strong>About:</strong> {community.descr}
+                <strong>About:</strong> {community.descr}
             </p>
 
             {/* View Community Button */}
@@ -89,52 +92,18 @@ const CommunityInstance = () => {
             {/* Translation Services Section */}
             <div className="row d-flex justify-content-center">
                 <h3>{community.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Services</h3>
-                {filteredTranslations.slice(0, 4).map((translation, index) => (
-                    <div className="col-md-3 mb-3" key={index}>
-                        <Link to={`/translations/${translation.name}`} className="card text-decoration-none">
-                            <img
-                                src={translation.imageUrl || placeholderImage}
-                                alt={translation.name}
-                                className="card-img-top"
-                                style={{ height: "220px", objectFit: "cover" }}
-                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{translation.name}</h5>
-                                <p className="card-text">
-                                    Rating: {translation.rating} <br />
-                                    Language: {translation.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
-                                    Area: {translation.area} <br />
-                                    Price: {translation.price}
-                                </p>
-                            </div>
-                        </Link>
-                    </div>
+                {filteredTranslations.slice(0, 4).map((service, index) => (
+                    <ServiceCard
+                        service={service}
+                    ></ServiceCard>
                 ))}
 
                 {/* Jobs Section */}
                 <h3>{community.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} Jobs</h3>
-                {filteredJobs.slice(0, 4).map((job, index) => (
-                    <div className="col-md-3 mb-3" key={index}>
-                        <Link to={`/jobs/${job.name}`} className="card text-decoration-none">
-                            <img
-                                src={job.imageUrl || placeholderImage}
-                                alt={job.name}
-                                className="card-img-top"
-                                style={{ height: "220px", objectFit: "cover" }}
-                                onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{job.name}</h5>
-                                <p className="card-text">
-                                    {job.title} <br />
-                                    Pay: ${job.pay}/hr <br />
-                                    Language: {job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")} <br />
-                                    Area: {job.area}
-                                </p>
-                            </div>
-                        </Link>
-                    </div>
+                {filteredJobs.slice(0, 4).map((jobItem, index) => (
+                    <JobCard
+                        jobItem={jobItem}
+                    ></JobCard>
                 ))}
             </div>
         </div>
