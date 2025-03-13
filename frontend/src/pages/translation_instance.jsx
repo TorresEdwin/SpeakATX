@@ -3,6 +3,9 @@ import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import Instances from "./instances.jsx";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
+import JobCard from "./job_card.jsx";
+import ServiceCard from "./service_card.jsx";
+import CommunityCard from "./community_card.jsx";
 
 const containerStyle = {
   width: "100%",
@@ -210,54 +213,16 @@ const TranslationInstance = () => {
       <div className="row justify-content-center">
         <h3>{translation.language} Communities</h3>
         {filteredCommunities.slice(0, 4).map((communityItem, index) => (
-          <div className="col-md-3 mb-3" key={index}>
-            <Link
-              to={`/communities/${communityItem.name}`}  // Links to dynamic job page
-              className="card text-decoration-none"
-            >
-              <img
-                src={communityItem.imageUrl}
-                alt={communityItem.name}
-                className="card-img-top"
-                style={{ height: "220px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{communityItem.name}</h5>
-                <p className="card-text">
-                  Language: {communityItem.language} <br />
-                  Area: {communityItem.area} <br />
-                  Member Count: {communityItem.member_count} <br />
-                  Type: {communityItem.type}
-                </p>
-              </div>
-            </Link>
-          </div>
+          <CommunityCard
+            communityItem={communityItem}
+          ></CommunityCard>
         ))}
 
         <h3>{translation.language} Job Postings</h3>
         {filteredJobs.slice(0, 4).map((jobItem, index) => (
-          <div className="col-md-3 mb-3" key={index}>
-            <Link
-              to={`/jobs/${jobItem.name}`}  // Links to dynamic job page
-              className="card text-decoration-none"
-            >
-              <img
-                src={jobItem.imageUrl}
-                alt={jobItem.name}
-                className="card-img-top"
-                style={{ height: "220px", objectFit: "cover" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{jobItem.name}</h5>
-                <p className="card-text">
-                  {jobItem.title} <br />
-                  Pay: ${jobItem.pay}/hr <br />
-                  Language: {jobItem.language} <br />
-                  Area: {jobItem.area}
-                </p>
-              </div>
-            </Link>
-          </div>
+          <JobCard
+            jobItem={jobItem}
+          ></JobCard>
         ))}
 
       </div>
