@@ -54,6 +54,9 @@ def populate_database(results):
                         lang += ", "
                     lang += l
         
+        if lang == "":
+            lang = "spanish"
+        
         paya = 0
 
         if "detected_extensions" in item and "salary" in item["detected_extensions"]:

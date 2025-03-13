@@ -39,11 +39,11 @@ def test_get_jobs():
 # Test for getting job by ID
 def test_get_job_by_id():
     # Assume that there is a job with ID 1 in the database
-    response = requests.get(f"{BASE_URL}/get/jobs/id/61")
+    response = requests.get(f"{BASE_URL}/get/jobs/id/128")
     assert response.status_code == 200  # Expecting a valid job record
     data = response.json()
     assert "job_id" in data
-    assert data["job_id"] == 61
+    assert data["job_id"] == 128
 
 # Test for getting translations (services)
 def test_get_translations():
