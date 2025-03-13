@@ -70,7 +70,7 @@ class FrontendTests(unittest.TestCase):
         
         # Get the text of the h1 element and verify it
         p_text = p_element.text
-        self.assertEqual("Resources for minimal english and non-english speakers in Austin, TX", p_text)  # Exact match for better validation
+        self.assertEqual("Resources for minimal English and non-English speakers in Austin, TX", p_text)  # Exact match for better validation
 
     def test_nonzero_services(self):
         """Check if there are nonzero instances of a specific element"""
