@@ -4,6 +4,9 @@ import Instances from "./instances.jsx";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
 
+const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
+
+
 const containerStyle = {
   width: "100%",
   height: "400px",
@@ -131,6 +134,15 @@ const TranslationInstance = () => {
 
       <h1>{translation.name}</h1>
 
+      {/* Community Image */}
+      <img
+        src={translation.imageUrl || placeholderImage}
+        alt={translation.name}
+        className="img-fluid mb-3"
+        style={{ maxHeight: "300px", objectFit: "cover" }}
+        onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }}
+      />
+
       {/* Embedded Google Map */}
       <div className="mb-4">
         {loading || !isLoaded ? (
@@ -154,6 +166,23 @@ const TranslationInstance = () => {
       <p style={{ textAlign: "left", maxWidth: "900px", margin: "0 auto" }}>
         <strong>About:</strong> {translation.descr}
       </p>
+
+      <br/>
+
+      <div className="mb-4">
+        {loading || !isLoaded ? (
+          <p>Loading map...</p>
+        ) : (
+          <GoogleMap
+            key={coordinates.lat + coordinates.lng} // Forces re-render on coordinate change
+            mapContainerStyle={containerStyle}
+            center={coordinates}
+            zoom={15}
+          >
+            <Marker position={coordinates} />
+          </GoogleMap>
+        )}
+      </div>
 
       <div className="d-flex justify-content-center gap-3 mt-3 mb-3">
         <button className="btn btn-success button-grow" onClick={() => window.open(translation.website, "_blank")}>
