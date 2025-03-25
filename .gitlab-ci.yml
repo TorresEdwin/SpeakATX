@@ -23,7 +23,7 @@ build-and-test-frontend:
     - npm run test
     - echo "Tests completed"
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "main"'
+    - if: '$CI_COMMIT_REF_NAME == "qgeoiehgqoieh"'
       when: always
 
 test-flask-backend:
@@ -37,7 +37,7 @@ test-flask-backend:
     - echo "Running Flask app tests..."
     - pytest test_app.py
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "main"'
+    - if: '$CI_COMMIT_REF_NAME == "qegoiegoh"'
       when: always
 
 test-acceptance:
@@ -59,7 +59,7 @@ test-acceptance:
     - echo "Running frontend acceptance tests..."
     - python frontend_acceptance.py
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "main"'
+    - if: '$CI_COMMIT_REF_NAME == "qoihopeghg"'
       when: always
 
 postman-tests:
@@ -71,5 +71,5 @@ postman-tests:
     - newman --version
     - newman run SpeakATX.postman_collection.json
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "main"'
+    - if: '$CI_COMMIT_REF_NAME == "pweoiruweopruw"'
       when: always
