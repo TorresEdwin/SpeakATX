@@ -124,7 +124,11 @@ def get_community_by_id(id):
 def get_jobs():
     page, per_page = get_pagination_params()
     name, language, area, pay, role = get_job_params()
-    result = get_table_paginated("Jobs", page, per_page)
+    table = get_table_paginated("Jobs", page, per_page)
+    result = []
+    for r in table:
+        if name in r["name"].lower() and language in r["language"].lower() and area in r["area"].lower() and pay <= r["pay"] and role in r["title"].lower():
+            result.append(r)
     return jsonify(result)
 
 # Get a single job by ID
@@ -141,7 +145,11 @@ def get_job_by_id(id):
 def get_translations():
     page, per_page = get_pagination_params()
     name, language, area, rating, price = get_service_params()
-    result = get_table_paginated("Services", page, per_page)
+    table = get_table_paginated("Services", page, per_page)
+    result = []
+    for r in table:
+        if name in r["name"].lower() and language in r["language"].lower() and area in r["area"].lower() and rating <= r["rating"] and price <= r["price"]:
+            result.append(r)
     return jsonify(result)
 
 # Get a single translation by ID
