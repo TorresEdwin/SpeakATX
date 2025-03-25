@@ -36,7 +36,7 @@ def populate_database(results):
 
 
         insert_stmt = table.insert().values(
-            name=item["name"],
+            name=item["name"].replace("/", "-"),
             member_count=item["member_count"],
             language=item["language"],
             area=item["location"],
