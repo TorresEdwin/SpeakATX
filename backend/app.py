@@ -73,7 +73,7 @@ def get_community_params():
     name = request.args.get('name', '', type=str)
     language = request.args.get('lang', '', type=str)
     area = request.args.get('area', '', type=str)
-    count = request.args.get('count', 1, type=int)
+    count = request.args.get('count', -1, type=int)
     type = request.args.get('type', '', type=str)
 
     return name, language, area, count, type
@@ -82,8 +82,8 @@ def get_service_params():
     name = request.args.get('name', '', type=str)
     language = request.args.get('lang', '', type=str)
     area = request.args.get('area', '', type=str)
-    rating = request.args.get('rating', 1, type=int)
-    price = request.args.get('price', 1, type=int)
+    rating = request.args.get('rating', -1, type=int)
+    price = request.args.get('price', -1, type=int)
 
     return name, language, area, rating, price
 
@@ -91,7 +91,7 @@ def get_job_params():
     name = request.args.get('name', '', type=str)
     language = request.args.get('lang', '', type=str)
     area = request.args.get('area', '', type=str)
-    pay = request.args.get('pay', 1, type=int)
+    pay = request.args.get('pay', -1, type=int)
     role = request.args.get('role', '', type=str)
 
     return name, language, area, pay, role
@@ -102,7 +102,12 @@ def get_job_params():
 def get_communities():
     page, per_page = get_pagination_params()
     name, language, area, count, type = get_community_params()
-    result = get_table_paginated("Communities", page, per_page)
+    table = get_table_paginated("Communities", page, per_page)
+    result = []
+    for r in table:
+        if name in r["name"].lower() and language in r["language"].lower() and area in r["area"].lower() and count <= r["member_count"] and type in r["type"].lower():
+            result.append(r)
+
     return jsonify(result)
 
 # Get a single community by ID
