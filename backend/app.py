@@ -69,10 +69,39 @@ def get_pagination_params():
     
     return page, per_page
 
+def get_community_params():
+    name = request.args.get('name', '', type=str)
+    language = request.args.get('lang', '', type=str)
+    area = request.args.get('area', '', type=str)
+    count = request.args.get('count', 1, type=int)
+    type = request.args.get('type', '', type=str)
+
+    return name, language, area, count, type
+
+def get_service_params():
+    name = request.args.get('name', '', type=str)
+    language = request.args.get('lang', '', type=str)
+    area = request.args.get('area', '', type=str)
+    rating = request.args.get('rating', 1, type=int)
+    price = request.args.get('price', 1, type=int)
+
+    return name, language, area, rating, price
+
+def get_job_params():
+    name = request.args.get('name', '', type=str)
+    language = request.args.get('lang', '', type=str)
+    area = request.args.get('area', '', type=str)
+    pay = request.args.get('pay', 1, type=int)
+    role = request.args.get('role', '', type=str)
+
+    return name, language, area, pay, role
+
+
 # Get all communities
 @app.route('/get/communities', methods=['GET'])
 def get_communities():
     page, per_page = get_pagination_params()
+    name, language, area, count, type = get_community_params()
     result = get_table_paginated("Communities", page, per_page)
     return jsonify(result)
 
@@ -89,6 +118,7 @@ def get_community_by_id(id):
 @app.route('/get/jobs', methods=['GET'])
 def get_jobs():
     page, per_page = get_pagination_params()
+    name, language, area, pay, role = get_job_params()
     result = get_table_paginated("Jobs", page, per_page)
     return jsonify(result)
 
@@ -105,6 +135,7 @@ def get_job_by_id(id):
 @app.route('/get/translations', methods=['GET'])
 def get_translations():
     page, per_page = get_pagination_params()
+    name, language, area, rating, price = get_service_params()
     result = get_table_paginated("Services", page, per_page)
     return jsonify(result)
 
