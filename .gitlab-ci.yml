@@ -70,3 +70,6 @@ postman-tests:
   script:
     - newman --version
     - newman run SpeakATX.postman_collection.json
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
