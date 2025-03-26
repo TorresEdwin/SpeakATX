@@ -8,6 +8,7 @@ import json
 from sqlalchemy import create_engine, MetaData, Table, select
 from sqlalchemy.sql import text
 import os
+import re
 
 def populate_database(results, lang, engine, connection, table):
 
@@ -37,7 +38,7 @@ def populate_database(results, lang, engine, connection, table):
 
     connection.close()
 
-def get_groups(url, language, driver):
+def get_groups(url, language, driver, keywords):
     driver.get(url)
 
     # Wait for the page to load completely
@@ -54,6 +55,7 @@ def get_groups(url, language, driver):
     
     groups = []
     for group_card in group_cards:
+
         # Find the title
         title_tag = group_card.find('h3', {'data-testid': 'group-card-title'})
         group_name = title_tag.get_text(strip=True) if title_tag else "Title not found"
@@ -85,7 +87,10 @@ def get_groups(url, language, driver):
             member_count_tag = group_soup.find("a", id="member-count-link")
             if member_count_tag:
                 member_count_text = member_count_tag.get_text(strip=True)
-                member_count = member_count_text.split(" ")[0]  # Extract just the number
+                match = re.search(r"[\d,]+", member_count_text)  # Find number with commas
+                if match:
+                    member_count = match.group(0)  # Extract the full number
+                    print(member_count)
                 
             # Find the div with the class "break-words utils_description__BlOCA"
             description_div = group_soup.find('div', class_='break-words utils_description__BlOCA')
@@ -99,7 +104,7 @@ def get_groups(url, language, driver):
                     for img in p.find_all('img'):
                         img.decompose()  # Remove <img> tag completely
                     paragraphs.append(p.get_text(strip=True))  # Add the cleaned paragraph
-
+            description = "\n".join(paragraphs)
             
             # Extract the second <span> for location
             event_card = group_soup.find("a", id="event-card-e-1")
@@ -111,16 +116,19 @@ def get_groups(url, language, driver):
 
         else:
             group_link = "N/A"
-
-        groups.append({
-            "name": group_name, 
-            "language": language, 
-            "url": group_link,
-            "picture": pic_link,
-            "member_count": member_count,
-            "location": location,
-            "description": "\n".join(paragraphs)
-        })
+            
+        valid_community = any(word.lower() in group_name.lower() or word.lower() in description.lower() for word in keywords)
+        print(group_link, valid_community)
+        if valid_community:
+            groups.append({
+                "name": group_name, 
+                "language": language, 
+                "url": group_link,
+                "picture": pic_link,
+                "member_count": member_count,
+                "location": location,
+                "description": description
+            })
     return groups
 
 
@@ -153,12 +161,19 @@ def main():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     base_url = "https://www.meetup.com/find/?topic=language-exchange&keywords={}&source=GROUPS&location=us--tx--austin&distance=twentyFiveMiles"
-    languages = ["spanish", "french", "chinese", "german", "vietnamese"]  
+    languages = ["spanish", "french", "chinese", "german", "vietnamese", "korean"]
+    keywords = [{"Spanish", "Latino", "Hola", "Mexico", "Español", "Tango", "Hispanic", "Portuguese", "Mundo", "Latin", "Português", "Basics"},
+                {"French", "Bonjour", "European", "Europe", "France", "Gurdjieff", "Basics"},
+                {"Chinese", "china", "Ni Hao", "Asia", "Mandarin", "Cantonese", "Basics", "Meditation", "mahjong"},
+                {"German", "Europe", "European", "Basics"},
+                {"Vietnamese", "Vietnam", "Asia", "Basics"},
+                {"k-pop", "korean", "hanguk", "k-drama", "korea", "asia", "Basics"}
+                ]
 
-    for language in languages:
+    for i, language in enumerate(languages):
         url = base_url.format(language)
         print("_____________" + language + "_____________")
-        groups = get_groups(url, language, driver)
+        groups = get_groups(url, language, driver, keywords[i])
 
         # password = os.environ.get("SQL_PASS", "uh oh")
         # engine = create_engine(f'mysql+pymysql://admin:{password}@database-1.cnkg4y8uupw7.us-east-2.rds.amazonaws.com:3306/SpeakATX')
