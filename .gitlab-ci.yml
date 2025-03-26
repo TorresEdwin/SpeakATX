@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - test_backend
   - test_acceptance
   - test_postman
