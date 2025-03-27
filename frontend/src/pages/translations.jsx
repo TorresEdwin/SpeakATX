@@ -5,10 +5,12 @@ import React, { useState, useEffect } from 'react';
 import JobCard from "./job_card.jsx";
 import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
+import SearchBar from "../components/Searchbar/index.jsx";
 
 const TranslationPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [currentPage, setCurrentPage] = useState(1); // State for current page
+  const [query, setQuery] = useState("");
   const itemsPerPage = 8; // Items per page
 
   useEffect(() => {
@@ -23,10 +25,17 @@ const TranslationPage = () => {
 
   if (!loaded) return <div><div className="spinner-border text-dark" role="status"></div></div>;
 
+  // Filtering services based on search input
+  const filteredServices = Instances.translations.filter((community) =>
+    community.name.toLowerCase().includes(query.toLowerCase())
+  );
+
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = Instances.translations.slice(indexOfFirstItem, indexOfLastItem);
+  // const currentItems = Instances.translations.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredServices.slice(indexOfFirstItem, indexOfLastItem);
+
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(Instances.translations.length / itemsPerPage);
@@ -42,6 +51,8 @@ const TranslationPage = () => {
       <br />
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
       <p className="mb-4">Number of services: {Instances.translations.length}</p>
+      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
+
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
         {currentItems.map((service, index) => (
           <ServiceCard

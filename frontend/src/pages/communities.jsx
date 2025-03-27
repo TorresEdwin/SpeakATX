@@ -5,11 +5,14 @@ import JobCard from "./job_card.jsx";
 import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
 import React, { useState, useEffect } from "react";
+import SearchBar from "../components/Searchbar/index.jsx";
 
 const CommunitiesPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
+  const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const itemsPerPage = 8; // Number of items per page
+
 
   useEffect(() => {
     const checkLoadedStatus = () => {
@@ -29,11 +32,17 @@ const CommunitiesPage = () => {
     );
 
   const communityLinks = Instances.communities;
+  
+  // Filtering communities based on search input
+  const filteredCommunities = Instances.communities.filter((community) =>
+    community.name.toLowerCase().includes(query.toLowerCase())
+  );
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = communityLinks.slice(indexOfFirstItem, indexOfLastItem);
+  // const currentItems = communityLinks.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredCommunities.slice(indexOfFirstItem, indexOfLastItem);
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(communityLinks.length / itemsPerPage);
@@ -46,6 +55,8 @@ const CommunitiesPage = () => {
       <br />
       <h1 className="mb-4">Communities in Austin</h1>
       <p className="mb-4">Number of communities: {communityLinks.length}</p>
+
+      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
       <div className="row justify-content-center">
         {currentItems.map((communityItem, index) => (

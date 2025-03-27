@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import JobCard from "./job_card.jsx";
 import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
+import SearchBar from "../components/Searchbar/index.jsx";
 
 
 const placeholderImage =
@@ -13,6 +14,7 @@ const placeholderImage =
 const JobsPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [currentPage, setCurrentPage] = useState(1); // State for current page
+  const [query, setQuery] = useState("");
   const itemsPerPage = 8; // Number of items per page
 
   useEffect(() => {
@@ -35,10 +37,17 @@ const JobsPage = () => {
   // Get the list of jobs
   const jobLinks = Instances.jobs;
 
+  // Filtering jobs based on search input
+  const filteredJobs = Instances.jobs.filter((community) =>
+    community.name.toLowerCase().includes(query.toLowerCase())
+  );
+
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = jobLinks.slice(indexOfFirstItem, indexOfLastItem);
+  // const currentItems = jobLinks.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredJobs.slice(indexOfFirstItem, indexOfLastItem);
+
 
   // Calculate the total number of pages
   const totalPages = Math.ceil(jobLinks.length / itemsPerPage);
@@ -51,6 +60,8 @@ const JobsPage = () => {
       <br />
       <h1 className="mb-4">Jobs in Austin</h1>
       <p className="mb-4">Number of jobs: {jobLinks.length}</p>
+
+      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
       <div className="row justify-content-center">
         {currentItems.map((jobItem, index) => (
