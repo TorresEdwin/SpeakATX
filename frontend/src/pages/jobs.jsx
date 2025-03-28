@@ -27,6 +27,20 @@ const JobsPage = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const onDropdownChange = (newValue) => {
+    console.log("Dropdown value changed to:", newValue);
+    Instances.sortJobs(newValue.split(",")[0], newValue.split(",")[1] === "r");
+  };
+
+  // Handle change event
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    onDropdownChange(newValue);
+  };
+
   if (!loaded)
     return (
       <div>
@@ -62,7 +76,21 @@ const JobsPage = () => {
       <p className="mb-4">Number of jobs: {jobLinks.length}</p>
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
-
+      <select value={selectedValue} onChange={handleChange}>
+        <option value="">Sort</option>
+        <option value="name,a">Name (^)</option>
+        <option value="name,r">Name (v)</option>
+        <option value="title,a">Title (^)</option>
+        <option value="title,r">Title (v)</option>
+        <option value="language,a">Language (^)</option>
+        <option value="language,r">Language (v)</option>
+        <option value="area,a">Area (^)</option>
+        <option value="area,r">Area (v)</option>
+        <option value="pay,a">Pay (^)</option>
+        <option value="pay,r">Pay (v)</option>
+      </select>
+      <br/>
+      <br/>
       <div className="row justify-content-center">
         {currentItems.map((jobItem, index) => (
           <JobCard

@@ -24,6 +24,20 @@ const CommunitiesPage = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const onDropdownChange = (newValue) => {
+    console.log("Dropdown value changed to:", newValue);
+    Instances.sortCommunities(newValue.split(",")[0], newValue.split(",")[1] === "r");
+  };
+
+  // Handle change event
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    onDropdownChange(newValue);
+  };
+
   if (!loaded)
     return (
       <div>
@@ -57,7 +71,21 @@ const CommunitiesPage = () => {
       <p className="mb-4">Number of communities: {communityLinks.length}</p>
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
-
+      <select value={selectedValue} onChange={handleChange}>
+        <option value="">Sort</option>
+        <option value="name,a">Name (^)</option>
+        <option value="name,r">Name (v)</option>
+        <option value="count,a">Member Count (^)</option>
+        <option value="count,r">Member Count (v)</option>
+        <option value="language,a">Language (^)</option>
+        <option value="language,r">Language (v)</option>
+        <option value="area,a">Area (^)</option>
+        <option value="area,r">Area (v)</option>
+        <option value="type,a">Type (^)</option>
+        <option value="type,r">Type (v)</option>
+      </select>
+      <br/>
+      <br/>
       <div className="row justify-content-center">
         {currentItems.map((communityItem, index) => (
           <CommunityCard
