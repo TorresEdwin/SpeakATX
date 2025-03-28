@@ -12,7 +12,7 @@ const ServiceCard = ({
             <div className="card h-100 shadow-lg overflow-hidden rounded">
                 <Link to={`/translations/${service.name}`} className="text-decoration-none">
                     <img
-                        src={service.imageUrl}
+                        src={service.imageUrl ? service.imageUrl : placeholderImage}
                         alt={service.name}
                         className="service-image"
                         onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
