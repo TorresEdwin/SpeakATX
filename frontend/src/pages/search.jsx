@@ -18,13 +18,20 @@ const SearchPage = () => {
   console.log("Instances.jobs:", Instances.jobs);
 
   // Filter based on search query (case-insensitive)
-  const filteredResults = allItems.filter((item) => {
+  /*const filteredResults = allItems.filter((item) => {
     if (!item.name || typeof item.name !== "string") return false; // Ensure valid name
     const matches = item.name.toLowerCase().includes(searchQuery.toLowerCase());
     if (matches) {
       console.log("Match Found:", item);
     }
     return matches;
+  });*/
+
+  const filteredResults = allItems.filter((item) => {
+    if (!item.name || typeof item.name !== "string") return false;
+    const itemName = item.name.trim().toLowerCase();
+    const query = searchQuery.trim().toLowerCase();
+    return itemName.includes(query);
   });
 
   useEffect(() => {
@@ -53,7 +60,7 @@ const SearchPage = () => {
             filteredResults.map((item) => {
               console.log("Rendering Item:", item);
               return (
-                <div key={item.name || Math.random()} className="col-md-4 mb-3">
+                <div key={item.name} className="col-md-4 mb-3">
                   <div className="card">
                     <div className="card-body">
                       <h5 className="card-title">{item.name}</h5>
