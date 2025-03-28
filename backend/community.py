@@ -125,11 +125,14 @@ def get_groups(url, language, driver, keywords):
                 "language": language, 
                 "url": group_link,
                 "picture": pic_link,
-                "member_count": member_count,
+                "member_count": to_int(member_count),
                 "location": location,
                 "description": description
             })
     return groups
+
+def to_int(number_str):
+    return int(re.sub(r"[^\d]", "", number_str))
 
 
 def save_to_json(data, filename="meetup_groups.json"):
@@ -161,13 +164,17 @@ def main():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     base_url = "https://www.meetup.com/find/?topic=language-exchange&keywords={}&source=GROUPS&location=us--tx--austin&distance=twentyFiveMiles"
-    languages = ["spanish", "french", "chinese", "german", "vietnamese", "korean"]
+    languages = ["spanish", "french", "chinese", "german", "vietnamese", "korean", "arabic", "hindi", "somali", "tagalog"]
     keywords = [{"Spanish", "Latino", "Hola", "Mexico", "Español", "Tango", "Hispanic", "Portuguese", "Mundo", "Latin", "Português", "Basics"},
                 {"French", "Bonjour", "European", "Europe", "France", "Gurdjieff", "Basics"},
                 {"Chinese", "china", "Ni Hao", "Asia", "Mandarin", "Cantonese", "Basics", "Meditation", "mahjong"},
                 {"German", "Europe", "European", "Basics"},
                 {"Vietnamese", "Vietnam", "Asia", "Basics"},
-                {"k-pop", "korean", "hanguk", "k-drama", "korea", "asia", "Basics"}
+                {"k-pop", "korean", "hanguk", "k-drama", "korea", "asia", "Basics"},
+                {"Arabic", "Middle East", "Quran", "Islam", "Basics", "Ramadan", "Calligraphy", "Halal", "Dubai", "Mahmoud", "Palestine"},
+                {"Hindi", "India", "Bollywood", "Namaste", "Asia", "Basics", "Sanskrit", "Holi", "Diwali", "Chai"},
+                {"Somali", "Africa", "Mogadishu", "Basics", "Somaliland", "Dhaqan", "Af Soomaali", "Nomadic"},
+                {"Tagalog", "Filipino", "Philippines", "Asia", "Manila", "Basics", "Balikbayan", "Mabuhay", "Luzon", "Visayas"}
                 ]
 
     for i, language in enumerate(languages):
