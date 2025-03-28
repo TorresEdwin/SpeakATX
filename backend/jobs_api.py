@@ -20,7 +20,7 @@ def extract_first_dollar(text):
     return 0
 
 def fetch_image(query):
-    api_key = "67e5e1a679bcf8e2c17481e7"
+    api_key = "67e70b9c4b2a6fd166d95210"
     url = "https://api.scrapingdog.com/google_images/"
     params = {
         "api_key": api_key,
