@@ -37,6 +37,8 @@ class Instances {
     }
 
     static getLangFiltered(instanceList, language) {
+        if (language.length === 0)
+            return instanceList;
         return instanceList.filter(item => Instances.matchingValues(item.language, language));
     }
 

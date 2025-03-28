@@ -13,8 +13,6 @@ const CommunitiesPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const itemsPerPage = 8; // Number of items per page
 
-
-
   useEffect(() => {
     const checkLoadedStatus = () => {
       setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
@@ -26,18 +24,35 @@ const CommunitiesPage = () => {
   }, []);
 
   const [selectedValue, setSelectedValue] = useState('');
+  const [selectedFilterValue, setSelectedFilterValue] = useState('');
 
-  const onDropdownChange = (newValue) => {
-    console.log("Dropdown value changed to:", newValue);
+  const onDropdownChange = (newValue, newFilterValue) => {
+    // Sort communities based on the selected value
+    Instances.sortCommunities("", false);
     Instances.sortCommunities(newValue.split(",")[0], newValue.split(",")[1] === "r");
+
+    // Filter communities based on the selected filter value
+    Instances.communities = Instances.getLangFiltered(Instances.communities, newFilterValue);
   };
 
-  // Handle change event
+  // Handle change event for the first dropdown
   const handleChange = (event) => {
     const newValue = event.target.value;
-    setSelectedValue(newValue);
-    onDropdownChange(newValue);
+    setSelectedValue(newValue);  // Update the state for selectedValue
+
+    // Pass both the newValue and the current filter value to onDropdownChange
+    onDropdownChange(newValue, selectedFilterValue);
   };
+
+  // Handle filter change event for the second dropdown
+  const handleFilterChange = (event) => {
+    const newFilterValue = event.target.value;
+    setSelectedFilterValue(newFilterValue);  // Update the state for selectedFilterValue
+
+    // Pass both the current selected value and the new filter value to onDropdownChange
+    onDropdownChange(selectedValue, newFilterValue);
+  };
+
 
   if (!loaded)
     return (
@@ -47,18 +62,18 @@ const CommunitiesPage = () => {
     );
 
   const communityLinks = Instances.communities;
-  
+
   // Filtering communities based on search input
   const filteredCommunities = (() => {
     if (query.trim() === "") return Instances.communities; // Show all if query is empty
-  
+
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-  
+
     // Check if theres a language term
     const languageTerms = searchTerms.filter(term => Instances.communities.some(community =>
       community.language.toLowerCase().includes(term)
     ));
-  
+
     // if theres a language, filter communities by language first
     let filteredByLanguage = Instances.communities;
     if (languageTerms.length > 0) {
@@ -66,15 +81,15 @@ const CommunitiesPage = () => {
         languageTerms.some(term => community.language.toLowerCase().includes(term))
       );
     }
-  
+
     //apply the remaining search terms
     const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
-  
+
     //no remaining terms are left
     if (remainingSearchTerms.length === 0) {
       return filteredByLanguage;
     }
-  
+
     //remaining search terms to the already filtered communities
     return filteredByLanguage.filter(community =>
       remainingSearchTerms.some(term =>
@@ -86,7 +101,7 @@ const CommunitiesPage = () => {
       )
     );
   })();
-  
+
 
 
   // Calculate the index of the first and last item on the current page
@@ -108,6 +123,7 @@ const CommunitiesPage = () => {
       <p className="mb-4">Number of communities: {communityLinks.length}</p>
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
+
       <select value={selectedValue} onChange={handleChange}>
         <option value="">Sort</option>
         <option value="name,a">Name (^)</option>
@@ -119,12 +135,23 @@ const CommunitiesPage = () => {
         <option value="type,a">Type (^)</option>
         <option value="type,r">Type (v)</option>
       </select>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <select value={selectedFilterValue} onChange={handleFilterChange}>
+        <option value="">Language</option>
+        <option value="spanish">Spanish</option>
+        <option value="chinese">Chinese</option>
+        <option value="vietnamese">Vietnamese</option>
+        <option value="korean">Korean</option>
+        <option value="french">French</option>
+        <option value="german">German</option>
+      </select>
+      <br />
+      <br />
       <div className="row justify-content-center">
-      {currentItems.length === 0 ? (
+        {currentItems.length === 0 ? (
           <div>No results</div>
-          ) : (
+        ) : (
           currentItems.map((communityItem, index) => (
             <CommunityCard key={index} communityItem={communityItem} />
           ))
