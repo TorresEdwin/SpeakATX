@@ -16,13 +16,13 @@ const CommunityCard = ({
                 style={{ height: "500px" }}
             >
                 <img
-                    src={communityItem.imageUrl ? communityItem.imageUrl : placeholderImage}
+                    src={communityItem.imageUrl}
                     alt={communityItem.name}
                     className="card-img-top"
                     style={{ height: "250px", objectFit: "cover" }}
                     onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = placeholderImage;
+                        e.target.src = placeholder;
                     }}
                 />
                 <div
