@@ -50,7 +50,7 @@ def populate_database(results):
     connection.execute(table.delete())
     connection.commit()
 
-    languages = ["spanish", "french", "chinese", "vietnamese", "korean", "german"]
+    languages = ["spanish", "french", "chinese", "vietnamese", "korean", "german", "arabic", "hindi", "somali", "tagalog"]
 
     for item in results:
         lang = ", ".join([l for l in languages if l in (item.get("title", "") + item.get("description", "")).lower()])
@@ -102,5 +102,5 @@ def fetch_jobs(search_terms_list, pages):
     return job_listings if job_listings else {"message": "No jobs found."}
 
 if __name__ == "__main__":
-    jobs = fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs"], 1)
+    jobs = fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs", "arabic jobs", "hindi jobs", "somali jobs", "tagalog jobs"], 1)
     populate_database(jobs)
