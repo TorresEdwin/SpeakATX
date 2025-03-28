@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from sqlalchemy.sql import text
 import os
 
-def search_businesses(api_key, location, term=None, total_results=20):
+def search_businesses(api_key, location, term=None, total_results=30):
     endpoint = "https://api.yelp.com/v3/businesses/search"
     
     headers = {
@@ -146,5 +146,5 @@ if __name__ == "__main__":
 
     print(f"Retrieved a total of {count} businesses")
     
-    #populate_database(results)
-    save_to_json(results)
+    populate_database(results)
+    #save_to_json(results)
