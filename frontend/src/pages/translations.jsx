@@ -23,6 +23,20 @@ const TranslationPage = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const onDropdownChange = (newValue) => {
+    console.log("Dropdown value changed to:", newValue);
+    Instances.sortServices(newValue, false);
+  };
+
+  // Handle change event
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    onDropdownChange(newValue);
+  };
+
   if (!loaded) return <div><div className="spinner-border text-dark" role="status"></div></div>;
 
   // Filtering services based on search input
@@ -53,6 +67,16 @@ const TranslationPage = () => {
       <p className="mb-4">Number of services: {Instances.translations.length}</p>
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
+      <select value={selectedValue} onChange={handleChange}>
+        <option value="">Sort</option>
+        <option value="name">Name</option>
+        <option value="rating">Rating</option>
+        <option value="language">Language</option>
+        <option value="area">Area</option>
+        <option value="price">Price</option>
+      </select>
+      <br/>
+      <br/>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
         {currentItems.map((service, index) => (
           <ServiceCard
