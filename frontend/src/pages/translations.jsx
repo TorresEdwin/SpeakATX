@@ -27,7 +27,7 @@ const TranslationPage = () => {
 
   const onDropdownChange = (newValue) => {
     console.log("Dropdown value changed to:", newValue);
-    Instances.sortServices(newValue, false);
+    Instances.sortServices(newValue.split(",")[0], newValue.split(",")[1] === "r");
   };
 
   // Handle change event
@@ -69,11 +69,16 @@ const TranslationPage = () => {
 
       <select value={selectedValue} onChange={handleChange}>
         <option value="">Sort</option>
-        <option value="name">Name</option>
-        <option value="rating">Rating</option>
-        <option value="language">Language</option>
-        <option value="area">Area</option>
-        <option value="price">Price</option>
+        <option value="name,a">Name (^)</option>
+        <option value="name,r">Name (v)</option>
+        <option value="rating,a">Rating (^)</option>
+        <option value="rating,r">Rating (v)</option>
+        <option value="language,a">Language (^)</option>
+        <option value="language,r">Language (v)</option>
+        <option value="area,a">Area (^)</option>
+        <option value="area,r">Area (v)</option>
+        <option value="price,a">Price (^)</option>
+        <option value="price,r">Price (v)</option>
       </select>
       <br/>
       <br/>
