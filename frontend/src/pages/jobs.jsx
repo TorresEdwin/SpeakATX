@@ -63,39 +63,73 @@ const JobsPage = () => {
     if (query.trim() === "") return Instances.jobs; // Show all if query is empty
   
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-  
-    // Check if theres a language term
-    const languageTerms = searchTerms.filter(term => Instances.jobs.some(job =>
-      job.language.toLowerCase().includes(term)
-    ));
-  
-    // if theres a language, filter communities by language first
-    let filteredByLanguage = Instances.jobs;
-    if (languageTerms.length > 0) {
-      filteredByLanguage = Instances.jobs.filter(job =>
-        languageTerms.some(term => job.language.toLowerCase().includes(term))
-      );
-    }
-  
-    //apply the remaining search terms
-    const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
-  
-    //no remaining terms are left
-    if (remainingSearchTerms.length === 0) {
-      return filteredByLanguage;
-    }
-  
-    //remaining search terms to the already filtered communities
-    return filteredByLanguage.filter(job =>
-      remainingSearchTerms.some(term =>
-        job.name.toLowerCase().includes(term) ||
-        job.title.toLowerCase().includes(term) ||
-        job.descr.toLowerCase().includes(term) ||
-        job.language.toLowerCase().includes(term) ||
-        job.area.toLowerCase().includes(term)
-      )
-    );
+    const queryPhrase = query.toLowerCase(); // Store full query for phrase matching
+
+    return Instances.jobs
+      .map(job => {
+        let score = 0;
+        const { name, descr, language, area, title } = job;
+        const text = `${name} ${descr} ${language} ${area} ${title}`.toLowerCase();
+
+        // Exact phrase match (highest relevance)
+        if (text.includes(queryPhrase)) {
+          score += 10;
+        }
+
+        // Multi-word match (medium relevance)
+        let multiWordMatches = searchTerms.filter(term => text.includes(term)).length;
+        score += multiWordMatches * 3;
+
+        // Single-word matches (lower relevance)
+        let singleWordMatches = searchTerms.filter(term => 
+          text.split(" ").some(word => word.startsWith(term))
+        ).length;
+        score += singleWordMatches;
+
+        return { job, score };
+      })
+      .filter(({ score }) => score > 0) 
+      .sort((a, b) => b.score - a.score) 
+      .map(({ job }) => job);
   })();
+
+  // const filteredJobs = (() => {
+  //   if (query.trim() === "") return Instances.jobs; // Show all if query is empty
+  
+  //   const searchTerms = query.toLowerCase().split(" ").filter(term => term);
+  
+  //   // Check if theres a language term
+  //   const languageTerms = searchTerms.filter(term => Instances.jobs.some(job =>
+  //     job.language.toLowerCase().includes(term)
+  //   ));
+  
+  //   // if theres a language, filter communities by language first
+  //   let filteredByLanguage = Instances.jobs;
+  //   if (languageTerms.length > 0) {
+  //     filteredByLanguage = Instances.jobs.filter(job =>
+  //       languageTerms.some(term => job.language.toLowerCase().includes(term))
+  //     );
+  //   }
+  
+  //   //apply the remaining search terms
+  //   const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
+  
+  //   //no remaining terms are left
+  //   if (remainingSearchTerms.length === 0) {
+  //     return filteredByLanguage;
+  //   }
+  
+  //   //remaining search terms to the already filtered communities
+  //   return filteredByLanguage.filter(job =>
+  //     remainingSearchTerms.some(term =>
+  //       job.name.toLowerCase().includes(term) ||
+  //       job.title.toLowerCase().includes(term) ||
+  //       job.descr.toLowerCase().includes(term) ||
+  //       job.language.toLowerCase().includes(term) ||
+  //       job.area.toLowerCase().includes(term)
+  //     )
+  //   );
+  // })();
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
