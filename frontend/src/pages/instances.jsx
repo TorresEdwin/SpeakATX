@@ -45,6 +45,34 @@ class Instances {
             Instances.translations.sort((a, b) => (a.price - b.price) * (reverse ? -1 : 1));
         }
     }
+
+    static sortCommunities(sortParam, reverse) {
+        if (sortParam === "name") {
+            Instances.communities.sort((a, b) => a.name.localeCompare(b.name) * (reverse ? -1 : 1));
+        } else if (sortParam === "count") {
+            Instances.communities.sort((a, b) => (a.member_count - b.member_count) * (reverse ? -1 : 1));
+        } else if (sortParam === "language") {
+            Instances.communities.sort((a, b) => a.language.localeCompare(b.language) * (reverse ? -1 : 1));
+        } else if (sortParam === "area") {
+            Instances.communities.sort((a, b) => a.area.localeCompare(b.area) * (reverse ? -1 : 1));
+        } else if (sortParam === "type") {
+            Instances.communities.sort((a, b) => a.type.localeCompare(b.type) * (reverse ? -1 : 1));
+        }
+    }
+
+    static sortJobs(sortParam, reverse) {
+        if (sortParam === "name") {
+            Instances.jobs.sort((a, b) => a.name.localeCompare(b.name) * (reverse ? -1 : 1));
+        } else if (sortParam === "pay") {
+            Instances.jobs.sort((a, b) => (a.pay - b.pay) * (reverse ? -1 : 1));
+        } else if (sortParam === "language") {
+            Instances.jobs.sort((a, b) => a.language.localeCompare(b.language) * (reverse ? -1 : 1));
+        } else if (sortParam === "area") {
+            Instances.jobs.sort((a, b) => a.area.localeCompare(b.area) * (reverse ? -1 : 1));
+        } else if (sortParam === "title") {
+            Instances.jobs.sort((a, b) => a.title.localeCompare(b.title) * (reverse ? -1 : 1));
+        }
+    }
 }
 
 export default Instances
