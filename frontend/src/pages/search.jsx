@@ -48,9 +48,12 @@ const SearchPage = () => {
                    <p className="card-text">
                      <strong>Category:</strong> {item.type}
                    </p>
-                   <Link to={`/${item.type.toLowerCase()}s/${encodeURIComponent(item.name)}`} className="btn btn-primary">
-                     View {item.type}
-                   </Link>
+                   <Link 
+                        to={`/${item.type === "Community" ? "communities" : item.type.toLowerCase() + "s"}/${encodeURIComponent(item.name)}`} 
+                        className="btn btn-primary"
+                        >
+                        View {item.type}
+                    </Link>
                  </div>
                </div>
              </div>
