@@ -32,16 +32,16 @@ class Instances {
         return false; // No matching values
     }
 
-    static sortServices(nameSort, ratingSort, langSort, locSort, costSort, reverse) {
-        if (nameSort) {
+    static sortServices(sortParam, reverse) {
+        if (sortParam === "name") {
             Instances.translations.sort((a, b) => a.name.localeCompare(b.name) * reverse ? -1 : 1);
-        } else if (ratingSort) {
+        } else if (sortParam === "rating") {
             Instances.translations.sort((a, b) => (a.rating - b.rating) * reverse ? -1 : 1);
-        } else if (langSort) {
+        } else if (sortParam === "language") {
             Instances.translations.sort((a, b) => a.language.localeCompare(b.language) * reverse ? -1 : 1);
-        } else if (locSort) {
+        } else if (sortParam === "area") {
             Instances.translations.sort((a, b) => a.area.localeCompare(b.area) * reverse ? -1 : 1);
-        } else if (costSort) {
+        } else if (sortParam === "price") {
             Instances.translations.sort((a, b) => (a.price - b.price) * reverse ? -1 : 1);
         }
     }

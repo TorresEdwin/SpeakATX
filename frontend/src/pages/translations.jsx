@@ -27,6 +27,7 @@ const TranslationPage = () => {
 
   const onDropdownChange = (newValue) => {
     console.log("Dropdown value changed to:", newValue);
+    Instances.sortServices(newValue, false);
   };
 
   // Handle change event
@@ -67,10 +68,12 @@ const TranslationPage = () => {
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
       <select value={selectedValue} onChange={handleChange}>
-        <option value="">Select an option</option>
-        <option value="apple">Apple</option>
-        <option value="banana">Banana</option>
-        <option value="cherry">Cherry</option>
+        <option value="">Sort</option>
+        <option value="name">Name</option>
+        <option value="rating">Rating</option>
+        <option value="language">Language</option>
+        <option value="area">Area</option>
+        <option value="price">Price</option>
       </select>
       <br/>
       <br/>
