@@ -13,6 +13,8 @@ const CommunitiesPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const itemsPerPage = 8; // Number of items per page
 
+
+
   useEffect(() => {
     const checkLoadedStatus = () => {
       setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
@@ -56,42 +58,76 @@ const CommunitiesPage = () => {
   // Filtering communities based on search input
   const filteredCommunities = (() => {
     if (query.trim() === "") return Instances.communities; // Show all if query is empty
-
+  
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
+    const queryPhrase = query.toLowerCase(); // Store full query for phrase matching
 
-    // Check if theres a language term
-    const languageTerms = searchTerms.filter(term => Instances.communities.some(community =>
-      community.language.toLowerCase().includes(term)
-    ));
+    return Instances.communities
+      .map(community => {
+        let score = 0;
+        const { name, descr, language, area, type } = community;
+        const text = `${name} ${descr} ${language} ${area} ${type}`.toLowerCase();
 
-    // if theres a language, filter communities by language first
-    let filteredByLanguage = Instances.communities;
-    if (languageTerms.length > 0) {
-      filteredByLanguage = Instances.communities.filter(community =>
-        languageTerms.some(term => community.language.toLowerCase().includes(term))
-      );
-    }
+        // Exact phrase match (highest relevance)
+        if (text.includes(queryPhrase)) {
+          score += 10;
+        }
 
-    //apply the remaining search terms
-    const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
+        // Multi-word match (medium relevance)
+        let multiWordMatches = searchTerms.filter(term => text.includes(term)).length;
+        score += multiWordMatches * 3;
 
-    //no remaining terms are left
-    if (remainingSearchTerms.length === 0) {
-      return filteredByLanguage;
-    }
+        // Single-word matches (lower relevance)
+        let singleWordMatches = searchTerms.filter(term => 
+          text.split(" ").some(word => word.startsWith(term))
+        ).length;
+        score += singleWordMatches;
 
-    //remaining search terms to the already filtered communities
-    return filteredByLanguage.filter(community =>
-      remainingSearchTerms.some(term =>
-        community.name.toLowerCase().includes(term) ||
-        community.descr.toLowerCase().includes(term) ||
-        community.language.toLowerCase().includes(term) ||
-        community.area.toLowerCase().includes(term) ||
-        community.type.toLowerCase().includes(term)
-      )
-    );
-  })();
+        return { community, score };
+      })
+      .filter(({ score }) => score > 0) 
+      .sort((a, b) => b.score - a.score)
+      .map(({ community }) => community);
+})();
 
+  // const filteredCommunities = (() => {
+  //   if (query.trim() === "") return Instances.communities; // Show all if query is empty
+  
+  //   const searchTerms = query.toLowerCase().split(" ").filter(term => term);
+  
+  //   // Check if theres a language term
+  //   const languageTerms = searchTerms.filter(term => Instances.communities.some(community =>
+  //     community.language.toLowerCase().includes(term)
+  //   ));
+  
+  //   // if theres a language, filter communities by language first
+  //   let filteredByLanguage = Instances.communities;
+  //   if (languageTerms.length > 0) {
+  //     filteredByLanguage = Instances.communities.filter(community =>
+  //       languageTerms.some(term => community.language.toLowerCase().includes(term))
+  //     );
+  //   }
+  
+  //   //apply the remaining search terms
+  //   const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
+  
+  //   //no remaining terms are left
+  //   if (remainingSearchTerms.length === 0) {
+  //     return filteredByLanguage;
+  //   }
+  
+  //   //remaining search terms to the already filtered communities
+  //   return filteredByLanguage.filter(community =>
+  //     remainingSearchTerms.some(term =>
+  //       community.name.toLowerCase().includes(term) ||
+  //       community.descr.toLowerCase().includes(term) ||
+  //       community.language.toLowerCase().includes(term) ||
+  //       community.area.toLowerCase().includes(term) ||
+  //       community.type.toLowerCase().includes(term)
+  //     )
+  //   );
+  // })();
+  
 
 
   // Calculate the index of the first and last item on the current page
@@ -139,9 +175,9 @@ const CommunitiesPage = () => {
       <br />
       <br />
       <div className="row justify-content-center">
-        {currentItems.length === 0 ? (
+      {currentItems.length === 0 ? (
           <div>No results</div>
-        ) : (
+          ) : (
           currentItems.map((communityItem, index) => (
             <CommunityCard key={index} communityItem={communityItem} />
           ))
