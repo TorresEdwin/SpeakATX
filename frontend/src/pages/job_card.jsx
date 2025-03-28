@@ -15,7 +15,7 @@ const JobCard = ({
                 style={{ height: "500px" }} // Increased card height
             >
                 <img
-                    src={jobItem.imageUrl ? jobItem.imageUrl : placeholderImage}
+                    src={jobItem.imageUrl}
                     alt={jobItem.name}
                     className="card-img-top"
                     style={{ height: "250px", objectFit: "cover" }} // Increased image height
