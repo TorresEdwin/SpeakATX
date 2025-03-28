@@ -14,6 +14,10 @@ class Instances {
         
     ]; 
 
+    static origJobs = [];
+    static origTranslations = [];
+    static origCommunities = [];
+
     static matchingValues(str1, str2) {
         // Split the strings into arrays and remove extra spaces (if any)
         const arr1 = str1.toLowerCase().split(',').map(item => item.trim());
@@ -32,6 +36,10 @@ class Instances {
         return false; // No matching values
     }
 
+    static getLangFiltered(instanceList, language) {
+        return instanceList.filter(item => item.language === language);
+    }
+
     static sortServices(sortParam, reverse) {
         if (sortParam === "name") {
             Instances.translations.sort((a, b) => a.name.localeCompare(b.name) * (reverse ? -1 : 1));
@@ -43,6 +51,8 @@ class Instances {
             Instances.translations.sort((a, b) => a.area.localeCompare(b.area) * (reverse ? -1 : 1));
         } else if (sortParam === "price") {
             Instances.translations.sort((a, b) => (a.price - b.price) * (reverse ? -1 : 1));
+        } else {
+            Instances.translations = Instances.origTranslations.slice();
         }
     }
 
@@ -57,6 +67,8 @@ class Instances {
             Instances.communities.sort((a, b) => a.area.localeCompare(b.area) * (reverse ? -1 : 1));
         } else if (sortParam === "type") {
             Instances.communities.sort((a, b) => a.type.localeCompare(b.type) * (reverse ? -1 : 1));
+        } else {
+            Instances.communities = Instances.origCommunities;
         }
     }
 
@@ -71,6 +83,8 @@ class Instances {
             Instances.jobs.sort((a, b) => a.area.localeCompare(b.area) * (reverse ? -1 : 1));
         } else if (sortParam === "title") {
             Instances.jobs.sort((a, b) => a.title.localeCompare(b.title) * (reverse ? -1 : 1));
+        } else {
+            Instances.jobs = Instances.origJobs;
         }
     }
 }
