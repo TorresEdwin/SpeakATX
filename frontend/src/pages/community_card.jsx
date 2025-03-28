@@ -22,7 +22,7 @@ const CommunityCard = ({
                     style={{ height: "250px", objectFit: "cover" }}
                     onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = placeholder;
+                        e.target.src = placeholderImage;
                     }}
                 />
                 <div
