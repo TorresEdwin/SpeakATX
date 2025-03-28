@@ -33,11 +33,11 @@ def fetch_image(query):
         response = requests.get(url, params=params)
         if response.status_code == 200:
             data = response.json()
-            if "image_results" in data and len(data["image_results"]) > 0:
-                return data["image_results"][0]["image"]
+            if "images_results" in data and len(data["images_results"]) > 0:
+                return data["images_results"][0]["image"]
     except Exception as e:
         print(f"Error fetching image for {query}: {e}")
-    return ""
+    return "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png"
 
 def populate_database(results):
     password = os.environ.get("SQL_PASS", "uh oh")
@@ -62,11 +62,7 @@ def populate_database(results):
                 for line in section["items"]:
                     paya = max(paya, extract_first_dollar(line))
 
-        image_url = ""
-        if "thumbnail" in item:
-            image_url = item["thumbnail"]
-        else:
-            image_url = fetch_image(item["title"])
+        image_url = fetch_image(item["company_name"])
         
         insert_stmt = table.insert().values(
             name=item.get("company_name", "none"),
