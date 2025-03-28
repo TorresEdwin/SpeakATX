@@ -37,7 +37,7 @@ class Instances {
     }
 
     static getLangFiltered(instanceList, language) {
-        return instanceList.filter(item => item.language === language);
+        return instanceList.filter(item => Instances.matchingValues(item.language, language));
     }
 
     static sortServices(sortParam, reverse) {
