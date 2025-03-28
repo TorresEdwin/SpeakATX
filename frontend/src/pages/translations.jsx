@@ -38,7 +38,7 @@ const TranslationPage = () => {
 
 
   // Calculate the total number of pages
-  const totalPages = Math.ceil(Instances.translations.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredServices.length / itemsPerPage);
 
   // Change the page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);

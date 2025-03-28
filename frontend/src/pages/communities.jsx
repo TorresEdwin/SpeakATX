@@ -45,7 +45,7 @@ const CommunitiesPage = () => {
   const currentItems = filteredCommunities.slice(indexOfFirstItem, indexOfLastItem);
 
   // Calculate the total number of pages
-  const totalPages = Math.ceil(communityLinks.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredCommunities.length / itemsPerPage);
 
   // Function to change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);

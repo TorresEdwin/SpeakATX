@@ -50,7 +50,7 @@ const JobsPage = () => {
 
 
   // Calculate the total number of pages
-  const totalPages = Math.ceil(jobLinks.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
 
   // Function to change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
