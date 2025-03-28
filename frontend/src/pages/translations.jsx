@@ -21,6 +21,19 @@ const TranslationPage = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const onDropdownChange = (newValue) => {
+    console.log("Dropdown value changed to:", newValue);
+  };
+
+  // Handle change event
+  const handleChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    onDropdownChange(newValue);
+  };
+
   if (!loaded) return <div><div className="spinner-border text-dark" role="status"></div></div>;
 
   // Calculate the index of the first and last item on the current page
@@ -42,6 +55,14 @@ const TranslationPage = () => {
       <br />
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
       <p className="mb-4">Number of services: {Instances.translations.length}</p>
+      <select value={selectedValue} onChange={handleChange}>
+        <option value="">Select an option</option>
+        <option value="apple">Apple</option>
+        <option value="banana">Banana</option>
+        <option value="cherry">Cherry</option>
+      </select>
+      <br/>
+      <br/>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
         {currentItems.map((service, index) => (
           <ServiceCard

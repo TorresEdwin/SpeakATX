@@ -31,6 +31,20 @@ class Instances {
         }
         return false; // No matching values
     }
+
+    static sortServices(nameSort, ratingSort, langSort, locSort, costSort, reverse) {
+        if (nameSort) {
+            Instances.translations.sort((a, b) => a.name.localeCompare(b.name) * reverse ? -1 : 1);
+        } else if (ratingSort) {
+            Instances.translations.sort((a, b) => (a.rating - b.rating) * reverse ? -1 : 1);
+        } else if (langSort) {
+            Instances.translations.sort((a, b) => a.language.localeCompare(b.language) * reverse ? -1 : 1);
+        } else if (locSort) {
+            Instances.translations.sort((a, b) => a.area.localeCompare(b.area) * reverse ? -1 : 1);
+        } else if (costSort) {
+            Instances.translations.sort((a, b) => (a.price - b.price) * reverse ? -1 : 1);
+        }
+    }
 }
 
 export default Instances
