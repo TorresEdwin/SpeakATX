@@ -116,8 +116,6 @@ const JobsPage = () => {
         <option value="name,r">Name (v)</option>
         <option value="title,a">Title (^)</option>
         <option value="title,r">Title (v)</option>
-        <option value="language,a">Language (^)</option>
-        <option value="language,r">Language (v)</option>
         <option value="area,a">Area (^)</option>
         <option value="area,r">Area (v)</option>
         <option value="pay,a">Pay (^)</option>

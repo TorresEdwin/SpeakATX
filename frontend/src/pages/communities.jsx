@@ -114,8 +114,6 @@ const CommunitiesPage = () => {
         <option value="name,r">Name (v)</option>
         <option value="count,a">Member Count (^)</option>
         <option value="count,r">Member Count (v)</option>
-        <option value="language,a">Language (^)</option>
-        <option value="language,r">Language (v)</option>
         <option value="area,a">Area (^)</option>
         <option value="area,r">Area (v)</option>
         <option value="type,a">Type (^)</option>
