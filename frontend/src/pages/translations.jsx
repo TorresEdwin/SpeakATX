@@ -24,17 +24,24 @@ const TranslationPage = () => {
   }, []);
 
   const [selectedValue, setSelectedValue] = useState('');
+  const [selectedFilterValue, setSelectedFilterValue] = useState('');
 
-  const onDropdownChange = (newValue) => {
-    console.log("Dropdown value changed to:", newValue);
+  const onDropdownChange = (newValue, newFilterValue) => {
+    Instances.sortServices("", false);
     Instances.sortServices(newValue.split(",")[0], newValue.split(",")[1] === "r");
+    Instances.translations = Instances.getLangFiltered(Instances.translations, newFilterValue);
   };
 
-  // Handle change event
   const handleChange = (event) => {
     const newValue = event.target.value;
     setSelectedValue(newValue);
-    onDropdownChange(newValue);
+    onDropdownChange(newValue, selectedFilterValue);
+  };
+
+  const handleFilterChange = (event) => {
+    const newFilterValue = event.target.value;
+    setSelectedFilterValue(newFilterValue);
+    onDropdownChange(selectedValue, newFilterValue);
   };
 
   if (!loaded) return <div><div className="spinner-border text-dark" role="status"></div></div>;
@@ -113,6 +120,17 @@ const TranslationPage = () => {
       </select>
       <br/>
       <br/>
+      <select value={selectedFilterValue} onChange={handleFilterChange}>
+        <option value="">Language</option>
+        <option value="spanish">Spanish</option>
+        <option value="chinese">Chinese</option>
+        <option value="vietnamese">Vietnamese</option>
+        <option value="korean">Korean</option>
+        <option value="french">French</option>
+        <option value="german">German</option>
+      </select>
+      <br />
+      <br />
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
       {currentItems.length === 0 ? (
           <div>No results</div>

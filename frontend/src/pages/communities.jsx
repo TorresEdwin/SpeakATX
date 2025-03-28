@@ -27,32 +27,22 @@ const CommunitiesPage = () => {
   const [selectedFilterValue, setSelectedFilterValue] = useState('');
 
   const onDropdownChange = (newValue, newFilterValue) => {
-    // Sort communities based on the selected value
     Instances.sortCommunities("", false);
     Instances.sortCommunities(newValue.split(",")[0], newValue.split(",")[1] === "r");
-
-    // Filter communities based on the selected filter value
     Instances.communities = Instances.getLangFiltered(Instances.communities, newFilterValue);
   };
 
-  // Handle change event for the first dropdown
   const handleChange = (event) => {
     const newValue = event.target.value;
-    setSelectedValue(newValue);  // Update the state for selectedValue
-
-    // Pass both the newValue and the current filter value to onDropdownChange
+    setSelectedValue(newValue);
     onDropdownChange(newValue, selectedFilterValue);
   };
 
-  // Handle filter change event for the second dropdown
   const handleFilterChange = (event) => {
     const newFilterValue = event.target.value;
-    setSelectedFilterValue(newFilterValue);  // Update the state for selectedFilterValue
-
-    // Pass both the current selected value and the new filter value to onDropdownChange
+    setSelectedFilterValue(newFilterValue);
     onDropdownChange(selectedValue, newFilterValue);
   };
-
 
   if (!loaded)
     return (
