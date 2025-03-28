@@ -37,7 +37,7 @@ def fetch_image(query):
                 return data["image_results"][0]["image"]
     except Exception as e:
         print(f"Error fetching image for {query}: {e}")
-    return "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png"
+    return ""
 
 def populate_database(results):
     password = os.environ.get("SQL_PASS", "uh oh")
@@ -62,7 +62,11 @@ def populate_database(results):
                 for line in section["items"]:
                     paya = max(paya, extract_first_dollar(line))
 
-        image_url = item.get("thumbnail") or fetch_image(item["title"])
+        image_url = ""
+        if "thumbnail" in item:
+            image_url = item["thumbnail"]
+        else:
+            image_url = fetch_image(item["title"])
         
         insert_stmt = table.insert().values(
             name=item.get("company_name", "none"),
