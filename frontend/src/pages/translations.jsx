@@ -20,6 +20,17 @@ const TranslationPage = () => {
 
     const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const page = queryParams.get('page');
+
+    // If the `page` query parameter exists and is a valid number, set it as the current page
+    if (page && !isNaN(page)) {
+      setCurrentPage(Number(page));
+    } else {
+      // Fallback to 1 if the `page` query parameter is invalid or doesn't exist
+      setCurrentPage(1);
+    }
+
     return () => clearInterval(intervalId);
   }, []);
 
@@ -129,8 +140,16 @@ const TranslationPage = () => {
   // Calculate the total number of pages
   const totalPages = Math.ceil(filteredTranslations.length / itemsPerPage);
 
-  // Change the page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Function to change page
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    
+    // Update the current page state
+    setCurrentPage(pageNumber);
+  
+    // Update the URL with the page number without reloading the page
+    window.history.pushState(null, '', `?page=${pageNumber}`);
+  };
 
   // Define a placeholder image for missing thumbnails
   const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
@@ -139,7 +158,7 @@ const TranslationPage = () => {
     <div className="container mt-4">
       <br />
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
-      <p className="mb-4">Number of services: {Instances.translations.length}</p>
+      <p className="mb-4">Number of services: {filteredTranslations.length}</p>
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
       <select value={selectedValue} onChange={handleChange}>

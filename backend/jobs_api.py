@@ -20,7 +20,7 @@ def extract_first_dollar(text):
     return 0
 
 def fetch_image(query):
-    api_key = "67e70b9c4b2a6fd166d95210"
+    api_key = os.environ.get("IMG_API", "uh oh")
     url = "https://api.scrapingdog.com/google_images/"
     params = {
         "api_key": api_key,
@@ -87,7 +87,7 @@ def fetch_jobs(search_terms_list, loc):
     job_listings = []
     for search_terms in search_terms_list:
         params = {
-            "api_key": "e14809263dbda8f39e51b559daceaab282f400ae423554e7cbaa9f53909a8f5c",
+            "api_key": os.environ.get("JOB_API", "uh oh"),
             "engine": "google_jobs",
             "google_domain": "google.com",
             "q": f"{search_terms}",

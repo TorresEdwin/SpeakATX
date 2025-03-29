@@ -130,7 +130,7 @@ def populate_database(results):
 
 if __name__ == "__main__":
 
-    API_KEY = "vCZrFDPdXdCjEyYp7NtgcSqZ6IxlHWihpK_TKBXLdzMjOEdRrWIwhC6Kn2D4vsQ7fUVplhQinBkiIzL_sr4wXsiNJBjTgS3hTTdr-cbrTPLs7oFMIJwF6ExZbzXKZ3Yx"
+    API_KEY = os.environ.get("YELP_API", "uh oh")
     
     location = "Austin, TX"
 
