@@ -157,6 +157,11 @@ body, html {
 /*
   translations_page
 */
+::placeholder {
+  color: white !important;
+  opacity: 1; /* Ensures it's fully visible */
+}
+
 
 /* Card Hover Effect */
 .card {
