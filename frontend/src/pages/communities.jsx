@@ -22,6 +22,17 @@ const CommunitiesPage = () => {
 
     const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const page = queryParams.get('page');
+
+    // If the `page` query parameter exists and is a valid number, set it as the current page
+    if (page && !isNaN(page)) {
+      setCurrentPage(Number(page));
+    } else {
+      // Fallback to 1 if the `page` query parameter is invalid or doesn't exist
+      setCurrentPage(1);
+    }
+
     return () => clearInterval(intervalId);
   }, []);
 
@@ -140,7 +151,15 @@ const CommunitiesPage = () => {
   const totalPages = Math.ceil(filteredCommunities.length / itemsPerPage);
 
   // Function to change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    
+    // Update the current page state
+    setCurrentPage(pageNumber);
+  
+    // Update the URL with the page number without reloading the page
+    window.history.pushState(null, '', `?page=${pageNumber}`);
+  };
 
   return (
     <div className="container my-4">
