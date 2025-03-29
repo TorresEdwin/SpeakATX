@@ -175,45 +175,44 @@ const CommunitiesPage = () => {
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
-      <select value={selectedValue} onChange={handleChange}>
-        <option value="">Sort</option>
-        <option value="name,a">Name (^)</option>
-        <option value="name,r">Name (v)</option>
-        <option value="count,a">Member Count (^)</option>
-        <option value="count,r">Member Count (v)</option>
-        <option value="area,a">Area (^)</option>
-        <option value="area,r">Area (v)</option>
-        <option value="type,a">Type (^)</option>
-        <option value="type,r">Type (v)</option>
-      </select>
-      <br />
-      <br />
-      <select value={selectedFilterValue} onChange={handleFilterChange}>
-        <option value="">Language</option>
-        <option value="spanish">Spanish</option>
-        <option value="chinese">Chinese</option>
-        <option value="vietnamese">Vietnamese</option>
-        <option value="korean">Korean</option>
-        <option value="french">French</option>
-        <option value="german">German</option>
-      </select>
-      <br />
-      <br />
-      <label>
-        Items per page: {itemsPerPage}
-        <input
-          type="range"
-          min="4"
-          max="20"
-          step="1"
-          value={itemsPerPage}
-          onChange={handleItemsPerPageChange}
-          className="form-range ml-4"
-        />
-      </label>
-      <br />
-      <br />
-      <div className="row justify-content-center">
+      <div className="flex items-center gap-4 flex-wrap ">
+        <select value={selectedValue} onChange={handleChange} className="border p-2 rounded m-2 md:m-4">
+          <option value="">Sort</option>
+          <option value="name,a">Name (^)</option>
+          <option value="name,r">Name (v)</option>
+          <option value="count,a">Member Count (^)</option>
+          <option value="count,r">Member Count (v)</option>
+          <option value="area,a">Area (^)</option>
+          <option value="area,r">Area (v)</option>
+          <option value="type,a">Type (^)</option>
+          <option value="type,r">Type (v)</option>
+        </select>
+
+        <select value={selectedFilterValue} onChange={handleFilterChange} className="border p-2 rounded m-2 md:m-4">
+          <option value="">Language</option>
+          <option value="spanish">Spanish</option>
+          <option value="chinese">Chinese</option>
+          <option value="vietnamese">Vietnamese</option>
+          <option value="korean">Korean</option>
+          <option value="french">French</option>
+          <option value="german">German</option>
+        </select>
+
+        <label className="flex items-center gap-2 m-2 md:m-4">
+          Items per page: <span>{itemsPerPage}</span>
+          <input
+            type="range"
+            min="4"
+            max="24"
+            step="4"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+            className="form-range ml-4"
+          />
+        </label>
+      </div>
+
+      <div className="row justify-content-center m-2 md:m-4">
       {currentItems.length === 0 ? (
           <div>No results</div>
           ) : (
