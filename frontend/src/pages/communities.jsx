@@ -11,7 +11,7 @@ const CommunitiesPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const itemsPerPage = 8; // Number of items per page
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
 
 
@@ -161,6 +161,12 @@ const CommunitiesPage = () => {
     window.history.pushState(null, '', `?page=${pageNumber}`);
   };
 
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to first page when changing items per page
+  };
+
+
   return (
     <div className="container my-4">
       <br />
@@ -191,6 +197,20 @@ const CommunitiesPage = () => {
         <option value="french">French</option>
         <option value="german">German</option>
       </select>
+      <br />
+      <br />
+      <label>
+        Items per page: {itemsPerPage}
+        <input
+          type="range"
+          min="4"
+          max="20"
+          step="1"
+          value={itemsPerPage}
+          onChange={handleItemsPerPageChange}
+          className="form-range ml-4"
+        />
+      </label>
       <br />
       <br />
       <div className="row justify-content-center">
