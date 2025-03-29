@@ -105,7 +105,7 @@ def populate_database(results):
                 name=item["name"],
                 language=category if category != "translations" else lang,
                 rating=item["rating"],
-                area="" if item["location"]["address1"] == None else item["location"]["address1"],
+                area=f"{round(item["coordinates"]["latitude"], 2)},{round(item["coordinates"]["longitude"], 2)}" if not item["location"]["address1"] else item["location"]["address1"],
                 price=1 if "price" not in item else len(item["price"]), # either $, $$, or $$$
                 imageUrl=item["image_url"],
                 map_location=f"{item["coordinates"]["latitude"]},{item["coordinates"]["longitude"]}",
