@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Instances from "./instances"; // Import central data source
 
@@ -12,23 +12,18 @@ const SearchPage = () => {
     ...(Instances?.translations?.map((item) => ({ ...item, type: "Service" })) || []),
   ];
 
-  /*console.log("Search Query:", searchQuery);
-  console.log("All Items:", allItems);
-  console.log("Does 'Legacy Restoration' exist?", allItems.some(item => item.name === "Legacy Restoration"));
-  console.log("Instances.jobs:", Instances.jobs);*/
-
+  // Filter results based on the search query
   const filteredResults = allItems.filter((item) => {
     if (!item.name || typeof item.name !== "string") return false;
-    const itemName = item.name.trim().toLowerCase();
-    const query = searchQuery.trim().toLowerCase();
-    return itemName.includes(query);
+    return item.name.trim().toLowerCase().includes(searchQuery.trim().toLowerCase());
   });
 
-  /*useEffect(() => {
-    //console.log("Filtered Results at render:", filteredResults.map(item => item.name));
-  }, [filteredResults]);
-  console.log("Is 'Legacy Restoration' in Filtered Results?", filteredResults.some(item => item.name === "Legacy Restoration")); */
-
+  // Categorize results
+  const categorizedResults = {
+    Communities: filteredResults.filter((item) => item.type === "Community"),
+    Jobs: filteredResults.filter((item) => item.type === "Job"),
+    Services: filteredResults.filter((item) => item.type === "Service"),
+  };
 
   return (
     <div className="container my-4">
@@ -43,18 +38,69 @@ const SearchPage = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
 
-      {/* Render filtered results */}
+      {/* Render filtered results in columns */}
       {filteredResults.length > 0 ? (
-        <div className="list-group">
-          {filteredResults.map((item, index) => (
-            <div key={index} className="list-group-item">
-              <h5>{item.name}</h5>
-              <p>Type: {item.type}</p>
-              <Link to={`/${item.type.toLowerCase()}/${item.id}`} className="btn btn-primary">
-                View Details
-              </Link>
+        <div className="row">
+          {/* Community Column */}
+          {categorizedResults.Communities.length > 0 && (
+            <div className="col-md-4">
+              <h3>Communities</h3>
+              <div className="list-group">
+                {categorizedResults.Communities.map((item, index) => (
+                  <div key={index} className="list-group-item">
+                    <h5>{item.name}</h5>
+                    <Link to={`/communities/${item.id}`} className="btn btn-primary">
+                      View Community
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          )}
+
+          {/* Jobs Column */}
+          {categorizedResults.Jobs.length > 0 && (
+            <div className="col-md-4">
+              <h3>Jobs</h3>
+              <div className="list-group">
+                {categorizedResults.Jobs.map((item, index) => (
+                  <div key={index} className="list-group-item">
+                    <h5>{item.name}</h5>
+                    <Link 
+                        to={`/${
+                          item.type === "Community" ? "communities" : item.type.toLowerCase() + "s"
+                        }/${encodeURIComponent(item.name)}`} 
+                        className="btn btn-primary"
+                      >
+                      View Job
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Services Column */}
+          {categorizedResults.Services.length > 0 && (
+            <div className="col-md-4">
+              <h3>Services</h3>
+              <div className="list-group">
+                {categorizedResults.Services.map((item, index) => (
+                  <div key={index} className="list-group-item">
+                    <h5>{item.name}</h5>
+                    <Link 
+                        to={`/${
+                          item.type === "Community" ? "communities" : "translations"
+                        }/${encodeURIComponent(item.name)}`} 
+                        className="btn btn-primary"
+                      >
+                      View Service
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <p>No results found</p>
