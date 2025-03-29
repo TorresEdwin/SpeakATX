@@ -174,8 +174,10 @@ const JobsPage = () => {
       <h1 className="mb-4">Jobs in Austin</h1>
       <p className="mb-4">Number of jobs: {filteredJobs.length}</p>
 
-      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
-      <select value={selectedValue} onChange={handleChange}>
+      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} className="border p-2 rounded m-2 md:m-4"/>
+
+    <div className="flex items-center gap-4 flex-wrap ">
+      <select value={selectedValue} onChange={handleChange} className="border p-2 rounded m-2 md:m-4">
         <option value="">Sort</option>
         <option value="name,a">Name (^)</option>
         <option value="name,r">Name (v)</option>
@@ -186,9 +188,7 @@ const JobsPage = () => {
         <option value="pay,a">Pay (^)</option>
         <option value="pay,r">Pay (v)</option>
       </select>
-      <br/>
-      <br/>
-      <select value={selectedFilterValue} onChange={handleFilterChange}>
+      <select value={selectedFilterValue} onChange={handleFilterChange} className="border p-2 rounded m-2 md:m-4">
         <option value="">Language</option>
         <option value="spanish">Spanish</option>
         <option value="chinese">Chinese</option>
@@ -197,23 +197,20 @@ const JobsPage = () => {
         <option value="french">French</option>
         <option value="german">German</option>
       </select>
-      <br />
-      <br />
-      <label>
+      <label className="flex items-center gap-2 m-2 md:m-4">
         Items per page: {itemsPerPage}
         <input
           type="range"
           min="4"
-          max="20"
-          step="1"
+          max="24"
+          step="4"
           value={itemsPerPage}
           onChange={handleItemsPerPageChange}
           className="form-range ml-4"
         />
       </label>
-      <br />
-      <br />
-      <div className="row justify-content-center">
+      </div>
+      <div className="row justify-content-center m-2 md:m-4">
       {currentItems.length === 0 ? (
           <div>No results</div>
           ) : (
