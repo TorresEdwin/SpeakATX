@@ -65,7 +65,7 @@ const Navbar = () => {
                 <NavLink to="/communities" activeStyle>Communities</NavLink>
                 <NavLink to="/jobs" activeStyle>Jobs</NavLink>
                 <NavLink to="/about" activeStyle>About</NavLink>
-                <NavLink to="/search" activeStyle>Search</NavLink>
+                <NavLink to="/search" activeStyle><span class="material-symbols-outlined">search</span></NavLink>
             </NavMenu>
 
             {isOpen && (

@@ -146,7 +146,7 @@ const CommunitiesPage = () => {
     <div className="container my-4">
       <br />
       <h1 className="mb-4">Communities in Austin</h1>
-      <p className="mb-4">Number of communities: {communityLinks.length}</p>
+      <p className="mb-4">Number of communities: {filteredCommunities.length}</p>
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
