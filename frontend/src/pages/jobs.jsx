@@ -148,7 +148,7 @@ const JobsPage = () => {
     <div className="container my-4">
       <br />
       <h1 className="mb-4">Jobs in Austin</h1>
-      <p className="mb-4">Number of jobs: {jobLinks.length}</p>
+      <p className="mb-4">Number of jobs: {filteredJobs.length}</p>
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
       <select value={selectedValue} onChange={handleChange}>

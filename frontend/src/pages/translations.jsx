@@ -139,7 +139,7 @@ const TranslationPage = () => {
     <div className="container mt-4">
       <br />
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
-      <p className="mb-4">Number of services: {Instances.translations.length}</p>
+      <p className="mb-4">Number of services: {filteredTranslations.length}</p>
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
       <select value={selectedValue} onChange={handleChange}>
