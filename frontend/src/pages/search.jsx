@@ -12,10 +12,49 @@ const SearchPage = () => {
     ...(Instances?.translations?.map((item) => ({ ...item, type: "Service" })) || []),
   ];
 
-  // Filter results based on the search query
+  // Normalize the search query
+  const query = searchQuery.trim().toLowerCase();
+
+  // Search function for Communities
+  const matchesCommunity = (item) => {
+    return (
+      item.name?.toLowerCase().includes(query) ||
+      item.descr?.toLowerCase().includes(query) ||
+      item.language?.toLowerCase().includes(query) ||
+      item.area?.toLowerCase().includes(query) ||
+      item.count?.toString().toLowerCase().includes(query)
+    );
+  };
+
+  // Search function for Jobs
+  const matchesJob = (item) => {
+    return (
+      item.name?.toLowerCase().includes(query) ||
+      item.title?.toLowerCase().includes(query) ||
+      item.area?.toLowerCase().includes(query) ||
+      item.pay?.toString().toLowerCase().includes(query) ||
+      item.descr?.toLowerCase().includes(query) ||
+      item.language?.toLowerCase().includes(query)
+    );
+  };
+
+  // Search function for Services
+  const matchesService = (item) => {
+    return (
+      item.name?.toLowerCase().includes(query) ||
+      item.descr?.toLowerCase().includes(query) ||
+      item.language?.toLowerCase().includes(query) ||
+      item.area?.toLowerCase().includes(query)
+    );
+  };
+
+  // Filter results
   const filteredResults = allItems.filter((item) => {
-    if (!item.name || typeof item.name !== "string") return false;
-    return item.name.trim().toLowerCase().includes(searchQuery.trim().toLowerCase());
+    if (!query) return false; // Don't show results if search is empty
+    if (item.type === "Community") return matchesCommunity(item);
+    if (item.type === "Job") return matchesJob(item);
+    if (item.type === "Service") return matchesService(item);
+    return false;
   });
 
   // Categorize results
@@ -49,7 +88,14 @@ const SearchPage = () => {
                 {categorizedResults.Communities.map((item, index) => (
                   <div key={index} className="list-group-item">
                     <h5>{item.name}</h5>
-                    <Link to={`/communities/${item.id}`} className="btn btn-primary">
+                    <p><strong>Language:</strong> {item.language}</p>
+                    <p><strong>Area:</strong> {item.area}</p>
+                    <Link 
+                        to={`/${
+                          item.type === "Community" ? "communities" : item.type.toLowerCase() + "s"
+                        }/${encodeURIComponent(item.name)}`} 
+                        className="btn btn-primary"
+                      >
                       View Community
                     </Link>
                   </div>
@@ -65,7 +111,10 @@ const SearchPage = () => {
               <div className="list-group">
                 {categorizedResults.Jobs.map((item, index) => (
                   <div key={index} className="list-group-item">
-                    <h5>{item.name}</h5>
+                    <h5>{item.title}</h5>
+                    <p><strong>Area:</strong> {item.area}</p>
+                    <p><strong>Pay:</strong> {item.pay}</p>
+                    <p><strong>Language:</strong> {item.language}</p>
                     <Link 
                         to={`/${
                           item.type === "Community" ? "communities" : item.type.toLowerCase() + "s"
@@ -88,12 +137,15 @@ const SearchPage = () => {
                 {categorizedResults.Services.map((item, index) => (
                   <div key={index} className="list-group-item">
                     <h5>{item.name}</h5>
+                    <p><strong>Language:</strong> {item.language}</p>
+                    <p><strong>Location:</strong> {item.area}</p>
                     <Link 
                         to={`/${
                           item.type === "Community" ? "communities" : "translations"
                         }/${encodeURIComponent(item.name)}`} 
                         className="btn btn-primary"
                       >
+
                       View Service
                     </Link>
                   </div>
