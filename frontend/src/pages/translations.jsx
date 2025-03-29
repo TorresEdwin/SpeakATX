@@ -11,7 +11,7 @@ const TranslationPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const [query, setQuery] = useState("");
-  const itemsPerPage = 8; // Items per page
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
   useEffect(() => {
     const checkLoadedStatus = () => {
@@ -151,6 +151,12 @@ const TranslationPage = () => {
     window.history.pushState(null, '', `?page=${pageNumber}`);
   };
 
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to first page when changing items per page
+  };
+
+
   // Define a placeholder image for missing thumbnails
   const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
@@ -183,6 +189,20 @@ const TranslationPage = () => {
         <option value="french">French</option>
         <option value="german">German</option>
       </select>
+      <br />
+      <br />
+      <label>
+        Items per page: {itemsPerPage}
+        <input
+          type="range"
+          min="4"
+          max="20"
+          step="1"
+          value={itemsPerPage}
+          onChange={handleItemsPerPageChange}
+          className="form-range ml-4"
+        />
+      </label>
       <br />
       <br />
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
