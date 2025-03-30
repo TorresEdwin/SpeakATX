@@ -38,7 +38,7 @@ test-flask-backend:
     - echo "Running Flask app tests..."
     - pytest test_app.py
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "qegoiegoh"'
+    - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
 
 test-acceptance:
@@ -72,5 +72,5 @@ postman-tests:
     - newman --version
     - newman run SpeakATX.postman_collection.json
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "pweoiruweopruw"'
+    - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
