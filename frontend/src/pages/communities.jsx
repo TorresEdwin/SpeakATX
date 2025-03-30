@@ -94,6 +94,9 @@ const CommunitiesPage = () => {
         ).length;
         score += singleWordMatches;
 
+        // Title match gets extra weight
+        if (name?.toLowerCase().includes(query)) score += 5;
+
         return { community, score };
       })
       .filter(({ score }) => score > 0) 

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Instances from "./instances"; // Import central data source
+import CommunityCard from "./community_card";
+import JobCard from "./job_card";
+import ServiceCard from "./service_card";
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,50 +15,44 @@ const SearchPage = () => {
     ...(Instances?.translations?.map((item) => ({ ...item, type: "Service" })) || []),
   ];
 
-  // Normalize the search query
+  // Normalize search query
   const query = searchQuery.trim().toLowerCase();
+  const queryWords = query.split(/\s+/); // Split input into words
 
-  // Search function for Communities
-  const matchesCommunity = (item) => {
-    return (
-      item.name?.toLowerCase().includes(query) ||
-      item.descr?.toLowerCase().includes(query) ||
-      item.language?.toLowerCase().includes(query) ||
-      item.area?.toLowerCase().includes(query) ||
-      item.count?.toString().toLowerCase().includes(query)
-    );
+  // Function to calculate relevance score
+  const getRelevanceScore = (item) => {
+    if (!query) return 0; // No query, no match
+
+    const fields = [
+      item.name, 
+      item.descr, 
+      item.language, 
+      item.area, 
+      item.count, 
+      item.title, 
+      item.pay
+    ].filter(Boolean).map(field => field.toString().toLowerCase());
+
+    let score = 0;
+
+    // Exact phrase match → Highest relevance
+    if (fields.some(field => field.includes(query))) score += 10;
+
+    // Multiple word matches → Higher relevance
+    const wordMatches = queryWords.filter(word => fields.some(field => field.includes(word)));
+    score += wordMatches.length * 3;
+
+    // Title match gets extra weight
+    if (item.name?.toLowerCase().includes(query)) score += 5;
+
+    return score;
   };
 
-  // Search function for Jobs
-  const matchesJob = (item) => {
-    return (
-      item.name?.toLowerCase().includes(query) ||
-      item.title?.toLowerCase().includes(query) ||
-      item.area?.toLowerCase().includes(query) ||
-      item.pay?.toString().toLowerCase().includes(query) ||
-      item.descr?.toLowerCase().includes(query) ||
-      item.language?.toLowerCase().includes(query)
-    );
-  };
-
-  // Search function for Services
-  const matchesService = (item) => {
-    return (
-      item.name?.toLowerCase().includes(query) ||
-      item.descr?.toLowerCase().includes(query) ||
-      item.language?.toLowerCase().includes(query) ||
-      item.area?.toLowerCase().includes(query)
-    );
-  };
-
-  // Filter results
-  const filteredResults = allItems.filter((item) => {
-    if (!query) return false; // Don't show results if search is empty
-    if (item.type === "Community") return matchesCommunity(item);
-    if (item.type === "Job") return matchesJob(item);
-    if (item.type === "Service") return matchesService(item);
-    return false;
-  });
+  // Filter and sort results by relevance
+  const filteredResults = allItems
+    .map(item => ({ ...item, relevance: getRelevanceScore(item) }))
+    .filter(item => item.relevance > 0) // Remove items with no match
+    .sort((a, b) => b.relevance - a.relevance); // Sort by highest relevance
 
   // Categorize results
   const categorizedResults = {
@@ -84,23 +81,9 @@ const SearchPage = () => {
           {categorizedResults.Communities.length > 0 && (
             <div className="col-md-4">
               <h3>Communities</h3>
-              <div className="list-group">
-                {categorizedResults.Communities.map((item, index) => (
-                  <div key={index} className="list-group-item">
-                    <h5>{item.name}</h5>
-                    <p><strong>Language:</strong> {item.language}</p>
-                    <p><strong>Area:</strong> {item.area}</p>
-                    <Link 
-                        to={`/${
-                          item.type === "Community" ? "communities" : item.type.toLowerCase() + "s"
-                        }/${encodeURIComponent(item.name)}`} 
-                        className="btn btn-primary"
-                      >
-                      View Community
-                    </Link>
-                  </div>
-                ))}
-              </div>
+              {categorizedResults.Communities.map((communityItem, index) => (
+                <CommunityCard key={index} communityItem={communityItem} />
+              ))}
             </div>
           )}
 
@@ -108,24 +91,9 @@ const SearchPage = () => {
           {categorizedResults.Jobs.length > 0 && (
             <div className="col-md-4">
               <h3>Jobs</h3>
-              <div className="list-group">
-                {categorizedResults.Jobs.map((item, index) => (
-                  <div key={index} className="list-group-item">
-                    <h5>{item.title}</h5>
-                    <p><strong>Area:</strong> {item.area}</p>
-                    <p><strong>Pay:</strong> {item.pay}</p>
-                    <p><strong>Language:</strong> {item.language}</p>
-                    <Link 
-                        to={`/${
-                          item.type === "Community" ? "communities" : item.type.toLowerCase() + "s"
-                        }/${encodeURIComponent(item.name)}`} 
-                        className="btn btn-primary"
-                      >
-                      View Job
-                    </Link>
-                  </div>
-                ))}
-              </div>
+              {categorizedResults.Jobs.map((jobItem, index) => (
+                <JobCard key={index} jobItem={jobItem} />
+              ))}
             </div>
           )}
 
@@ -133,24 +101,9 @@ const SearchPage = () => {
           {categorizedResults.Services.length > 0 && (
             <div className="col-md-4">
               <h3>Services</h3>
-              <div className="list-group">
-                {categorizedResults.Services.map((item, index) => (
-                  <div key={index} className="list-group-item">
-                    <h5>{item.name}</h5>
-                    <p><strong>Language:</strong> {item.language}</p>
-                    <p><strong>Location:</strong> {item.area}</p>
-                    <Link 
-                        to={`/${
-                          item.type === "Community" ? "communities" : "translations"
-                        }/${encodeURIComponent(item.name)}`} 
-                        className="btn btn-primary"
-                      >
-
-                      View Service
-                    </Link>
-                  </div>
-                ))}
-              </div>
+              {categorizedResults.Services.map((service, index) => (
+                <ServiceCard key={index} service={service} />
+              ))}
             </div>
           )}
         </div>
