@@ -28,6 +28,29 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url("./assets/picture.webp");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* White, semi-transparent box around the grid */
+.grid-container {
+  background-color: rgba(255, 255, 255, 0.8); /* White with slight transparency */
+  padding: 20px;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  max-width: 90%; /* Keep it from stretching too wide */
+  margin: auto; /* Center it */
+}
+
+/* Ensure the grid is inside this container */
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+  gap: 16px;
+  padding: 16px;
 }
 
 h1 {

@@ -1,8 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
-import JobCard from "./job_card.jsx";
-import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
 import React, { useState, useEffect } from "react";
 import SearchBar from "../components/Searchbar/index.jsx";
@@ -29,32 +26,17 @@ const highlightText = (text, query) => {
 const CommunitiesPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [query, setQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1); // Current page state
-  const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [selectedValue, setSelectedValue] = useState('');
-  const [selectedFilterValue, setSelectedFilterValue] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   useEffect(() => {
-    const checkLoadedStatus = () => {
-      setLoaded(Instances.loaded); // Update when Instances.loaded changes
-    };
-
-    const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
-
-    // Get the current page from URL query parameters if available
-    const queryParams = new URLSearchParams(window.location.search);
-    const page = queryParams.get('page');
-
-    if (page && !isNaN(page)) {
-      setCurrentPage(Number(page));
-    } else {
-      setCurrentPage(1);
-    }
-
+    const intervalId = setInterval(() => setLoaded(Instances.loaded), 500);
     return () => clearInterval(intervalId);
   }, []);
 
-  // Handle sort/filter dropdown changes
+  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedFilterValue, setSelectedFilterValue] = useState('');
+
   const onDropdownChange = (newValue, newFilterValue) => {
     Instances.sortCommunities("", false);
     Instances.sortCommunities(newValue.split(",")[0], newValue.split(",")[1] === "r");
@@ -62,27 +44,25 @@ const CommunitiesPage = () => {
   };
 
   const handleChange = (event) => {
-    const newValue = event.target.value;
-    setSelectedValue(newValue);
-    onDropdownChange(newValue, selectedFilterValue);
+    setSelectedValue(event.target.value);
+    onDropdownChange(event.target.value, selectedFilterValue);
   };
 
   const handleFilterChange = (event) => {
-    const newFilterValue = event.target.value;
-    setSelectedFilterValue(newFilterValue);
-    onDropdownChange(selectedValue, newFilterValue);
+    setSelectedFilterValue(event.target.value);
+    onDropdownChange(selectedValue, event.target.value);
   };
 
-  if (!loaded)
-    return (
-      <div>
-        <div className="spinner-border text-dark" role="status"></div>
-      </div>
-    );
+  if (!loaded) {
+    return <div className="text-center"><div className="spinner-border text-dark" role="status"></div></div>;
+  }
 
-  // Filter communities based on the search query with a scoring system
-  const filteredCommunities = (() => {
-    if (query.trim() === "") return Instances.communities;
+  const filteredCommunities = query.trim()
+    ? Instances.communities.filter(community =>
+        [community.name, community.descr, community.language, community.area, community.type]
+          .some(field => field.toLowerCase().includes(query.toLowerCase()))
+      )
+    : Instances.communities;
 
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
     const queryPhrase = query.toLowerCase();
@@ -134,124 +114,126 @@ const CommunitiesPage = () => {
   const currentItems = filteredCommunities.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredCommunities.length / itemsPerPage);
 
-  // Function to change page and update URL without reloading
-  const paginate = (pageNumber) => {
-    if (pageNumber < 1 || pageNumber > totalPages) return;
-    setCurrentPage(pageNumber);
-    window.history.pushState(null, '', `?page=${pageNumber}`);
-  };
-
-  const handleItemsPerPageChange = (event) => {
-    setItemsPerPage(Number(event.target.value));
-    setCurrentPage(1); // Reset to first page when items per page change
-  };
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container my-4">
-      <br />
-      <h1 className="mb-4">Communities in Austin</h1>
-      <p className="mb-4">Number of communities: {filteredCommunities.length}</p>
+      {/* White box outside of content */}
+      <div 
+        style={{
+          position: "absolute", 
+          top: "337px",  // Adjust top position
+          height: "1070px",
+          left: "16%",  // Center box
+          right: "16%",  // Control width
+          backgroundColor: "rgba(255, 255, 255, 0.8)", 
+          borderRadius: "10px", 
+          zIndex: 0,
+          padding: "20px",
+        }}
+      />
+
+      <div 
+        style={{
+          position: "absolute", 
+          top: "185px",  // Adjust top position
+          height: "135px",
+          left: "16%",  // Center box
+          right: "16%",  // Control width
+          backgroundColor: "rgba(255, 255, 255, 0.8)", 
+          borderRadius: "10px", 
+          zIndex: 0,
+          padding: "20px",
+        }}
+      />
+
+      <div className="p-4 rounded" style={{ position: "relative", zIndex: 1 }}>
+        <h1 className="mb-3 text-center">Communities in Austin</h1>
+        <p className="mb-3 text-center">Number of communities: {filteredCommunities.length}</p>
+
+        <br />
+
+      <input
+        type="text"
+        className="form-control"
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setCurrentPage(1);
+        }}
+        placeholder="Search communities..."
+        style={{ backgroundColor: "#e9713a", color: "#fff", borderRadius: "5px", padding: "8px", border: "none", carpetColor: "#fff" }}
+      />
 
 
-      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
+        <div className="d-flex justify-content-center gap-3 my-3">
+          <select 
+            className="form-select" 
+            value={selectedValue} 
+            onChange={handleChange} 
+            style={{ backgroundColor: '#e9713a', color: '#fff' }} // Apply orange background with white text
+          >
+            <option value="">Sort</option>
+            <option value="name,a">Name (^)</option>
+            <option value="name,r">Name (v)</option>
+            <option value="count,a">Member Count (^)</option>
+            <option value="count,r">Member Count (v)</option>
+            <option value="area,a">Area (^)</option>
+            <option value="area,r">Area (v)</option>
+            <option value="type,a">Type (^)</option>
+            <option value="type,r">Type (v)</option>
+          </select>
+          <select 
+            className="form-select" 
+            value={selectedFilterValue} 
+            onChange={handleFilterChange} 
+            style={{ backgroundColor: '#e9713a', color: '#fff' }} // Apply orange background with white text
+          >
+            <option value="">Language</option>
+            <option value="spanish">Spanish</option>
+            <option value="chinese">Chinese</option>
+            <option value="vietnamese">Vietnamese</option>
+            <option value="korean">Korean</option>
+            <option value="french">French</option>
+            <option value="german">German</option>
+          </select>
+        </div>
 
-      <div className="flex items-center gap-4 flex-wrap">
-        <select
-          value={selectedValue}
-          onChange={handleChange}
-          className="border p-2 rounded m-2 md:m-4"
-        >
-          <option value="">Sort</option>
-          <option value="name,a">Name (^)</option>
-          <option value="name,r">Name (v)</option>
-          <option value="count,a">Member Count (^)</option>
-          <option value="count,r">Member Count (v)</option>
-          <option value="area,a">Area (^)</option>
-          <option value="area,r">Area (v)</option>
-          <option value="type,a">Type (^)</option>
-          <option value="type,r">Type (v)</option>
-        </select>
+        <br />
+        <br />
 
-        <select
-          value={selectedFilterValue}
-          onChange={handleFilterChange}
-          className="border p-2 rounded m-2 md:m-4"
-        >
-          <option value="">Language</option>
-          <option value="spanish">Spanish</option>
-          <option value="chinese">Chinese</option>
-          <option value="vietnamese">Vietnamese</option>
-          <option value="korean">Korean</option>
-          <option value="french">French</option>
-          <option value="german">German</option>
-        </select>
-
-        <label className="flex items-center gap-2 m-2 md:m-4">
-          Items per page: <span>{itemsPerPage}</span>
-          <input
-            type="range"
-            min="4"
-            max="24"
-            step="4"
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            className="form-range ml-4"
-          />
-        </label>
-      </div>
-
-      <div className="row justify-content-center m-2 md:m-4">
-        {currentItems.length === 0 ? (
-          <div>No results</div>
+        <div className="row justify-content-center">
+          {currentItems.length === 0 ? (
+            <div className="text-center">No results</div>
           ) : (
-          currentItems.map((communityItem, index) => (
-            <CommunityCard key={index} communityItem={communityItem} />
-          ))
-        )}
-      </div>
+            currentItems.map((communityItem, index) => (
+              <CommunityCard key={index} communityItem={communityItem} />
+            ))
+          )}
+        </div>
 
-
-      {/* Pagination Bar */}
-      <nav className="mt-4">
-        <ul className="pagination pagination-sm justify-content-center d-flex flex-wrap gap-1 overflow-auto">
-          <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-            <button
-              className="page-link px-3"
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
-              style={{ boxShadow: "none", outline: "none" }}
-            >
-              Previous
-            </button>
-          </li>
-
-          {Array.from({ length: totalPages }, (_, index) => (
-            <li
-              key={index}
-              className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
-            >
-              <button
-                className="page-link px-3"
-                onClick={() => paginate(index + 1)}
-                style={{ boxShadow: "none", outline: "none" }}
-              >
-                {index + 1}
+        <nav className="mt-4">
+          <ul className="pagination pagination-sm justify-content-center d-flex flex-wrap gap-1 overflow-auto">
+            <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+              <button className="page-link px-3" onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
+                Previous
               </button>
             </li>
-          ))}
-
-          <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
-            <button
-              className="page-link px-3"
-              onClick={() => paginate(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              style={{ boxShadow: "none", outline: "none" }}
-            >
-              Next
-            </button>
-          </li>
-        </ul>
-      </nav>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <li key={index} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
+                <button className="page-link px-3" onClick={() => paginate(index + 1)}>
+                  {index + 1}
+                </button>
+              </li>
+            ))}
+            <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+              <button className="page-link px-3" onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };
