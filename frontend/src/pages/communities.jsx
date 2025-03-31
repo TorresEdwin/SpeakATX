@@ -116,7 +116,15 @@ const CommunitiesPage = () => {
       .map(({ community }) => ({
         ...community,
         name: highlightText(community.name, query),
-      }));
+        area: highlightText(community.area, query),
+        language: community.language
+            .split(", ")
+            .map(lang => highlightText(lang.charAt(0).toUpperCase() + lang.slice(1), query))
+            .reduce((acc, curr) => [acc, ", ", curr]), // Preserve comma-separated format*/
+        type: highlightText(
+            community.type.charAt(0).toUpperCase() + community.type.slice(1),
+            query),
+    }));
   })();
 
   // Pagination calculations

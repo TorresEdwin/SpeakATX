@@ -31,19 +31,13 @@ const CommunityCard = ({
                 >
                     <h5 className="card-title">{communityItem.name}</h5>
                     <p className="card-text">
-                        Language:{" "}
-                        {communityItem.language
-                            .split(", ")
-                            .map(
-                                (lang) => lang.charAt(0).toUpperCase() + lang.slice(1)
-                            )
-                            .join(", ")}{" "}
+                    Language: {communityItem.language} <br />
+
                         <br />
                         Area: {communityItem.area} <br />
                         Member Count: {communityItem.member_count} <br />
-                        Type:{" "}
-                        {communityItem.type.charAt(0).toUpperCase() +
-                            communityItem.type.slice(1)}
+                        Type: {communityItem.type}
+
                     </p>
                 </div>
             </Link>
