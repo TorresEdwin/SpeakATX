@@ -11,7 +11,7 @@ const TranslationPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const [query, setQuery] = useState("");
-  const itemsPerPage = 8; // Items per page
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
   useEffect(() => {
     const checkLoadedStatus = () => {
@@ -19,6 +19,17 @@ const TranslationPage = () => {
     };
 
     const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const page = queryParams.get('page');
+
+    // If the `page` query parameter exists and is a valid number, set it as the current page
+    if (page && !isNaN(page)) {
+      setCurrentPage(Number(page));
+    } else {
+      // Fallback to 1 if the `page` query parameter is invalid or doesn't exist
+      setCurrentPage(1);
+    }
 
     return () => clearInterval(intervalId);
   }, []);
@@ -49,40 +60,75 @@ const TranslationPage = () => {
   // Filtering services based on search input
   const filteredTranslations = (() => {
     if (query.trim() === "") return Instances.translations; // Show all if query is empty
-  
+
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-  
-    // Check if theres a language term
-    const languageTerms = searchTerms.filter(term => Instances.translations.some(translation =>
-      translation.language.toLowerCase().includes(term)
-    ));
-  
-    // if theres a language, filter communities by language first
-    let filteredByLanguage = Instances.translations;
-    if (languageTerms.length > 0) {
-      filteredByLanguage = Instances.translations.filter(translation =>
-        languageTerms.some(term => translation.language.toLowerCase().includes(term))
-      );
-    }
-  
-    //apply the remaining search terms
-    const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
-  
-    //no remaining terms are left
-    if (remainingSearchTerms.length === 0) {
-      return filteredByLanguage;
-    }
-  
-    //remaining search terms to the already filtered communities
-    return filteredByLanguage.filter(translation =>
-      remainingSearchTerms.some(term =>
-        translation.name.toLowerCase().includes(term) ||
-        translation.descr.toLowerCase().includes(term) ||
-        translation.language.toLowerCase().includes(term) ||
-        translation.location?.display_address?.join(", ").toLowerCase().includes(term)
-      )
-    );
+    const queryPhrase = query.toLowerCase(); // Store full query for phrase matching
+
+    return Instances.translations
+      .map(translation => {
+        let score = 0;
+        const { name, descr, language, location } = translation;
+        const address = location?.display_address?.join(", ") || "";
+        const text = `${name} ${descr} ${language} ${address}`.toLowerCase();
+
+        // Exact phrase match (highest relevance)
+        if (text.includes(queryPhrase)) {
+          score += 10;
+        }
+
+        // Multi-word match (medium relevance)
+        let multiWordMatches = searchTerms.filter(term => text.includes(term)).length;
+        score += multiWordMatches * 3;
+
+        // Single-word matches (lower relevance)
+        let singleWordMatches = searchTerms.filter(term => 
+          text.split(" ").some(word => word.startsWith(term))
+        ).length;
+        score += singleWordMatches;
+
+        return { translation, score };
+      })
+      .filter(({ score }) => score > 0) 
+      .sort((a, b) => b.score - a.score) 
+      .map(({ translation }) => translation);
   })();
+
+  // const filteredTranslations = (() => {
+  //   if (query.trim() === "") return Instances.translations; // Show all if query is empty
+  
+  //   const searchTerms = query.toLowerCase().split(" ").filter(term => term);
+  
+  //   // Check if theres a language term
+  //   const languageTerms = searchTerms.filter(term => Instances.translations.some(translation =>
+  //     translation.language.toLowerCase().includes(term)
+  //   ));
+  
+  //   // if theres a language, filter communities by language first
+  //   let filteredByLanguage = Instances.translations;
+  //   if (languageTerms.length > 0) {
+  //     filteredByLanguage = Instances.translations.filter(translation =>
+  //       languageTerms.some(term => translation.language.toLowerCase().includes(term))
+  //     );
+  //   }
+  
+  //   //apply the remaining search terms
+  //   const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
+  
+  //   //no remaining terms are left
+  //   if (remainingSearchTerms.length === 0) {
+  //     return filteredByLanguage;
+  //   }
+  
+  //   //remaining search terms to the already filtered communities
+  //   return filteredByLanguage.filter(translation =>
+  //     remainingSearchTerms.some(term =>
+  //       translation.name.toLowerCase().includes(term) ||
+  //       translation.descr.toLowerCase().includes(term) ||
+  //       translation.language.toLowerCase().includes(term) ||
+  //       translation.location?.display_address?.join(", ").toLowerCase().includes(term)
+  //     )
+  //   );
+  // })();
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -94,8 +140,22 @@ const TranslationPage = () => {
   // Calculate the total number of pages
   const totalPages = Math.ceil(filteredTranslations.length / itemsPerPage);
 
-  // Change the page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Function to change page
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    
+    // Update the current page state
+    setCurrentPage(pageNumber);
+  
+    // Update the URL with the page number without reloading the page
+    window.history.pushState(null, '', `?page=${pageNumber}`);
+  };
+
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to first page when changing items per page
+  };
+
 
   // Define a placeholder image for missing thumbnails
   const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
@@ -104,33 +164,44 @@ const TranslationPage = () => {
     <div className="container mt-4">
       <br />
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
-      <p className="mb-4">Number of services: {Instances.translations.length}</p>
+      <p className="mb-4">Number of services: {filteredTranslations.length}</p>
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
-      <select value={selectedValue} onChange={handleChange}>
-        <option value="">Sort</option>
-        <option value="name,a">Name (^)</option>
-        <option value="name,r">Name (v)</option>
-        <option value="rating,a">Rating (^)</option>
-        <option value="rating,r">Rating (v)</option>
-        <option value="area,a">Area (^)</option>
-        <option value="area,r">Area (v)</option>
-        <option value="price,a">Price (^)</option>
-        <option value="price,r">Price (v)</option>
-      </select>
-      <br/>
-      <br/>
-      <select value={selectedFilterValue} onChange={handleFilterChange}>
-        <option value="">Language</option>
-        <option value="spanish">Spanish</option>
-        <option value="chinese">Chinese</option>
-        <option value="vietnamese">Vietnamese</option>
-        <option value="korean">Korean</option>
-        <option value="french">French</option>
-        <option value="german">German</option>
-      </select>
-      <br />
-      <br />
+      <div className="flex items-center gap-4 flex-wrap ">
+        <select value={selectedValue} onChange={handleChange} className="border p-2 rounded m-2 md:m-4">
+          <option value="">Sort</option>
+          <option value="name,a">Name (^)</option>
+          <option value="name,r">Name (v)</option>
+          <option value="rating,a">Rating (^)</option>
+          <option value="rating,r">Rating (v)</option>
+          <option value="area,a">Area (^)</option>
+          <option value="area,r">Area (v)</option>
+          <option value="price,a">Price (^)</option>
+          <option value="price,r">Price (v)</option>
+        </select>
+        <select value={selectedFilterValue} onChange={handleFilterChange} className="border p-2 rounded m-2 md:m-4">
+          <option value="">Language</option>
+          <option value="spanish">Spanish</option>
+          <option value="chinese">Chinese</option>
+          <option value="vietnamese">Vietnamese</option>
+          <option value="korean">Korean</option>
+          <option value="french">French</option>
+          <option value="german">German</option>
+        </select>
+
+        <label className="flex items-center gap-2 m-2 md:m-4">
+          Items per page: {itemsPerPage}
+          <input
+            type="range"
+            min="4"
+            max="24"
+            step="4"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+            className="form-range ml-4"
+          />
+        </label>
+      </div>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
       {currentItems.length === 0 ? (
           <div>No results</div>

@@ -20,7 +20,7 @@ def extract_first_dollar(text):
     return 0
 
 def fetch_image(query):
-    api_key = "67e70b9c4b2a6fd166d95210"
+    api_key = os.environ.get("IMG_API", "uh oh")
     url = "https://api.scrapingdog.com/google_images/"
     params = {
         "api_key": api_key,
@@ -83,15 +83,15 @@ def populate_database(results):
         print(row)
     connection.close()
 
-def fetch_jobs(search_terms_list, pages):
+def fetch_jobs(search_terms_list, loc):
     job_listings = []
     for search_terms in search_terms_list:
         params = {
-            "api_key": "98105f355440203dbe19be8ee68e13264a6f8370c8353fd3aabc3224f7eb2183",
+            "api_key": os.environ.get("JOB_API", "uh oh"),
             "engine": "google_jobs",
             "google_domain": "google.com",
             "q": f"{search_terms}",
-            "location": "Austin, Texas, United States",
+            "location": loc,
         }
         search = GoogleSearch(params)
         results = search.get_dict()
@@ -102,5 +102,6 @@ def fetch_jobs(search_terms_list, pages):
     return job_listings if job_listings else {"message": "No jobs found."}
 
 if __name__ == "__main__":
-    jobs = fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs", "arabic jobs", "hindi jobs", "somali jobs", "tagalog jobs"], 1)
+    jobs = fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs", "arabic jobs", "hindi jobs", "somali jobs", "tagalog jobs"], "Austin, Texas, United States")
+    jobs.extend(fetch_jobs(["bilingual jobs", "spanish jobs", "chinese jobs", "vietnamese jobs", "french jobs", "korean jobs", "german jobs", "arabic jobs", "hindi jobs", "somali jobs", "tagalog jobs"], "Houston, Texas, United States"))
     populate_database(jobs)

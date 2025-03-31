@@ -32,7 +32,8 @@ const Navbar = () => {
             "/translations": "SpeakATX - Services",
             "/communities": "SpeakATX - Communities",
             "/jobs": "SpeakATX - Jobs",
-            "/about": "SpeakATX - About Us"
+            "/about": "SpeakATX - About Us",
+            "/search": "SpeakATX - Search"
         };
 
         // Update document title
@@ -64,6 +65,7 @@ const Navbar = () => {
                 <NavLink to="/communities" activeStyle>Communities</NavLink>
                 <NavLink to="/jobs" activeStyle>Jobs</NavLink>
                 <NavLink to="/about" activeStyle>About</NavLink>
+                <NavLink to="/search" activeStyle><span class="material-symbols-outlined">search</span></NavLink>
             </NavMenu>
 
             {isOpen && (
@@ -74,6 +76,7 @@ const Navbar = () => {
                     <NavLink to="/communities" onClick={toggleMenu}>Communities</NavLink>
                     <NavLink to="/jobs" onClick={toggleMenu}>Jobs</NavLink>
                     <NavLink to="/about" onClick={toggleMenu}>About</NavLink>
+                    <NavLink to="/search" onClick={toggleMenu}>Search</NavLink>
                 </MobileMenu>
             )}
         </Nav>

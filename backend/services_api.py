@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from sqlalchemy.sql import text
 import os
 
-def search_businesses(api_key, location, term=None, total_results=20):
+def search_businesses(api_key, location, term=None, total_results=30):
     endpoint = "https://api.yelp.com/v3/businesses/search"
     
     headers = {
@@ -105,7 +105,7 @@ def populate_database(results):
                 name=item["name"],
                 language=category if category != "translations" else lang,
                 rating=item["rating"],
-                area="" if item["location"]["address1"] == None else item["location"]["address1"],
+                area=f"{round(item["coordinates"]["latitude"], 2)},{round(item["coordinates"]["longitude"], 2)}" if not item["location"]["address1"] else item["location"]["address1"],
                 price=1 if "price" not in item else len(item["price"]), # either $, $$, or $$$
                 imageUrl=item["image_url"],
                 map_location=f"{item["coordinates"]["latitude"]},{item["coordinates"]["longitude"]}",
@@ -130,7 +130,7 @@ def populate_database(results):
 
 if __name__ == "__main__":
 
-    API_KEY = "vCZrFDPdXdCjEyYp7NtgcSqZ6IxlHWihpK_TKBXLdzMjOEdRrWIwhC6Kn2D4vsQ7fUVplhQinBkiIzL_sr4wXsiNJBjTgS3hTTdr-cbrTPLs7oFMIJwF6ExZbzXKZ3Yx"
+    API_KEY = os.environ.get("YELP_API", "uh oh")
     
     location = "Austin, TX"
 
@@ -146,5 +146,5 @@ if __name__ == "__main__":
 
     print(f"Retrieved a total of {count} businesses")
     
-    #populate_database(results)
-    save_to_json(results)
+    populate_database(results)
+    #save_to_json(results)

@@ -10,12 +10,27 @@ import SearchBar from "../components/Searchbar/index.jsx";
 
 const placeholderImage =
   "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
+  
+const highlightText = (text, query) => {
+  if (!query.trim()) return text;
+
+  const regex = new RegExp(`(${query})`, 'gi');
+  const parts = text.split(regex);  // Split the text around the query match
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+      <span key={index} className="highlight">{part}</span> // Wrap matches in <span>
+    ) : (
+      part // Leave other text as is
+    )
+  );
+};
 
 const JobsPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const [query, setQuery] = useState("");
-  const itemsPerPage = 8; // Number of items per page
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
   useEffect(() => {
     const checkLoadedStatus = () => {
@@ -23,6 +38,17 @@ const JobsPage = () => {
     };
 
     const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const page = queryParams.get('page');
+
+    // If the `page` query parameter exists and is a valid number, set it as the current page
+    if (page && !isNaN(page)) {
+      setCurrentPage(Number(page));
+    } else {
+      // Fallback to 1 if the `page` query parameter is invalid or doesn't exist
+      setCurrentPage(1);
+    }
 
     return () => clearInterval(intervalId);
   }, []);
@@ -63,39 +89,73 @@ const JobsPage = () => {
     if (query.trim() === "") return Instances.jobs; // Show all if query is empty
   
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-  
-    // Check if theres a language term
-    const languageTerms = searchTerms.filter(term => Instances.jobs.some(job =>
-      job.language.toLowerCase().includes(term)
-    ));
-  
-    // if theres a language, filter communities by language first
-    let filteredByLanguage = Instances.jobs;
-    if (languageTerms.length > 0) {
-      filteredByLanguage = Instances.jobs.filter(job =>
-        languageTerms.some(term => job.language.toLowerCase().includes(term))
-      );
-    }
-  
-    //apply the remaining search terms
-    const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
-  
-    //no remaining terms are left
-    if (remainingSearchTerms.length === 0) {
-      return filteredByLanguage;
-    }
-  
-    //remaining search terms to the already filtered communities
-    return filteredByLanguage.filter(job =>
-      remainingSearchTerms.some(term =>
-        job.name.toLowerCase().includes(term) ||
-        job.title.toLowerCase().includes(term) ||
-        job.descr.toLowerCase().includes(term) ||
-        job.language.toLowerCase().includes(term) ||
-        job.area.toLowerCase().includes(term)
-      )
-    );
+    const queryPhrase = query.toLowerCase(); // Store full query for phrase matching
+
+    return Instances.jobs
+      .map(job => {
+        let score = 0;
+        const { name, descr, language, area, title } = job;
+        const text = `${name} ${descr} ${language} ${area} ${title}`.toLowerCase();
+
+        // Exact phrase match (highest relevance)
+        if (text.includes(queryPhrase)) {
+          score += 10;
+        }
+
+        // Multi-word match (medium relevance)
+        let multiWordMatches = searchTerms.filter(term => text.includes(term)).length;
+        score += multiWordMatches * 3;
+
+        // Single-word matches (lower relevance)
+        let singleWordMatches = searchTerms.filter(term => 
+          text.split(" ").some(word => word.startsWith(term))
+        ).length;
+        score += singleWordMatches;
+
+        return { job, score };
+      })
+      .filter(({ score }) => score > 0) 
+      .sort((a, b) => b.score - a.score) 
+      .map(({ job }) => job);
   })();
+
+  // const filteredJobs = (() => {
+  //   if (query.trim() === "") return Instances.jobs; // Show all if query is empty
+  
+  //   const searchTerms = query.toLowerCase().split(" ").filter(term => term);
+  
+  //   // Check if theres a language term
+  //   const languageTerms = searchTerms.filter(term => Instances.jobs.some(job =>
+  //     job.language.toLowerCase().includes(term)
+  //   ));
+  
+  //   // if theres a language, filter communities by language first
+  //   let filteredByLanguage = Instances.jobs;
+  //   if (languageTerms.length > 0) {
+  //     filteredByLanguage = Instances.jobs.filter(job =>
+  //       languageTerms.some(term => job.language.toLowerCase().includes(term))
+  //     );
+  //   }
+  
+  //   //apply the remaining search terms
+  //   const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
+  
+  //   //no remaining terms are left
+  //   if (remainingSearchTerms.length === 0) {
+  //     return filteredByLanguage;
+  //   }
+  
+  //   //remaining search terms to the already filtered communities
+  //   return filteredByLanguage.filter(job =>
+  //     remainingSearchTerms.some(term =>
+  //       job.name.toLowerCase().includes(term) ||
+  //       job.title.toLowerCase().includes(term) ||
+  //       job.descr.toLowerCase().includes(term) ||
+  //       job.language.toLowerCase().includes(term) ||
+  //       job.area.toLowerCase().includes(term)
+  //     )
+  //   );
+  // })();
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -108,16 +168,31 @@ const JobsPage = () => {
   const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
 
   // Function to change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    
+    // Update the current page state
+    setCurrentPage(pageNumber);
+  
+    // Update the URL with the page number without reloading the page
+    window.history.pushState(null, '', `?page=${pageNumber}`);
+  };
+
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to first page when changing items per page
+  };
 
   return (
     <div className="container my-4">
       <br />
       <h1 className="mb-4">Jobs in Austin</h1>
-      <p className="mb-4">Number of jobs: {jobLinks.length}</p>
+      <p className="mb-4">Number of jobs: {filteredJobs.length}</p>
 
-      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
-      <select value={selectedValue} onChange={handleChange}>
+      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} className="border p-2 rounded m-2 md:m-4"/>
+
+    <div className="flex items-center gap-4 flex-wrap ">
+      <select value={selectedValue} onChange={handleChange} className="border p-2 rounded m-2 md:m-4">
         <option value="">Sort</option>
         <option value="name,a">Name (^)</option>
         <option value="name,r">Name (v)</option>
@@ -128,9 +203,7 @@ const JobsPage = () => {
         <option value="pay,a">Pay (^)</option>
         <option value="pay,r">Pay (v)</option>
       </select>
-      <br/>
-      <br/>
-      <select value={selectedFilterValue} onChange={handleFilterChange}>
+      <select value={selectedFilterValue} onChange={handleFilterChange} className="border p-2 rounded m-2 md:m-4">
         <option value="">Language</option>
         <option value="spanish">Spanish</option>
         <option value="chinese">Chinese</option>
@@ -139,9 +212,20 @@ const JobsPage = () => {
         <option value="french">French</option>
         <option value="german">German</option>
       </select>
-      <br />
-      <br />
-      <div className="row justify-content-center">
+      <label className="flex items-center gap-2 m-2 md:m-4">
+        Items per page: {itemsPerPage}
+        <input
+          type="range"
+          min="4"
+          max="24"
+          step="4"
+          value={itemsPerPage}
+          onChange={handleItemsPerPageChange}
+          className="form-range ml-4"
+        />
+      </label>
+      </div>
+      <div className="row justify-content-center m-2 md:m-4">
       {currentItems.length === 0 ? (
           <div>No results</div>
           ) : (

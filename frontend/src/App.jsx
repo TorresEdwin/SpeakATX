@@ -21,6 +21,7 @@ import JobsPage from './pages/jobs';
 import JobInstance from "./pages/job_instance";  
 import CommunityInstance from "./pages/community_instance";
 import TranslationInstance from "./pages/translation_instance";
+import SearchPage from "./pages/search";
 
 import React from "react";
 import { LoadScript } from "@react-google-maps/api";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/communities" element={<CommunitiesPage />} />
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/search" element={<SearchPage />} />
             {/* Dynamic Job Details Page */}
             <Route path="/jobs/:jobName" element={<JobInstance />} />
             <Route path="/communities/:communityName" element={<CommunityInstance />} />
