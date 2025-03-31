@@ -7,7 +7,19 @@ import CommunityCard from "./community_card.jsx";
 import React, { useState, useEffect } from "react";
 import SearchBar from "../components/Searchbar/index.jsx";
 
-// Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
+
+const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+Instances.communities = Instances.communities.map(community => ({
+  ...community,
+  language: community.language
+      .split(", ")
+      .map(capitalizeFirstLetter)
+      .join(", "), // Ensure each language is capitalized
+  type: capitalizeFirstLetter(community.type), // Capitalize type
+  area: capitalizeFirstLetter(community.area), // Capitalize area
+}));
+
 // Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
 const highlightText = (text, query) => {
   if (!query.trim()) return text;
@@ -119,11 +131,9 @@ const CommunitiesPage = () => {
         area: highlightText(community.area, query),
         language: community.language
             .split(", ")
-            .map(lang => highlightText(lang.charAt(0).toUpperCase() + lang.slice(1), query))
-            .reduce((acc, curr) => [acc, ", ", curr]), // Preserve comma-separated format*/
-        type: highlightText(
-            community.type.charAt(0).toUpperCase() + community.type.slice(1),
-            query),
+            .map(lang => highlightText(capitalizeFirstLetter(lang), query))
+            .reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], []), // Preserve comma format
+        type: highlightText(capitalizeFirstLetter(community.type), query),
     }));
   })();
 
@@ -150,7 +160,6 @@ const CommunitiesPage = () => {
       <br />
       <h1 className="mb-4">Communities in Austin</h1>
       <p className="mb-4">Number of communities: {filteredCommunities.length}</p>
-      <div>{highlightText("Sample text with Highlight", "highlight")}</div>
 
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
