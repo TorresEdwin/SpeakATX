@@ -87,7 +87,7 @@ def fetch_jobs(search_terms_list, pages):
     job_listings = []
     for search_terms in search_terms_list:
         params = {
-            "api_key": "e14809263dbda8f39e51b559daceaab282f400ae423554e7cbaa9f53909a8f5c",
+            "api_key": "98105f355440203dbe19be8ee68e13264a6f8370c8353fd3aabc3224f7eb2183",
             "engine": "google_jobs",
             "google_domain": "google.com",
             "q": f"{search_terms}",
