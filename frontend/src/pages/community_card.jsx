@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom';
 const placeholderImage =
   "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
+const capitalizeFirstLetter = (str) => {
+    if (typeof str !== 'string') return str;
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const CommunityCard = ({
     communityItem
 }) => {
@@ -31,12 +36,12 @@ const CommunityCard = ({
                 >
                     <h5 className="card-title">{communityItem.name}</h5>
                     <p className="card-text">
-                    Language: {communityItem.language} <br />
+                    Language: {capitalizeFirstLetter(communityItem.language)} <br />
 
                         <br />
                         Area: {communityItem.area} <br />
                         Member Count: {communityItem.member_count} <br />
-                        Type: {communityItem.type}
+                        Type: {capitalizeFirstLetter(communityItem.type)}
 
                     </p>
                 </div>

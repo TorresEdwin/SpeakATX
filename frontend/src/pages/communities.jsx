@@ -10,16 +10,6 @@ import SearchBar from "../components/Searchbar/index.jsx";
 
 const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-Instances.communities = Instances.communities.map(community => ({
-  ...community,
-  language: community.language
-      .split(", ")
-      .map(capitalizeFirstLetter)
-      .join(", "), // Ensure each language is capitalized
-  type: capitalizeFirstLetter(community.type), // Capitalize type
-  area: capitalizeFirstLetter(community.area), // Capitalize area
-}));
-
 // Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
 const highlightText = (text, query) => {
   if (!query.trim()) return text;

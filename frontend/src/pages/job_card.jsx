@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 const placeholderImage =
     "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
+const capitalizeFirstLetter = (str) => {
+    if (typeof str !== 'string') return str;
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const JobCard = ({
     jobItem
 }) => {
@@ -32,7 +37,7 @@ const JobCard = ({
                     <p className="card-text">
                         {jobItem.title} <br />
                         Pay: ${jobItem.pay}/hr <br />
-                        Language: {jobItem.language}
+                        Language: {capitalizeFirstLetter(jobItem.language)}
                         <br />
                         Area: {jobItem.area}
                     </p>
