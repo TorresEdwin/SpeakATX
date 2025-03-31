@@ -120,32 +120,20 @@ const CommunitiesPage = () => {
     <div className="container my-4">
       {/* White box outside of content */}
       <div 
-        style={{
-          position: "absolute", 
-          top: "337px",  // Adjust top position
-          height: "1070px",
-          left: "16%",  // Center box
-          right: "16%",  // Control width
-          backgroundColor: "rgba(255, 255, 255, 0.8)", 
-          borderRadius: "10px", 
-          zIndex: 0,
-          padding: "20px",
-        }}
-      />
+  style={{
+    position: "absolute", 
+    top: "0px",  
+    bottom: "0px",  // Extend to the bottom
+    left: "5%",  
+    right: "5%",  
+    backgroundColor: "rgba(255, 255, 255, 0.8)", 
+    borderRadius: "10px", 
+    zIndex: 0,
+    padding: "20px",
+  }}
+/>
 
-      <div 
-        style={{
-          position: "absolute", 
-          top: "185px",  // Adjust top position
-          height: "135px",
-          left: "16%",  // Center box
-          right: "16%",  // Control width
-          backgroundColor: "rgba(255, 255, 255, 0.8)", 
-          borderRadius: "10px", 
-          zIndex: 0,
-          padding: "20px",
-        }}
-      />
+
 
       <div className="p-4 rounded" style={{ position: "relative", zIndex: 1 }}>
         <h1 className="mb-3 text-center">Communities in Austin</h1>
@@ -198,6 +186,19 @@ const CommunitiesPage = () => {
             <option value="german">German</option>
           </select>
         </div>
+
+        <label className="flex items-center gap-2 m-2 md:m-4">
+          Items per page: <span>{itemsPerPage}</span>
+          <input
+            type="range"
+            min="4"
+            max="24"
+            step="4"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+            className="form-range ml-4"
+          />
+        </label>
 
         <br />
         <br />
