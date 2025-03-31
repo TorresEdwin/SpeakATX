@@ -9,9 +9,6 @@ import SearchBar from "../components/Searchbar/index.jsx";
 
 const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-const placeholderImage =
-  "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
-
 // Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
 const highlightText = (text, query) => {
   if (!query.trim()) return text;
@@ -133,44 +130,6 @@ const JobsPage = () => {
           .reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], []), // Preserve comma format
       }));
   })();
-
-  // const filteredJobs = (() => {
-  //   if (query.trim() === "") return Instances.jobs; // Show all if query is empty
-  
-  //   const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-  
-  //   // Check if theres a language term
-  //   const languageTerms = searchTerms.filter(term => Instances.jobs.some(job =>
-  //     job.language.toLowerCase().includes(term)
-  //   ));
-  
-  //   // if theres a language, filter communities by language first
-  //   let filteredByLanguage = Instances.jobs;
-  //   if (languageTerms.length > 0) {
-  //     filteredByLanguage = Instances.jobs.filter(job =>
-  //       languageTerms.some(term => job.language.toLowerCase().includes(term))
-  //     );
-  //   }
-  
-  //   //apply the remaining search terms
-  //   const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
-  
-  //   //no remaining terms are left
-  //   if (remainingSearchTerms.length === 0) {
-  //     return filteredByLanguage;
-  //   }
-  
-  //   //remaining search terms to the already filtered communities
-  //   return filteredByLanguage.filter(job =>
-  //     remainingSearchTerms.some(term =>
-  //       job.name.toLowerCase().includes(term) ||
-  //       job.title.toLowerCase().includes(term) ||
-  //       job.descr.toLowerCase().includes(term) ||
-  //       job.language.toLowerCase().includes(term) ||
-  //       job.area.toLowerCase().includes(term)
-  //     )
-  //   );
-  // })();
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
