@@ -123,6 +123,7 @@ const JobsPage = () => {
       .sort((a, b) => b.score - a.score) 
       .map(({ job }) => ({
         ...job,
+        originalName: job.name,
         name: highlightText(job.name, query),
         title: highlightText(job.title, query),
         area: highlightText(job.area, query),

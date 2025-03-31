@@ -10,7 +10,7 @@ const ServiceCard = ({
     return (
         <div className="col">
             <div className="card h-100 shadow-lg overflow-hidden rounded">
-                <Link to={`/translations/${service.name}`} className="text-decoration-none">
+                <Link to={`/translations/${service.originalName}`} className="text-decoration-none">
                     <img
                         src={service.imageUrl ? service.imageUrl : placeholderImage}
                         alt={service.name}

@@ -10,7 +10,7 @@ const JobCard = ({
     return (
         <div className="col-md-3 mb-3">
             <Link
-                to={`/jobs/${jobItem.name}`} // Links to dynamic job page
+                to={`/jobs/${jobItem.originalName}`} // Links to dynamic job page
                 className="card text-decoration-none d-flex flex-column justify-content-between"
                 style={{ height: "500px" }} // Increased card height
             >

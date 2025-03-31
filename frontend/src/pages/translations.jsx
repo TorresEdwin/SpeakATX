@@ -113,6 +113,7 @@ const TranslationPage = () => {
       .sort((a, b) => b.score - a.score) 
       .map(({ translation }) => ({
         ...translation,
+        originalName: translation.name,
         name: highlightText(translation.name, query),
         area: highlightText(translation.area, query),
         language: translation.language
