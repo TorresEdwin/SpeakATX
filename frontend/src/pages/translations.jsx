@@ -114,7 +114,6 @@ const TranslationPage = () => {
       .map(({ translation }) => ({
         ...translation,
         name: highlightText(translation.name, query),
-        //title: highlightText(job.title, query),
         area: highlightText(translation.area, query),
         language: translation.language
           .split(", ")
