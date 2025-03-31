@@ -1,23 +1,60 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
+import JobCard from "./job_card.jsx";
+import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
 import React, { useState, useEffect } from "react";
 import SearchBar from "../components/Searchbar/index.jsx";
 
+
+const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+// Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
+const highlightText = (text, query) => {
+  if (!query.trim()) return text;
+
+  const regex = new RegExp(`(${query})`, 'gi');
+  const parts = text.split(regex);  // Split the text around the query match
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+      <span key={index} className="highlight">{part}</span> // Wrap matches in <span>
+    ) : (
+      part // Leave other text as is
+    )
+  );
+};
+
 const CommunitiesPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [query, setQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
-
-  useEffect(() => {
-    const intervalId = setInterval(() => setLoaded(Instances.loaded), 500);
-    return () => clearInterval(intervalId);
-  }, []);
-
+  const [currentPage, setCurrentPage] = useState(1); // Current page state
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedFilterValue, setSelectedFilterValue] = useState('');
 
+  useEffect(() => {
+    const checkLoadedStatus = () => {
+      setLoaded(Instances.loaded); // Update when Instances.loaded changes
+    };
+
+    const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+
+    // Get the current page from URL query parameters if available
+    const queryParams = new URLSearchParams(window.location.search);
+    const page = queryParams.get('page');
+
+    if (page && !isNaN(page)) {
+      setCurrentPage(Number(page));
+    } else {
+      setCurrentPage(1);
+    }
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Handle sort/filter dropdown changes
   const onDropdownChange = (newValue, newFilterValue) => {
     Instances.sortCommunities("", false);
     Instances.sortCommunities(newValue.split(",")[0], newValue.split(",")[1] === "r");
@@ -25,63 +62,108 @@ const CommunitiesPage = () => {
   };
 
   const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-    onDropdownChange(event.target.value, selectedFilterValue);
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    onDropdownChange(newValue, selectedFilterValue);
   };
 
   const handleFilterChange = (event) => {
-    setSelectedFilterValue(event.target.value);
-    onDropdownChange(selectedValue, event.target.value);
+    const newFilterValue = event.target.value;
+    setSelectedFilterValue(newFilterValue);
+    onDropdownChange(selectedValue, newFilterValue);
   };
 
-  if (!loaded) {
-    return <div className="text-center"><div className="spinner-border text-dark" role="status"></div></div>;
-  }
+  if (!loaded)
+    return (
+      <div>
+        <div className="spinner-border text-dark" role="status"></div>
+      </div>
+    );
 
-  const filteredCommunities = query.trim()
-    ? Instances.communities.filter(community =>
-        [community.name, community.descr, community.language, community.area, community.type]
-          .some(field => field.toLowerCase().includes(query.toLowerCase()))
-      )
-    : Instances.communities;
+  // Filter communities based on the search query with a scoring system
+  const filteredCommunities = (() => {
+    if (query.trim() === "") return Instances.communities;
 
+    const searchTerms = query.toLowerCase().split(" ").filter(term => term);
+    const queryPhrase = query.toLowerCase();
+
+    return Instances.communities
+      .map(community => {
+        let score = 0;
+        const { name, descr, language, area, type } = community;
+        const text = `${name} ${descr} ${language} ${area} ${type}`.toLowerCase();
+
+        // Exact phrase match (highest relevance)
+        if (text.includes(queryPhrase)) {
+          score += 10;
+        }
+
+        // Multi-word match (medium relevance)
+        let multiWordMatches = searchTerms.filter(term => text.includes(term)).length;
+        score += multiWordMatches * 3;
+
+        // Single-word matches (lower relevance)
+        let singleWordMatches = searchTerms.filter(term => 
+          text.split(" ").some(word => word.startsWith(term))
+        ).length;
+        score += singleWordMatches;
+
+        // Title match gets extra weight
+        if (name?.toLowerCase().includes(query)) score += 5;
+
+        return { community, score };
+      })
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(({ community }) => ({
+        ...community,
+        originalName: community.name, // Preserve the original name
+        name: highlightText(community.name, query),
+        area: highlightText(community.area, query),
+        language: community.language
+            .split(", ")
+            .map(lang => highlightText(capitalizeFirstLetter(lang), query))
+            .reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], []), // Preserve comma format
+        type: highlightText(capitalizeFirstLetter(community.type), query),
+    }));
+  })();
+
+  // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredCommunities.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredCommunities.length / itemsPerPage);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Function to change page and update URL without reloading
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    setCurrentPage(pageNumber);
+    window.history.pushState(null, '', `?page=${pageNumber}`);
+  };
+
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to first page when items per page change
+  };
 
   return (
     <div className="container my-4">
       {/* White box outside of content */}
       <div 
-        style={{
-          position: "absolute", 
-          top: "337px",  // Adjust top position
-          height: "1070px",
-          left: "16%",  // Center box
-          right: "16%",  // Control width
-          backgroundColor: "rgba(255, 255, 255, 0.8)", 
-          borderRadius: "10px", 
-          zIndex: 0,
-          padding: "20px",
-        }}
-      />
+  style={{
+    position: "absolute", 
+    top: "0px",  
+    bottom: "0px",  // Extend to the bottom
+    left: "5%",  
+    right: "5%",  
+    backgroundColor: "rgba(255, 255, 255, 0.8)", 
+    borderRadius: "10px", 
+    zIndex: 0,
+    padding: "20px",
+  }}
+/>
 
-      <div 
-        style={{
-          position: "absolute", 
-          top: "185px",  // Adjust top position
-          height: "135px",
-          left: "16%",  // Center box
-          right: "16%",  // Control width
-          backgroundColor: "rgba(255, 255, 255, 0.8)", 
-          borderRadius: "10px", 
-          zIndex: 0,
-          padding: "20px",
-        }}
-      />
+
 
       <div className="p-4 rounded" style={{ position: "relative", zIndex: 1 }}>
         <h1 className="mb-3 text-center">Communities in Austin</h1>
@@ -134,6 +216,19 @@ const CommunitiesPage = () => {
             <option value="german">German</option>
           </select>
         </div>
+
+        <label className="flex items-center gap-2 m-2 md:m-4">
+          Items per page: <span>{itemsPerPage}</span>
+          <input
+            type="range"
+            min="4"
+            max="24"
+            step="4"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+            className="form-range ml-4"
+          />
+        </label>
 
         <br />
         <br />
