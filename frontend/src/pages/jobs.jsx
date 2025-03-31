@@ -10,6 +10,21 @@ import SearchBar from "../components/Searchbar/index.jsx";
 
 const placeholderImage =
   "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
+  
+const highlightText = (text, query) => {
+  if (!query.trim()) return text;
+
+  const regex = new RegExp(`(${query})`, 'gi');
+  const parts = text.split(regex);  // Split the text around the query match
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+      <span key={index} className="highlight">{part}</span> // Wrap matches in <span>
+    ) : (
+      part // Leave other text as is
+    )
+  );
+};
 
 const JobsPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);

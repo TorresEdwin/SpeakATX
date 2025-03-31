@@ -7,38 +7,52 @@ import CommunityCard from "./community_card.jsx";
 import React, { useState, useEffect } from "react";
 import SearchBar from "../components/Searchbar/index.jsx";
 
+// Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
+// Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
+const highlightText = (text, query) => {
+  if (!query.trim()) return text;
+
+  const regex = new RegExp(`(${query})`, 'gi');
+  const parts = text.split(regex);  // Split the text around the query match
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+      <span key={index} className="highlight">{part}</span> // Wrap matches in <span>
+    ) : (
+      part // Leave other text as is
+    )
+  );
+};
+
 const CommunitiesPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [query, setQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1); // State for current page
+  const [currentPage, setCurrentPage] = useState(1); // Current page state
   const [itemsPerPage, setItemsPerPage] = useState(8);
-
-
+  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedFilterValue, setSelectedFilterValue] = useState('');
 
   useEffect(() => {
     const checkLoadedStatus = () => {
-      setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
+      setLoaded(Instances.loaded); // Update when Instances.loaded changes
     };
 
     const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
 
+    // Get the current page from URL query parameters if available
     const queryParams = new URLSearchParams(window.location.search);
     const page = queryParams.get('page');
 
-    // If the `page` query parameter exists and is a valid number, set it as the current page
     if (page && !isNaN(page)) {
       setCurrentPage(Number(page));
     } else {
-      // Fallback to 1 if the `page` query parameter is invalid or doesn't exist
       setCurrentPage(1);
     }
 
     return () => clearInterval(intervalId);
   }, []);
 
-  const [selectedValue, setSelectedValue] = useState('');
-  const [selectedFilterValue, setSelectedFilterValue] = useState('');
-
+  // Handle sort/filter dropdown changes
   const onDropdownChange = (newValue, newFilterValue) => {
     Instances.sortCommunities("", false);
     Instances.sortCommunities(newValue.split(",")[0], newValue.split(",")[1] === "r");
@@ -64,14 +78,12 @@ const CommunitiesPage = () => {
       </div>
     );
 
-  const communityLinks = Instances.communities;
-
-  // Filtering communities based on search input
+  // Filter communities based on the search query with a scoring system
   const filteredCommunities = (() => {
-    if (query.trim() === "") return Instances.communities; // Show all if query is empty
-  
+    if (query.trim() === "") return Instances.communities;
+
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-    const queryPhrase = query.toLowerCase(); // Store full query for phrase matching
+    const queryPhrase = query.toLowerCase();
 
     return Instances.communities
       .map(community => {
@@ -99,87 +111,48 @@ const CommunitiesPage = () => {
 
         return { community, score };
       })
-      .filter(({ score }) => score > 0) 
+      .filter(({ score }) => score > 0)
       .sort((a, b) => b.score - a.score)
-      .map(({ community }) => community);
-})();
+      .map(({ community }) => ({
+        ...community,
+        name: highlightText(community.name, query),
+      }));
+  })();
 
-  // const filteredCommunities = (() => {
-  //   if (query.trim() === "") return Instances.communities; // Show all if query is empty
-  
-  //   const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-  
-  //   // Check if theres a language term
-  //   const languageTerms = searchTerms.filter(term => Instances.communities.some(community =>
-  //     community.language.toLowerCase().includes(term)
-  //   ));
-  
-  //   // if theres a language, filter communities by language first
-  //   let filteredByLanguage = Instances.communities;
-  //   if (languageTerms.length > 0) {
-  //     filteredByLanguage = Instances.communities.filter(community =>
-  //       languageTerms.some(term => community.language.toLowerCase().includes(term))
-  //     );
-  //   }
-  
-  //   //apply the remaining search terms
-  //   const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
-  
-  //   //no remaining terms are left
-  //   if (remainingSearchTerms.length === 0) {
-  //     return filteredByLanguage;
-  //   }
-  
-  //   //remaining search terms to the already filtered communities
-  //   return filteredByLanguage.filter(community =>
-  //     remainingSearchTerms.some(term =>
-  //       community.name.toLowerCase().includes(term) ||
-  //       community.descr.toLowerCase().includes(term) ||
-  //       community.language.toLowerCase().includes(term) ||
-  //       community.area.toLowerCase().includes(term) ||
-  //       community.type.toLowerCase().includes(term)
-  //     )
-  //   );
-  // })();
-  
-
-
-  // Calculate the index of the first and last item on the current page
+  // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItems = communityLinks.slice(indexOfFirstItem, indexOfLastItem);
   const currentItems = filteredCommunities.slice(indexOfFirstItem, indexOfLastItem);
-
-  // Calculate the total number of pages
   const totalPages = Math.ceil(filteredCommunities.length / itemsPerPage);
 
-  // Function to change page
+  // Function to change page and update URL without reloading
   const paginate = (pageNumber) => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
-    
-    // Update the current page state
     setCurrentPage(pageNumber);
-  
-    // Update the URL with the page number without reloading the page
     window.history.pushState(null, '', `?page=${pageNumber}`);
   };
 
   const handleItemsPerPageChange = (event) => {
     setItemsPerPage(Number(event.target.value));
-    setCurrentPage(1); // Reset to first page when changing items per page
+    setCurrentPage(1); // Reset to first page when items per page change
   };
-
 
   return (
     <div className="container my-4">
       <br />
       <h1 className="mb-4">Communities in Austin</h1>
       <p className="mb-4">Number of communities: {filteredCommunities.length}</p>
+      <div>{highlightText("Sample text with Highlight", "highlight")}</div>
+
 
       <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
-      <div className="flex items-center gap-4 flex-wrap ">
-        <select value={selectedValue} onChange={handleChange} className="border p-2 rounded m-2 md:m-4">
+      <div className="flex items-center gap-4 flex-wrap">
+        <select
+          value={selectedValue}
+          onChange={handleChange}
+          className="border p-2 rounded m-2 md:m-4"
+        >
           <option value="">Sort</option>
           <option value="name,a">Name (^)</option>
           <option value="name,r">Name (v)</option>
@@ -191,7 +164,11 @@ const CommunitiesPage = () => {
           <option value="type,r">Type (v)</option>
         </select>
 
-        <select value={selectedFilterValue} onChange={handleFilterChange} className="border p-2 rounded m-2 md:m-4">
+        <select
+          value={selectedFilterValue}
+          onChange={handleFilterChange}
+          className="border p-2 rounded m-2 md:m-4"
+        >
           <option value="">Language</option>
           <option value="spanish">Spanish</option>
           <option value="chinese">Chinese</option>
@@ -216,7 +193,7 @@ const CommunitiesPage = () => {
       </div>
 
       <div className="row justify-content-center m-2 md:m-4">
-      {currentItems.length === 0 ? (
+        {currentItems.length === 0 ? (
           <div>No results</div>
           ) : (
           currentItems.map((communityItem, index) => (
@@ -225,7 +202,8 @@ const CommunitiesPage = () => {
         )}
       </div>
 
-      {/* Improved Pagination Bar */}
+
+      {/* Pagination Bar */}
       <nav className="mt-4">
         <ul className="pagination pagination-sm justify-content-center d-flex flex-wrap gap-1 overflow-auto">
           <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
@@ -254,9 +232,7 @@ const CommunitiesPage = () => {
             </li>
           ))}
 
-          <li
-            className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}
-          >
+          <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
             <button
               className="page-link px-3"
               onClick={() => paginate(currentPage + 1)}
