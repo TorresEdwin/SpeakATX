@@ -1,8 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 import Instances from "./instances.jsx";
-import JobCard from "./job_card.jsx";
-import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
 import React, { useState, useEffect } from "react";
 import SearchBar from "../components/Searchbar/index.jsx";
@@ -29,32 +26,17 @@ const highlightText = (text, query) => {
 const CommunitiesPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [query, setQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1); // Current page state
-  const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [selectedValue, setSelectedValue] = useState('');
-  const [selectedFilterValue, setSelectedFilterValue] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   useEffect(() => {
-    const checkLoadedStatus = () => {
-      setLoaded(Instances.loaded); // Update when Instances.loaded changes
-    };
-
-    const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
-
-    // Get the current page from URL query parameters if available
-    const queryParams = new URLSearchParams(window.location.search);
-    const page = queryParams.get('page');
-
-    if (page && !isNaN(page)) {
-      setCurrentPage(Number(page));
-    } else {
-      setCurrentPage(1);
-    }
-
+    const intervalId = setInterval(() => setLoaded(Instances.loaded), 500);
     return () => clearInterval(intervalId);
   }, []);
 
-  // Handle sort/filter dropdown changes
+  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedFilterValue, setSelectedFilterValue] = useState('');
+
   const onDropdownChange = (newValue, newFilterValue) => {
     Instances.sortCommunities("", false);
     Instances.sortCommunities(newValue.split(",")[0], newValue.split(",")[1] === "r");
@@ -62,27 +44,25 @@ const CommunitiesPage = () => {
   };
 
   const handleChange = (event) => {
-    const newValue = event.target.value;
-    setSelectedValue(newValue);
-    onDropdownChange(newValue, selectedFilterValue);
+    setSelectedValue(event.target.value);
+    onDropdownChange(event.target.value, selectedFilterValue);
   };
 
   const handleFilterChange = (event) => {
-    const newFilterValue = event.target.value;
-    setSelectedFilterValue(newFilterValue);
-    onDropdownChange(selectedValue, newFilterValue);
+    setSelectedFilterValue(event.target.value);
+    onDropdownChange(selectedValue, event.target.value);
   };
 
-  if (!loaded)
-    return (
-      <div>
-        <div className="spinner-border text-dark" role="status"></div>
-      </div>
-    );
+  if (!loaded) {
+    return <div className="text-center"><div className="spinner-border text-dark" role="status"></div></div>;
+  }
 
-  // Filter communities based on the search query with a scoring system
-  const filteredCommunities = (() => {
-    if (query.trim() === "") return Instances.communities;
+  const filteredCommunities = query.trim()
+    ? Instances.communities.filter(community =>
+        [community.name, community.descr, community.language, community.area, community.type]
+          .some(field => field.toLowerCase().includes(query.toLowerCase()))
+      )
+    : Instances.communities;
 
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
     const queryPhrase = query.toLowerCase();
@@ -134,17 +114,7 @@ const CommunitiesPage = () => {
   const currentItems = filteredCommunities.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredCommunities.length / itemsPerPage);
 
-  // Function to change page and update URL without reloading
-  const paginate = (pageNumber) => {
-    if (pageNumber < 1 || pageNumber > totalPages) return;
-    setCurrentPage(pageNumber);
-    window.history.pushState(null, '', `?page=${pageNumber}`);
-  };
-
-  const handleItemsPerPageChange = (event) => {
-    setItemsPerPage(Number(event.target.value));
-    setCurrentPage(1); // Reset to first page when items per page change
-  };
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container my-4">

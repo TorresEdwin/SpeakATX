@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom';
 const placeholderImage =
     "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
+const capitalizeFirstLetter = (str) => {
+    if (typeof str !== 'string') return str;
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const ServiceCard = ({
     service
 }) => {
     return (
         <div className="col">
             <div className="card h-100 shadow-lg overflow-hidden rounded">
-                <Link to={`/translations/${service.name}`} className="text-decoration-none">
+                <Link to={`/translations/${service.originalName}`} className="text-decoration-none">
                     <img
                         src={service.imageUrl ? service.imageUrl : placeholderImage}
                         alt={service.name}
@@ -20,7 +25,7 @@ const ServiceCard = ({
                     <div className="card-body text-center clickable-area">
                         <h5 className="card-title">{service.name}</h5>
                         <p className="card-text">⭐ {service.rating}</p>
-                        <p className="card-text">🗣️ {service.language.charAt(0).toUpperCase() + service.language.slice(1)}</p>
+                        <p className="card-text">🗣️ {capitalizeFirstLetter(service.language)}</p>
                         <p className="card-text">📍 {service.area}</p>
                         <p className="card-text">{"💲".repeat(service.price)}</p>
                     </div>

@@ -6,7 +6,7 @@ const InstanceLoader = {
   isLoaded: false,
 
   // Method to initialize the data
-  initialize: function() {
+  initialize: function () {
     if (!this.isLoaded) {
       try {
         // Fetch data for the first page (page 1)
@@ -44,6 +44,16 @@ const InstanceLoader = {
             Instances.jobs = job_response;
             Instances.translations = service_response;
             Instances.communities = comm_response;
+
+            for (var i = 0; i < Instances.jobs.length; i++) {
+              Instances.jobs[i].originalName = Instances.jobs[i].name;
+            }
+            for (var i = 0; i < Instances.translations.length; i++) {
+              Instances.translations[i].originalName = Instances.translations[i].name;
+            }
+            for (var i = 0; i < Instances.communities.length; i++) {
+              Instances.communities[i].originalName = Instances.communities[i].name;
+            }
 
             // Store the original data
             Instances.origJobs = Instances.jobs.slice();
