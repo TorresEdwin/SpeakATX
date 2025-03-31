@@ -7,10 +7,12 @@ import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
 import SearchBar from "../components/Searchbar/index.jsx";
 
+const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const placeholderImage =
   "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
-  
+
+// Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
 const highlightText = (text, query) => {
   if (!query.trim()) return text;
 
@@ -112,11 +114,24 @@ const JobsPage = () => {
         ).length;
         score += singleWordMatches;
 
+         // Title match gets extra weight
+         if (name?.toLowerCase().includes(query)) score += 5;
+
         return { job, score };
       })
       .filter(({ score }) => score > 0) 
       .sort((a, b) => b.score - a.score) 
-      .map(({ job }) => job);
+      .map(({ job }) => ({
+        ...job,
+        originalName: job.name,
+        name: highlightText(job.name, query),
+        title: highlightText(job.title, query),
+        area: highlightText(job.area, query),
+        language: job.language
+          .split(", ")
+          .map(lang => highlightText(capitalizeFirstLetter(lang), query))
+          .reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], []), // Preserve comma format
+      }));
   })();
 
   // const filteredJobs = (() => {

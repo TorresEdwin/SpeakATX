@@ -7,6 +7,24 @@ import ServiceCard from "./service_card.jsx";
 import CommunityCard from "./community_card.jsx";
 import SearchBar from "../components/Searchbar/index.jsx";
 
+const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+// Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
+const highlightText = (text, query) => {
+  if (!query.trim()) return text;
+
+  const regex = new RegExp(`(${query})`, 'gi');
+  const parts = text.split(regex);  // Split the text around the query match
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+      <span key={index} className="highlight">{part}</span> // Wrap matches in <span>
+    ) : (
+      part // Leave other text as is
+    )
+  );
+};
+
 const TranslationPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [currentPage, setCurrentPage] = useState(1); // State for current page
@@ -67,9 +85,9 @@ const TranslationPage = () => {
     return Instances.translations
       .map(translation => {
         let score = 0;
-        const { name, descr, language, location } = translation;
+        const { name, descr, language, area } = translation;
         const address = location?.display_address?.join(", ") || "";
-        const text = `${name} ${descr} ${language} ${address}`.toLowerCase();
+        const text = `${name} ${descr} ${language} ${area}`.toLowerCase();
 
         // Exact phrase match (highest relevance)
         if (text.includes(queryPhrase)) {
@@ -86,49 +104,24 @@ const TranslationPage = () => {
         ).length;
         score += singleWordMatches;
 
+         // Title match gets extra weight
+         if (name?.toLowerCase().includes(query)) score += 5;
+
         return { translation, score };
       })
       .filter(({ score }) => score > 0) 
       .sort((a, b) => b.score - a.score) 
-      .map(({ translation }) => translation);
+      .map(({ translation }) => ({
+        ...translation,
+        originalName: translation.name,
+        name: highlightText(translation.name, query),
+        area: highlightText(translation.area, query),
+        language: translation.language
+          .split(", ")
+          .map(lang => highlightText(capitalizeFirstLetter(lang), query))
+          .reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], []), // Preserve comma format
+      }));
   })();
-
-  // const filteredTranslations = (() => {
-  //   if (query.trim() === "") return Instances.translations; // Show all if query is empty
-  
-  //   const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-  
-  //   // Check if theres a language term
-  //   const languageTerms = searchTerms.filter(term => Instances.translations.some(translation =>
-  //     translation.language.toLowerCase().includes(term)
-  //   ));
-  
-  //   // if theres a language, filter communities by language first
-  //   let filteredByLanguage = Instances.translations;
-  //   if (languageTerms.length > 0) {
-  //     filteredByLanguage = Instances.translations.filter(translation =>
-  //       languageTerms.some(term => translation.language.toLowerCase().includes(term))
-  //     );
-  //   }
-  
-  //   //apply the remaining search terms
-  //   const remainingSearchTerms = searchTerms.filter(term => !languageTerms.includes(term));
-  
-  //   //no remaining terms are left
-  //   if (remainingSearchTerms.length === 0) {
-  //     return filteredByLanguage;
-  //   }
-  
-  //   //remaining search terms to the already filtered communities
-  //   return filteredByLanguage.filter(translation =>
-  //     remainingSearchTerms.some(term =>
-  //       translation.name.toLowerCase().includes(term) ||
-  //       translation.descr.toLowerCase().includes(term) ||
-  //       translation.language.toLowerCase().includes(term) ||
-  //       translation.location?.display_address?.join(", ").toLowerCase().includes(term)
-  //     )
-  //   );
-  // })();
 
   // Calculate the index of the first and last item on the current page
   const indexOfLastItem = currentPage * itemsPerPage;

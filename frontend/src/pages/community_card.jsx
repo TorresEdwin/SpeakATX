@@ -11,10 +11,10 @@ const CommunityCard = ({
     return (
         <div className="col-md-3 mb-3">
             <Link
-                to={`/communities/${communityItem.name}`}
-                className="card text-decoration-none d-flex flex-column justify-content-between"
-                style={{ height: "500px" }}
-            >
+    to={`/communities/${communityItem.originalName}`}
+    className="card text-decoration-none d-flex flex-column justify-content-between"
+    style={{ height: "500px" }}
+>
                 <img
                     src={communityItem.imageUrl}
                     alt={communityItem.name}

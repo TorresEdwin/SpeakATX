@@ -127,6 +127,7 @@ const CommunitiesPage = () => {
       .sort((a, b) => b.score - a.score)
       .map(({ community }) => ({
         ...community,
+        originalName: community.name, // Preserve the original name
         name: highlightText(community.name, query),
         area: highlightText(community.area, query),
         language: community.language
