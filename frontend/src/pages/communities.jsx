@@ -41,7 +41,23 @@ const CommunitiesPage = () => {
   const itemsPerPage = 8;
 
   useEffect(() => {
-    const intervalId = setInterval(() => setLoaded(Instances.loaded), 500);
+    const checkLoadedStatus = () => {
+      setLoaded(Instances.loaded); // Update the state when Instances.loaded changes
+    };
+
+    const intervalId = setInterval(checkLoadedStatus, 500); // Check every 500ms
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const page = queryParams.get('page');
+
+    // If the `page` query parameter exists and is a valid number, set it as the current page
+    if (page && !isNaN(page)) {
+      setCurrentPage(Number(page));
+    } else {
+      // Fallback to 1 if the `page` query parameter is invalid or doesn't exist
+      setCurrentPage(1);
+    }
+
     return () => clearInterval(intervalId);
   }, []);
 
@@ -68,12 +84,8 @@ const CommunitiesPage = () => {
     return <div className="text-center"><div className="spinner-border text-dark" role="status"></div></div>;
   }
 
-  const filteredCommunities = query.trim()
-    ? Instances.communities.filter(community =>
-        [community.name, community.descr, community.language, community.area, community.type]
-          .some(field => field.toLowerCase().includes(query.toLowerCase()))
-      )
-    : Instances.communities;
+  const filteredCommunities = (() => {
+    if (query.trim() === "") return Instances.communities;
 
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
     const queryPhrase = query.toLowerCase();
@@ -123,9 +135,24 @@ const CommunitiesPage = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredCommunities.slice(indexOfFirstItem, indexOfLastItem);
+
   const totalPages = Math.ceil(filteredCommunities.length / itemsPerPage);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Function to change page
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    
+    // Update the current page state
+    setCurrentPage(pageNumber);
+  
+    // Update the URL with the page number without reloading the page
+    window.history.pushState(null, '', `?page=${pageNumber}`);
+  };
+
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1); // Reset to first page when changing items per page
+  };
 
   return (
     <div className="container my-4">
