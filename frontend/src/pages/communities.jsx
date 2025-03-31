@@ -14,16 +14,27 @@ const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1
 const highlightText = (text, query) => {
   if (!query.trim()) return text;
 
-  const regex = new RegExp(`(${query})`, 'gi');
-  const parts = text.split(regex);  // Split the text around the query match
+  const subqueries = query.toLowerCase().trim().split(" ");
 
-  return parts.map((part, index) =>
-    part.toLowerCase() === query.toLowerCase() ? (
+  const regexes = subqueries.map(subquery => new RegExp(`(${subquery})`, 'gi'));
+
+  let parts = [text];
+  
+  regexes.forEach(regex => {
+    parts = parts.flatMap(part => part.split(regex));
+  });
+
+  console.log(parts);
+
+  return parts.map((part, index) => {
+    const matchFound = subqueries.some(subquery => part.toLowerCase() === subquery);
+
+    return matchFound ? (
       <span key={index} className="highlight">{part}</span> // Wrap matches in <span>
     ) : (
       part // Leave other text as is
     )
-  );
+  });
 };
 
 const CommunitiesPage = () => {
