@@ -4,7 +4,7 @@
 https://speakatx.me/
 
 # Git SHA
-ba82011a9495e290f689b12a9579565365aabf44
+101c6fec75d356e14383b0a681bbdc4e20d54ce2
 
 # API Documentation
 https://documenter.getpostman.com/view/42364456/2sAYXFiHS8
