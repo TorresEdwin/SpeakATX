@@ -23,8 +23,6 @@ const highlightText = (text, query) => {
     parts = parts.flatMap(part => part.split(regex));
   });
 
-  console.log(parts);
-
   return parts.map((part, index) => {
     const matchFound = subqueries.some(subquery => part.toLowerCase() === subquery);
 
@@ -88,16 +86,15 @@ const TranslationPage = () => {
 
   // Filtering services based on search input
   const filteredTranslations = (() => {
-    if (query.trim() === "") return Instances.translations; // Show all if query is empty
+    if (query.trim() === "") return Instances.translations;
 
     const searchTerms = query.toLowerCase().split(" ").filter(term => term);
-    const queryPhrase = query.toLowerCase(); // Store full query for phrase matching
+    const queryPhrase = query.toLowerCase();
 
     return Instances.translations
       .map(translation => {
         let score = 0;
         const { name, descr, language, area } = translation;
-        const address = location?.display_address?.join(", ") || "";
         const text = `${name} ${descr} ${language} ${area}`.toLowerCase();
 
         // Exact phrase match (highest relevance)
@@ -115,8 +112,8 @@ const TranslationPage = () => {
         ).length;
         score += singleWordMatches;
 
-         // Title match gets extra weight
-         if (name?.toLowerCase().includes(query)) score += 5;
+        // Title match gets extra weight
+        if (name?.toLowerCase().includes(query)) score += 5;
 
         return { translation, score };
       })
@@ -134,14 +131,11 @@ const TranslationPage = () => {
       }));
   })();
 
-  // Calculate the index of the first and last item on the current page
+  // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItems = Instances.translations.slice(indexOfFirstItem, indexOfLastItem);
   const currentItems = filteredTranslations.slice(indexOfFirstItem, indexOfLastItem);
 
-
-  // Calculate the total number of pages
   const totalPages = Math.ceil(filteredTranslations.length / itemsPerPage);
 
   // Function to change page
@@ -160,19 +154,33 @@ const TranslationPage = () => {
     setCurrentPage(1); // Reset to first page when changing items per page
   };
 
-
-  // Define a placeholder image for missing thumbnails
-  const placeholderImage = "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
-
   return (
     <div className="container mt-4">
-      <br />
+      <br/>
       <h1 className="text-center mb-4">Multilingual Services in Austin</h1>
       <p className="mb-4">Number of services: {filteredTranslations.length}</p>
-      <SearchBar query={query} setQuery={setQuery} setCurrentPage={setCurrentPage} />
 
-      <div className="flex items-center gap-4 flex-wrap ">
-        <select value={selectedValue} onChange={handleChange} className="border p-2 rounded m-2 md:m-4">
+      {/* Search Bar */}
+      <input
+        type="text"
+        className="form-control"
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setCurrentPage(1);
+        }}
+        placeholder="Search services..."
+        style={{ backgroundColor: "#e9713a", color: "#fff", borderRadius: "5px", padding: "8px", border: "none" }}
+      />
+
+      <div className="d-flex justify-content-center gap-3 my-3">
+        {/* Sort Dropdown */}
+        <select 
+          className="form-select" 
+          value={selectedValue} 
+          onChange={handleChange} 
+          style={{ backgroundColor: '#e9713a', color: '#fff' }}
+        >
           <option value="">Sort</option>
           <option value="name,a">Name (^)</option>
           <option value="name,r">Name (v)</option>
@@ -183,7 +191,14 @@ const TranslationPage = () => {
           <option value="price,a">Price (^)</option>
           <option value="price,r">Price (v)</option>
         </select>
-        <select value={selectedFilterValue} onChange={handleFilterChange} className="border p-2 rounded m-2 md:m-4">
+
+        {/* Language Filter Dropdown */}
+        <select 
+          className="form-select" 
+          value={selectedFilterValue} 
+          onChange={handleFilterChange} 
+          style={{ backgroundColor: '#e9713a', color: '#fff' }}
+        >
           <option value="">Language</option>
           <option value="spanish">Spanish</option>
           <option value="chinese">Chinese</option>
@@ -192,30 +207,34 @@ const TranslationPage = () => {
           <option value="french">French</option>
           <option value="german">German</option>
         </select>
-
-        <label className="flex items-center gap-2 m-2 md:m-4">
-          Items per page: {itemsPerPage}
-          <input
-            type="range"
-            min="4"
-            max="24"
-            step="4"
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            className="form-range ml-4"
-          />
-        </label>
       </div>
+
+      {/* Items Per Page */}
+      <label className="flex items-center gap-2 m-2 md:m-4">
+        Items per page: <span>{itemsPerPage}</span>
+        <input
+          type="range"
+          min="4"
+          max="24"
+          step="4"
+          value={itemsPerPage}
+          onChange={handleItemsPerPageChange}
+          className="form-range ml-4"
+        />
+      </label>
+
+      {/* Display the filtered items */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 justify-content-center">
-      {currentItems.length === 0 ? (
+        {currentItems.length === 0 ? (
           <div>No results</div>
-          ) : (
+        ) : (
           currentItems.map((service, index) => (
-          <ServiceCard key={index} service={service}></ServiceCard>
-        ))
+            <ServiceCard key={index} service={service}></ServiceCard>
+          ))
         )}
       </div>
 
+      {/* Pagination */}
       <nav className="mt-4">
         <ul className="pagination pagination-sm justify-content-center d-flex flex-wrap gap-1 overflow-auto">
           <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
@@ -223,7 +242,6 @@ const TranslationPage = () => {
               className="page-link px-3"
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              style={{ boxShadow: "none", outline: "none" }} // 🔥 Fixes highlight
             >
               Previous
             </button>
@@ -234,7 +252,6 @@ const TranslationPage = () => {
               <button
                 className="page-link px-3"
                 onClick={() => paginate(index + 1)}
-                style={{ boxShadow: "none", outline: "none" }} // 🔥 Fixes highlight
               >
                 {index + 1}
               </button>
@@ -246,14 +263,12 @@ const TranslationPage = () => {
               className="page-link px-3"
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              style={{ boxShadow: "none", outline: "none" }} // 🔥 Fixes highlight
             >
               Next
             </button>
           </li>
         </ul>
       </nav>
-
     </div>
   );
 };

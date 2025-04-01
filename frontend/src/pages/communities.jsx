@@ -157,22 +157,6 @@ const CommunitiesPage = () => {
   return (
     <div className="container my-4">
       {/* White box outside of content */}
-      <div 
-  style={{
-    position: "absolute", 
-    top: "0px",  
-    bottom: "0px",  // Extend to the bottom
-    left: "5%",  
-    right: "5%",  
-    backgroundColor: "rgba(255, 255, 255, 0.8)", 
-    borderRadius: "10px", 
-    zIndex: 0,
-    padding: "20px",
-  }}
-/>
-
-
-
       <div className="p-4 rounded" style={{ position: "relative", zIndex: 1 }}>
         <h1 className="mb-3 text-center">Communities in Austin</h1>
         <p className="mb-3 text-center">Number of communities: {filteredCommunities.length}</p>
