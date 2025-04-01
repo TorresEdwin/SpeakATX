@@ -183,15 +183,15 @@ const CommunitiesPage = () => {
             onChange={handleChange} 
             style={{ backgroundColor: '#e9713a', color: '#fff' }} // Apply orange background with white text
           >
-            <option value="">Sort</option>
-            <option value="name,a">Name (^)</option>
-            <option value="name,r">Name (v)</option>
-            <option value="count,a">Member Count (^)</option>
-            <option value="count,r">Member Count (v)</option>
-            <option value="area,a">Area (^)</option>
-            <option value="area,r">Area (v)</option>
-            <option value="type,a">Type (^)</option>
-            <option value="type,r">Type (v)</option>
+            <option value="">Sort ⇅</option>
+            <option value="name,a">Name ↑</option>
+            <option value="name,r">Name ↓</option>
+            <option value="count,a">Member Count ↑</option>
+            <option value="count,r">Member Count ↓</option>
+            <option value="area,a">Area ↑</option>
+            <option value="area,r">Area ↓</option>
+            <option value="type,a">Type ↑</option>
+            <option value="type,r">Type ↓</option>
           </select>
           <select 
             className="form-select" 
