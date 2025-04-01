@@ -142,15 +142,15 @@ const JobsPage = () => {
             onChange={handleChange} 
             style={{ backgroundColor: '#e9713a', color: '#fff' }}
           >
-            <option value="">Sort</option>
-            <option value="name,a">Name (^)</option>
-            <option value="name,r">Name (v)</option>
-            <option value="title,a">Title (^)</option>
-            <option value="title,r">Title (v)</option>
-            <option value="area,a">Area (^)</option>
-            <option value="area,r">Area (v)</option>
-            <option value="pay,a">Pay (^)</option>
-            <option value="pay,r">Pay (v)</option>
+            <option value="">Sort ⇅</option>
+            <option value="name,a">Name ↑</option>
+            <option value="name,r">Name ↓</option>
+            <option value="title,a">Title ↑</option>
+            <option value="title,r">Title ↓</option>
+            <option value="area,a">Area ↑</option>
+            <option value="area,r">Area ↓</option>
+            <option value="pay,a">Pay ↑</option>
+            <option value="pay,r">Pay ↓</option>
           </select>
 
           <select 

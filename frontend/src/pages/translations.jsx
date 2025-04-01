@@ -181,15 +181,15 @@ const TranslationPage = () => {
           onChange={handleChange} 
           style={{ backgroundColor: '#e9713a', color: '#fff' }}
         >
-          <option value="">Sort</option>
-          <option value="name,a">Name (^)</option>
-          <option value="name,r">Name (v)</option>
-          <option value="rating,a">Rating (^)</option>
-          <option value="rating,r">Rating (v)</option>
-          <option value="area,a">Area (^)</option>
-          <option value="area,r">Area (v)</option>
-          <option value="price,a">Price (^)</option>
-          <option value="price,r">Price (v)</option>
+          <option value="">Sort ⇅</option>
+          <option value="name,a">Name ↑</option>
+          <option value="name,r">Name ↓</option>
+          <option value="rating,a">Rating ↑</option>
+          <option value="rating,r">Rating ↓</option>
+          <option value="area,a">Area ↑</option>
+          <option value="area,r">Area ↓</option>
+          <option value="price,a">Price ↑</option>
+          <option value="price,r">Price ↓</option>
         </select>
 
         {/* Language Filter Dropdown */}
