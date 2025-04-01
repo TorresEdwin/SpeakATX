@@ -60,7 +60,7 @@ test-acceptance:
     - echo "Running frontend acceptance tests..."
     - python frontend_acceptance.py
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "qoihopeghg"'
+    - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
 
 postman-tests:
