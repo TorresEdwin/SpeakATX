@@ -85,7 +85,7 @@ Phase leader:
 
 # Models
 ## Local Services
-Instances: 100
+Instances: 200
 
 Attributes: 
 - Name of service
@@ -103,7 +103,7 @@ Connections:
 - Local Non-English Friendly Job Postings: jobs that accommodate the language needs for communities that frequent the specific service location
 
 ## Local Non-English Communities
-Instances: 78
+Instances: 54
 
 Attributes: 
 - Name of community
@@ -121,7 +121,7 @@ Connections:
 - Local Non-English Friendly Job Postings: jobs that accommodate the language needs for this community
 
 ## Local Non-English Friendly Job Postings
-Instances: 60
+Instances: 152
 
 Attributes: 
 - Name of company
