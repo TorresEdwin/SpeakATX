@@ -158,7 +158,7 @@ const allItems = [
       {/* Communities */}
       {categorizedResults.Communities.length > 0 && (
         <>
-          <h3 className="mb-3">Communities</h3>
+          <h2 className="mb-3">Communities</h2>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-4">
             {categorizedResults.Communities.map((communityItem, index) => (
               <CommunityCard
@@ -174,7 +174,7 @@ const allItems = [
       {/* Jobs */}
       {categorizedResults.Jobs.length > 0 && (
         <>
-          <h3 className="mb-3">Jobs</h3>
+          <h2 className="mb-3">Jobs</h2>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-4">
             {categorizedResults.Jobs.map((jobItem, index) => (
               <JobCard
@@ -190,7 +190,7 @@ const allItems = [
       {/* Services */}
       {categorizedResults.Services.length > 0 && (
         <>
-          <h3 className="mb-3">Services</h3>
+          <h2 className="mb-3">Services</h2>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-4">
             {categorizedResults.Services.map((service, index) => (
               <ServiceCard
@@ -204,8 +204,8 @@ const allItems = [
       )}
 
       {/* No results fallback */}
-      {filteredResults.length === 0 && <p>No results found</p>}
-    </div>
+      {query && filteredResults.length === 0 && <p>No results found</p>}
+      </div>
   );
 };
 
