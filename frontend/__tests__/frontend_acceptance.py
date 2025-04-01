@@ -199,12 +199,12 @@ class FrontendTests(unittest.TestCase):
 
         # Find the card link by its text or other attributes
         card_title = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "//h5[text()='Lone Star Circle of Care']"))  # Adjust XPath for the card title
+            EC.visibility_of_element_located((By.XPATH, "//h5[text()='The GEO Group']"))  # Adjust XPath for the card title
         )
         card_title.click()
 
         # Verify the new URL
-        self.assertEqual(self.driver.current_url, "https://speakatx.me/jobs/Lone%20Star%20Circle%20of%20Care")  # Replace with expected URL
+        self.assertEqual(self.driver.current_url, "https://speakatx.me/jobs/The%20GEO%20Group")  # Replace with expected URL
 
     @classmethod
     def tearDownClass(cls):
