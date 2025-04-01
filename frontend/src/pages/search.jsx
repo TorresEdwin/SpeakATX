@@ -5,47 +5,136 @@ import CommunityCard from "./community_card";
 import JobCard from "./job_card";
 import ServiceCard from "./service_card";
 
+const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+// Highlight function: splits the text using a capturing regex and wraps matching parts in <span>
+const highlightText = (text, query) => {
+    if (!query.trim()) return text;
+  
+    const subqueries = query.toLowerCase().trim().split(" ");
+  
+    const regexes = subqueries.map(subquery => new RegExp(`(${subquery})`, 'gi'));
+  
+    let parts = [text];
+    
+    regexes.forEach(regex => {
+      parts = parts.flatMap(part => part.split(regex));
+    });
+  
+    console.log(parts);
+  
+    return parts.map((part, index) => {
+      const matchFound = subqueries.some(subquery => part.toLowerCase() === subquery);
+  
+      return matchFound ? (
+        <span key={index} className="highlight">{part}</span> // Wrap matches in <span>
+      ) : (
+        part // Leave other text as is
+      )
+    });
+  };
+
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allItems = [
+// Combine all items from different models into one array safely
+const allItems = [
     ...(Instances?.communities?.map((item) => ({ ...item, type: "Community" })) || []),
     ...(Instances?.jobs?.map((item) => ({ ...item, type: "Job" })) || []),
     ...(Instances?.translations?.map((item) => ({ ...item, type: "Service" })) || []),
   ];
 
+  // Normalize search query
   const query = searchQuery.trim().toLowerCase();
-  const queryWords = query.split(/\s+/);
+  const queryWords = query.split(/\s+/); // Split input into words
 
+  // Function to calculate relevance score
   const getRelevanceScore = (item) => {
-    if (!query) return 0;
+    if (!query) return 0; // No query, no match
+
     const fields = [
       item.name,
       item.descr,
       item.language,
       item.area,
-      item.count,
       item.title,
-      item.pay,
+      item.type,
+      item.pay
     ]
       .filter(Boolean)
-      .map((field) => field.toString().toLowerCase());
+      .map(field => field.toString().toLowerCase());
 
     let score = 0;
-    if (fields.some((field) => field.includes(query))) score += 10;
-    const wordMatches = queryWords.filter((word) =>
-      fields.some((field) => field.includes(word))
-    );
-    score += wordMatches.length * 3;
+
+    // Exact phrase match (highest relevance)
+    if (fields.some(field => field.includes(query))) {
+      score += 10;
+    }
+
+    // Multi-word match (medium relevance)
+    const multiWordMatches = queryWords.filter(word =>
+      fields.some(field => field.includes(word))
+    ).length;
+    score += multiWordMatches * 3;
+
+    // Single-word starts-with match (lower relevance)
+    const singleWordMatches = queryWords.filter(word =>
+      fields.some(field => field.split(" ").some(w => w.startsWith(word)))
+    ).length;
+    score += singleWordMatches;
+
+    // Title match gets extra weight
     if (item.name?.toLowerCase().includes(query)) score += 5;
 
     return score;
   };
 
+  // Filter and sort results by relevance
   const filteredResults = allItems
-    .map((item) => ({ ...item, relevance: getRelevanceScore(item) }))
-    .filter((item) => item.relevance > 0)
-    .sort((a, b) => b.relevance - a.relevance);
+    .map(item => {
+      const relevance = getRelevanceScore(item);
+      if (item.type === "Job") {
+        return {
+          ...item,
+          relevance,
+          originalName: item.name,
+          name: highlightText(item.name, query),
+          title: highlightText(item.title || "", query),
+          area: highlightText(item.area || "", query),
+          language: item.language
+            ? item.language.split(", ").map(lang => highlightText(capitalizeFirstLetter(lang), query)).reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], [])
+            : "",
+        };
+      } else if (item.type === "Service") {
+        return {
+          ...item,
+          relevance,
+          originalName: item.name,
+          name: highlightText(item.name, query),
+          area: highlightText(item.area || "", query),
+          language: item.language
+            ? item.language.split(", ").map(lang => highlightText(capitalizeFirstLetter(lang), query)).reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], [])
+            : "",
+        };
+      } else if (item.type === "Community") {
+        return {
+          ...item,
+          relevance,
+          originalName: item.name,
+          name: highlightText(item.name, query),
+          area: highlightText(item.area || "", query),
+          language: item.language
+            ? item.language.split(", ").map(lang => highlightText(capitalizeFirstLetter(lang), query)).reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], [])
+            : "",
+          type: highlightText(capitalizeFirstLetter(item.type), query),
+        };
+      }
+
+      // Default case if type is missing or unknown
+      return { ...item, relevance };
+    })
+    .filter(item => item.relevance > 0) // Remove items with no match
+    .sort((a, b) => b.relevance - a.relevance); // Sort by highest relevance
 
   const categorizedResults = {
     Communities: filteredResults.filter((item) => item.type === "Community"),
