@@ -276,3 +276,89 @@ body, html {
 .highlight {
   background-color: yellow;
 }
+
+/********************bubbles********************/
+.speech-bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  background: rgb(252, 225, 174);
+  border-radius: 20px;
+  border: 2px solid none;
+  animation: bounce 10s infinite ease-in-out;
+  opacity: 0.9;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; */
+}
+
+.bubble-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+
+.bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: rgb(252, 225, 174);
+  border-top-style: solid;
+  margin-left: -5px;
+  margin-bottom: -2px;
+}
+
+.bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: rgb(252, 225, 174);
+  margin-left: -5px;
+  margin-bottom: -2px;
+  z-index: -1;
+}
+
+.bubble-0 { top: 10%; left: 10%; animation-delay: 0s; }
+.bubble-1 { top: 20%; left: 70%; animation-delay: 2s; }
+.bubble-2 { top: 40%; left: 30%; animation-delay: 4s; }
+.bubble-3 { top: 60%; left: 80%; animation-delay: 1s; }
+.bubble-4 { top: 80%; left: 50%; animation-delay: 3s; }
+
+@keyframes bounce {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-30px); }
+  100% { transform: translateY(0px); }
+}
+
+.search-header {
+  position: relative;
+  z-index: 10;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  /* backdrop-filter: blur(4px); */
+  padding: 1rem;
+  border-radius: 12px;
+}

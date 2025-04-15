@@ -4,6 +4,8 @@ import Instances from "./instances"; // Import central data source
 import CommunityCard from "./community_card";
 import JobCard from "./job_card";
 import ServiceCard from "./service_card";
+import SpeechBubbleBackground from "../components/Bubble";
+
 
 const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -141,12 +143,17 @@ const allItems = [
     Jobs: filteredResults.filter((item) => item.type === "Job"),
     Services: filteredResults.filter((item) => item.type === "Service"),
   };
+  
 
   return (
+    <>
+    <div className="search-page-wrapper">
     <div className="container my-4">
+      {!query && <SpeechBubbleBackground />}
+
+      <div className="search-header">
       <h1 className="mb-4">Search the Website</h1>
 
-      {/* Search Bar */}
       <input
         type="text"
         className="form-control mb-4"
@@ -154,6 +161,8 @@ const allItems = [
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
+    </div>
+
 
       {/* Communities */}
       {categorizedResults.Communities.length > 0 && (
@@ -206,6 +215,8 @@ const allItems = [
       {/* No results fallback */}
       {query && filteredResults.length === 0 && <p>No results found</p>}
       </div>
+      </div>
+      </>
   );
 };
 
