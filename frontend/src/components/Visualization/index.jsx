@@ -6,7 +6,7 @@ import CommunityChart from './communities'
 const Visualizations = () => {
   return (
     <div>
-        <h1 className='mt-4'>Visualizations</h1>
+        <h1 className='mt-4'>Our Visualizations</h1>
       <TranslationChart/>
       <JobChart/>
       <CommunityChart/>

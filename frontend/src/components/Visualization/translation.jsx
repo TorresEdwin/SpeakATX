@@ -21,20 +21,20 @@ const TranslationChart = () => {
         currentPage++;
       }
 
-      // Count ratings from 0 to 5
-      const ratingCounts = Array(6).fill(0); // bins for 0 through 5
+      // Count ratings from 1 to 5
+      const ratingCounts = Array(5).fill(0); // bins for ratings 1 to 5
 
       allItems.forEach((item) => {
         const raw = item.rating;
         const rating = Math.round(parseFloat(raw));
 
-        if (!isNaN(rating) && rating >= 0 && rating <= 5) {
-          ratingCounts[rating]++;
+        if (!isNaN(rating) && rating >= 1 && rating <= 5) {
+          ratingCounts[rating - 1]++; // index 0 = rating 1
         }
       });
 
-      const processedData = ratingCounts.map((count, rating) => ({
-        rating,
+      const processedData = ratingCounts.map((count, i) => ({
+        rating: i + 1,
         count,
       }));
 
