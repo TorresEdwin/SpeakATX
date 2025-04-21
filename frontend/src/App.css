@@ -357,8 +357,25 @@ body, html {
 .search-header {
   position: relative;
   z-index: 10;
+<<<<<<< HEAD
+  background-color: rgba(255, 255, 255, 0.8);
+=======
   /* background-color: rgba(255, 255, 255, 0.8); */
+>>>>>>> origin/main
   /* backdrop-filter: blur(4px); */
   padding: 1rem;
   border-radius: 12px;
 }
+<<<<<<< HEAD
+
+.flag-icon {
+  width: 40px;
+  height: 20px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+.flag-icon {
+  border: 1px solid red;
+}
+=======
+>>>>>>> origin/main
