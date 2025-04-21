@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import { 
     Nav, NavBrand, NavLink, NavMenu, Bars, MobileMenu, CloseIcon 
 } from "./NavbarElements";
@@ -32,6 +32,7 @@ const Navbar = () => {
             "/translations": "SpeakATX - Services",
             "/communities": "SpeakATX - Communities",
             "/jobs": "SpeakATX - Jobs",
+            "/critique": "SpeakATX - Critique",
             "/about": "SpeakATX - About Us",
             "/search": "SpeakATX - Search"
         };
@@ -65,6 +66,7 @@ const Navbar = () => {
                 <NavLink to="/communities" activeStyle>Communities</NavLink>
                 <NavLink to="/jobs" activeStyle>Jobs</NavLink>
                 <NavLink to="/about" activeStyle>About</NavLink>
+                <NavLink to="/critique" activeStyle>Critique</NavLink>
                 <NavLink to="/search" activeStyle><span class="material-symbols-outlined">search</span></NavLink>
             </NavMenu>
 
@@ -76,6 +78,7 @@ const Navbar = () => {
                     <NavLink to="/communities" onClick={toggleMenu}>Communities</NavLink>
                     <NavLink to="/jobs" onClick={toggleMenu}>Jobs</NavLink>
                     <NavLink to="/about" onClick={toggleMenu}>About</NavLink>
+                    <NavLink to="/critique" onClick={toggleMenu}>Critique</NavLink>
                     <NavLink to="/search" onClick={toggleMenu}>Search</NavLink>
                 </MobileMenu>
             )}
