@@ -22,7 +22,7 @@ const TranslationChart = () => {
       }
 
       // Count ratings from 1 to 5
-      const ratingCounts = Array(5).fill(0); // bins for ratings 1 to 5
+      const ratingCounts = Array(5).fill(0); // indexes for ratings 1 to 5
 
       allItems.forEach((item) => {
         const raw = item.rating;
@@ -79,6 +79,23 @@ const TranslationChart = () => {
     svg.append('g').call(xAxis);
     svg.append('g').call(yAxis);
 
+    // Create tooltip
+    let tooltip = d3.select('#bar-tooltip');
+    if (tooltip.empty()) {
+      tooltip = d3.select('body')
+        .append('div')
+        .attr('id', 'bar-tooltip')
+        .style('position', 'absolute')
+        .style('padding', '6px 10px')
+        .style('background', 'white')
+        .style('border', '1px solid gray')
+        .style('border-radius', '4px')
+        .style('pointer-events', 'none')
+        .style('opacity', 0)
+        .style('font-size', '14px')
+        .style('box-shadow', '0 2px 6px rgba(0,0,0,0.15)');
+    }
+
     svg
       .append('g')
       .selectAll('rect')
@@ -88,12 +105,27 @@ const TranslationChart = () => {
       .attr('y', (d) => y(d.count))
       .attr('height', (d) => y(0) - y(d.count))
       .attr('width', x.bandwidth())
-      .attr('fill', 'orange');
+      .attr('fill', 'orange')
+      .on('mouseover', (event, d) => {
+        tooltip
+          .style('opacity', 1)
+          .html(`<strong>Rating ${d.rating}</strong><br/>${d.count} count${d.count !== 1 ? 's' : ''}`)
+          .style('left', `${event.pageX + 10}px`)
+          .style('top', `${event.pageY - 28}px`);
+      })
+      .on('mousemove', (event) => {
+        tooltip
+          .style('left', `${event.pageX + 10}px`)
+          .style('top', `${event.pageY - 28}px`);
+      })
+      .on('mouseout', () => {
+        tooltip.style('opacity', 0);
+      });
   }, [data]);
 
   return (
     <div>
-      <h2>Service Ratings</h2>
+      <h2 className='mt-4'>Service Ratings</h2>
       <svg
         ref={svgRef}
         width={600}

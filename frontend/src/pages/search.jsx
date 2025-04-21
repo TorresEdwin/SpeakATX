@@ -156,7 +156,7 @@ const allItems = [
 
       <input
         type="text"
-        className="form-control mb-4"
+        className="search-input form-control mb-4"
         placeholder="Search for communities, jobs, or services..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}

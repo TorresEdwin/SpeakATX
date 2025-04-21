@@ -142,7 +142,7 @@ const JobChart = () => {
 
   return (
     <div>
-      <h2>Common Job Titles</h2>
+      <h2 className='mt-4'>Common Job Titles</h2>
       <svg ref={svgRef} style={{ border: '1px solid #ccc' }} />
     </div>
   );

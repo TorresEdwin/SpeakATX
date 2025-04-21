@@ -2,12 +2,12 @@ import React from 'react'
 import Visualizations from '../components/Visualization'
 
 
-const CritiquePage = () => {
+const VisualizationsPage = () => {
 
   return (
     <div>
     <Visualizations/>
-      <div>
+      {/* <div>
         <h1>Self-Critique</h1>
         <ul>
             <li>
@@ -52,9 +52,9 @@ const CritiquePage = () => {
                 What puzzles us about their website?
             </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   )
 }
 
-export default CritiquePage
+export default VisualizationsPage
