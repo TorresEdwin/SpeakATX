@@ -105,7 +105,7 @@ const About = () => {
     const people = [
         {
             name: "Steven Zheng", bio: "Steven is a third year CS major at UT Austin. In his spare time he enjoys building things and sleeping.",
-            responsibilities: "Full Stack", commits: commitStats["Steven Zheng"] / 1.5, issues: issueStats["Steven Zheng"], unitTests: 14, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg"
+            responsibilities: "Full Stack", commits: Math.trunc(commitStats["Steven Zheng"] / 1.5), issues: issueStats["Steven Zheng"], unitTests: 14, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/steven_zheng.jpg"
         },
         {
             name: "Maya Lee", bio: "Maya is a third year Computer Science Major at UT Austin. She enjoys doing arts and crafts such as drawing and painting.",
