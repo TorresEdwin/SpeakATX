@@ -40,7 +40,7 @@ const JobCard = ({
                     <h5 className="card-title">{jobItem.name}</h5>
                     <p className="card-text">
                         {jobItem.title} <br />
-                        Pay: ${jobItem.pay}/hr <br />
+                        Pay: {jobItem.pay == 0 || jobItem.pay > 100 ? "Unknown" : "$" + jobItem.pay + "/hr"} <br />
                         Language: {capitalizeLanguages(jobItem.language)}
                         <br />
                         Area: {jobItem.area}
