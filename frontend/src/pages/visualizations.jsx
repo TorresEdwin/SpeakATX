@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Visualizations from '../components/Visualization';
 import Visualizations2 from '../components/Visualization2';
-import MyButton from '../components/Button';
 
 const VisualizationsPage = () => {
   const [activeComponent, setActiveComponent] = useState('viz1'); // default to Visualizations
