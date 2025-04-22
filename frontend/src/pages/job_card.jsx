@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 const placeholderImage =
     "https://www.dunbarcentre.org/wp-content/uploads/2022/10/placeholder-1.png";
 
-const capitalizeFirstLetter = (str) => {
+const capitalizeLanguages = (str) => {
     if (typeof str !== 'string') return str;
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str
+        .split(',')
+        .map(lang => lang.trim()) // remove extra spaces
+        .map(lang => lang.charAt(0).toUpperCase() + lang.slice(1))
+        .join(', ');
 };
 
 const JobCard = ({
@@ -37,7 +41,7 @@ const JobCard = ({
                     <p className="card-text">
                         {jobItem.title} <br />
                         Pay: ${jobItem.pay}/hr <br />
-                        Language: {capitalizeFirstLetter(jobItem.language)}
+                        Language: {capitalizeLanguages(jobItem.language)}
                         <br />
                         Area: {jobItem.area}
                     </p>

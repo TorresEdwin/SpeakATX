@@ -9,7 +9,7 @@ const SpeechBubbleBackground = () => {
         const code = countryCodes[i % countryCodes.length];
         const flagUrl = `https://flagcdn.com/w80/${code}.png`; // 80px wide SVG
         return (
-          <div key={i} className={`bubble bubble-${i % 5}`}>
+          <div key={i} className={`bubble bubble-${i % 9}`}>
             <img
               src={flagUrl}
               alt={`Flag of ${code.toUpperCase()}`}
