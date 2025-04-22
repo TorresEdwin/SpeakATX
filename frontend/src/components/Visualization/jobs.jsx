@@ -150,7 +150,10 @@ const JobChart = () => {
           </div>
         </div>
       ) : (
-        <svg ref={svgRef} style={{ border: '1px solid #ccc' }} />
+        <svg ref={svgRef} 
+        width={600}
+        height={400}
+        style={{ border: '1px solid #ccc' }} />
       )}
     </div>
   );
