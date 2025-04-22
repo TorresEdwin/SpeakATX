@@ -368,3 +368,20 @@ body, html {
   color: black !important;
   
 }
+
+.visual-button{
+  margin-right: 5px;
+  border-radius: 10px;
+  border: 2px solid #e9713a;
+}
+
+.visual-button:hover{
+  background-color: #e9713a;
+  border: 2px solid #e9713a;
+  color: white;
+}
+
+.visual-button.active {
+  background-color: #e9713a;
+  color: white;
+}
