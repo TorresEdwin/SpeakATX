@@ -123,7 +123,6 @@ const CommunityChart = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h2 className='mt-4'>Community Member Counts per Language</h2>
       <svg ref={svgRef} style={{ border: '1px solid lightgray' }}/>
     </div>
   );
