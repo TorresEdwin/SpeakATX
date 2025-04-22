@@ -284,6 +284,9 @@ body, html {
 }
 
 /********************bubbles********************/
+.flag-img{
+  border-radius: 10px;
+}
 .speech-bubble-container {
   position: fixed;
   top: 0;
@@ -298,7 +301,7 @@ body, html {
 .bubble {
   position: absolute;
   width: 8vw;
-  height: 8vh;
+  height: 10vh;
   background: rgb(252, 225, 174);
   border-radius: 20px;
   border: 2px solid none;
