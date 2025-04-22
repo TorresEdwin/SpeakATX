@@ -132,7 +132,10 @@ const CommunityChart = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <svg ref={svgRef} style={{ border: '1px solid lightgray' }} />
+      <svg ref={svgRef}
+      width={600}
+        height={400} 
+        style={{ border: '1px solid lightgray' }} />
     </div>
   );
 };
