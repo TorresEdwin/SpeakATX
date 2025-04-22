@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 
 const TranslationChart = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const svgRef = useRef();
 
   useEffect(() => {
@@ -21,15 +22,13 @@ const TranslationChart = () => {
         currentPage++;
       }
 
-      // Count ratings from 1 to 5
-      const ratingCounts = Array(5).fill(0); // indexes for ratings 1 to 5
+      const ratingCounts = Array(5).fill(0); // ratings 1 to 5
 
       allItems.forEach((item) => {
         const raw = item.rating;
         const rating = Math.round(parseFloat(raw));
-
         if (!isNaN(rating) && rating >= 1 && rating <= 5) {
-          ratingCounts[rating - 1]++; // index 0 = rating 1
+          ratingCounts[rating - 1]++;
         }
       });
 
@@ -39,6 +38,7 @@ const TranslationChart = () => {
       }));
 
       setData(processedData);
+      setLoading(false); // ✅ done loading
     };
 
     fetchAllPages();
@@ -79,7 +79,6 @@ const TranslationChart = () => {
     svg.append('g').call(xAxis);
     svg.append('g').call(yAxis);
 
-    // Create tooltip
     let tooltip = d3.select('#bar-tooltip');
     if (tooltip.empty()) {
       tooltip = d3.select('body')
@@ -105,7 +104,7 @@ const TranslationChart = () => {
       .attr('y', (d) => y(d.count))
       .attr('height', (d) => y(0) - y(d.count))
       .attr('width', x.bandwidth())
-      .attr('fill', 'orange')
+      .attr('fill', '#e9713a')
       .on('mouseover', (event, d) => {
         tooltip
           .style('opacity', 1)
@@ -123,9 +122,16 @@ const TranslationChart = () => {
       });
   }, [data]);
 
+  if (loading) {
+    return (
+      <div style={{ textAlign: 'center', paddingTop: '2rem' }}>
+        <div className="spinner-border text-dark" role="status" />
+      </div>
+    );
+  }
+
   return (
     <div>
-      <h2 className='mt-4'>Service Ratings</h2>
       <svg
         ref={svgRef}
         width={600}

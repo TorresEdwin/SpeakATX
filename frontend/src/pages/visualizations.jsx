@@ -1,60 +1,35 @@
-import React from 'react'
-import Visualizations from '../components/Visualization'
-
+import React, { useState } from 'react';
+import Visualizations from '../components/Visualization';
+import Visualizations2 from '../components/Visualization2';
+import MyButton from '../components/Button';
 
 const VisualizationsPage = () => {
+  const [activeComponent, setActiveComponent] = useState('viz1'); // default to Visualizations
 
   return (
-    <div>
-    <Visualizations/>
-      {/* <div>
-        <h1>Self-Critique</h1>
-        <ul>
-            <li>
-                What did we do well?
-            </li>
-            <li>
-                What did we learn?
-            </li>
-            <li>
-                What did we teach each other?
-            </li>
-            <li>
-                What can we do better?
-            </li>
-            <li>
-                What effect did the peer reviews have?
-            </li>
-            <li>
-                What puzzles us?
-            </li>
-        </ul>
-      </div>
-      <div>
-       <h1>Other-Critique</h1>
-       <ul>
-            <li>
-                What did they do well?
-            </li>
-            <li>
-                How effective was their RESTful API?
-            </li>
-            <li>
-                How well did they implement your user stories?
-            </li>
-            <li>
-                What did we learn from their website?
-            </li>
-            <li>
-                What can they do better?
-            </li>
-            <li>
-                What puzzles us about their website?
-            </li>
-        </ul>
-      </div> */}
-    </div>
-  )
-}
+    
+    <div style={{ textAlign: 'center', marginTop: '60px'}}>
+      <h1 className='mt-4'>Data Visualizations</h1>
+      <div style={{ marginBottom: '20px' }}>
+      <button
+        className={`visual-button ${activeComponent === 'viz1' ? 'active' : ''}`}
+        onClick={() => setActiveComponent('viz1')}
+        >
+        SpeakATX
+        </button>
+        <button
+        className={`visual-button ${activeComponent === 'viz2' ? 'active' : ''}`}
+        onClick={() => setActiveComponent('viz2')}
+        >
+        SafeHarborTexas
+        </button>
 
-export default VisualizationsPage
+      </div>
+
+      {activeComponent === 'viz1' && <Visualizations />}
+      {activeComponent === 'viz2' && <Visualizations2 />}
+    </div>
+  );
+};
+
+export default VisualizationsPage;

@@ -6,11 +6,13 @@ import CommunityChart from './communities'
 const Visualizations = () => {
   return (
     <div>
-        <h1 className='mt-4'>Data Visualizations</h1>
         <p>See what our website offers at a glance!</p>
-        <TranslationChart/>
-        <JobChart/>
+        <h2 className='mt-4'>Community Member Counts per Language</h2>
         <CommunityChart/>
+        <h2 className='mt-4'>Service Ratings</h2>
+        <TranslationChart/>
+        <h2 className='mt-4'>Common Job Titles</h2>
+        <JobChart/>
     </div>
   )
 }
