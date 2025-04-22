@@ -44,6 +44,12 @@ body {
   background-color: rgb(69, 160, 73); /* Darker green when hovered */
 }
 
+#google_translate_element {
+  transform: scale(1.2); /* Adjust scale as needed */
+  transform-origin: top center;
+}
+
+
 .link-item {
   display: flex;
   justify-content: center; /* Center text horizontally */
