@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 const JobChart = () => {
   const svgRef = useRef();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadAllJobs = async () => {
@@ -21,21 +22,18 @@ const JobChart = () => {
 
       const filtered = allJobs.filter(j => j.title);
 
-      // Count jobs per title
       const titleCounts = {};
       filtered.forEach(job => {
         const title = job.title || 'Unknown';
         titleCounts[title] = (titleCounts[title] || 0) + 1;
       });
 
-      // Count jobs per language
       const langCounts = {};
       filtered.forEach(job => {
         const lang = job.language || 'Unknown';
         langCounts[lang] = (langCounts[lang] || 0) + 1;
       });
 
-      // Build data
       const data = Object.entries(titleCounts).map(([title, count]) => {
         const example = filtered.find(j => j.title === title);
         return {
@@ -53,9 +51,9 @@ const JobChart = () => {
       const svg = d3.select(svgRef.current);
       svg.selectAll('*').remove();
 
-      const tooltip = d3.select('#tooltip');
+      let tooltip = d3.select('#tooltip');
       if (tooltip.empty()) {
-        d3.select('body')
+        tooltip = d3.select('body')
           .append('div')
           .attr('id', 'tooltip')
           .style('position', 'absolute')
@@ -71,10 +69,7 @@ const JobChart = () => {
         .scaleOrdinal(d3.schemeCategory10)
         .domain(Object.keys(langCounts));
 
-      const maxRadius = Math.min(
-        (width - padding * 2) / Math.sqrt(data.length),
-        50
-      );
+      const maxRadius = Math.min((width - padding * 2) / Math.sqrt(data.length), 50);
 
       const sizeScale = d3
         .scaleSqrt()
@@ -90,22 +85,22 @@ const JobChart = () => {
         .attr('fill', d => colorScale(d.language))
         .attr('opacity', 0.85)
         .on('mouseover', function (event, d) {
-          d3.select('#tooltip')
+          tooltip
             .style('opacity', 1)
             .html(`<strong>${d.title}</strong><br/>
                    ${d.company}<br/>
-                    ${d.count} listing(s)<br/>
+                   ${d.count} listing(s)<br/>
                    ${d.language}`)
             .style('left', event.pageX + 10 + 'px')
             .style('top', event.pageY - 28 + 'px');
         })
         .on('mouseout', () => {
-          d3.select('#tooltip').style('opacity', 0);
+          tooltip.style('opacity', 0);
         });
 
       const simulation = d3.forceSimulation(data)
         .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide(d => sizeScale(d.count) + 2)) // extra padding
+        .force('collision', d3.forceCollide(d => sizeScale(d.count) + 2))
         .force('x', d3.forceX(width / 2).strength(0.05))
         .force('y', d3.forceY(height / 2).strength(0.05))
         .on('tick', () => {
@@ -114,27 +109,33 @@ const JobChart = () => {
             .attr('cy', d => d.y = Math.max(padding, Math.min(height - padding, d.y)));
         });
 
-      // Legend
-      const legend = svg.append('g')
-        .attr('transform', `translate(${width - 240}, 40)`);
+      // Scrollable HTML-based Legend
+      svg.append('foreignObject')
+      .attr('x', width - 210)
+      .attr('y', 40)
+      .attr('width', 200)
+      .attr('height', 500)
+      .append('xhtml:div')
+      .attr('xmlns', 'http://www.w3.org/1999/xhtml')
+      .style('overflow-y', 'auto')
+      .style('max-height', '480px')
+      .style('font-size', '13px')
+      .style('padding', '10px')
+      .style('background', 'rgba(255, 255, 255, 0.6)') // ✅ 50% opacity background
+      .style('box-shadow', '0 0 5px rgba(0,0,0,0.1)')
+      .selectAll('div')
+      .data(Object.entries(langCounts))
+      .join('div')
+      .style('margin-bottom', '6px')
+      .html(([lang, count]) => `
+        <div style="display: flex; align-items: center;">
+          <div style="width: 14px; height: 14px; background:${colorScale(lang)}; margin-right: 8px;"></div>
+          <span>${lang} (${count})</span>
+        </div>
+      `);
 
-      const languages = Object.entries(langCounts);
 
-      legend.selectAll('circle')
-        .data(languages)
-        .join('circle')
-        .attr('cx', 0)
-        .attr('cy', (_, i) => i * 25)
-        .attr('r', 8)
-        .attr('fill', ([lang]) => colorScale(lang));
-
-      legend.selectAll('text')
-        .data(languages)
-        .join('text')
-        .attr('x', 15)
-        .attr('y', (_, i) => i * 25 + 4)
-        .text(([lang, count]) => `${lang} (${count})`)
-        .attr('font-size', 13);
+      setLoading(false);
     };
 
     loadAllJobs();
@@ -142,8 +143,16 @@ const JobChart = () => {
 
   return (
     <div>
-      <h2 className='mt-4'>Common Job Titles</h2>
-      <svg ref={svgRef} style={{ border: '1px solid #ccc' }} />
+      <h2 className="mt-4 text-center">Common Job Titles</h2>
+      {loading ? (
+        <div style={{ textAlign: 'center', paddingTop: '2rem' }}>
+          <div className="spinner-border text-dark" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      ) : (
+        <svg ref={svgRef} style={{ border: '1px solid #ccc' }} />
+      )}
     </div>
   );
 };
