@@ -116,7 +116,7 @@ const SafeHarborCommunityChart = () => {
       .attr('y', (d) => y(d.count))
       .attr('height', (d) => y(0) - y(d.count))
       .attr('width', x.bandwidth())
-      .attr('fill', '#e9713a')
+      .attr('fill', 'lightblue')
       .on('mouseover', function (event, d) {
         tooltip
           .style('opacity', 1)
