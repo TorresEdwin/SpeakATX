@@ -200,7 +200,7 @@ const allItems = [
       {categorizedResults.Services.length > 0 && (
         <>
           <h2 className="mb-3">Services</h2>
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-4">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 mb-4">
             {categorizedResults.Services.map((service, index) => (
               <ServiceCard
                 key={index}
