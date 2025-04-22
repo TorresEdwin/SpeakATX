@@ -38,7 +38,7 @@ const TranslationPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [currentPage, setCurrentPage] = useState(1); // State for current page
   const [query, setQuery] = useState("");
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(12);
 
   useEffect(() => {
     const checkLoadedStatus = () => {
