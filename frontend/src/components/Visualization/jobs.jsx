@@ -143,7 +143,6 @@ const JobChart = () => {
 
   return (
     <div>
-      <h2 className="mt-4 text-center">Common Job Titles</h2>
       {loading ? (
         <div style={{ textAlign: 'center', paddingTop: '2rem' }}>
           <div className="spinner-border text-dark" role="status">
