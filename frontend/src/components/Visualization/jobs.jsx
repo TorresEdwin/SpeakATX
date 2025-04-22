@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 const JobChart = () => {
@@ -144,6 +143,7 @@ const JobChart = () => {
 
   return (
     <div>
+      <h2 className="mt-4 text-center">Common Job Titles</h2>
       {loading ? (
         <div style={{ textAlign: 'center', paddingTop: '2rem' }}>
           <div className="spinner-border text-dark" role="status">
