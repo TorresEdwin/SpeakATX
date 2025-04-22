@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
-const CommunityChart = () => {
+const SafeHarborCommunityChart = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const svgRef = useRef();
@@ -149,4 +149,4 @@ const CommunityChart = () => {
   );
 };
 
-export default CommunityChart;
+export default SafeHarborCommunityChart;
