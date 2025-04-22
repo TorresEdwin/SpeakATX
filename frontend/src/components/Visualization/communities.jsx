@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 const CommunityChart = () => {
   const svgRef = useRef();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAllPages = async () => {
@@ -25,6 +24,7 @@ const CommunityChart = () => {
     };
 
     const drawChart = (items) => {
+      // Split and aggregate member counts by individual languages
       const langCounts = {};
 
       items.forEach(({ language, member_count }) => {
@@ -81,6 +81,7 @@ const CommunityChart = () => {
       arcs.append('title')
         .text(d => `${d.data.language}: ${d.data.count}`);
 
+      // Add legend to the right
       const legend = chart.append('g')
         .attr('transform', `translate(${radius * 2 + 80}, ${40})`);
 
@@ -114,25 +115,15 @@ const CommunityChart = () => {
         drawChart(items);
       } catch (err) {
         console.error('Error loading community data:', err);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchAndDraw();
   }, []);
 
-  if (loading) {
-    return (
-      <div style={{ textAlign: 'center', paddingTop: '2rem' }}>
-        <div className="spinner-border text-dark" role="status" />
-      </div>
-    );
-  }
-
   return (
     <div style={{ textAlign: 'center' }}>
-      <svg ref={svgRef} style={{ border: '1px solid lightgray' }} />
+      <svg ref={svgRef} style={{ border: '1px solid lightgray' }}/>
     </div>
   );
 };

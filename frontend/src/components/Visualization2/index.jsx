@@ -1,6 +1,6 @@
 import React from 'react';
 import ShelterChart from './shelter';
-import CommunityChart from './community';
+import SafeHarborCommunityChart from './community'
 import LegalAidChart from './legalaid';
 
 const Visualizations2 = () => {
@@ -12,7 +12,7 @@ const Visualizations2 = () => {
       <h2 className="mt-4">Beds Available by City</h2>
       <ShelterChart/>
       <h2 className='mt-4'>Session Cost Distribution</h2>
-      <CommunityChart/>
+      <SafeHarborCommunityChart/>
       <h2 className='mt-4'>Legal Aid Provider Experience</h2>
       <LegalAidChart/>
     </div>
