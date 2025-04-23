@@ -47,6 +47,9 @@ const InstanceLoader = {
 
             for (var i = 0; i < Instances.jobs.length; i++) {
               Instances.jobs[i].originalName = Instances.jobs[i].name;
+              if (Instances.jobs[i].pay > 100) {
+                Instances.jobs[i] = 0;
+              }
             }
             for (var i = 0; i < Instances.translations.length; i++) {
               Instances.translations[i].originalName = Instances.translations[i].name;

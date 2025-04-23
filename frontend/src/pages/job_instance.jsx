@@ -73,7 +73,7 @@ const JobInstance = () => {
                 onError={(e) => { e.target.onerror = null; e.target.src = placeholderImage; }} // Handle broken images
             />
             <p><strong>Title:</strong> {job.title}</p>
-            <p><strong>Pay:</strong> ${job.pay}/hr</p>
+            <p><strong>Pay:</strong> {job.pay == 0 || job.pay > 100 ? "Unknown" : "$" + job.pay + "/hr"}</p>
             <p><strong>Language:</strong> {job.language.split(", ").map(lang => lang.charAt(0).toUpperCase() + lang.slice(1)).join(", ")}</p>
             <p><strong>Area:</strong> {job.area}</p>
             <p style={{ textAlign: "left", maxWidth: "900px", margin: "0 auto", whiteSpace: "pre-line" }}>
