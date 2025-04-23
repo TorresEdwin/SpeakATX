@@ -132,7 +132,7 @@ const About = () => {
             <br /><br />
             <h1>About Us</h1>
             <p>SpeakATX aims to provide resources to minimal English and non-English speakers in Austin, TX. <br />
-                <br/>This site uses Yelp, Google Maps, and Glassdoor APIs. <br/>Made with React and Node.js.</p>
+                <br/>This site uses <a href="https://docs.developer.yelp.com/docs/fusion-intro" >Yelp Fusion</a>, <a href="https://www.meetup.com/" >Meetup</a>, <a href="https://developers.google.com/maps" >Google Maps</a>, and <a href="https://serpapi.com/google-jobs-api" >Google Jobs</a>. <br/>Made with AWS, React, Node.js, and Docker.</p>
 
             <p>Integrating diverse sources of data has been an interesting challenge. In order to find businesses <br/>
                 and communities that serve all of the diverse language groups present in Austin, we had to utilize <br />
@@ -163,6 +163,10 @@ const About = () => {
                     </div>
                 ))}
             </div>
+            <br/>
+            <h3>Total Commits: {Math.trunc(commitStats["Steven Zheng"] / 1.5) + commitStats["Maya Lee"] + commitStats["Amy Wu"] + commitStats["Edwin Torres"] + commitStats["Shawn Tran"]}</h3>
+            <h3>Total Issues: {issueStats["Steven Zheng"] + issueStats["Maya Lee"] + issueStats["Amy Wu"] + issueStats["Edwin Torres"] + issueStats["Shawn Tran"]}</h3>
+            <h3>Total Unit Tests: 39</h3>
             <br />
             <a href="https://documenter.getpostman.com/view/42364456/2sAYXFiHS8#intro">API Documentation</a>
         </div>
