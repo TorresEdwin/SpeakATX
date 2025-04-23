@@ -95,19 +95,7 @@ const allItems = [
   const filteredResults = allItems
     .map(item => {
       const relevance = getRelevanceScore(item);
-      if (item.type === "Job") {
-        return {
-          ...item,
-          relevance,
-          originalName: item.name,
-          name: highlightText(item.name, query),
-          title: highlightText(item.title || "", query),
-          area: highlightText(item.area || "", query),
-          language: item.language
-            ? item.language.split(", ").map(lang => highlightText(capitalizeFirstLetter(lang), query)).reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], [])
-            : "",
-        };
-      } else if (item.type === "Service") {
+      if (item.type === "Service" || item.type === "Job" || item.type === "Community") {
         return {
           ...item,
           relevance,
@@ -117,18 +105,6 @@ const allItems = [
           language: item.language
             ? item.language.split(", ").map(lang => highlightText(capitalizeFirstLetter(lang), query)).reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], [])
             : "",
-        };
-      } else if (item.type === "Community") {
-        return {
-          ...item,
-          relevance,
-          originalName: item.name,
-          name: highlightText(item.name, query),
-          area: highlightText(item.area || "", query),
-          language: item.language
-            ? item.language.split(", ").map(lang => highlightText(capitalizeFirstLetter(lang), query)).reduce((acc, curr) => acc.length ? [acc, ", ", curr] : [curr], [])
-            : "",
-          type: highlightText(capitalizeFirstLetter(item.type), query),
         };
       }
 
