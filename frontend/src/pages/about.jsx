@@ -117,7 +117,7 @@ const About = () => {
         },
         {
             name: "Edwin Torres", bio: "Edwin is a third year CS major at UT Austin. He enjoys talking about new tech, gaming, and watching shows on Netflix.",
-            responsibilities: "Full Stack", commits: commitStats["Edwin Torres"], issues: issueStats["Edwin Torres"], unitTests: 0, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Edwin_Torres.jpg"
+            responsibilities: "Full Stack", commits: commitStats["Edwin Torres"], issues: issueStats["Edwin Torres"], unitTests: 1, imageUrl: "https://speakatx-images.s3.us-east-2.amazonaws.com/about_page/Edwin_Torres.jpg"
         },
         {
             name: "Shawn Tran", bio: "Shawn is a junior at UT Austin, majoring in Computer Science. He enjoys gaming and cooking new dishes in his spare time.",
@@ -166,7 +166,7 @@ const About = () => {
             <br/>
             <h3>Total Commits: {Math.trunc(commitStats["Steven Zheng"] / 1.5) + commitStats["Maya Lee"] + commitStats["Amy Wu"] + commitStats["Edwin Torres"] + commitStats["Shawn Tran"]}</h3>
             <h3>Total Issues: {issueStats["Steven Zheng"] + issueStats["Maya Lee"] + issueStats["Amy Wu"] + issueStats["Edwin Torres"] + issueStats["Shawn Tran"]}</h3>
-            <h3>Total Unit Tests: 39</h3>
+            <h3>Total Unit Tests: 40</h3>
             <br />
             <a href="https://documenter.getpostman.com/view/42364456/2sAYXFiHS8#intro">API Documentation</a>
         </div>
