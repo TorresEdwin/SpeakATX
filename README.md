@@ -61,6 +61,21 @@ Actual work times:
 - Edwin Torres: 15 hours
 - Shawn Tran: 15 hours
 
+Phase 4:
+Estimated work times:
+- Maya Lee: 9 hours
+- Steven Zheng: 9 hours
+- Amy Wu: 9 hours
+- Edwin Torres: 9 hours
+- Shawn Tran: 9 hours
+
+Actual work times:
+- Maya Lee: 9 hours
+- Steven Zheng: 9 hours
+- Amy Wu: 9 hours
+- Edwin Torres: 9 hours
+- Shawn Tran: 9 hours
+
 Phase leader responsibilities:
 - Ensure everyone shows up to meetings
 - Track project progress
@@ -71,7 +86,7 @@ Phase leader:
 - Phase 1: Maya Lee
 - Phase 2: Amy Wu
 - Phase 3: Edwin Torres
-- Phase 4:
+- Phase 4: Shawn Tran
 
 # Project
 
