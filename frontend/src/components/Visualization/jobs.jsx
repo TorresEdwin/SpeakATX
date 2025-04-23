@@ -19,83 +19,48 @@ const JobChart = () => {
         page += 1;
       }
 
-      const filtered = allJobs.filter(j => j.title);
-
-      // Count jobs per title
-      const titleCounts = {};
-      filtered.forEach(job => {
-        const title = job.title || 'Unknown';
-        titleCounts[title] = (titleCounts[title] || 0) + 1;
-      });
-
-      // Count jobs per language
       const langCounts = {};
-      filtered.forEach(job => {
-        const lang = job.language || 'Unknown';
-        langCounts[lang] = (langCounts[lang] || 0) + 1;
+      allJobs.forEach(job => {
+        const langs = (job.language || 'Unknown').split(',').map(l => l.trim());
+        langs.forEach(lang => {
+          langCounts[lang] = (langCounts[lang] || 0) + 1;
+        });
       });
 
-      // Build data
-      const data = Object.entries(titleCounts).map(([title, count]) => {
-        const example = filtered.find(j => j.title === title);
-        return {
-          title,
-          count,
-          company: example?.name || 'Unknown',
-          language: example?.language || 'Unknown',
-        };
-      });
+      const data = Object.entries(langCounts).map(([language, count]) => ({ language, count }));
 
-      const width = 1000;
-      const height = 600;
-      const padding = 60;
+      const width = 700;
+      const height = 500;
+      const radius = Math.min(width, height) / 2 - 40;
 
       const svg = d3.select(svgRef.current);
       svg.selectAll('*').remove();
 
-      const tooltip = d3.select('#tooltip');
-      if (tooltip.empty()) {
-        d3.select('body')
-          .append('div')
-          .attr('id', 'tooltip')
-          .style('position', 'absolute')
-          .style('background', 'white')
-          .style('border', '1px solid gray')
-          .style('padding', '8px')
-          .style('border-radius', '4px')
-          .style('pointer-events', 'none')
-          .style('opacity', 0);
-      }
-
-      const colorScale = d3
-        .scaleOrdinal(d3.schemeCategory10)
-        .domain(Object.keys(langCounts));
-
-      const maxRadius = Math.min(
-        (width - padding * 2) / Math.sqrt(data.length),
-        50
-      );
-
-      const sizeScale = d3
-        .scaleSqrt()
-        .domain([1, d3.max(data, d => d.count)])
-        .range([10, maxRadius]);
+      const colorScale = d3.scaleOrdinal(d3.schemeCategory10)
+        .domain(data.map(d => d.language));
 
       svg.attr('width', width).attr('height', height);
 
-      const circles = svg.selectAll('circle')
-        .data(data)
-        .join('circle')
-        .attr('r', d => sizeScale(d.count))
-        .attr('fill', d => colorScale(d.language))
-        .attr('opacity', 0.85)
+      const chartGroup = svg.append('g')
+        .attr('transform', `translate(${width / 2}, ${height / 2})`);
+
+      const pie = d3.pie().value(d => d.count);
+      const arc = d3.arc().innerRadius(0).outerRadius(radius);
+
+      const arcs = chartGroup.selectAll('path')
+        .data(pie(data))
+        .enter()
+        .append('g');
+
+      arcs.append('path')
+        .attr('d', arc)
+        .attr('fill', d => colorScale(d.data.language))
+        .attr('stroke', 'white')
+        .attr('stroke-width', 2)
         .on('mouseover', function (event, d) {
           d3.select('#tooltip')
             .style('opacity', 1)
-            .html(`<strong>${d.title}</strong><br/>
-                   ${d.company}<br/>
-                    ${d.count} listing(s)<br/>
-                   ${d.language}`)
+            .html(`<strong>${d.data.language}</strong><br/>${d.data.count} job(s)`)
             .style('left', event.pageX + 10 + 'px')
             .style('top', event.pageY - 28 + 'px');
         })
@@ -103,39 +68,64 @@ const JobChart = () => {
           d3.select('#tooltip').style('opacity', 0);
         });
 
-      const simulation = d3.forceSimulation(data)
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('collision', d3.forceCollide(d => sizeScale(d.count) + 2)) // extra padding
-        .force('x', d3.forceX(width / 2).strength(0.05))
-        .force('y', d3.forceY(height / 2).strength(0.05))
-        .on('tick', () => {
-          circles
-            .attr('cx', d => d.x = Math.max(padding, Math.min(width - padding, d.x)))
-            .attr('cy', d => d.y = Math.max(padding, Math.min(height - padding, d.y)));
-        });
+      const legendWidth = 180;
+      const legendPadding = 20;
+      const legendX = width - legendWidth - 10;
+      const legendY = 20;
+      const legendItemHeight = 20;
 
-      // Legend
       const legend = svg.append('g')
-        .attr('transform', `translate(${width - 240}, 40)`);
+        .attr('transform', `translate(${legendX}, ${legendY})`);
 
-      const languages = Object.entries(langCounts);
+      const legendBoxHeight = data.length * legendItemHeight + 10;
+      legend.append('rect')
+        .attr('width', legendWidth)
+        .attr('height', legendBoxHeight)
+        .attr('fill', 'rgba(255, 255, 255, 0.6)')
+        .attr('stroke', 'lightgray')
+        .attr('rx', 8)
+        .attr('ry', 8);
 
-      legend.selectAll('circle')
-        .data(languages)
-        .join('circle')
-        .attr('cx', 0)
-        .attr('cy', (_, i) => i * 25)
-        .attr('r', 8)
-        .attr('fill', ([lang]) => colorScale(lang));
+      legend.selectAll('legend-items')
+        .data(data)
+        .enter()
+        .append('g')
+        .attr('transform', (_, i) => `translate(10, ${i * legendItemHeight + 10})`)
+        .each(function (d) {
+          d3.select(this)
+            .append('rect')
+            .attr('width', 12)
+            .attr('height', 12)
+            .attr('fill', colorScale(d.language));
 
-      legend.selectAll('text')
-        .data(languages)
-        .join('text')
-        .attr('x', 15)
-        .attr('y', (_, i) => i * 25 + 4)
-        .text(([lang, count]) => `${lang} (${count})`)
-        .attr('font-size', 13);
+          d3.select(this)
+            .append('text')
+            .attr('x', 18)
+            .attr('y', 10)
+            .text(`${d.language} (${d.count})`)
+            .attr('font-size', 12)
+            .attr('text-anchor', 'start')
+            .attr('alignment-baseline', 'middle')
+            .style('white-space', 'nowrap')
+            .style('overflow', 'hidden')
+            .style('text-overflow', 'ellipsis')
+            .style('max-width', `${legendWidth - 30}px`);
+        });
     };
+
+    const tooltip = d3.select('body').select('#tooltip');
+    if (tooltip.empty()) {
+      d3.select('body')
+        .append('div')
+        .attr('id', 'tooltip')
+        .style('position', 'absolute')
+        .style('background', 'white')
+        .style('border', '1px solid gray')
+        .style('border-radius', '4px')
+        .style('padding', '8px')
+        .style('pointer-events', 'none')
+        .style('opacity', 0);
+    }
 
     loadAllJobs();
   }, []);
