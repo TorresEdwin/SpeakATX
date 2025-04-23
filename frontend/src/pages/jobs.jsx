@@ -27,7 +27,7 @@ const JobsPage = () => {
   const [loaded, setLoaded] = useState(Instances.loaded);
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(12);
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedFilterValue, setSelectedFilterValue] = useState('');
 
