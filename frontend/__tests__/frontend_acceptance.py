@@ -199,7 +199,7 @@ class FrontendTests(unittest.TestCase):
 
         # Find the card link by its text or other attributes
         card_title = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, "//h5[text()='The GEO Group']"))  # Adjust XPath for the card title
+            EC.visibility_of_element_located((By.XPATH, "//h5[text()='Receptionist, Immigration Bilingual Spanish']"))  # Adjust XPath for the card title
         )
         card_title.click()
 
