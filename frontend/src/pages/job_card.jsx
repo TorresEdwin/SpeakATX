@@ -37,9 +37,9 @@ const JobCard = ({
                     className="card-body d-flex flex-column justify-content-between"
                     style={{ flex: 1 }}
                 >
-                    <h5 className="card-title">{jobItem.name}</h5>
+                    <h5 className="card-title">{jobItem.title}</h5>
                     <p className="card-text">
-                        {jobItem.title} <br />
+                        {jobItem.name} <br />
                         Pay: {jobItem.pay == 0 || jobItem.pay > 100 ? "Unknown" : "$" + jobItem.pay + "/hr"} <br />
                         Language: {capitalizeLanguages(jobItem.language)}
                         <br />
