@@ -26,7 +26,6 @@ const ShelterChart = () => {
         }
       }
 
-      // Aggregate total beds by city
       const cityBeds = {};
       allShelters.forEach(({ city, beds_available }) => {
         const beds = parseInt(beds_available);
@@ -68,6 +67,17 @@ const ShelterChart = () => {
     const pie = d3.pie().value((d) => d.count);
     const arc = d3.arc().innerRadius(0).outerRadius(radius);
 
+    const tooltip = d3.select('body').append('div')
+      .attr('id', 'tooltip')
+      .style('position', 'absolute')
+      .style('background', 'white')
+      .style('border', '1px solid gray')
+      .style('padding', '6px 10px')
+      .style('border-radius', '4px')
+      .style('pointer-events', 'none')
+      .style('opacity', 0)
+      .style('font-size', '13px');
+
     const arcs = chart.selectAll('arc')
       .data(pie(cityData))
       .enter()
@@ -77,12 +87,24 @@ const ShelterChart = () => {
       .attr('d', arc)
       .attr('fill', (d) => color(d.data.city))
       .attr('stroke', 'white')
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 0.5)
+      .on('mouseover', (event, d) => {
+        tooltip
+          .style('opacity', 1)
+          .html(`<strong>${d.data.city}</strong><br/>${d.data.count} beds`)
+          .style('left', `${event.pageX + 10}px`)
+          .style('top', `${event.pageY - 28}px`);
+      })
+      .on('mousemove', (event) => {
+        tooltip
+          .style('left', `${event.pageX + 10}px`)
+          .style('top', `${event.pageY - 28}px`);
+      })
+      .on('mouseout', () => {
+        tooltip.style('opacity', 0);
+      });
 
-    arcs.append('title')
-      .text((d) => `${d.data.city}: ${d.data.count} beds`);
-
-    // Scrollable legend using foreignObject
+    // Scrollable legend
     svg.append('foreignObject')
       .attr('x', radius * 2 + 60)
       .attr('y', 40)
