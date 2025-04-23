@@ -5,125 +5,152 @@ const CommunityChart = () => {
   const svgRef = useRef();
 
   useEffect(() => {
-    const fetchAllPages = async () => {
-      let allItems = [];
+    const loadAllCommunities = async () => {
+      let allCommunities = [];
       let page = 1;
       let hasNext = true;
 
       while (hasNext) {
         const res = await fetch(`https://api.speakatx.me/get/communities?page=${page}`);
         const json = await res.json();
-        const pageItems = json.items || [];
-
-        allItems = [...allItems, ...pageItems];
+        const items = json.items || [];
+        allCommunities.push(...items);
         hasNext = json.pagination?.has_next;
         page += 1;
       }
 
-      return allItems;
-    };
+      const data = [];
+      allCommunities.forEach(({ language, type }) => {
+        if (!language || !type) return;
 
-    const drawChart = (items) => {
-      // Split and aggregate member counts by individual languages
-      const langCounts = {};
-
-      items.forEach(({ language, member_count }) => {
-        if (!language || !member_count) return;
-
-        const langs = language
-          .split(',')
-          .map(l => l.trim().toLowerCase())
-          .filter(l => l.length > 0);
-
+        const langs = language.split(',').map(l => l.trim().toLowerCase());
         langs.forEach(lang => {
-          langCounts[lang] = (langCounts[lang] || 0) + member_count;
+          data.push({ language: lang, type: type.trim() });
         });
       });
 
-      const data = Object.entries(langCounts).map(([language, count]) => ({
-        language,
-        count,
-      }));
+      const grouped = d3.rollups(
+        data,
+        v => v.length,
+        d => `${d.language} | ${d.type}`
+      ).map(([key, count]) => {
+        const [language, type] = key.split(' | ');
+        return { language, type, count };
+      });
 
-      if (data.length === 0) return;
-
-      const width = 700;
-      const height = 500;
-      const radius = Math.min(width, height) / 2.5;
+      const width = 1000;
+      const height = 600;
+      const padding = 60;
 
       const svg = d3.select(svgRef.current);
       svg.selectAll('*').remove();
 
-      const chart = svg
-        .attr('width', width)
-        .attr('height', height);
+      const tooltip = d3.select('#tooltip');
+      if (tooltip.empty()) {
+        d3.select('body')
+          .append('div')
+          .attr('id', 'tooltip')
+          .style('position', 'absolute')
+          .style('background', 'white')
+          .style('border', '1px solid gray')
+          .style('padding', '8px')
+          .style('border-radius', '4px')
+          .style('pointer-events', 'none')
+          .style('opacity', 0);
+      }
 
-      const pieGroup = chart
+      const uniqueLanguages = Array.from(new Set(grouped.map(d => d.language)));
+      const colorScale = d3.scaleOrdinal()
+        .domain(uniqueLanguages)
+        .range(d3.schemeCategory10.concat(d3.schemeSet2, d3.schemeTableau10).slice(0, uniqueLanguages.length));
+
+      const typePatterns = {
+        'online': '2,2',
+        'in-person': '5,5',
+        'hybrid': '1,4',
+        'default': ''
+      };
+
+      const sizeScale = d3.scaleSqrt()
+        .domain([0, d3.max(grouped, d => d.count)])
+        .range([10, 50]);
+
+      svg.attr('width', width).attr('height', height);
+
+      const defs = svg.append('defs');
+      Object.entries(typePatterns).forEach(([type, dash]) => {
+        defs.append('pattern')
+          .attr('id', `pattern-${type}`)
+          .attr('width', 4)
+          .attr('height', 4)
+          .attr('patternUnits', 'userSpaceOnUse')
+          .append('rect')
+          .attr('width', 4)
+          .attr('height', 4)
+          .attr('fill', '#fff');
+      });
+
+      const circles = svg.selectAll('circle')
+        .data(grouped)
+        .join('circle')
+        .attr('r', d => sizeScale(d.count))
+        .attr('fill', d => colorScale(d.language))
+        .attr('opacity', 0.8)
+        .attr('stroke-dasharray', d => typePatterns[d.type.toLowerCase()] || typePatterns['default'])
+        .on('mouseover', function (event, d) {
+          d3.select('#tooltip')
+            .style('opacity', 1)
+            .html(`<strong>${d.language}</strong><br/>Type: ${d.type}<br/>Communities: ${d.count}`)
+            .style('left', event.pageX + 10 + 'px')
+            .style('top', event.pageY - 28 + 'px');
+        })
+        .on('mouseout', () => {
+          d3.select('#tooltip').style('opacity', 0);
+        });
+
+      const simulation = d3.forceSimulation(grouped)
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('collision', d3.forceCollide(d => sizeScale(d.count) + 2))
+        .force('x', d3.forceX(width / 2).strength(0.05))
+        .force('y', d3.forceY(height / 2).strength(0.05))
+        .on('tick', () => {
+          circles
+            .attr('cx', d => d.x = Math.max(padding, Math.min(width - padding, d.x)))
+            .attr('cy', d => d.y = Math.max(padding, Math.min(height - padding, d.y)));
+        });
+
+      const legend = svg.append('g')
+        .attr('transform', `translate(${width - 200}, 40)`);
+
+      legend.selectAll('legend-items')
+        .data(uniqueLanguages)
+        .enter()
         .append('g')
-        .attr('transform', `translate(${radius + 40}, ${height / 2})`);
+        .attr('class', 'legend-item')
+        .attr('transform', (_, i) => `translate(0, ${i * 25})`)
+        .each(function(lang) {
+          d3.select(this)
+            .append('rect')
+            .attr('x', 0)
+            .attr('width', 14)
+            .attr('height', 14)
+            .attr('fill', colorScale(lang));
 
-      const color = d3.scaleOrdinal(d3.schemeTableau10);
-
-      const pie = d3.pie().value(d => d.count);
-      const arc = d3.arc().innerRadius(0).outerRadius(radius);
-
-      const arcs = pieGroup.selectAll('g')
-        .data(pie(data))
-        .enter()
-        .append('g');
-
-      arcs.append('path')
-        .attr('d', arc)
-        .attr('fill', d => color(d.data.language))
-        .attr('stroke', 'white')
-        .attr('stroke-width', 2);
-
-      arcs.append('title')
-        .text(d => `${d.data.language}: ${d.data.count}`);
-
-      // Add legend to the right
-      const legend = chart.append('g')
-        .attr('transform', `translate(${radius * 2 + 80}, ${40})`);
-
-      legend.selectAll('rect')
-        .data(data)
-        .enter()
-        .append('rect')
-        .attr('x', 0)
-        .attr('y', (_, i) => i * 24)
-        .attr('width', 18)
-        .attr('height', 18)
-        .attr('fill', d => color(d.language));
-
-      legend.selectAll('text')
-        .data(data)
-        .enter()
-        .append('text')
-        .attr('x', 25)
-        .attr('y', (_, i) => i * 24 + 14)
-        .text(d => `${capitalize(d.language)} (${d.count})`)
-        .attr('font-size', 13);
-
-      function capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-      }
+          d3.select(this)
+            .append('text')
+            .attr('x', 20)
+            .attr('y', 12)
+            .text(lang.charAt(0).toUpperCase() + lang.slice(1))
+            .attr('font-size', 13);
+        });
     };
 
-    const fetchAndDraw = async () => {
-      try {
-        const items = await fetchAllPages();
-        drawChart(items);
-      } catch (err) {
-        console.error('Error loading community data:', err);
-      }
-    };
-
-    fetchAndDraw();
+    loadAllCommunities();
   }, []);
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <svg ref={svgRef} style={{ border: '1px solid lightgray' }}/>
+    <div>
+      <svg ref={svgRef} style={{ border: '1px solid lightgray' }} />
     </div>
   );
 };
